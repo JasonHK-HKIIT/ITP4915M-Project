@@ -4,7 +4,11 @@ namespace Client
     {
         public LoginForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+        }
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
         }
     }
 }

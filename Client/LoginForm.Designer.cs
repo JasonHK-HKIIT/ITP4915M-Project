@@ -104,7 +104,6 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Smile & Sunshine Toy";
-            this.Load += this.LoginForm_Load;
             this.ResumeLayout(false);
             this.PerformLayout();
         }
