@@ -33,5 +33,23 @@ namespace Client
                 Application.Exit();
             }
         }
+
+        private void menuItemProduct_Click(object sender, EventArgs e)
+        {
+            foreach (var form in this.MdiChildren)
+            {
+                if (form.GetType() == typeof(ProductForm))
+                {
+                    form.MdiParent = this;
+                    form.Focus();
+
+                    return;
+                }
+            }
+
+            var productForm = new ProductForm();
+            productForm.MdiParent = this;
+            productForm.Show();
+        }
     }
 }

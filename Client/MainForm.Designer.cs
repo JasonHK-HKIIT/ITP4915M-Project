@@ -28,27 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new MenuStrip();
+            this.menu = new MenuStrip();
+            this.menuItemProduct = new ToolStripMenuItem();
             this.maintenanceToolStripMenuItem = new ToolStripMenuItem();
             this.suppliersManagementToolStripMenuItem = new ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // menu
             // 
-            this.menuStrip1.ImageScalingSize = new Size(20, 20);
-            this.menuStrip1.Items.AddRange(new ToolStripItem[] { this.maintenanceToolStripMenuItem });
-            this.menuStrip1.Location = new Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new Size(800, 27);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menu.ImageScalingSize = new Size(20, 20);
+            this.menu.Items.AddRange(new ToolStripItem[] { this.menuItemProduct, this.maintenanceToolStripMenuItem });
+            this.menu.Location = new Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.RenderMode = ToolStripRenderMode.System;
+            this.menu.Size = new Size(800, 28);
+            this.menu.TabIndex = 0;
+            this.menu.Text = "menuStrip1";
+            // 
+            // menuItemProduct
+            // 
+            this.menuItemProduct.Name = "menuItemProduct";
+            this.menuItemProduct.Size = new Size(78, 24);
+            this.menuItemProduct.Text = "Product";
+            this.menuItemProduct.Click += this.menuItemProduct_Click;
             // 
             // maintenanceToolStripMenuItem
             // 
             this.maintenanceToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.suppliersManagementToolStripMenuItem });
             this.maintenanceToolStripMenuItem.Name = "maintenanceToolStripMenuItem";
-            this.maintenanceToolStripMenuItem.Size = new Size(112, 23);
+            this.maintenanceToolStripMenuItem.Size = new Size(112, 24);
             this.maintenanceToolStripMenuItem.Text = "Maintenance";
             // 
             // suppliersManagementToolStripMenuItem
@@ -62,23 +71,24 @@
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(800, 450);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menu);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.menu;
             this.Name = "MainForm";
             this.Text = "Smile & Sunshine Toy";
             this.WindowState = FormWindowState.Maximized;
             this.Load += this.MainForm_Load;
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
         #endregion
 
-        private MenuStrip menuStrip1;
+        private MenuStrip menu;
         private ToolStripMenuItem maintenanceToolStripMenuItem;
         private ToolStripMenuItem suppliersManagementToolStripMenuItem;
+        private ToolStripMenuItem menuItemProduct;
     }
 }
