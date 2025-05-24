@@ -67,6 +67,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Smile & Sunshine Toy";
+            this.WindowState = FormWindowState.Maximized;
             this.Load += this.MainForm_Load;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

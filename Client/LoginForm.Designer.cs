@@ -103,6 +103,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "LoginForm";
+            this.StartPosition = FormStartPosition.CenterParent;
             this.Text = "Smile & Sunshine Toy";
             this.ResumeLayout(false);
             this.PerformLayout();
