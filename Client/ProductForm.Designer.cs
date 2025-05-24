@@ -47,6 +47,7 @@
             this.ClientSize = new Size(800, 450);
             this.Controls.Add(this.toolStrip1);
             this.Name = "ProductForm";
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "ProductForm";
             this.ResumeLayout(false);
             this.PerformLayout();
