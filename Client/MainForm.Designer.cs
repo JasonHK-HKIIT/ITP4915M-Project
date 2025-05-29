@@ -51,7 +51,7 @@
             this.menuItemProduct.Name = "menuItemProduct";
             this.menuItemProduct.Size = new Size(78, 24);
             this.menuItemProduct.Text = "Product";
-            this.menuItemProduct.Click += this.menuItemProduct_Click;
+            this.menuItemProduct.Click += this.MenuItemProduct_Click;
             // 
             // maintenanceToolStripMenuItem
             // 

@@ -34,7 +34,7 @@ namespace Client
             }
         }
 
-        private void menuItemProduct_Click(object sender, EventArgs e)
+        private void MenuItemProduct_Click(object sender, EventArgs e)
         {
             foreach (var form in this.MdiChildren)
             {
