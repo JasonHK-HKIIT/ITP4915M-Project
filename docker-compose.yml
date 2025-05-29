@@ -1,0 +1,27 @@
+name: itp4915m
+
+services:
+  database:
+    container_name: itp4915m-database
+    image: mariadb:11
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--su-mysql", "--connect"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: "true"
+      MARIADB_DATABASE: itp4915m
+      MARIADB_USER: itp4915m
+      MARIADB_PASSWORD: itp4915m
+      # MARIADB_RANDOM_ROOT_PASSWORD: "true"
+      MARIADB_ROOT_PASSWORD: ""
+    volumes:
+      - ./Database.sql:/docker-entrypoint-initdb.d/Database.sql:ro
+    tmpfs:
+      - /var/lib/mysql
+
+networks:
+  backend:
