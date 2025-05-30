@@ -37,10 +37,6 @@
             productsToolStripMenuItem = new ToolStripMenuItem();
             ordersToolStripMenuItem = new ToolStripMenuItem();
             shipmentsToolStripMenuItem = new ToolStripMenuItem();
-            inventoryToolStripMenuItem = new ToolStripMenuItem();
-            purchaseOrderToolStripMenuItem = new ToolStripMenuItem();
-            serviceCasesToolStripMenuItem = new ToolStripMenuItem();
-            adminToolStripMenuItem = new ToolStripMenuItem();
             windowsToolStripMenuItem = new ToolStripMenuItem();
             cascadeToolStripMenuItem = new ToolStripMenuItem();
             tileToolStripMenuItem = new ToolStripMenuItem();
@@ -49,7 +45,18 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStripStatusLabel3 = new ToolStripStatusLabel();
-            toolStripProgressBar1 = new ToolStripProgressBar();
+            customerOrdersToolStripMenuItem = new ToolStripMenuItem();
+            customerOrdersToolStripMenuItem1 = new ToolStripMenuItem();
+            serviceCasesToolStripMenuItem1 = new ToolStripMenuItem();
+            suppliersToolStripMenuItem = new ToolStripMenuItem();
+            purchaseOrdersToolStripMenuItem = new ToolStripMenuItem();
+            productDesignRequestsToolStripMenuItem = new ToolStripMenuItem();
+            productsToolStripMenuItem1 = new ToolStripMenuItem();
+            quotationsToolStripMenuItem = new ToolStripMenuItem();
+            productionOrdersToolStripMenuItem = new ToolStripMenuItem();
+            shipmentsToolStripMenuItem1 = new ToolStripMenuItem();
+            inventoryControlToolStripMenuItem = new ToolStripMenuItem();
+            adminUserManagementToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -73,71 +80,51 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(92, 22);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // modulesToolStripMenuItem
             // 
-            modulesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { customersToolStripMenuItem, suppilersToolStripMenuItem, productsToolStripMenuItem, ordersToolStripMenuItem, shipmentsToolStripMenuItem, inventoryToolStripMenuItem, purchaseOrderToolStripMenuItem, serviceCasesToolStripMenuItem, adminToolStripMenuItem });
+            modulesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { customersToolStripMenuItem, suppilersToolStripMenuItem, productsToolStripMenuItem, ordersToolStripMenuItem, shipmentsToolStripMenuItem });
             modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
             modulesToolStripMenuItem.Size = new Size(65, 20);
             modulesToolStripMenuItem.Text = "Modules";
             // 
             // customersToolStripMenuItem
             // 
+            customersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { customerOrdersToolStripMenuItem, customerOrdersToolStripMenuItem1, serviceCasesToolStripMenuItem1 });
             customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            customersToolStripMenuItem.Size = new Size(180, 22);
-            customersToolStripMenuItem.Text = "Customers";
+            customersToolStripMenuItem.Size = new Size(205, 22);
+            customersToolStripMenuItem.Text = "Customer Management";
             customersToolStripMenuItem.Click += customersToolStripMenuItem_Click;
             // 
             // suppilersToolStripMenuItem
             // 
+            suppilersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { suppliersToolStripMenuItem, purchaseOrdersToolStripMenuItem });
             suppilersToolStripMenuItem.Name = "suppilersToolStripMenuItem";
-            suppilersToolStripMenuItem.Size = new Size(180, 22);
-            suppilersToolStripMenuItem.Text = "Suppliers";
+            suppilersToolStripMenuItem.Size = new Size(205, 22);
+            suppilersToolStripMenuItem.Text = "Supplier Management";
             // 
             // productsToolStripMenuItem
             // 
+            productsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { productDesignRequestsToolStripMenuItem, productsToolStripMenuItem1, quotationsToolStripMenuItem });
             productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            productsToolStripMenuItem.Size = new Size(180, 22);
-            productsToolStripMenuItem.Text = "Products";
+            productsToolStripMenuItem.Size = new Size(205, 22);
+            productsToolStripMenuItem.Text = "Products and Design";
             // 
             // ordersToolStripMenuItem
             // 
+            ordersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { productionOrdersToolStripMenuItem, shipmentsToolStripMenuItem1, inventoryControlToolStripMenuItem });
             ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            ordersToolStripMenuItem.Size = new Size(180, 22);
-            ordersToolStripMenuItem.Text = "Orders";
+            ordersToolStripMenuItem.Size = new Size(205, 22);
+            ordersToolStripMenuItem.Text = "Production and Logistics";
             // 
             // shipmentsToolStripMenuItem
             // 
+            shipmentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { adminUserManagementToolStripMenuItem });
             shipmentsToolStripMenuItem.Name = "shipmentsToolStripMenuItem";
-            shipmentsToolStripMenuItem.Size = new Size(180, 22);
-            shipmentsToolStripMenuItem.Text = "Shipments";
-            // 
-            // inventoryToolStripMenuItem
-            // 
-            inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            inventoryToolStripMenuItem.Size = new Size(180, 22);
-            inventoryToolStripMenuItem.Text = "Inventory";
-            // 
-            // purchaseOrderToolStripMenuItem
-            // 
-            purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
-            purchaseOrderToolStripMenuItem.Size = new Size(180, 22);
-            purchaseOrderToolStripMenuItem.Text = "Purchase Orders";
-            purchaseOrderToolStripMenuItem.Click += purchaseOrderToolStripMenuItem_Click;
-            // 
-            // serviceCasesToolStripMenuItem
-            // 
-            serviceCasesToolStripMenuItem.Name = "serviceCasesToolStripMenuItem";
-            serviceCasesToolStripMenuItem.Size = new Size(180, 22);
-            serviceCasesToolStripMenuItem.Text = "Service Cases";
-            // 
-            // adminToolStripMenuItem
-            // 
-            adminToolStripMenuItem.Name = "adminToolStripMenuItem";
-            adminToolStripMenuItem.Size = new Size(180, 22);
-            adminToolStripMenuItem.Text = "Admin";
+            shipmentsToolStripMenuItem.Size = new Size(205, 22);
+            shipmentsToolStripMenuItem.Text = "Administration";
             // 
             // windowsToolStripMenuItem
             // 
@@ -149,24 +136,24 @@
             // cascadeToolStripMenuItem
             // 
             cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            cascadeToolStripMenuItem.Size = new Size(180, 22);
+            cascadeToolStripMenuItem.Size = new Size(147, 22);
             cascadeToolStripMenuItem.Text = "Cascade";
             // 
             // tileToolStripMenuItem
             // 
             tileToolStripMenuItem.Name = "tileToolStripMenuItem";
-            tileToolStripMenuItem.Size = new Size(180, 22);
+            tileToolStripMenuItem.Size = new Size(147, 22);
             tileToolStripMenuItem.Text = "Tile";
             // 
             // arrangeIconsToolStripMenuItem
             // 
             arrangeIconsToolStripMenuItem.Name = "arrangeIconsToolStripMenuItem";
-            arrangeIconsToolStripMenuItem.Size = new Size(180, 22);
+            arrangeIconsToolStripMenuItem.Size = new Size(147, 22);
             arrangeIconsToolStripMenuItem.Text = "Arrange Icons";
             // 
             // statusStrip1
             // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, toolStripStatusLabel3, toolStripProgressBar1 });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, toolStripStatusLabel3 });
             statusStrip1.Location = new Point(0, 489);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(1198, 22);
@@ -191,10 +178,77 @@
             toolStripStatusLabel3.Size = new Size(80, 17);
             toolStripStatusLabel3.Text = "System Status";
             // 
-            // toolStripProgressBar1
+            // customerOrdersToolStripMenuItem
             // 
-            toolStripProgressBar1.Name = "toolStripProgressBar1";
-            toolStripProgressBar1.Size = new Size(100, 16);
+            customerOrdersToolStripMenuItem.Name = "customerOrdersToolStripMenuItem";
+            customerOrdersToolStripMenuItem.Size = new Size(180, 22);
+            customerOrdersToolStripMenuItem.Text = "Customers";
+            // 
+            // customerOrdersToolStripMenuItem1
+            // 
+            customerOrdersToolStripMenuItem1.Name = "customerOrdersToolStripMenuItem1";
+            customerOrdersToolStripMenuItem1.Size = new Size(180, 22);
+            customerOrdersToolStripMenuItem1.Text = "Customer Orders";
+            // 
+            // serviceCasesToolStripMenuItem1
+            // 
+            serviceCasesToolStripMenuItem1.Name = "serviceCasesToolStripMenuItem1";
+            serviceCasesToolStripMenuItem1.Size = new Size(180, 22);
+            serviceCasesToolStripMenuItem1.Text = "Service Cases";
+            // 
+            // suppliersToolStripMenuItem
+            // 
+            suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
+            suppliersToolStripMenuItem.Size = new Size(180, 22);
+            suppliersToolStripMenuItem.Text = "Suppliers";
+            // 
+            // purchaseOrdersToolStripMenuItem
+            // 
+            purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
+            purchaseOrdersToolStripMenuItem.Size = new Size(180, 22);
+            purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
+            // 
+            // productDesignRequestsToolStripMenuItem
+            // 
+            productDesignRequestsToolStripMenuItem.Name = "productDesignRequestsToolStripMenuItem";
+            productDesignRequestsToolStripMenuItem.Size = new Size(205, 22);
+            productDesignRequestsToolStripMenuItem.Text = "Product Design Requests";
+            // 
+            // productsToolStripMenuItem1
+            // 
+            productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
+            productsToolStripMenuItem1.Size = new Size(205, 22);
+            productsToolStripMenuItem1.Text = "Products";
+            // 
+            // quotationsToolStripMenuItem
+            // 
+            quotationsToolStripMenuItem.Name = "quotationsToolStripMenuItem";
+            quotationsToolStripMenuItem.Size = new Size(205, 22);
+            quotationsToolStripMenuItem.Text = "Quotations";
+            // 
+            // productionOrdersToolStripMenuItem
+            // 
+            productionOrdersToolStripMenuItem.Name = "productionOrdersToolStripMenuItem";
+            productionOrdersToolStripMenuItem.Size = new Size(180, 22);
+            productionOrdersToolStripMenuItem.Text = "Production Orders";
+            // 
+            // shipmentsToolStripMenuItem1
+            // 
+            shipmentsToolStripMenuItem1.Name = "shipmentsToolStripMenuItem1";
+            shipmentsToolStripMenuItem1.Size = new Size(180, 22);
+            shipmentsToolStripMenuItem1.Text = "Shipments";
+            // 
+            // inventoryControlToolStripMenuItem
+            // 
+            inventoryControlToolStripMenuItem.Name = "inventoryControlToolStripMenuItem";
+            inventoryControlToolStripMenuItem.Size = new Size(180, 22);
+            inventoryControlToolStripMenuItem.Text = "Inventory Control";
+            // 
+            // adminUserManagementToolStripMenuItem
+            // 
+            adminUserManagementToolStripMenuItem.Name = "adminUserManagementToolStripMenuItem";
+            adminUserManagementToolStripMenuItem.Size = new Size(212, 22);
+            adminUserManagementToolStripMenuItem.Text = "Admin/User Management";
             // 
             // MF1
             // 
@@ -227,10 +281,6 @@
         private ToolStripMenuItem ordersToolStripMenuItem;
         private ToolStripMenuItem windowsToolStripMenuItem;
         private ToolStripMenuItem shipmentsToolStripMenuItem;
-        private ToolStripMenuItem inventoryToolStripMenuItem;
-        private ToolStripMenuItem purchaseOrderToolStripMenuItem;
-        private ToolStripMenuItem serviceCasesToolStripMenuItem;
-        private ToolStripMenuItem adminToolStripMenuItem;
         private ToolStripMenuItem cascadeToolStripMenuItem;
         private ToolStripMenuItem tileToolStripMenuItem;
         private ToolStripMenuItem arrangeIconsToolStripMenuItem;
@@ -238,6 +288,17 @@
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripStatusLabel toolStripStatusLabel2;
         private ToolStripStatusLabel toolStripStatusLabel3;
-        private ToolStripProgressBar toolStripProgressBar1;
+        private ToolStripMenuItem customerOrdersToolStripMenuItem;
+        private ToolStripMenuItem customerOrdersToolStripMenuItem1;
+        private ToolStripMenuItem serviceCasesToolStripMenuItem1;
+        private ToolStripMenuItem suppliersToolStripMenuItem;
+        private ToolStripMenuItem purchaseOrdersToolStripMenuItem;
+        private ToolStripMenuItem productDesignRequestsToolStripMenuItem;
+        private ToolStripMenuItem productsToolStripMenuItem1;
+        private ToolStripMenuItem quotationsToolStripMenuItem;
+        private ToolStripMenuItem productionOrdersToolStripMenuItem;
+        private ToolStripMenuItem shipmentsToolStripMenuItem1;
+        private ToolStripMenuItem inventoryControlToolStripMenuItem;
+        private ToolStripMenuItem adminUserManagementToolStripMenuItem;
     }
 }

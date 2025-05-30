@@ -28,33 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.toolStrip1 = new ToolStrip();
-            this.SuspendLayout();
+            dataGridView1 = new DataGridView();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            button3 = new Button();
+            button2 = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
-            // toolStrip1
+            // dataGridView1
             // 
-            this.toolStrip1.ImageScalingSize = new Size(20, 20);
-            this.toolStrip1.Location = new Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new Size(800, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(7, 95);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(1218, 427);
+            dataGridView1.TabIndex = 5;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(148, 15);
+            label1.TabIndex = 6;
+            label1.Text = "Input product ID to search:";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(12, 55);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(179, 23);
+            textBox1.TabIndex = 7;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(268, 55);
+            button3.Name = "button3";
+            button3.Size = new Size(121, 23);
+            button3.TabIndex = 10;
+            button3.Text = "Add Product";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(416, 55);
+            button2.Name = "button2";
+            button2.Size = new Size(121, 23);
+            button2.TabIndex = 11;
+            button2.Text = "Edit Selected";
+            button2.UseVisualStyleBackColor = true;
             // 
             // ProductForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(800, 450);
-            this.Controls.Add(this.toolStrip1);
-            this.Name = "ProductForm";
-            this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "ProductForm";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1233, 534);
+            Controls.Add(button2);
+            Controls.Add(button3);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
+            Controls.Add(dataGridView1);
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "ProductForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "ProductForm";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private ToolStrip toolStrip1;
+        private DataGridView dataGridView1;
+        private Label label1;
+        private TextBox textBox1;
+        private Button button3;
+        private Button button2;
     }
 }

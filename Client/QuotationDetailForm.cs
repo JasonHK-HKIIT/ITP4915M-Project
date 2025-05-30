@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class ProductForm : Form
+    public partial class QuotationDetailForm : Form
     {
-        public ProductForm()
+        public QuotationDetailForm()
         {
             InitializeComponent();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class ProductForm : Form
+    public partial class ProductDetailForm : Form
     {
-        public ProductForm()
+        public ProductDetailForm()
         {
             InitializeComponent();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void label4_Click(object sender, EventArgs e)
         {
 
         }
