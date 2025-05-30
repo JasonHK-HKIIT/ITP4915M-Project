@@ -17,10 +17,6 @@ namespace Client
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -40,6 +36,32 @@ namespace Client
         private void tabPage3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MF1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void purchaseOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Only allow one CustomerForm open at a time
+            foreach (Form child in this.MdiChildren)
+            {
+                if (child is CustomerForm)
+                {
+                    child.Activate();
+                    return;
+                }
+            }
+            var customerForm = new CustomerForm();
+            customerForm.MdiParent = this;
+            customerForm.Show();
         }
     }
 }
