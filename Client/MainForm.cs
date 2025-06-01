@@ -51,5 +51,23 @@ namespace Client
             productForm.MdiParent = this;
             productForm.Show();
         }
+
+        private void MenuItemGoodRecieved_Click(object sender, EventArgs e)
+        {
+            foreach (var form in this.MdiChildren)
+            {
+                if (form.GetType() == typeof(GoodsReceivedForm))
+                {
+                    form.MdiParent = this;
+                    form.Focus();
+
+                    return;
+                }
+            }
+
+            var goodsReceivedForm = new GoodsReceivedForm();
+            goodsReceivedForm.MdiParent = this;
+            goodsReceivedForm.Show();
+        }
     }
 }

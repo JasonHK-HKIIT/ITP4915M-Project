@@ -32,13 +32,15 @@
             this.menuItemProduct = new ToolStripMenuItem();
             this.maintenanceToolStripMenuItem = new ToolStripMenuItem();
             this.suppliersManagementToolStripMenuItem = new ToolStripMenuItem();
+            this.dispatchToolStripMenuItem = new ToolStripMenuItem();
+            this.MenuItemGoodRecieved = new ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
             // 
             this.menu.ImageScalingSize = new Size(20, 20);
-            this.menu.Items.AddRange(new ToolStripItem[] { this.menuItemProduct, this.maintenanceToolStripMenuItem });
+            this.menu.Items.AddRange(new ToolStripItem[] { this.menuItemProduct, this.dispatchToolStripMenuItem, this.maintenanceToolStripMenuItem });
             this.menu.Location = new Point(0, 0);
             this.menu.Name = "menu";
             this.menu.RenderMode = ToolStripRenderMode.System;
@@ -66,6 +68,20 @@
             this.suppliersManagementToolStripMenuItem.Size = new Size(254, 26);
             this.suppliersManagementToolStripMenuItem.Text = "Suppliers Management";
             // 
+            // dispatchToolStripMenuItem
+            // 
+            this.dispatchToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.MenuItemGoodRecieved });
+            this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
+            this.dispatchToolStripMenuItem.Size = new Size(83, 24);
+            this.dispatchToolStripMenuItem.Text = "Dispatch";
+            // 
+            // MenuItemGoodRecieved
+            // 
+            this.MenuItemGoodRecieved.Name = "MenuItemGoodRecieved";
+            this.MenuItemGoodRecieved.Size = new Size(224, 26);
+            this.MenuItemGoodRecieved.Text = "Good Recieved";
+            this.MenuItemGoodRecieved.Click += this.MenuItemGoodRecieved_Click;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
@@ -90,5 +106,7 @@
         private ToolStripMenuItem maintenanceToolStripMenuItem;
         private ToolStripMenuItem suppliersManagementToolStripMenuItem;
         private ToolStripMenuItem menuItemProduct;
+        private ToolStripMenuItem dispatchToolStripMenuItem;
+        private ToolStripMenuItem MenuItemGoodRecieved;
     }
 }
