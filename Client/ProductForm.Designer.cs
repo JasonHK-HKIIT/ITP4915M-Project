@@ -28,74 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
-            label1 = new Label();
-            textBox1 = new TextBox();
-            button3 = new Button();
-            button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.dataGridView1 = new DataGridView();
+            this.label1 = new Label();
+            this.textBox1 = new TextBox();
+            this.button3 = new Button();
+            this.button2 = new Button();
+            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
+            this.SuspendLayout();
             // 
             // dataGridView1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 95);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1218, 427);
-            dataGridView1.TabIndex = 5;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new Point(9, 120);
+            this.dataGridView1.Margin = new Padding(4, 4, 4, 4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new Size(1566, 541);
+            this.dataGridView1.TabIndex = 5;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(148, 15);
-            label1.TabIndex = 6;
-            label1.Text = "Input product ID to search:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new Point(15, 27);
+            this.label1.Margin = new Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(193, 19);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Input product ID to search:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 55);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(179, 23);
-            textBox1.TabIndex = 7;
-            textBox1.TextChanged += textBox1_TextChanged;
+            this.textBox1.Location = new Point(15, 70);
+            this.textBox1.Margin = new Padding(4, 4, 4, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new Size(229, 27);
+            this.textBox1.TabIndex = 7;
+            this.textBox1.TextChanged += this.textBox1_TextChanged;
             // 
             // button3
             // 
-            button3.Location = new Point(268, 55);
-            button3.Name = "button3";
-            button3.Size = new Size(121, 23);
-            button3.TabIndex = 10;
-            button3.Text = "Add Product";
-            button3.UseVisualStyleBackColor = true;
+            this.button3.Location = new Point(345, 70);
+            this.button3.Margin = new Padding(4, 4, 4, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new Size(156, 29);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Add Product";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += this.button3_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(416, 55);
-            button2.Name = "button2";
-            button2.Size = new Size(121, 23);
-            button2.TabIndex = 11;
-            button2.Text = "Edit Selected";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Location = new Point(535, 70);
+            this.button2.Margin = new Padding(4, 4, 4, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new Size(156, 29);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Edit Selected";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // ProductForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1233, 534);
-            Controls.Add(button2);
-            Controls.Add(button3);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Controls.Add(dataGridView1);
-            Margin = new Padding(2, 2, 2, 2);
-            Name = "ProductForm";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "ProductForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(1585, 676);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView1);
+            this.Name = "ProductForm";
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Text = "ProductForm";
+            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
