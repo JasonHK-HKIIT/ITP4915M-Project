@@ -20,7 +20,7 @@ namespace Client
             ApplicationConfiguration.Initialize();
 
             Connection.Open();
-            Application.Run(new MainForm());
+            Application.Run(new MF1());
             Connection.Close();
         }
     }

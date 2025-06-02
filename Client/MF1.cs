@@ -40,7 +40,19 @@ namespace Client
 
         private void MF1_Load(object sender, EventArgs e)
         {
+            this.Visible = false;
 
+            var loginForm = new LoginForm();
+            loginForm.ShowDialog();
+
+            if (loginForm.DialogResult == DialogResult.OK)
+            {
+                this.Visible = true;
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
 
         private void purchaseOrderToolStripMenuItem_Click(object sender, EventArgs e)
