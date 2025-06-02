@@ -40,7 +40,7 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new Point(9, 120);
-            this.dataGridView1.Margin = new Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new Size(1566, 541);
@@ -59,16 +59,17 @@
             // textBox1
             // 
             this.textBox1.Location = new Point(15, 70);
-            this.textBox1.Margin = new Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new Size(229, 27);
             this.textBox1.TabIndex = 7;
             this.textBox1.TextChanged += this.textBox1_TextChanged;
+            this.textBox1.KeyUp += this.textBox1_KeyUp;
             // 
             // button3
             // 
             this.button3.Location = new Point(345, 70);
-            this.button3.Margin = new Padding(4, 4, 4, 4);
+            this.button3.Margin = new Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new Size(156, 29);
             this.button3.TabIndex = 10;
@@ -79,7 +80,7 @@
             // button2
             // 
             this.button2.Location = new Point(535, 70);
-            this.button2.Margin = new Padding(4, 4, 4, 4);
+            this.button2.Margin = new Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new Size(156, 29);
             this.button2.TabIndex = 11;
@@ -99,6 +100,7 @@
             this.Name = "ProductForm";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "ProductForm";
+            this.Load += this.ProductForm_Load;
             ((System.ComponentModel.ISupportInitialize)this.dataGridView1).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
