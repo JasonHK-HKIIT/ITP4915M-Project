@@ -68,7 +68,7 @@
             this.menuStrip1.Location = new Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new Padding(8, 3, 0, 3);
-            this.menuStrip1.Size = new Size(1540, 29);
+            this.menuStrip1.Size = new Size(1540, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -76,20 +76,20 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.exitToolStripMenuItem });
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new Size(47, 23);
+            this.fileToolStripMenuItem.Size = new Size(47, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new Size(224, 26);
+            this.exitToolStripMenuItem.Size = new Size(116, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // modulesToolStripMenuItem
             // 
             this.modulesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.customersToolStripMenuItem, this.suppilersToolStripMenuItem, this.productsToolStripMenuItem, this.ordersToolStripMenuItem, this.shipmentsToolStripMenuItem });
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new Size(84, 23);
+            this.modulesToolStripMenuItem.Size = new Size(84, 24);
             this.modulesToolStripMenuItem.Text = "Modules";
             // 
             // customersToolStripMenuItem
@@ -105,18 +105,21 @@
             this.customerOrdersToolStripMenuItem.Name = "customerOrdersToolStripMenuItem";
             this.customerOrdersToolStripMenuItem.Size = new Size(213, 26);
             this.customerOrdersToolStripMenuItem.Text = "Customers";
+            this.customerOrdersToolStripMenuItem.Click += this.customerOrdersToolStripMenuItem_Click;
             // 
             // customerOrdersToolStripMenuItem1
             // 
             this.customerOrdersToolStripMenuItem1.Name = "customerOrdersToolStripMenuItem1";
             this.customerOrdersToolStripMenuItem1.Size = new Size(213, 26);
             this.customerOrdersToolStripMenuItem1.Text = "Customer Orders";
+            this.customerOrdersToolStripMenuItem1.Click += this.customerOrdersToolStripMenuItem1_Click;
             // 
             // serviceCasesToolStripMenuItem1
             // 
             this.serviceCasesToolStripMenuItem1.Name = "serviceCasesToolStripMenuItem1";
             this.serviceCasesToolStripMenuItem1.Size = new Size(213, 26);
             this.serviceCasesToolStripMenuItem1.Text = "Service Cases";
+            this.serviceCasesToolStripMenuItem1.Click += this.serviceCasesToolStripMenuItem1_Click;
             // 
             // suppilersToolStripMenuItem
             // 
@@ -130,6 +133,7 @@
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
             this.suppliersToolStripMenuItem.Size = new Size(208, 26);
             this.suppliersToolStripMenuItem.Text = "Suppliers";
+            this.suppliersToolStripMenuItem.Click += this.suppliersToolStripMenuItem_Click;
             // 
             // purchaseOrdersToolStripMenuItem
             // 
@@ -149,18 +153,21 @@
             this.productDesignRequestsToolStripMenuItem.Name = "productDesignRequestsToolStripMenuItem";
             this.productDesignRequestsToolStripMenuItem.Size = new Size(268, 26);
             this.productDesignRequestsToolStripMenuItem.Text = "Product Design Requests";
+            this.productDesignRequestsToolStripMenuItem.Click += this.productDesignRequestsToolStripMenuItem_Click;
             // 
             // productsToolStripMenuItem1
             // 
             this.productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
             this.productsToolStripMenuItem1.Size = new Size(268, 26);
             this.productsToolStripMenuItem1.Text = "Products";
+            this.productsToolStripMenuItem1.Click += this.productsToolStripMenuItem1_Click;
             // 
             // quotationsToolStripMenuItem
             // 
             this.quotationsToolStripMenuItem.Name = "quotationsToolStripMenuItem";
             this.quotationsToolStripMenuItem.Size = new Size(268, 26);
             this.quotationsToolStripMenuItem.Text = "Quotations";
+            this.quotationsToolStripMenuItem.Click += this.quotationsToolStripMenuItem_Click;
             // 
             // ordersToolStripMenuItem
             // 
@@ -172,20 +179,23 @@
             // productionOrdersToolStripMenuItem
             // 
             this.productionOrdersToolStripMenuItem.Name = "productionOrdersToolStripMenuItem";
-            this.productionOrdersToolStripMenuItem.Size = new Size(222, 26);
+            this.productionOrdersToolStripMenuItem.Size = new Size(224, 26);
             this.productionOrdersToolStripMenuItem.Text = "Production Orders";
+            this.productionOrdersToolStripMenuItem.Click += this.productionOrdersToolStripMenuItem_Click;
             // 
             // shipmentsToolStripMenuItem1
             // 
             this.shipmentsToolStripMenuItem1.Name = "shipmentsToolStripMenuItem1";
-            this.shipmentsToolStripMenuItem1.Size = new Size(222, 26);
+            this.shipmentsToolStripMenuItem1.Size = new Size(224, 26);
             this.shipmentsToolStripMenuItem1.Text = "Shipments";
+            this.shipmentsToolStripMenuItem1.Click += this.shipmentsToolStripMenuItem1_Click;
             // 
             // inventoryControlToolStripMenuItem
             // 
             this.inventoryControlToolStripMenuItem.Name = "inventoryControlToolStripMenuItem";
-            this.inventoryControlToolStripMenuItem.Size = new Size(222, 26);
+            this.inventoryControlToolStripMenuItem.Size = new Size(224, 26);
             this.inventoryControlToolStripMenuItem.Text = "Inventory Control";
+            this.inventoryControlToolStripMenuItem.Click += this.inventoryControlToolStripMenuItem_Click;
             // 
             // shipmentsToolStripMenuItem
             // 
@@ -199,12 +209,13 @@
             this.adminUserManagementToolStripMenuItem.Name = "adminUserManagementToolStripMenuItem";
             this.adminUserManagementToolStripMenuItem.Size = new Size(274, 26);
             this.adminUserManagementToolStripMenuItem.Text = "Admin/User Management";
+            this.adminUserManagementToolStripMenuItem.Click += this.adminUserManagementToolStripMenuItem_Click;
             // 
             // windowsToolStripMenuItem
             // 
             this.windowsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.cascadeToolStripMenuItem, this.tileToolStripMenuItem, this.arrangeIconsToolStripMenuItem });
             this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
-            this.windowsToolStripMenuItem.Size = new Size(89, 23);
+            this.windowsToolStripMenuItem.Size = new Size(89, 24);
             this.windowsToolStripMenuItem.Text = "Windows";
             // 
             // cascadeToolStripMenuItem
@@ -262,7 +273,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
-            this.Margin = new Padding(4, 4, 4, 4);
+            this.Margin = new Padding(4);
             this.Name = "MF1";
             this.Text = "Smile & Sunshine Toy Ltd.";
             this.WindowState = FormWindowState.Maximized;
