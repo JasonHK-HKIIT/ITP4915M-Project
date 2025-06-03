@@ -169,5 +169,10 @@ namespace Client
         {
 
         }
+
+        private void CustomerForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

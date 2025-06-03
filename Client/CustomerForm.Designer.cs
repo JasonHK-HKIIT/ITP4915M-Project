@@ -103,6 +103,7 @@
             Controls.Add(label1);
             Name = "CustomerForm";
             Text = "CustomerForm";
+            Load += CustomerForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
