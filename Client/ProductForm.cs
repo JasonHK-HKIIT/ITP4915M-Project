@@ -16,6 +16,7 @@ namespace Client
         public ProductForm()
         {
             InitializeComponent();
+            button2.Click += ButtonEdit_Click;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -27,6 +28,34 @@ namespace Client
         {
             var productDetailForm = new ProductDetailForm();
             productDetailForm.ShowDialog();
+        }
+
+        private void ButtonEdit_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a product to edit.", "Edit Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DataRowView drv = dataGridView1.SelectedRows[0].DataBoundItem as DataRowView;
+            if (drv == null) return;
+            var row = drv.Row;
+
+            using (var productDetailForm = new ProductDetailForm())
+            {
+                productDetailForm.SetFields(
+                    row["DesignRequestID"].ToString(),
+                    row["ProductName"].ToString(),
+                    row["ProductType"].ToString(),
+                    row["UnitPrice"].ToString(),
+                    row["Specifications"].ToString()
+                );
+                if (productDetailForm.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Product updated successfully (implement DB update here).", "Success");
+                }
+            }
         }
 
         private void ProductForm_Load(object sender, EventArgs e)

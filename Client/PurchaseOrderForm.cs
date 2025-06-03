@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client
 {
     public partial class PurchaseOrderForm : Form
     {
+        // Data model for Purchase Order
         public class PurchaseOrder
         {
             public string PONumber { get; set; }
@@ -20,21 +16,28 @@ namespace Client
             public string Status { get; set; }
         }
 
-        private List<PurchaseOrder> orders = new List<PurchaseOrder>();
+        private List<PurchaseOrder> purchaseOrders = new List<PurchaseOrder>();
 
         public PurchaseOrderForm()
         {
             InitializeComponent();
-            button1.Click += ButtonAdd_Click;
-            button2.Click += ButtonEdit_Click;
-            // button3 for "View PO Lines"
+            button1.Click += ButtonAdd_Click;   // "Add Purchase Order"
+            button2.Click += ButtonEdit_Click;  // "Edit Selected"
+            // button3 ("View PO Lines") can be wired for additional detail if needed
+
             BindDataGrid();
         }
 
         private void BindDataGrid()
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = orders.ToList();
+            dataGridView1.DataSource = purchaseOrders.Select(po => new
+            {
+                po.PONumber,
+                po.Supplier,
+                PODate = po.PODate.ToShortDateString(),
+                po.Status
+            }).ToList();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -44,7 +47,7 @@ namespace Client
                 detail.Text = "Add Purchase Order";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    orders.Add(new PurchaseOrder
+                    purchaseOrders.Add(new PurchaseOrder
                     {
                         PONumber = detail.PONumber,
                         Supplier = detail.Supplier,
@@ -58,21 +61,26 @@ namespace Client
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0) return;
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a purchase order to edit.");
+                return;
+            }
             int idx = dataGridView1.SelectedRows[0].Index;
-            var order = orders[idx];
+            var po = purchaseOrders[idx];
             using (var detail = new PurchaseOrderDetailForm())
             {
                 detail.Text = "Edit Purchase Order";
-                detail.SetFields(order.PONumber, order.Supplier, order.PODate, order.Status);
+                detail.SetFields(po.PONumber, po.Supplier, po.PODate, po.Status);
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    order.PONumber = detail.PONumber;
-                    order.Supplier = detail.Supplier;
-                    order.PODate = detail.PODate;
-                    order.Status = detail.Status;
+                    po.PONumber = detail.PONumber;
+                    po.Supplier = detail.Supplier;
+                    po.PODate = detail.PODate;
+                    po.Status = detail.Status;
                     BindDataGrid();
                 }
             }
         }
     }
+}

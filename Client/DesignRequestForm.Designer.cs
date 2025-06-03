@@ -40,65 +40,73 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 18);
+            label1.Location = new Point(19, 28);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(183, 15);
+            label1.Size = new Size(296, 23);
             label1.TabIndex = 6;
             label1.Text = "Input design request ID to search:";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 95);
+            dataGridView1.Location = new Point(11, 146);
+            dataGridView1.Margin = new Padding(5, 5, 5, 5);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1218, 427);
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(1914, 655);
             dataGridView1.TabIndex = 7;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 48);
+            textBox1.Location = new Point(19, 74);
+            textBox1.Margin = new Padding(5, 5, 5, 5);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(179, 23);
+            textBox1.Size = new Size(279, 30);
             textBox1.TabIndex = 8;
             // 
             // button3
             // 
-            button3.Location = new Point(267, 47);
+            button3.Location = new Point(420, 72);
+            button3.Margin = new Padding(5, 5, 5, 5);
             button3.Name = "button3";
-            button3.Size = new Size(121, 23);
+            button3.Size = new Size(190, 35);
             button3.TabIndex = 10;
             button3.Text = "Add Request";
             button3.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            button1.Location = new Point(431, 48);
+            button1.Location = new Point(677, 74);
+            button1.Margin = new Padding(5, 5, 5, 5);
             button1.Name = "button1";
-            button1.Size = new Size(121, 23);
+            button1.Size = new Size(190, 35);
             button1.TabIndex = 11;
             button1.Text = "Edit Selected";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(590, 48);
+            button2.Location = new Point(927, 74);
+            button2.Margin = new Padding(5, 5, 5, 5);
             button2.Name = "button2";
-            button2.Size = new Size(121, 23);
+            button2.Size = new Size(190, 35);
             button2.TabIndex = 12;
             button2.Text = "Approve Selected";
             button2.UseVisualStyleBackColor = true;
             // 
             // DesignRequestForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1233, 534);
+            ClientSize = new Size(1924, 819);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(button3);
             Controls.Add(textBox1);
             Controls.Add(dataGridView1);
             Controls.Add(label1);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "DesignRequestForm";
             Text = "DesignRequestForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
