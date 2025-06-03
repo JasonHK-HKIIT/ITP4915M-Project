@@ -44,6 +44,14 @@ namespace Client
             CustomerComboBox.DisplayMember = "CustomerName";
             CustomerComboBox.DataSource = customersTable;
 
+            var managersCommand = new MySqlCommand("SELECT WorkerID, Name FROM Worker", Program.Connection);
+            var managersAdapter = new MySqlDataAdapter(managersCommand);
+            var managersTable = new DataTable();
+            managersAdapter.Fill(managersTable);
+            comboBox1.ValueMember = "WorkerID";
+            comboBox1.DisplayMember = "Name";
+            comboBox1.DataSource = managersTable;
+
             if (isEditMode)
             {
                 var command = new MySqlCommand("SELECT * FROM ProductDesignRequest WHERE DesignRequestID = ?id", Program.Connection);
@@ -52,7 +60,7 @@ namespace Client
                 if (reader.Read())
                 {
                     CustomerComboBox.SelectedValue = reader["CustomerID"].ToString();
-                    comboBox1.Text = reader["AssignedManagerID"].ToString();
+                    comboBox1.SelectedValue = reader["AssignedManagerID"].ToString();
                     textBox3.Text = reader["Specifications"].ToString();
                 }
                 reader.Close();
