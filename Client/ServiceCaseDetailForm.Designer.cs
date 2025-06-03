@@ -92,7 +92,7 @@
             // comboBox1
             // 
             comboBox1.Location = new Point(176, 35);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
+            comboBox1.Margin = new Padding(5);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(392, 31);
             comboBox1.TabIndex = 6;
@@ -100,7 +100,7 @@
             // comboBox2
             // 
             comboBox2.Location = new Point(176, 86);
-            comboBox2.Margin = new Padding(5, 5, 5, 5);
+            comboBox2.Margin = new Padding(5);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(392, 31);
             comboBox2.TabIndex = 7;
@@ -108,7 +108,7 @@
             // textBox1
             // 
             textBox1.Location = new Point(176, 137);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Margin = new Padding(5);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(392, 30);
             textBox1.TabIndex = 8;
@@ -116,7 +116,7 @@
             // textBox2
             // 
             textBox2.Location = new Point(176, 186);
-            textBox2.Margin = new Padding(5, 5, 5, 5);
+            textBox2.Margin = new Padding(5);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(392, 30);
             textBox2.TabIndex = 9;
@@ -126,7 +126,7 @@
             comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox3.Items.AddRange(new object[] { "Open", "In Progress", "Closed" });
             comboBox3.Location = new Point(176, 235);
-            comboBox3.Margin = new Padding(5, 5, 5, 5);
+            comboBox3.Margin = new Padding(5);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(392, 31);
             comboBox3.TabIndex = 10;
@@ -134,7 +134,7 @@
             // comboBox4
             // 
             comboBox4.Location = new Point(176, 282);
-            comboBox4.Margin = new Padding(5, 5, 5, 5);
+            comboBox4.Margin = new Padding(5);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(392, 31);
             comboBox4.TabIndex = 11;
@@ -142,7 +142,7 @@
             // button1
             // 
             button1.Location = new Point(545, 345);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(118, 35);
             button1.TabIndex = 12;
@@ -152,7 +152,7 @@
             // button2
             // 
             button2.Location = new Point(674, 345);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.Size = new Size(118, 35);
             button2.TabIndex = 13;
@@ -178,7 +178,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "ServiceCaseDetailForm";
             Text = "ServiceCaseDetailForm";
             ResumeLayout(false);

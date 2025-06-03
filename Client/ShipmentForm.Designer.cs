@@ -26,7 +26,6 @@
             button2 = new Button();
             button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
             // 
             // label1
             // 

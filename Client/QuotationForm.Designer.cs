@@ -39,55 +39,62 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 95);
+            dataGridView1.Location = new Point(11, 146);
+            dataGridView1.Margin = new Padding(5, 5, 5, 5);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1218, 427);
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(1914, 655);
             dataGridView1.TabIndex = 6;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 18);
+            label1.Location = new Point(19, 28);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(158, 15);
+            label1.Size = new Size(255, 23);
             label1.TabIndex = 7;
             label1.Text = "Input quotation ID to search:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 51);
+            textBox1.Location = new Point(19, 78);
+            textBox1.Margin = new Padding(5, 5, 5, 5);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(179, 23);
+            textBox1.Size = new Size(279, 30);
             textBox1.TabIndex = 8;
             // 
             // button3
             // 
-            button3.Location = new Point(262, 50);
+            button3.Location = new Point(412, 77);
+            button3.Margin = new Padding(5, 5, 5, 5);
             button3.Name = "button3";
-            button3.Size = new Size(121, 23);
+            button3.Size = new Size(190, 35);
             button3.TabIndex = 11;
             button3.Text = "Add Quotation";
             button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(411, 51);
+            button2.Location = new Point(646, 78);
+            button2.Margin = new Padding(5, 5, 5, 5);
             button2.Name = "button2";
-            button2.Size = new Size(121, 23);
+            button2.Size = new Size(190, 35);
             button2.TabIndex = 12;
             button2.Text = "Edit Selected";
             button2.UseVisualStyleBackColor = true;
             // 
             // QuotationForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1233, 534);
+            ClientSize = new Size(1924, 819);
             Controls.Add(button2);
             Controls.Add(button3);
             Controls.Add(textBox1);
             Controls.Add(label1);
             Controls.Add(dataGridView1);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "QuotationForm";
             Text = "QuotationForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

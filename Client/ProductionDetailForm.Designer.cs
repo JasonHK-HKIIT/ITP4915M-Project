@@ -107,7 +107,7 @@
             // textBox1
             // 
             textBox1.Location = new Point(236, 35);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Margin = new Padding(5);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(392, 30);
             textBox1.TabIndex = 6;
@@ -115,7 +115,7 @@
             // textBox2
             // 
             textBox2.Location = new Point(236, 86);
-            textBox2.Margin = new Padding(5, 5, 5, 5);
+            textBox2.Margin = new Padding(5);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(392, 30);
             textBox2.TabIndex = 7;
@@ -123,7 +123,7 @@
             // textBox3
             // 
             textBox3.Location = new Point(236, 135);
-            textBox3.Margin = new Padding(5, 5, 5, 5);
+            textBox3.Margin = new Padding(5);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(392, 30);
             textBox3.TabIndex = 8;
@@ -131,7 +131,7 @@
             // textBox4
             // 
             textBox4.Location = new Point(236, 184);
-            textBox4.Margin = new Padding(5, 5, 5, 5);
+            textBox4.Margin = new Padding(5);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(392, 30);
             textBox4.TabIndex = 9;
@@ -139,7 +139,7 @@
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(236, 233);
-            dateTimePicker1.Margin = new Padding(5, 5, 5, 5);
+            dateTimePicker1.Margin = new Padding(5);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(392, 30);
             dateTimePicker1.TabIndex = 10;
@@ -149,7 +149,7 @@
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Items.AddRange(new object[] { "Scheduled", "In Progress", "Completed" });
             comboBox1.Location = new Point(236, 282);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
+            comboBox1.Margin = new Padding(5);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(392, 31);
             comboBox1.TabIndex = 11;
@@ -157,7 +157,7 @@
             // button1
             // 
             button1.Location = new Point(545, 345);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(118, 35);
             button1.TabIndex = 12;
@@ -167,7 +167,7 @@
             // button2
             // 
             button2.Location = new Point(674, 345);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.Size = new Size(118, 35);
             button2.TabIndex = 13;
@@ -193,7 +193,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "ProductionDetailForm";
             Text = "ProductionDetailForm";
             ResumeLayout(false);

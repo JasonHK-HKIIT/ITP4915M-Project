@@ -72,7 +72,7 @@ namespace Client
             // textBox1
             // 
             textBox1.Location = new Point(203, 35);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Margin = new Padding(5);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(392, 30);
             textBox1.TabIndex = 4;
@@ -80,7 +80,7 @@ namespace Client
             // textBox2
             // 
             textBox2.Location = new Point(203, 86);
-            textBox2.Margin = new Padding(5, 5, 5, 5);
+            textBox2.Margin = new Padding(5);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(392, 30);
             textBox2.TabIndex = 5;
@@ -90,7 +90,7 @@ namespace Client
             comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox1.Items.AddRange(new object[] { "Admin", "User", "Manager" });
             comboBox1.Location = new Point(203, 135);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
+            comboBox1.Margin = new Padding(5);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(392, 31);
             comboBox1.TabIndex = 6;
@@ -98,7 +98,7 @@ namespace Client
             // checkBox1
             // 
             checkBox1.Location = new Point(203, 187);
-            checkBox1.Margin = new Padding(5, 5, 5, 5);
+            checkBox1.Margin = new Padding(5);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(394, 35);
             checkBox1.TabIndex = 7;
@@ -107,7 +107,7 @@ namespace Client
             // button1
             // 
             button1.Location = new Point(545, 245);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(118, 35);
             button1.TabIndex = 8;
@@ -117,7 +117,7 @@ namespace Client
             // button2
             // 
             button2.Location = new Point(674, 245);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.Size = new Size(118, 35);
             button2.TabIndex = 9;
@@ -139,7 +139,7 @@ namespace Client
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "UserDetailForm";
             Text = "UserDetailForm";
             ResumeLayout(false);
