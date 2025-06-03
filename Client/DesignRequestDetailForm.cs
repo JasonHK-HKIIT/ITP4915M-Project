@@ -67,6 +67,16 @@ namespace Client
             }
         }
 
+        private void CustomerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         // For Add/Edit
         public string Customer => CustomerComboBox.Text;
         public string AssignedManager => comboBox1.Text;
