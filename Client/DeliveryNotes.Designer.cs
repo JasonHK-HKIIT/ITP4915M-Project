@@ -276,70 +276,71 @@
             // 
             // label19
             // 
-            label19.Location = new Point(199, 105);
+            label19.Location = new Point(158, 97);
             label19.Name = "label19";
             label19.Size = new Size(205, 23);
             label19.TabIndex = 23;
             // 
             // label20
             // 
-            label20.Location = new Point(199, 280);
+            label20.Location = new Point(158, 280);
             label20.Name = "label20";
             label20.Size = new Size(205, 23);
             label20.TabIndex = 24;
             // 
             // label21
             // 
-            label21.Location = new Point(199, 313);
+            label21.Location = new Point(158, 313);
             label21.Name = "label21";
             label21.Size = new Size(482, 79);
             label21.TabIndex = 25;
             // 
             // label22
             // 
-            label22.Location = new Point(199, 401);
+            label22.Location = new Point(158, 401);
             label22.Name = "label22";
             label22.Size = new Size(205, 23);
             label22.TabIndex = 26;
             // 
             // label23
             // 
-            label23.Location = new Point(199, 437);
+            label23.Location = new Point(158, 437);
             label23.Name = "label23";
             label23.Size = new Size(205, 23);
             label23.TabIndex = 27;
             // 
             // label24
             // 
-            label24.Location = new Point(199, 474);
+            label24.Location = new Point(158, 474);
             label24.Name = "label24";
             label24.Size = new Size(205, 23);
             label24.TabIndex = 28;
             // 
             // label25
             // 
-            label25.Location = new Point(199, 138);
+            label25.Location = new Point(158, 138);
             label25.Name = "label25";
             label25.Size = new Size(205, 23);
             label25.TabIndex = 29;
+            label25.Click += label25_Click;
             // 
             // label26
             // 
-            label26.Location = new Point(199, 172);
+            label26.Location = new Point(158, 172);
             label26.Name = "label26";
             label26.Size = new Size(205, 23);
             label26.TabIndex = 30;
             // 
             // label27
             // 
-            label27.Location = new Point(199, 208);
+            label27.Location = new Point(158, 208);
             label27.Name = "label27";
             label27.Size = new Size(205, 23);
             label27.TabIndex = 31;
             // 
             // label28
             // 
-            label28.Location = new Point(199, 241);
+            label28.Location = new Point(158, 241);
             label28.Name = "label28";
             label28.Size = new Size(205, 23);
             label28.TabIndex = 32;
