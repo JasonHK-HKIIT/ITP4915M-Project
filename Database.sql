@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 29, 2025 at 10:25 AM
+-- Generation Time: Jun 03, 2025 at 11:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -416,16 +416,24 @@ INSERT INTO `Shipment` (`ShipmentID`, `CustomerOrderID`, `ShipmentDate`, `Carrie
 CREATE TABLE `Supplier` (
   `SupplierID` varchar(50) NOT NULL,
   `SupplierName` varchar(100) NOT NULL,
-  `ContactInfo` varchar(255) NOT NULL
+  `ContactPerson` varchar(100) DEFAULT NULL,
+  `PhoneNumber` varchar(20) DEFAULT NULL,
+  `Email` varchar(100) DEFAULT NULL,
+  `Address` varchar(255) DEFAULT NULL,
+  `Country` varchar(100) DEFAULT NULL,
+  `Status` varchar(50) DEFAULT 'Active',
+  `CreatedAt` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Supplier`
 --
 
-INSERT INTO `Supplier` (`SupplierID`, `SupplierName`, `ContactInfo`) VALUES
-('SUP001', 'Toy Parts Co.', 'parts@toyparts.com'),
-('SUP002', 'Fast Materials Inc.', 'fast@materials.com');
+INSERT INTO `Supplier` (`SupplierID`, `SupplierName`, `ContactPerson`, `PhoneNumber`, `Email`, `Address`, `Country`, `Status`, `CreatedAt`) VALUES
+('SUP001', 'Toy Parts Co.', 'Alice Wong', '123-456-7890', 'alice@toyparts.com', '123 Industrial Ave, Hong Kong', 'Hong Kong', 'Active', '2025-06-03 17:32:34'),
+('SUP002', 'Fast Materials Inc.', 'John Smith', '987-654-3210', 'john@fastmaterials.com', '456 Supply Rd, Los Angeles, USA', 'USA', 'Active', '2025-06-03 17:32:34'),
+('SUP003', 'Creative Plastics Ltd.', 'Emily Chen', '852-555-8888', 'emily@creativeplastics.hk', '789 Plastic Ln, Shenzhen, China', 'China', 'Inactive', '2025-06-03 17:32:34'),
+('SUP004', 'Global Packaging Supplies', 'Robert Tan', '65-6666-7777', 'robert@globalpack.sg', '101 Export St, Singapore', 'Singapore', 'Active', '2025-06-03 17:32:34');
 
 -- --------------------------------------------------------
 
