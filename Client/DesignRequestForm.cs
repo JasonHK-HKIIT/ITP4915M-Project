@@ -91,9 +91,18 @@ namespace Client
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.Handled = true;
                 LoadData();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
