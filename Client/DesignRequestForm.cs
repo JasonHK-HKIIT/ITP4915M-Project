@@ -36,8 +36,15 @@ namespace Client
             command.Parameters.AddWithValue("?id", $"%{query}%");
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new System.Data.DataTable();
-            adapter.Fill(dataTable);
-            dataGridView1.DataSource = dataTable;
+            try
+            {
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading design requests: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void BindDataGrid()
@@ -71,7 +78,7 @@ namespace Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridView1.SelectedRows.Count != 1)
             {
                 MessageBox.Show("Please select a design request to edit.");
                 return;

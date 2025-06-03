@@ -30,9 +30,9 @@
         {
             this.dataGridView1 = new DataGridView();
             this.label1 = new Label();
-            this.textBox1 = new TextBox();
-            this.button3 = new Button();
-            this.button2 = new Button();
+            this.SearchTextBox = new TextBox();
+            this.AddButton = new Button();
+            this.EditButton = new Button();
             ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,45 +56,44 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Input product ID to search:";
             // 
-            // textBox1
+            // SearchTextBox
             // 
-            this.textBox1.Location = new Point(15, 70);
-            this.textBox1.Margin = new Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Size(229, 27);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.TextChanged += this.textBox1_TextChanged;
-            this.textBox1.KeyUp += this.textBox1_KeyUp;
+            this.SearchTextBox.Location = new Point(15, 70);
+            this.SearchTextBox.Margin = new Padding(4);
+            this.SearchTextBox.Name = "SearchTextBox";
+            this.SearchTextBox.Size = new Size(229, 27);
+            this.SearchTextBox.TabIndex = 7;
+            this.SearchTextBox.KeyUp += this.SearchTextBox_KeyUp;
             // 
-            // button3
+            // AddButton
             // 
-            this.button3.Location = new Point(345, 70);
-            this.button3.Margin = new Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new Size(156, 29);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Add Product";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += this.button3_Click;
+            this.AddButton.Location = new Point(345, 70);
+            this.AddButton.Margin = new Padding(4);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new Size(156, 29);
+            this.AddButton.TabIndex = 10;
+            this.AddButton.Text = "Add Product";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += this.AddButton_Click;
             // 
-            // button2
+            // EditButton
             // 
-            this.button2.Location = new Point(535, 70);
-            this.button2.Margin = new Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new Size(156, 29);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Edit Selected";
-            this.button2.UseVisualStyleBackColor = true;
+            this.EditButton.Location = new Point(535, 70);
+            this.EditButton.Margin = new Padding(4);
+            this.EditButton.Name = "EditButton";
+            this.EditButton.Size = new Size(156, 29);
+            this.EditButton.TabIndex = 11;
+            this.EditButton.Text = "Edit Selected";
+            this.EditButton.UseVisualStyleBackColor = true;
             // 
             // ProductForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(1585, 676);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.EditButton);
+            this.Controls.Add(this.AddButton);
+            this.Controls.Add(this.SearchTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ProductForm";
@@ -109,8 +108,8 @@
         #endregion
         private DataGridView dataGridView1;
         private Label label1;
-        private TextBox textBox1;
-        private Button button3;
-        private Button button2;
+        private TextBox SearchTextBox;
+        private Button AddButton;
+        private Button EditButton;
     }
 }

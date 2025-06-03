@@ -1,10 +1,15 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Client
 {
     public partial class ProductDetailForm : Form
     {
+        private bool IsEditMode = false;
+        private string ProductId;
+
         public ProductDetailForm()
         {
             InitializeComponent();
@@ -12,21 +17,48 @@ namespace Client
             button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };// Cancel
         }
 
-        // Use this to prefill for Edit
-        public void SetFields(string linkedDesignRequest, string productName, string productType, string unitPrice, string specifications)
+        public ProductDetailForm(string productId) : this()
         {
-            comboBox1.Text = linkedDesignRequest;
-            textBox2.Text = productName;
-            textBox3.Text = productType;
-            textBox4.Text = unitPrice;
-            textBox5.Text = specifications;
+            IsEditMode = true;
+            ProductId = productId;
+        }
+
+        private void ProductDetailForm_Load(object sender, EventArgs e)
+        {
+            var requestsCommand = new MySqlCommand("SELECT DesignRequestID, Specifications FROM ProductDesignRequest", Program.Connection);
+            var requestsReader = requestsCommand.ExecuteReader();
+            var requestsDict = new Dictionary<string, string>();
+            while (requestsReader.Read())
+            {
+                requestsDict.Add((string) requestsReader["DesignRequestID"], $"{requestsReader["DesignRequestID"]} - {requestsReader["Specifications"]}");
+            }
+            requestsReader.Close();
+            DesignRequestField.ValueMember = "Key";
+            DesignRequestField.DisplayMember = "Value";
+            DesignRequestField.DataSource = new BindingSource(requestsDict, null);
+
+            if (IsEditMode)
+            {
+                var command = new MySqlCommand("SELECT * FROM Product WHERE ProductID = ?id", Program.Connection);
+                command.Parameters.AddWithValue("?id", ProductId);
+                var reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    DesignRequestField.SelectedValue = reader["DesignRequestID"];
+                    NameField.Text = (string) reader["ProductName"];
+                    TypeField.Text = (string) reader["ProductType"];
+                    UnitPriceField.Value = (decimal) reader["UnitPrice"];
+                    SpecificationsField.Text = (string) reader["ProductSpecifications"];
+                }
+                reader.Close();
+            }
         }
 
         // Use these to retrieve data after Save
-        public string LinkedDesignRequest => comboBox1.Text;
-        public string ProductName => textBox2.Text;
-        public string ProductType => textBox3.Text;
+        public string LinkedDesignRequest => DesignRequestField.Text;
+        public string ProductName => NameField.Text;
+        public string ProductType => TypeField.Text;
         public string UnitPrice => textBox4.Text;
-        public string Specifications => textBox5.Text;
+        public string Specifications => SpecificationsField.Text;
     }
 }

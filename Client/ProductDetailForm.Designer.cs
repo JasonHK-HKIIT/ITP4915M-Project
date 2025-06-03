@@ -28,154 +28,163 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            comboBox1 = new ComboBox();
-            SuspendLayout();
+            this.label1 = new Label();
+            this.label2 = new Label();
+            this.label3 = new Label();
+            this.label4 = new Label();
+            this.label5 = new Label();
+            this.button1 = new Button();
+            this.button2 = new Button();
+            this.NameField = new TextBox();
+            this.TypeField = new TextBox();
+            this.SpecificationsField = new TextBox();
+            this.DesignRequestField = new ComboBox();
+            this.UnitPriceField = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)this.UnitPriceField).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(61, 60);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(204, 23);
-            label1.TabIndex = 0;
-            label1.Text = "Linked Design Request";
+            this.label1.AutoSize = true;
+            this.label1.Location = new Point(13, 16);
+            this.label1.Margin = new Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(170, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Linked Design Request";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(127, 132);
-            label2.Margin = new Padding(5, 0, 5, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(134, 23);
-            label2.TabIndex = 1;
-            label2.Text = "Product Name";
+            this.label2.AutoSize = true;
+            this.label2.Location = new Point(73, 51);
+            this.label2.Margin = new Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new Size(110, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Product Name";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(138, 205);
-            label3.Margin = new Padding(5, 0, 5, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(122, 23);
-            label3.TabIndex = 2;
-            label3.Text = "Product Type";
+            this.label3.AutoSize = true;
+            this.label3.Location = new Point(82, 86);
+            this.label3.Margin = new Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new Size(101, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Product Type";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(163, 285);
-            label4.Margin = new Padding(5, 0, 5, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(93, 23);
-            label4.TabIndex = 3;
-            label4.Text = "Unit Price";
+            this.label4.AutoSize = true;
+            this.label4.Location = new Point(107, 119);
+            this.label4.Margin = new Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new Size(76, 19);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Unit Price";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(134, 360);
-            label5.Margin = new Padding(5, 0, 5, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(127, 23);
-            label5.TabIndex = 4;
-            label5.Text = "Specifications";
+            this.label5.AutoSize = true;
+            this.label5.Location = new Point(79, 154);
+            this.label5.Margin = new Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new Size(104, 19);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Specifications";
             // 
             // button1
             // 
-            button1.Location = new Point(830, 586);
-            button1.Margin = new Padding(5, 5, 5, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(118, 35);
-            button1.TabIndex = 10;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            this.button1.Location = new Point(601, 320);
+            this.button1.Margin = new Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new Size(97, 29);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(981, 586);
-            button2.Margin = new Padding(5, 5, 5, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(118, 35);
-            button2.TabIndex = 11;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Location = new Point(706, 320);
+            this.button2.Margin = new Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new Size(97, 29);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // NameField
             // 
-            textBox2.Location = new Point(349, 127);
-            textBox2.Margin = new Padding(5, 5, 5, 5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(155, 30);
-            textBox2.TabIndex = 13;
+            this.NameField.Location = new Point(191, 48);
+            this.NameField.Margin = new Padding(4);
+            this.NameField.Name = "NameField";
+            this.NameField.Size = new Size(240, 27);
+            this.NameField.TabIndex = 13;
             // 
-            // textBox3
+            // TypeField
             // 
-            textBox3.Location = new Point(349, 205);
-            textBox3.Margin = new Padding(5, 5, 5, 5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(292, 30);
-            textBox3.TabIndex = 14;
+            this.TypeField.Location = new Point(191, 83);
+            this.TypeField.Margin = new Padding(4);
+            this.TypeField.Name = "TypeField";
+            this.TypeField.Size = new Size(240, 27);
+            this.TypeField.TabIndex = 14;
             // 
-            // textBox4
+            // SpecificationsField
             // 
-            textBox4.Location = new Point(349, 273);
-            textBox4.Margin = new Padding(5, 5, 5, 5);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(167, 30);
-            textBox4.TabIndex = 15;
+            this.SpecificationsField.Location = new Point(191, 151);
+            this.SpecificationsField.Margin = new Padding(4);
+            this.SpecificationsField.Multiline = true;
+            this.SpecificationsField.Name = "SpecificationsField";
+            this.SpecificationsField.Size = new Size(612, 161);
+            this.SpecificationsField.TabIndex = 16;
             // 
-            // textBox5
+            // DesignRequestField
             // 
-            textBox5.Location = new Point(349, 348);
-            textBox5.Margin = new Padding(5, 5, 5, 5);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(747, 194);
-            textBox5.TabIndex = 16;
+            this.DesignRequestField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.DesignRequestField.FormattingEnabled = true;
+            this.DesignRequestField.Location = new Point(191, 13);
+            this.DesignRequestField.Margin = new Padding(4);
+            this.DesignRequestField.Name = "DesignRequestField";
+            this.DesignRequestField.Size = new Size(407, 27);
+            this.DesignRequestField.TabIndex = 17;
             // 
-            // comboBox1
+            // UnitPriceField
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(349, 60);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(188, 31);
-            comboBox1.TabIndex = 17;
+            this.UnitPriceField.DecimalPlaces = 2;
+            this.UnitPriceField.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            this.UnitPriceField.Location = new Point(191, 117);
+            this.UnitPriceField.Maximum = new decimal(new int[] { 9999999, 0, 0, 0 });
+            this.UnitPriceField.Name = "UnitPriceField";
+            this.UnitPriceField.Size = new Size(95, 27);
+            this.UnitPriceField.TabIndex = 18;
             // 
             // ProductDetailForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1153, 639);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
-            Name = "ProductDetailForm";
-            Text = "ProductDetailForm";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(818, 362);
+            this.Controls.Add(this.UnitPriceField);
+            this.Controls.Add(this.DesignRequestField);
+            this.Controls.Add(this.SpecificationsField);
+            this.Controls.Add(this.TypeField);
+            this.Controls.Add(this.NameField);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.Margin = new Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "ProductDetailForm";
+            this.Text = "ProductDetailForm";
+            this.Load += this.ProductDetailForm_Load;
+            ((System.ComponentModel.ISupportInitialize)this.UnitPriceField).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
@@ -187,10 +196,11 @@
         private Label label5;
         private Button button1;
         private Button button2;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox NameField;
+        private TextBox TypeField;
         private TextBox textBox4;
-        private TextBox textBox5;
-        private ComboBox comboBox1;
+        private TextBox SpecificationsField;
+        private ComboBox DesignRequestField;
+        private NumericUpDown UnitPriceField;
     }
 }
