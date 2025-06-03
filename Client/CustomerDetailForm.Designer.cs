@@ -141,7 +141,6 @@
             Controls.Add(label1);
             Name = "CustomerDetailForm";
             Text = "CustomerDetailForm";
-            Load += CustomerForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

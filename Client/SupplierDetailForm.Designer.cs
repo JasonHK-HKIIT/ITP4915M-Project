@@ -219,7 +219,6 @@
             Controls.Add(label1);
             Name = "SupplierDetailForm";
             Text = "SupplierDetailForm";
-            Load += SupplierDetailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -68,7 +68,7 @@
             // textBox1
             // 
             textBox1.Location = new Point(203, 35);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Margin = new Padding(5);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(392, 30);
             textBox1.TabIndex = 4;
@@ -76,7 +76,7 @@
             // comboBox1
             // 
             comboBox1.Location = new Point(203, 86);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
+            comboBox1.Margin = new Padding(5);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(392, 31);
             comboBox1.TabIndex = 5;
@@ -84,7 +84,7 @@
             // dateTimePicker1
             // 
             dateTimePicker1.Location = new Point(203, 135);
-            dateTimePicker1.Margin = new Padding(5, 5, 5, 5);
+            dateTimePicker1.Margin = new Padding(5);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(392, 30);
             dateTimePicker1.TabIndex = 6;
@@ -94,7 +94,7 @@
             comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.Items.AddRange(new object[] { "Draft", "Ordered", "Received" });
             comboBox2.Location = new Point(203, 184);
-            comboBox2.Margin = new Padding(5, 5, 5, 5);
+            comboBox2.Margin = new Padding(5);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(392, 31);
             comboBox2.TabIndex = 7;
@@ -102,7 +102,7 @@
             // button1
             // 
             button1.Location = new Point(545, 245);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(118, 35);
             button1.TabIndex = 8;
@@ -112,7 +112,7 @@
             // button2
             // 
             button2.Location = new Point(674, 245);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.Size = new Size(118, 35);
             button2.TabIndex = 9;
@@ -134,7 +134,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "PurchaseOrderDetailForm";
             Text = "PurchaseOrderDetailForm";
             ResumeLayout(false);

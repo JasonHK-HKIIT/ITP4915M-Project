@@ -15,11 +15,20 @@ namespace Client
         public CustomerDetailForm()
         {
             InitializeComponent();
+            button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
+            button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
         }
-
-        private void CustomerForm_Load(object sender, EventArgs e)
+        public void SetFields(string id, string name, string phone, string address)
         {
-
+            textBox1.Text = id;
+            textBox2.Text = name;
+            textBox3.Text = phone;
+            textBox4.Text = address;
         }
+        public string CustomerID => textBox1.Text;
+        public string CustomerName => textBox2.Text;
+        public string CustomerPhone => textBox3.Text;
+        public string CustomerAddress => textBox4.Text;
     }
+
 }

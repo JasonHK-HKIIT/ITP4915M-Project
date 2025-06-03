@@ -68,7 +68,7 @@
             // comboBox1
             // 
             comboBox1.Location = new Point(203, 40);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
+            comboBox1.Margin = new Padding(5);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(392, 31);
             comboBox1.TabIndex = 4;
@@ -76,7 +76,7 @@
             // comboBox2
             // 
             comboBox2.Location = new Point(203, 89);
-            comboBox2.Margin = new Padding(5, 5, 5, 5);
+            comboBox2.Margin = new Padding(5);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(392, 31);
             comboBox2.TabIndex = 5;
@@ -84,7 +84,7 @@
             // textBox1
             // 
             textBox1.Location = new Point(203, 138);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Margin = new Padding(5);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(392, 30);
             textBox1.TabIndex = 6;
@@ -92,7 +92,7 @@
             // textBox2
             // 
             textBox2.Location = new Point(203, 187);
-            textBox2.Margin = new Padding(5, 5, 5, 5);
+            textBox2.Margin = new Padding(5);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(392, 30);
             textBox2.TabIndex = 7;
@@ -100,7 +100,7 @@
             // button1
             // 
             button1.Location = new Point(545, 245);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(118, 35);
             button1.TabIndex = 8;
@@ -110,7 +110,7 @@
             // button2
             // 
             button2.Location = new Point(674, 245);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.Size = new Size(118, 35);
             button2.TabIndex = 9;
@@ -132,7 +132,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "InventoryDetailForm";
             Text = "InventoryDetailForm";
             ResumeLayout(false);

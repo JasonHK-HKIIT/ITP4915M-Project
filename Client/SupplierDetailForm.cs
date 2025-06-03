@@ -15,11 +15,18 @@ namespace Client
         public SupplierDetailForm()
         {
             InitializeComponent();
+            button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
+            button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
         }
-
-        private void SupplierDetailForm_Load(object sender, EventArgs e)
+        public void SetFields(string id, string name, string contact)
         {
-
+            textBox1.Text = id;
+            textBox2.Text = name;
+            textBox3.Text = contact;
         }
+        public string SupplierID => textBox1.Text;
+        public string SupplierName => textBox2.Text;
+        public string Contact => textBox3.Text;
     }
+
 }
