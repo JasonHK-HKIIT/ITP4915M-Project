@@ -61,6 +61,7 @@
             this.inputUsername.Name = "inputUsername";
             this.inputUsername.Size = new Size(200, 27);
             this.inputUsername.TabIndex = 2;
+            this.inputUsername.Text = "admin";
             // 
             // label3
             // 
@@ -77,6 +78,8 @@
             this.inputPassword.Name = "inputPassword";
             this.inputPassword.Size = new Size(200, 27);
             this.inputPassword.TabIndex = 4;
+            this.inputPassword.Text = "hashedpassword123";
+            this.inputPassword.UseSystemPasswordChar = true;
             // 
             // buttonLogin
             // 
