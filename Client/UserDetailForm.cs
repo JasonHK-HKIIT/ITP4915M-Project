@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,25 +13,47 @@ namespace Client
 {
     public partial class UserDetailForm : Form
     {
+        private readonly bool IsEditMode = false;
+        private readonly int UserId;
+
         public UserDetailForm()
         {
             InitializeComponent();
-            button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
-            button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
         }
 
-        public void SetFields(string username, string password, string role, bool active)
+        public UserDetailForm(int userId) : this()
         {
-            textBox1.Text = username;
-            textBox2.Text = password;
-            comboBox1.Text = role;
-            checkBox1.Checked = active;
+            IsEditMode = true;
+            UserId = userId;
         }
 
-        public string Username => textBox1.Text;
-        public string Password => textBox2.Text;
-        public string Role => comboBox1.Text;
-        public bool Active => checkBox1.Checked;
-    }
+        private void UserDetailForm_Load(object sender, EventArgs e)
+        {
+            if (IsEditMode)
+            {
+                var command = new MySqlCommand("SELECT Username, Role, IsActive FROM SystemUser WHERE UserID = ?id", Program.Connection);
+                command.Parameters.AddWithValue("?id", UserId);
+                var reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    UsernameField.Text = (string)reader["Username"];
+                    RoleField.SelectedItem = reader["Role"];
+                    ActivatedField.Checked = (bool)reader["IsActive"];
+                }
+                reader.Close();
+            }
+        }
 
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+    }
 }

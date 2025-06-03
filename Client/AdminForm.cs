@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,70 +13,72 @@ namespace Client
 {
     public partial class AdminForm : Form
     {
-        public class UserRecord
-        {
-            public string Username { get; set; }
-            public string Password { get; set; } // In real apps, never store plain passwords!
-            public string Role { get; set; }
-            public bool Active { get; set; }
-        }
-
-        private List<UserRecord> users = new List<UserRecord>();
-
         public AdminForm()
         {
             InitializeComponent();
-            button1.Click += ButtonAdd_Click;
-            button2.Click += ButtonEdit_Click;
-            BindDataGrid();
         }
 
-        private void BindDataGrid()
+        private void LoadData()
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = users.Select(u => new
+            var query = SearchField.Text.Trim();
+            var command = new MySqlCommand(string.IsNullOrEmpty(query)
+                ? "SELECT UserID, Username, Role, IsActive, CreatedAt FROM SystemUser"
+                : "SELECT UserID, Username, Role, IsActive, CreatedAt FROM SystemUser WHERE Username LIKE ?username", Program.Connection);
+            command.Parameters.AddWithValue("?username", $"%{query}%");
+            var adapter = new MySqlDataAdapter(command);
+            var dataTable = new DataTable();
+            try
             {
-                u.Username,
-                u.Role,
-                u.Active
-            }).ToList();
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading admin data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void ButtonAdd_Click(object sender, EventArgs e)
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void SearchField_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                LoadData();
+            }
+        }
+
+        private void NewButton_Click(object sender, EventArgs e)
         {
             using (var detail = new UserDetailForm())
             {
-                detail.Text = "Add User";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    users.Add(new UserRecord
-                    {
-                        Username = detail.Username,
-                        Password = detail.Password,
-                        Role = detail.Role,
-                        Active = detail.Active
-                    });
-                    BindDataGrid();
+                    LoadData();
                 }
             }
         }
 
-        private void ButtonEdit_Click(object sender, EventArgs e)
+        private void EditButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0) return;
-            int idx = dataGridView1.SelectedRows[0].Index;
-            var user = users[idx];
-            using (var detail = new UserDetailForm())
+            if (dataGridView1.SelectedRows.Count != 1)
             {
-                detail.Text = "Edit User";
-                detail.SetFields(user.Username, user.Password, user.Role, user.Active);
+                MessageBox.Show("Please select a user to edit.");
+                return;
+            }
+
+            var id = (int) dataGridView1.SelectedRows[0].Cells["UserID"].Value;
+            using (var detail = new UserDetailForm(id))
+            {
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    user.Username = detail.Username;
-                    user.Password = detail.Password;
-                    user.Role = detail.Role;
-                    user.Active = detail.Active;
-                    BindDataGrid();
+                    LoadData();
                 }
             }
         }
