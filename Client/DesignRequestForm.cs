@@ -91,6 +91,7 @@ namespace Client
         {
             if (e.KeyCode == Keys.Enter)
             {
+                e.Handled = true;
                 LoadData();
             }
         }
