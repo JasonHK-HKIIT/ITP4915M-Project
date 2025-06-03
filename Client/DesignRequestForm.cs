@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -21,10 +22,22 @@ namespace Client
         {
             InitializeComponent();
             button3.Click += ButtonAdd_Click;   // "Add Request"
-            button1.Click += ButtonEdit_Click;  // "Edit Selected"
             // button2 (Approve) can be wired similarly if you need approval logic
 
             BindDataGrid();
+        }
+
+        private void LoadData()
+        {
+            var query = textBox1.Text.Trim();
+            var command = new MySqlCommand(string.IsNullOrEmpty(query)
+                ? "SELECT DesignRequestID, CustomerName, RequestDate, Specifications, Status, ConsultantFee, ApprovalDate, Worker.Name As AssignedManagerName FROM ProductDesignRequest LEFT JOIN Customer ON ProductDesignRequest.CustomerID = Customer.CustomerID LEFT JOIN Worker ON ProductDesignRequest.AssignedManagerID = Worker.WorkerID"
+                : "SELECT DesignRequestID, CustomerName, RequestDate, Specifications, Status, ConsultantFee, ApprovalDate, Worker.Name As AssignedManagerName FROM ProductDesignRequest LEFT JOIN Customer ON ProductDesignRequest.CustomerID = Customer.CustomerID LEFT JOIN Worker ON ProductDesignRequest.AssignedManagerID = Worker.WorkerID WHERE DesignRequestID LIKE ?id", Program.Connection);
+            command.Parameters.AddWithValue("?id", $"%{query}%");
+            var adapter = new MySqlDataAdapter(command);
+            var dataTable = new System.Data.DataTable();
+            adapter.Fill(dataTable);
+            dataGridView1.DataSource = dataTable;
         }
 
         private void BindDataGrid()
@@ -51,26 +64,34 @@ namespace Client
             }
         }
 
-        private void ButtonEdit_Click(object sender, EventArgs e)
+        private void DesignRequestForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a design request to edit.");
                 return;
             }
-            int idx = dataGridView1.SelectedRows[0].Index;
-            var dr = requests[idx];
-            using (var detail = new DesignRequestDetailForm())
+
+            var id = (string)dataGridView1.SelectedRows[0].Cells["DesignRequestID"].Value;
+            using (var detail = new DesignRequestDetailForm(id))
             {
-                detail.Text = "Edit Design Request";
-                detail.SetFields(dr.Customer, dr.AssignedManager, dr.Specifications);
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    dr.Customer = detail.Customer;
-                    dr.AssignedManager = detail.AssignedManager;
-                    dr.Specifications = detail.Specifications;
-                    BindDataGrid();
+                    LoadData();
                 }
+            }
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                LoadData();
             }
         }
     }

@@ -28,111 +28,113 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            textBox3 = new TextBox();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            SuspendLayout();
+            this.label1 = new Label();
+            this.label2 = new Label();
+            this.label3 = new Label();
+            this.button1 = new Button();
+            this.button2 = new Button();
+            this.textBox3 = new TextBox();
+            this.comboBox1 = new ComboBox();
+            this.CustomerComboBox = new ComboBox();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(58, 60);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(93, 23);
-            label1.TabIndex = 0;
-            label1.Text = "Customer";
+            this.label1.AutoSize = true;
+            this.label1.Location = new Point(13, 16);
+            this.label1.Margin = new Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(77, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Customer";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(58, 132);
-            label2.Margin = new Padding(5, 0, 5, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(167, 23);
-            label2.TabIndex = 1;
-            label2.Text = "Assigned Manager";
+            this.label2.AutoSize = true;
+            this.label2.Location = new Point(13, 51);
+            this.label2.Margin = new Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new Size(141, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Assigned Manager";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(58, 213);
-            label3.Margin = new Padding(5, 0, 5, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(127, 23);
-            label3.TabIndex = 2;
-            label3.Text = "Specifications";
+            this.label3.AutoSize = true;
+            this.label3.Location = new Point(47, 176);
+            this.label3.Margin = new Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new Size(104, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Specifications";
             // 
             // button1
             // 
-            button1.Location = new Point(888, 538);
-            button1.Margin = new Padding(5, 5, 5, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(118, 35);
-            button1.TabIndex = 9;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            this.button1.Location = new Point(727, 444);
+            this.button1.Margin = new Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new Size(97, 29);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(1031, 538);
-            button2.Margin = new Padding(5, 5, 5, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(118, 35);
-            button2.TabIndex = 10;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Location = new Point(844, 444);
+            this.button2.Margin = new Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new Size(97, 29);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(380, 213);
-            textBox3.Margin = new Padding(5, 5, 5, 5);
-            textBox3.Multiline = true;
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(766, 292);
-            textBox3.TabIndex = 13;
+            this.textBox3.Location = new Point(311, 176);
+            this.textBox3.Margin = new Padding(4);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new Size(627, 242);
+            this.textBox3.TabIndex = 13;
             // 
             // comboBox1
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(380, 132);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(188, 31);
-            comboBox1.TabIndex = 14;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new Point(162, 48);
+            this.comboBox1.Margin = new Padding(4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new Size(155, 27);
+            this.comboBox1.TabIndex = 14;
             // 
-            // comboBox2
+            // CustomerComboBox
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(380, 60);
-            comboBox2.Margin = new Padding(5, 5, 5, 5);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(188, 31);
-            comboBox2.TabIndex = 15;
+            this.CustomerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.CustomerComboBox.FormattingEnabled = true;
+            this.CustomerComboBox.Location = new Point(162, 13);
+            this.CustomerComboBox.Margin = new Padding(4);
+            this.CustomerComboBox.Name = "CustomerComboBox";
+            this.CustomerComboBox.Size = new Size(155, 27);
+            this.CustomerComboBox.TabIndex = 15;
             // 
             // DesignRequestDetailForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1210, 606);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
-            Name = "DesignRequestDetailForm";
-            Text = "DesignRequestDetailForm";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(990, 501);
+            this.Controls.Add(this.CustomerComboBox);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Margin = new Padding(4);
+            this.Name = "DesignRequestDetailForm";
+            this.Text = "DesignRequestDetailForm";
+            this.Load += this.DesignRequestDetailForm_Load;
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
@@ -144,6 +146,6 @@
         private Button button2;
         private TextBox textBox3;
         private ComboBox comboBox1;
-        private ComboBox comboBox2;
+        private ComboBox CustomerComboBox;
     }
 }
