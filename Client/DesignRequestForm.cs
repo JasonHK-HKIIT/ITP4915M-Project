@@ -8,28 +8,14 @@ namespace Client
 {
     public partial class DesignRequestForm : Form
     {
-        // Simple data model
-        public class DesignRequest
-        {
-            public string Customer { get; set; }
-            public string AssignedManager { get; set; }
-            public string Specifications { get; set; }
-        }
-
-        private List<DesignRequest> requests = new List<DesignRequest>();
-
         public DesignRequestForm()
         {
             InitializeComponent();
-            button3.Click += ButtonAdd_Click;   // "Add Request"
-            // button2 (Approve) can be wired similarly if you need approval logic
-
-            BindDataGrid();
         }
 
         private void LoadData()
         {
-            var query = textBox1.Text.Trim();
+            var query = SearchField.Text.Trim();
             var command = new MySqlCommand(string.IsNullOrEmpty(query)
                 ? "SELECT DesignRequestID, CustomerName, RequestDate, Specifications, Status, ConsultantFee, ApprovalDate, Worker.Name As AssignedManagerName FROM ProductDesignRequest LEFT JOIN Customer ON ProductDesignRequest.CustomerID = Customer.CustomerID LEFT JOIN Worker ON ProductDesignRequest.AssignedManagerID = Worker.WorkerID"
                 : "SELECT DesignRequestID, CustomerName, RequestDate, Specifications, Status, ConsultantFee, ApprovalDate, Worker.Name As AssignedManagerName FROM ProductDesignRequest LEFT JOIN Customer ON ProductDesignRequest.CustomerID = Customer.CustomerID LEFT JOIN Worker ON ProductDesignRequest.AssignedManagerID = Worker.WorkerID WHERE DesignRequestID LIKE ?id", Program.Connection);
@@ -47,36 +33,34 @@ namespace Client
             }
         }
 
-        private void BindDataGrid()
-        {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = requests.ToList();
-        }
-
-        private void ButtonAdd_Click(object sender, EventArgs e)
-        {
-            using (var detail = new DesignRequestDetailForm())
-            {
-                detail.Text = "Add Design Request";
-                if (detail.ShowDialog() == DialogResult.OK)
-                {
-                    requests.Add(new DesignRequest
-                    {
-                        Customer = detail.Customer,
-                        AssignedManager = detail.AssignedManager,
-                        Specifications = detail.Specifications
-                    });
-                    BindDataGrid();
-                }
-            }
-        }
-
         private void DesignRequestForm_Load(object sender, EventArgs e)
         {
             LoadData();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SearchField_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                LoadData();
+            }
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            using (var detail = new DesignRequestDetailForm())
+            {
+                if (detail.ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
+            }
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count != 1)
             {
@@ -92,24 +76,6 @@ namespace Client
                     LoadData();
                 }
             }
-        }
-
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                LoadData();
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

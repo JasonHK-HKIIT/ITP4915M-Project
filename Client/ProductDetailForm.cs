@@ -7,14 +7,12 @@ namespace Client
 {
     public partial class ProductDetailForm : Form
     {
-        private bool IsEditMode = false;
-        private string ProductId;
+        private readonly bool IsEditMode = false;
+        private readonly string ProductId;
 
         public ProductDetailForm()
         {
             InitializeComponent();
-            button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };    // Save
-            button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };// Cancel
         }
 
         public ProductDetailForm(string productId) : this()
@@ -30,7 +28,7 @@ namespace Client
             var requestsDict = new Dictionary<string, string>();
             while (requestsReader.Read())
             {
-                requestsDict.Add((string) requestsReader["DesignRequestID"], $"{requestsReader["DesignRequestID"]} - {requestsReader["Specifications"]}");
+                requestsDict.Add((string)requestsReader["DesignRequestID"], $"{requestsReader["DesignRequestID"]} - {requestsReader["Specifications"]}");
             }
             requestsReader.Close();
             DesignRequestField.ValueMember = "Key";
@@ -45,20 +43,25 @@ namespace Client
                 if (reader.Read())
                 {
                     DesignRequestField.SelectedValue = reader["DesignRequestID"];
-                    NameField.Text = (string) reader["ProductName"];
-                    TypeField.Text = (string) reader["ProductType"];
-                    UnitPriceField.Value = (decimal) reader["UnitPrice"];
-                    SpecificationsField.Text = (string) reader["ProductSpecifications"];
+                    NameField.Text = (string)reader["ProductName"];
+                    TypeField.Text = (string)reader["ProductType"];
+                    UnitPriceField.Value = (decimal)reader["UnitPrice"];
+                    SpecificationsField.Text = (string)reader["ProductSpecifications"];
                 }
                 reader.Close();
             }
         }
 
-        // Use these to retrieve data after Save
-        public string LinkedDesignRequest => DesignRequestField.Text;
-        public string ProductName => NameField.Text;
-        public string ProductType => TypeField.Text;
-        public string UnitPrice => textBox4.Text;
-        public string Specifications => SpecificationsField.Text;
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
     }
 }

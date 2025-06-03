@@ -33,8 +33,8 @@
             this.label3 = new Label();
             this.label4 = new Label();
             this.label5 = new Label();
-            this.button1 = new Button();
-            this.button2 = new Button();
+            this.SaveButton = new Button();
+            this.CancelButton = new Button();
             this.NameField = new TextBox();
             this.TypeField = new TextBox();
             this.SpecificationsField = new TextBox();
@@ -93,25 +93,27 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Specifications";
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Location = new Point(601, 320);
-            this.button1.Margin = new Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new Size(97, 29);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new Point(601, 320);
+            this.SaveButton.Margin = new Padding(4);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new Size(97, 29);
+            this.SaveButton.TabIndex = 10;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += this.SaveButton_Click;
             // 
-            // button2
+            // CancelButton
             // 
-            this.button2.Location = new Point(706, 320);
-            this.button2.Margin = new Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new Size(97, 29);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.CancelButton.Location = new Point(706, 320);
+            this.CancelButton.Margin = new Padding(4);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new Size(97, 29);
+            this.CancelButton.TabIndex = 11;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += this.CancelButton_Click;
             // 
             // NameField
             // 
@@ -168,8 +170,8 @@
             this.Controls.Add(this.SpecificationsField);
             this.Controls.Add(this.TypeField);
             this.Controls.Add(this.NameField);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -194,8 +196,8 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private Button button1;
-        private Button button2;
+        private Button SaveButton;
+        private Button CancelButton;
         private TextBox NameField;
         private TextBox TypeField;
         private TextBox textBox4;

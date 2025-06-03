@@ -30,7 +30,7 @@
         {
             this.dataGridView1 = new DataGridView();
             this.label1 = new Label();
-            this.SearchTextBox = new TextBox();
+            this.SearchField = new TextBox();
             this.AddButton = new Button();
             this.EditButton = new Button();
             ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
@@ -41,8 +41,11 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new Point(9, 120);
             this.dataGridView1.Margin = new Padding(4);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new Size(1566, 541);
             this.dataGridView1.TabIndex = 5;
             // 
@@ -56,14 +59,14 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Input product ID to search:";
             // 
-            // SearchTextBox
+            // SearchField
             // 
-            this.SearchTextBox.Location = new Point(15, 70);
-            this.SearchTextBox.Margin = new Padding(4);
-            this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new Size(229, 27);
-            this.SearchTextBox.TabIndex = 7;
-            this.SearchTextBox.KeyUp += this.SearchTextBox_KeyUp;
+            this.SearchField.Location = new Point(15, 70);
+            this.SearchField.Margin = new Padding(4);
+            this.SearchField.Name = "SearchField";
+            this.SearchField.Size = new Size(229, 27);
+            this.SearchField.TabIndex = 7;
+            this.SearchField.KeyUp += this.SearchField_KeyUp;
             // 
             // AddButton
             // 
@@ -85,6 +88,7 @@
             this.EditButton.TabIndex = 11;
             this.EditButton.Text = "Edit Selected";
             this.EditButton.UseVisualStyleBackColor = true;
+            this.EditButton.Click += this.EditButton_Click;
             // 
             // ProductForm
             // 
@@ -93,7 +97,7 @@
             this.ClientSize = new Size(1585, 676);
             this.Controls.Add(this.EditButton);
             this.Controls.Add(this.AddButton);
-            this.Controls.Add(this.SearchTextBox);
+            this.Controls.Add(this.SearchField);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "ProductForm";
@@ -108,7 +112,7 @@
         #endregion
         private DataGridView dataGridView1;
         private Label label1;
-        private TextBox SearchTextBox;
+        private TextBox SearchField;
         private Button AddButton;
         private Button EditButton;
     }

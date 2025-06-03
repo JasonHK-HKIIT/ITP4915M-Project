@@ -31,11 +31,11 @@
             this.label1 = new Label();
             this.label2 = new Label();
             this.label3 = new Label();
-            this.button1 = new Button();
-            this.button2 = new Button();
+            this.SaveButton = new Button();
+            this.CancelButton = new Button();
             this.textBox3 = new TextBox();
             this.comboBox1 = new ComboBox();
-            this.CustomerComboBox = new ComboBox();
+            this.CustomerField = new ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -68,25 +68,27 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Specifications";
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Location = new Point(726, 445);
-            this.button1.Margin = new Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new Size(96, 29);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SaveButton.Location = new Point(726, 445);
+            this.SaveButton.Margin = new Padding(4);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new Size(96, 29);
+            this.SaveButton.TabIndex = 9;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += this.SaveButton_Click;
             // 
-            // button2
+            // CancelButton
             // 
-            this.button2.Location = new Point(843, 445);
-            this.button2.Margin = new Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new Size(96, 29);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            this.CancelButton.Location = new Point(843, 445);
+            this.CancelButton.Margin = new Padding(4);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new Size(96, 29);
+            this.CancelButton.TabIndex = 10;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += this.CancelButton_Click;
             // 
             // textBox3
             // 
@@ -107,26 +109,26 @@
             this.comboBox1.Size = new Size(154, 27);
             this.comboBox1.TabIndex = 14;
             // 
-            // CustomerComboBox
+            // CustomerField
             // 
-            this.CustomerComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.CustomerComboBox.FormattingEnabled = true;
-            this.CustomerComboBox.Location = new Point(162, 13);
-            this.CustomerComboBox.Margin = new Padding(4);
-            this.CustomerComboBox.Name = "CustomerComboBox";
-            this.CustomerComboBox.Size = new Size(154, 27);
-            this.CustomerComboBox.TabIndex = 15;
+            this.CustomerField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.CustomerField.FormattingEnabled = true;
+            this.CustomerField.Location = new Point(162, 13);
+            this.CustomerField.Margin = new Padding(4);
+            this.CustomerField.Name = "CustomerField";
+            this.CustomerField.Size = new Size(154, 27);
+            this.CustomerField.TabIndex = 15;
             // 
             // DesignRequestDetailForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(990, 502);
-            this.Controls.Add(this.CustomerComboBox);
+            this.Controls.Add(this.CustomerField);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -143,10 +145,10 @@
         private Label label1;
         private Label label2;
         private Label label3;
-        private Button button1;
-        private Button button2;
+        private Button SaveButton;
+        private Button CancelButton;
         private TextBox textBox3;
         private ComboBox comboBox1;
-        private ComboBox CustomerComboBox;
+        private ComboBox CustomerField;
     }
 }

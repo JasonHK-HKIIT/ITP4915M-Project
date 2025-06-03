@@ -16,12 +16,11 @@ namespace Client
         public ProductForm()
         {
             InitializeComponent();
-            EditButton.Click += EditButton_Click;
         }
 
         private void LoadData()
         {
-            var query = SearchTextBox.Text.Trim();
+            var query = SearchField.Text.Trim();
             var command = new MySqlCommand(string.IsNullOrEmpty(query)
                 ? "SELECT * FROM Product"
                 : "SELECT * FROM Product WHERE ProductID LIKE ?id", Program.Connection);
@@ -39,10 +38,31 @@ namespace Client
             }
         }
 
+        private void ProductForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void SearchField_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+
+                LoadData();
+            }
+        }
+
         private void AddButton_Click(object sender, EventArgs e)
         {
-            var productDetailForm = new ProductDetailForm();
-            productDetailForm.ShowDialog();
+            using (var detail = new ProductDetailForm())
+            {
+                if (detail.ShowDialog() == DialogResult.OK)
+                {
+                    LoadData();
+                }
+            }
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -60,20 +80,6 @@ namespace Client
                 {
                     LoadData();
                 }
-            }
-        }
-
-        private void ProductForm_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void SearchTextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                LoadData();
             }
         }
     }

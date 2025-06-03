@@ -7,31 +7,19 @@ namespace Client
 {
     public partial class DesignRequestDetailForm : Form
     {
-        private bool isEditMode;
+        private readonly bool IsEditMode = false;
 
-        private string RequestId;
+        private readonly string RequestId;
 
         public DesignRequestDetailForm()
         {
-            isEditMode = false;
-
             InitializeComponent();
-            button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };    // Save
-            button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };// Cancel
         }
 
         public DesignRequestDetailForm(string requestId) : this()
         {
-            isEditMode = true;
+            IsEditMode = true;
             this.RequestId = requestId;
-        }
-
-        // For Edit
-        public void SetFields(string customer, string manager, string specs)
-        {
-            CustomerComboBox.Text = customer;
-            comboBox1.Text = manager;
-            textBox3.Text = specs;
         }
 
         private void DesignRequestDetailForm_Load(object sender, EventArgs e)
@@ -40,9 +28,9 @@ namespace Client
             var customersAdapter = new MySqlDataAdapter(customersCcommand);
             var customersTable = new DataTable();
             customersAdapter.Fill(customersTable);
-            CustomerComboBox.ValueMember = "CustomerID";
-            CustomerComboBox.DisplayMember = "CustomerName";
-            CustomerComboBox.DataSource = customersTable;
+            CustomerField.ValueMember = "CustomerID";
+            CustomerField.DisplayMember = "CustomerName";
+            CustomerField.DataSource = customersTable;
 
             var managersCommand = new MySqlCommand("SELECT WorkerID, Name FROM Worker", Program.Connection);
             var managersAdapter = new MySqlDataAdapter(managersCommand);
@@ -52,14 +40,14 @@ namespace Client
             comboBox1.DisplayMember = "Name";
             comboBox1.DataSource = managersTable;
 
-            if (isEditMode)
+            if (IsEditMode)
             {
                 var command = new MySqlCommand("SELECT * FROM ProductDesignRequest WHERE DesignRequestID = ?id", Program.Connection);
                 command.Parameters.AddWithValue("?id", RequestId);
                 var reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    CustomerComboBox.SelectedValue = reader["CustomerID"].ToString();
+                    CustomerField.SelectedValue = reader["CustomerID"].ToString();
                     comboBox1.SelectedValue = reader["AssignedManagerID"].ToString();
                     textBox3.Text = reader["Specifications"].ToString();
                 }
@@ -67,9 +55,16 @@ namespace Client
             }
         }
 
-        // For Add/Edit
-        public string Customer => CustomerComboBox.Text;
-        public string AssignedManager => comboBox1.Text;
-        public string Specifications => textBox3.Text;
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
     }
 }

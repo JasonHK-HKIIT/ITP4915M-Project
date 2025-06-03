@@ -28,154 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Label label1;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuotationDetailForm));
+            Label label2;
+            Label label3;
+            Label label5;
+            Label label6;
+            Label QuotationDateLabel;
+            this.ProductField = new ComboBox();
+            this.CustomerField = new ComboBox();
+            this.SaveButton = new Button();
+            this.CancelButton = new Button();
+            this.QuantityField = new NumericUpDown();
+            this.ValidityPeriodField = new DateTimePicker();
+            this.QuotationDateField = new DateTimePicker();
+            this.StatusField = new ComboBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label5 = new Label();
             label6 = new Label();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            SuspendLayout();
+            QuotationDateLabel = new Label();
+            ((System.ComponentModel.ISupportInitialize)this.QuantityField).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(140, 63);
-            label1.Margin = new Padding(5, 0, 5, 0);
+            resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            label1.Size = new Size(93, 23);
-            label1.TabIndex = 0;
-            label1.Text = "Customer";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(146, 136);
-            label2.Margin = new Padding(5, 0, 5, 0);
+            resources.ApplyResources(label2, "label2");
             label2.Name = "label2";
-            label2.Size = new Size(77, 23);
-            label2.TabIndex = 1;
-            label2.Text = "Product";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(140, 212);
-            label3.Margin = new Padding(5, 0, 5, 0);
+            resources.ApplyResources(label3, "label3");
             label3.Name = "label3";
-            label3.Size = new Size(85, 23);
-            label3.TabIndex = 2;
-            label3.Text = "Quantity";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(149, 301);
-            label5.Margin = new Padding(5, 0, 5, 0);
+            resources.ApplyResources(label5, "label5");
             label5.Name = "label5";
-            label5.Size = new Size(74, 23);
-            label5.TabIndex = 4;
-            label5.Text = "Validity";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(149, 382);
-            label6.Margin = new Padding(5, 0, 5, 0);
+            resources.ApplyResources(label6, "label6");
             label6.Name = "label6";
-            label6.Size = new Size(63, 23);
-            label6.TabIndex = 5;
-            label6.Text = "Status";
             // 
-            // comboBox1
+            // QuotationDateLabel
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(330, 124);
-            comboBox1.Margin = new Padding(5, 5, 5, 5);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(268, 31);
-            comboBox1.TabIndex = 6;
+            resources.ApplyResources(QuotationDateLabel, "QuotationDateLabel");
+            QuotationDateLabel.Name = "QuotationDateLabel";
             // 
-            // comboBox2
+            // ProductField
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(330, 51);
-            comboBox2.Margin = new Padding(5, 5, 5, 5);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(268, 31);
-            comboBox2.TabIndex = 7;
+            this.ProductField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ProductField.FormattingEnabled = true;
+            resources.ApplyResources(this.ProductField, "ProductField");
+            this.ProductField.Name = "ProductField";
             // 
-            // textBox1
+            // CustomerField
             // 
-            textBox1.Location = new Point(330, 199);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(268, 30);
-            textBox1.TabIndex = 8;
+            this.CustomerField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.CustomerField.FormattingEnabled = true;
+            resources.ApplyResources(this.CustomerField, "CustomerField");
+            this.CustomerField.Name = "CustomerField";
             // 
-            // textBox2
+            // SaveButton
             // 
-            textBox2.Location = new Point(330, 288);
-            textBox2.Margin = new Padding(5, 5, 5, 5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(268, 30);
-            textBox2.TabIndex = 9;
+            resources.ApplyResources(this.SaveButton, "SaveButton");
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += this.SaveButton_Click;
             // 
-            // textBox3
+            // CancelButton
             // 
-            textBox3.Location = new Point(330, 370);
-            textBox3.Margin = new Padding(5, 5, 5, 5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(268, 30);
-            textBox3.TabIndex = 10;
+            resources.ApplyResources(this.CancelButton, "CancelButton");
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += this.CancelButton_Click;
             // 
-            // button1
+            // QuantityField
             // 
-            button1.Location = new Point(761, 468);
-            button1.Margin = new Padding(5, 5, 5, 5);
-            button1.Name = "button1";
-            button1.Size = new Size(118, 35);
-            button1.TabIndex = 11;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.QuantityField, "QuantityField");
+            this.QuantityField.Maximum = new decimal(new int[] { 99999999, 0, 0, 0 });
+            this.QuantityField.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            this.QuantityField.Name = "QuantityField";
+            this.QuantityField.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // button2
+            // ValidityPeriodField
             // 
-            button2.Location = new Point(935, 468);
-            button2.Margin = new Padding(5, 5, 5, 5);
-            button2.Name = "button2";
-            button2.Size = new Size(118, 35);
-            button2.TabIndex = 12;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.ValidityPeriodField, "ValidityPeriodField");
+            this.ValidityPeriodField.Name = "ValidityPeriodField";
+            // 
+            // QuotationDateField
+            // 
+            resources.ApplyResources(this.QuotationDateField, "QuotationDateField");
+            this.QuotationDateField.Name = "QuotationDateField";
+            // 
+            // StatusField
+            // 
+            this.StatusField.FormattingEnabled = true;
+            resources.ApplyResources(this.StatusField, "StatusField");
+            this.StatusField.Name = "StatusField";
             // 
             // QuotationDetailForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1072, 554);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
-            Name = "QuotationDetailForm";
-            Text = "QuotationDetailForm";
-            ResumeLayout(false);
-            PerformLayout();
+            resources.ApplyResources(this, "$this");
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.Controls.Add(this.StatusField);
+            this.Controls.Add(this.QuotationDateField);
+            this.Controls.Add(QuotationDateLabel);
+            this.Controls.Add(this.ValidityPeriodField);
+            this.Controls.Add(this.QuantityField);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.CustomerField);
+            this.Controls.Add(this.ProductField);
+            this.Controls.Add(label6);
+            this.Controls.Add(label5);
+            this.Controls.Add(label3);
+            this.Controls.Add(label2);
+            this.Controls.Add(label1);
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "QuotationDetailForm";
+            this.Load += this.QuotationDetailForm_Load;
+            ((System.ComponentModel.ISupportInitialize)this.QuantityField).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
@@ -185,12 +169,14 @@
         private Label label3;
         private Label label5;
         private Label label6;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private Button button1;
-        private Button button2;
+        private ComboBox ProductField;
+        private ComboBox CustomerField;
+        private Button SaveButton;
+        private Button CancelButton;
+        private NumericUpDown QuantityField;
+        private DateTimePicker ValidityPeriodField;
+        private Label QuotationDateLabel;
+        private DateTimePicker QuotationDateField;
+        private ComboBox StatusField;
     }
 }
