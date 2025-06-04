@@ -29,6 +29,11 @@ namespace Client
             comboBox1.Text = status;
         }
 
+        private void ShipmentDetailForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
         public string ShipmentID => textBox1.Text;
         public string CustomerOrder => textBox2.Text;
         public string Carrier => textBox3.Text;

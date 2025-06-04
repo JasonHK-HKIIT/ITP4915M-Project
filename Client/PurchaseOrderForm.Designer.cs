@@ -8,7 +8,6 @@
         private Button button1;
         private DataGridView dataGridView1;
         private Button button2;
-        private Button button3;
 
         protected override void Dispose(bool disposing)
         {
@@ -24,7 +23,6 @@
             button1 = new Button();
             dataGridView1 = new DataGridView();
             button2 = new Button();
-            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -76,22 +74,11 @@
             button2.Text = "Edit Selected";
             button2.UseVisualStyleBackColor = true;
             // 
-            // button3
-            // 
-            button3.Location = new Point(893, 72);
-            button3.Margin = new Padding(5);
-            button3.Name = "button3";
-            button3.Size = new Size(190, 35);
-            button3.TabIndex = 5;
-            button3.Text = "View PO Lines";
-            button3.UseVisualStyleBackColor = true;
-            // 
             // PurchaseOrderForm
             // 
             AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1924, 819);
-            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(button1);

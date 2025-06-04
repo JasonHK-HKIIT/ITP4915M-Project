@@ -1,40 +1,115 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Client
 {
     public partial class ServiceCaseDetailForm : Form
     {
-        public ServiceCaseDetailForm()
+        // These models are for populating the dropdowns, you can adjust as needed
+        public class Customer { public string CustomerID { get; set; } public string CustomerName { get; set; } }
+        public class Order { public string CustomerOrderID { get; set; } }
+        public class Worker { public string WorkerID { get; set; } public string Name { get; set; } }
+
+        // Constructor
+        public ServiceCaseDetailForm(
+            List<Customer> customers,
+            List<Order> orders,
+            List<Worker> workers,
+            string[] statusOptions = null,
+            string[] caseTypeOptions = null)
         {
             InitializeComponent();
-            button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
-            button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
+
+            // Populate combo boxes
+            comboBoxCustomerID.DataSource = customers;
+            comboBoxCustomerID.DisplayMember = "CustomerName";
+            comboBoxCustomerID.ValueMember = "CustomerID";
+
+            comboBoxCustomerOrderID.DataSource = orders;
+            comboBoxCustomerOrderID.DisplayMember = "CustomerOrderID";
+            comboBoxCustomerOrderID.ValueMember = "CustomerOrderID";
+
+            comboBoxAssignedStaffID.DataSource = workers;
+            comboBoxAssignedStaffID.DisplayMember = "Name";
+            comboBoxAssignedStaffID.ValueMember = "WorkerID";
+
+            comboBoxStatus.Items.AddRange(statusOptions ?? new string[] { "Open", "In Progress", "Resolved", "Closed" });
+            comboBoxCaseType.Items.AddRange(caseTypeOptions ?? new string[] { "Complaint", "Inquiry", "Return", "Request" });
+
+            // Optional: Set default selection
+            comboBoxStatus.SelectedIndex = 0;
+            comboBoxCaseType.SelectedIndex = 0;
         }
 
-        public void SetFields(string caseID, string customer, string order, string caseType, string status, string assignedTo)
+        // Expose properties for all fields (get/set from outside)
+        public string CaseID
         {
-            comboBox1.Text = caseID;
-            comboBox2.Text = customer;
-            textBox1.Text = order;
-            textBox2.Text = caseType;
-            comboBox3.Text = status;
-            comboBox4.Text = assignedTo;
+            get => textBoxCaseID.Text.Trim();
+            set => textBoxCaseID.Text = value;
+        }
+        public string CustomerID
+        {
+            get => comboBoxCustomerID.SelectedValue?.ToString();
+            set => comboBoxCustomerID.SelectedValue = value;
+        }
+        public string CustomerOrderID
+        {
+            get => comboBoxCustomerOrderID.SelectedValue?.ToString();
+            set => comboBoxCustomerOrderID.SelectedValue = value;
+        }
+        public DateTime CaseDate
+        {
+            get => dateTimePickerCaseDate.Value.Date;
+            set => dateTimePickerCaseDate.Value = value;
+        }
+        public string Description
+        {
+            get => textBoxDescription.Text.Trim();
+            set => textBoxDescription.Text = value;
+        }
+        public string Status
+        {
+            get => comboBoxStatus.SelectedItem?.ToString();
+            set => comboBoxStatus.SelectedItem = value;
+        }
+        public string Resolution
+        {
+            get => textBoxResolution.Text.Trim();
+            set => textBoxResolution.Text = value;
+        }
+        public string CaseType
+        {
+            get => comboBoxCaseType.SelectedItem?.ToString();
+            set => comboBoxCaseType.SelectedItem = value;
+        }
+        public string AssignedStaffID
+        {
+            get => comboBoxAssignedStaffID.SelectedValue?.ToString();
+            set => comboBoxAssignedStaffID.SelectedValue = value;
         }
 
-        public string CaseID => comboBox1.Text;
-        public string Customer => comboBox2.Text;
-        public string Order => textBox1.Text;
-        public string CaseType => textBox2.Text;
-        public string Status => comboBox3.Text;
-        public string AssignedTo => comboBox4.Text;
-    }
+        // Save Button
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            // Validate and save logic here
+            if (string.IsNullOrWhiteSpace(CaseID))
+            {
+                MessageBox.Show("Case ID cannot be empty.");
+                return;
+            }
+            // Add more validation as needed
 
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        // Cancel Button
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+    }
 }

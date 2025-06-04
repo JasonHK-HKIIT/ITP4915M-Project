@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new DataGridView();
-            this.label1 = new Label();
-            this.textBox1 = new TextBox();
-            this.button1 = new Button();
-            this.button2 = new Button();
-            this.button3 = new Button();
-            this.button4 = new Button();
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
-            this.SuspendLayout();
+            dataGridView1 = new DataGridView();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button4 = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(11, 146);
-            dataGridView1.Margin = new Padding(5, 5, 5, 5);
+            dataGridView1.Margin = new Padding(5);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.Size = new Size(1914, 655);
@@ -61,7 +61,7 @@
             // textBox1
             // 
             textBox1.Location = new Point(19, 78);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Margin = new Padding(5);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(279, 30);
             textBox1.TabIndex = 6;
@@ -69,7 +69,7 @@
             // button1
             // 
             button1.Location = new Point(1240, 78);
-            button1.Margin = new Padding(5, 5, 5, 5);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(190, 35);
             button1.TabIndex = 7;
@@ -79,7 +79,7 @@
             // button2
             // 
             button2.Location = new Point(651, 77);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.Size = new Size(190, 35);
             button2.TabIndex = 8;
@@ -89,7 +89,7 @@
             // button3
             // 
             button3.Location = new Point(398, 78);
-            button3.Margin = new Padding(5, 5, 5, 5);
+            button3.Margin = new Padding(5);
             button3.Name = "button3";
             button3.Size = new Size(190, 35);
             button3.TabIndex = 9;
@@ -99,7 +99,7 @@
             // button4
             // 
             button4.Location = new Point(894, 78);
-            button4.Margin = new Padding(5, 5, 5, 5);
+            button4.Margin = new Padding(5);
             button4.Name = "button4";
             button4.Size = new Size(288, 35);
             button4.TabIndex = 10;
@@ -118,7 +118,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Controls.Add(dataGridView1);
-            Margin = new Padding(5, 5, 5, 5);
+            Margin = new Padding(5);
             Name = "SupplierForm";
             Text = "SupplierForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

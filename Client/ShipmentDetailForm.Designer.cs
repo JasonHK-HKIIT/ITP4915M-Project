@@ -27,6 +27,8 @@
             comboBox1 = new ComboBox();
             button1 = new Button();
             button2 = new Button();
+            label7 = new Label();
+            dateTimePicker2 = new DateTimePicker();
             SuspendLayout();
             // 
             // label1
@@ -42,12 +44,12 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(28, 90);
+            label2.Location = new Point(9, 89);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(143, 23);
+            label2.Size = new Size(162, 23);
             label2.TabIndex = 1;
-            label2.Text = "CustomerOrder";
+            label2.Text = "CustomerOrderID";
             // 
             // label3
             // 
@@ -82,7 +84,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(103, 285);
+            label6.Location = new Point(103, 290);
             label6.Margin = new Padding(5, 0, 5, 0);
             label6.Name = "label6";
             label6.Size = new Size(63, 23);
@@ -141,7 +143,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(545, 345);
+            button1.Location = new Point(538, 430);
             button1.Margin = new Padding(5);
             button1.Name = "button1";
             button1.Size = new Size(118, 35);
@@ -151,7 +153,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(674, 345);
+            button2.Location = new Point(695, 430);
             button2.Margin = new Padding(5);
             button2.Name = "button2";
             button2.Size = new Size(118, 35);
@@ -159,11 +161,29 @@
             button2.Text = "Cancel";
             button2.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(73, 349);
+            label7.Name = "label7";
+            label7.Size = new Size(93, 23);
+            label7.TabIndex = 14;
+            label7.Text = "IssueDate";
+            // 
+            // dateTimePicker2
+            // 
+            dateTimePicker2.Location = new Point(203, 343);
+            dateTimePicker2.Name = "dateTimePicker2";
+            dateTimePicker2.Size = new Size(392, 30);
+            dateTimePicker2.TabIndex = 15;
+            // 
             // ShipmentDetailForm
             // 
             AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(827, 414);
+            ClientSize = new Size(827, 498);
+            Controls.Add(dateTimePicker2);
+            Controls.Add(label7);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(comboBox1);
@@ -181,6 +201,7 @@
             Margin = new Padding(5);
             Name = "ShipmentDetailForm";
             Text = "ShipmentDetailForm";
+            Load += ShipmentDetailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -199,5 +220,7 @@
         private ComboBox comboBox1;
         private Button button1;
         private Button button2;
+        private Label label7;
+        private DateTimePicker dateTimePicker2;
     }
 }

@@ -2,202 +2,267 @@
 {
     partial class ServiceCaseDetailForm
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
+            {
                 components.Dispose();
+            }
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            comboBox3 = new ComboBox();
-            comboBox4 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
+            labelCaseID = new Label();
+            textBoxCaseID = new TextBox();
+            labelCustomerID = new Label();
+            comboBoxCustomerID = new ComboBox();
+            labelCustomerOrderID = new Label();
+            comboBoxCustomerOrderID = new ComboBox();
+            labelCaseDate = new Label();
+            dateTimePickerCaseDate = new DateTimePicker();
+            labelDescription = new Label();
+            textBoxDescription = new TextBox();
+            labelStatus = new Label();
+            comboBoxStatus = new ComboBox();
+            labelResolution = new Label();
+            textBoxResolution = new TextBox();
+            labelCaseType = new Label();
+            comboBoxCaseType = new ComboBox();
+            labelAssignedStaffID = new Label();
+            comboBoxAssignedStaffID = new ComboBox();
+            buttonSave = new Button();
+            buttonCancel = new Button();
             SuspendLayout();
             // 
-            // label1
+            // labelCaseID
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(76, 43);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(69, 23);
-            label1.TabIndex = 0;
-            label1.Text = "CaseID";
+            labelCaseID.AutoSize = true;
+            labelCaseID.Location = new Point(101, 9);
+            labelCaseID.Name = "labelCaseID";
+            labelCaseID.Size = new Size(74, 23);
+            labelCaseID.TabIndex = 0;
+            labelCaseID.Text = "Case ID";
             // 
-            // label2
+            // textBoxCaseID
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(50, 94);
-            label2.Margin = new Padding(5, 0, 5, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(93, 23);
-            label2.TabIndex = 1;
-            label2.Text = "Customer";
+            textBoxCaseID.Location = new Point(258, 6);
+            textBoxCaseID.Name = "textBoxCaseID";
+            textBoxCaseID.Size = new Size(200, 30);
+            textBoxCaseID.TabIndex = 1;
             // 
-            // label3
+            // labelCustomerID
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(85, 144);
-            label3.Margin = new Padding(5, 0, 5, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(60, 23);
-            label3.TabIndex = 2;
-            label3.Text = "Order";
+            labelCustomerID.AutoSize = true;
+            labelCustomerID.Location = new Point(59, 52);
+            labelCustomerID.Name = "labelCustomerID";
+            labelCustomerID.Size = new Size(117, 23);
+            labelCustomerID.TabIndex = 2;
+            labelCustomerID.Text = "Customer ID";
             // 
-            // label4
+            // comboBoxCustomerID
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(50, 189);
-            label4.Margin = new Padding(5, 0, 5, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(95, 23);
-            label4.TabIndex = 3;
-            label4.Text = "Case Type";
+            comboBoxCustomerID.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCustomerID.Location = new Point(258, 52);
+            comboBoxCustomerID.Name = "comboBoxCustomerID";
+            comboBoxCustomerID.Size = new Size(200, 31);
+            comboBoxCustomerID.TabIndex = 3;
             // 
-            // label5
+            // labelCustomerOrderID
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(82, 238);
-            label5.Margin = new Padding(5, 0, 5, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(63, 23);
-            label5.TabIndex = 4;
-            label5.Text = "Status";
+            labelCustomerOrderID.AutoSize = true;
+            labelCustomerOrderID.Location = new Point(3, 98);
+            labelCustomerOrderID.Name = "labelCustomerOrderID";
+            labelCustomerOrderID.Size = new Size(172, 23);
+            labelCustomerOrderID.TabIndex = 4;
+            labelCustomerOrderID.Text = "Customer Order ID";
             // 
-            // label6
+            // comboBoxCustomerOrderID
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(33, 285);
-            label6.Margin = new Padding(5, 0, 5, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(112, 23);
-            label6.TabIndex = 5;
-            label6.Text = "Assigned To";
+            comboBoxCustomerOrderID.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCustomerOrderID.Location = new Point(258, 98);
+            comboBoxCustomerOrderID.Name = "comboBoxCustomerOrderID";
+            comboBoxCustomerOrderID.Size = new Size(200, 31);
+            comboBoxCustomerOrderID.TabIndex = 5;
             // 
-            // comboBox1
+            // labelCaseDate
             // 
-            comboBox1.Location = new Point(176, 35);
-            comboBox1.Margin = new Padding(5);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(392, 31);
-            comboBox1.TabIndex = 6;
+            labelCaseDate.AutoSize = true;
+            labelCaseDate.Location = new Point(80, 155);
+            labelCaseDate.Name = "labelCaseDate";
+            labelCaseDate.Size = new Size(96, 23);
+            labelCaseDate.TabIndex = 6;
+            labelCaseDate.Text = "Case Date";
             // 
-            // comboBox2
+            // dateTimePickerCaseDate
             // 
-            comboBox2.Location = new Point(176, 86);
-            comboBox2.Margin = new Padding(5);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(392, 31);
-            comboBox2.TabIndex = 7;
+            dateTimePickerCaseDate.Format = DateTimePickerFormat.Short;
+            dateTimePickerCaseDate.Location = new Point(258, 148);
+            dateTimePickerCaseDate.Name = "dateTimePickerCaseDate";
+            dateTimePickerCaseDate.Size = new Size(200, 30);
+            dateTimePickerCaseDate.TabIndex = 7;
             // 
-            // textBox1
+            // labelDescription
             // 
-            textBox1.Location = new Point(176, 137);
-            textBox1.Margin = new Padding(5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(392, 30);
-            textBox1.TabIndex = 8;
+            labelDescription.AutoSize = true;
+            labelDescription.Location = new Point(68, 201);
+            labelDescription.Name = "labelDescription";
+            labelDescription.Size = new Size(108, 23);
+            labelDescription.TabIndex = 8;
+            labelDescription.Text = "Description";
             // 
-            // textBox2
+            // textBoxDescription
             // 
-            textBox2.Location = new Point(176, 186);
-            textBox2.Margin = new Padding(5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(392, 30);
-            textBox2.TabIndex = 9;
+            textBoxDescription.Location = new Point(258, 198);
+            textBoxDescription.Multiline = true;
+            textBoxDescription.Name = "textBoxDescription";
+            textBoxDescription.Size = new Size(415, 80);
+            textBoxDescription.TabIndex = 9;
             // 
-            // comboBox3
+            // labelStatus
             // 
-            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox3.Items.AddRange(new object[] { "Open", "In Progress", "Closed" });
-            comboBox3.Location = new Point(176, 235);
-            comboBox3.Margin = new Padding(5);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(392, 31);
-            comboBox3.TabIndex = 10;
+            labelStatus.AutoSize = true;
+            labelStatus.Location = new Point(112, 304);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new Size(63, 23);
+            labelStatus.TabIndex = 10;
+            labelStatus.Text = "Status";
             // 
-            // comboBox4
+            // comboBoxStatus
             // 
-            comboBox4.Location = new Point(176, 282);
-            comboBox4.Margin = new Padding(5);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(392, 31);
-            comboBox4.TabIndex = 11;
+            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxStatus.Location = new Point(258, 296);
+            comboBoxStatus.Name = "comboBoxStatus";
+            comboBoxStatus.Size = new Size(200, 31);
+            comboBoxStatus.TabIndex = 11;
             // 
-            // button1
+            // labelResolution
             // 
-            button1.Location = new Point(545, 345);
-            button1.Margin = new Padding(5);
-            button1.Name = "button1";
-            button1.Size = new Size(118, 35);
-            button1.TabIndex = 12;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            labelResolution.AutoSize = true;
+            labelResolution.Location = new Point(80, 352);
+            labelResolution.Name = "labelResolution";
+            labelResolution.Size = new Size(101, 23);
+            labelResolution.TabIndex = 12;
+            labelResolution.Text = "Resolution";
             // 
-            // button2
+            // textBoxResolution
             // 
-            button2.Location = new Point(674, 345);
-            button2.Margin = new Padding(5);
-            button2.Name = "button2";
-            button2.Size = new Size(118, 35);
-            button2.TabIndex = 13;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            textBoxResolution.Location = new Point(258, 352);
+            textBoxResolution.Multiline = true;
+            textBoxResolution.Name = "textBoxResolution";
+            textBoxResolution.Size = new Size(415, 80);
+            textBoxResolution.TabIndex = 13;
+            // 
+            // labelCaseType
+            // 
+            labelCaseType.AutoSize = true;
+            labelCaseType.Location = new Point(80, 458);
+            labelCaseType.Name = "labelCaseType";
+            labelCaseType.Size = new Size(95, 23);
+            labelCaseType.TabIndex = 14;
+            labelCaseType.Text = "Case Type";
+            // 
+            // comboBoxCaseType
+            // 
+            comboBoxCaseType.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxCaseType.Location = new Point(258, 450);
+            comboBoxCaseType.Name = "comboBoxCaseType";
+            comboBoxCaseType.Size = new Size(200, 31);
+            comboBoxCaseType.TabIndex = 15;
+            // 
+            // labelAssignedStaffID
+            // 
+            labelAssignedStaffID.AutoSize = true;
+            labelAssignedStaffID.Location = new Point(30, 525);
+            labelAssignedStaffID.Name = "labelAssignedStaffID";
+            labelAssignedStaffID.Size = new Size(154, 23);
+            labelAssignedStaffID.TabIndex = 16;
+            labelAssignedStaffID.Text = "Assigned Staff ID";
+            // 
+            // comboBoxAssignedStaffID
+            // 
+            comboBoxAssignedStaffID.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxAssignedStaffID.Location = new Point(258, 517);
+            comboBoxAssignedStaffID.Name = "comboBoxAssignedStaffID";
+            comboBoxAssignedStaffID.Size = new Size(200, 31);
+            comboBoxAssignedStaffID.TabIndex = 17;
+            // 
+            // buttonSave
+            // 
+            buttonSave.Location = new Point(452, 569);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(90, 30);
+            buttonSave.TabIndex = 18;
+            buttonSave.Text = "Save";
+            buttonSave.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancel
+            // 
+            buttonCancel.Location = new Point(592, 569);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(90, 30);
+            buttonCancel.TabIndex = 19;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.UseVisualStyleBackColor = true;
             // 
             // ServiceCaseDetailForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(827, 414);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(comboBox4);
-            Controls.Add(comboBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Margin = new Padding(5);
+            ClientSize = new Size(713, 627);
+            Controls.Add(labelCaseID);
+            Controls.Add(textBoxCaseID);
+            Controls.Add(labelCustomerID);
+            Controls.Add(comboBoxCustomerID);
+            Controls.Add(labelCustomerOrderID);
+            Controls.Add(comboBoxCustomerOrderID);
+            Controls.Add(labelCaseDate);
+            Controls.Add(dateTimePickerCaseDate);
+            Controls.Add(labelDescription);
+            Controls.Add(textBoxDescription);
+            Controls.Add(labelStatus);
+            Controls.Add(comboBoxStatus);
+            Controls.Add(labelResolution);
+            Controls.Add(textBoxResolution);
+            Controls.Add(labelCaseType);
+            Controls.Add(comboBoxCaseType);
+            Controls.Add(labelAssignedStaffID);
+            Controls.Add(comboBoxAssignedStaffID);
+            Controls.Add(buttonSave);
+            Controls.Add(buttonCancel);
             Name = "ServiceCaseDetailForm";
-            Text = "ServiceCaseDetailForm";
+            Text = "Customer Service Case Detail";
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private ComboBox comboBox3;
-        private ComboBox comboBox4;
-        private Button button1;
-        private Button button2;
+        #endregion
+
+        private System.Windows.Forms.Label labelCaseID;
+        private System.Windows.Forms.TextBox textBoxCaseID;
+        private System.Windows.Forms.Label labelCustomerID;
+        private System.Windows.Forms.ComboBox comboBoxCustomerID;
+        private System.Windows.Forms.Label labelCustomerOrderID;
+        private System.Windows.Forms.ComboBox comboBoxCustomerOrderID;
+        private System.Windows.Forms.Label labelCaseDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerCaseDate;
+        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.TextBox textBoxDescription;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.Label labelResolution;
+        private System.Windows.Forms.TextBox textBoxResolution;
+        private System.Windows.Forms.Label labelCaseType;
+        private System.Windows.Forms.ComboBox comboBoxCaseType;
+        private System.Windows.Forms.Label labelAssignedStaffID;
+        private System.Windows.Forms.ComboBox comboBoxAssignedStaffID;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
+
