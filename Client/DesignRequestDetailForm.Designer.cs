@@ -36,12 +36,14 @@
             this.textBox3 = new TextBox();
             this.comboBox1 = new ComboBox();
             this.CustomerField = new ComboBox();
+            this.RequestIdField = new MaskedTextBox();
+            this.label4 = new Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new Point(13, 16);
+            this.label1.Location = new Point(77, 49);
             this.label1.Margin = new Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new Size(77, 19);
@@ -51,7 +53,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new Point(13, 51);
+            this.label2.Location = new Point(13, 84);
             this.label2.Margin = new Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new Size(141, 19);
@@ -61,7 +63,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new Point(48, 176);
+            this.label3.Location = new Point(48, 119);
             this.label3.Margin = new Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new Size(104, 19);
@@ -70,7 +72,7 @@
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new Point(726, 445);
+            this.SaveButton.Location = new Point(588, 366);
             this.SaveButton.Margin = new Padding(4);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new Size(96, 29);
@@ -81,7 +83,7 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new Point(843, 445);
+            this.CancelButton.Location = new Point(692, 366);
             this.CancelButton.Margin = new Padding(4);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new Size(96, 29);
@@ -92,7 +94,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new Point(311, 176);
+            this.textBox3.Location = new Point(160, 116);
             this.textBox3.Margin = new Padding(4);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
@@ -103,7 +105,7 @@
             // 
             this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new Point(162, 48);
+            this.comboBox1.Location = new Point(162, 81);
             this.comboBox1.Margin = new Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new Size(154, 27);
@@ -113,17 +115,36 @@
             // 
             this.CustomerField.DropDownStyle = ComboBoxStyle.DropDownList;
             this.CustomerField.FormattingEnabled = true;
-            this.CustomerField.Location = new Point(162, 13);
+            this.CustomerField.Location = new Point(162, 46);
             this.CustomerField.Margin = new Padding(4);
             this.CustomerField.Name = "CustomerField";
             this.CustomerField.Size = new Size(154, 27);
             this.CustomerField.TabIndex = 15;
             // 
+            // RequestIdField
+            // 
+            this.RequestIdField.Location = new Point(162, 12);
+            this.RequestIdField.Mask = "REQ000";
+            this.RequestIdField.Name = "RequestIdField";
+            this.RequestIdField.Size = new Size(125, 27);
+            this.RequestIdField.TabIndex = 16;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new Point(71, 15);
+            this.label4.Name = "label4";
+            this.label4.Size = new Size(85, 19);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Request ID";
+            // 
             // DesignRequestDetailForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(990, 502);
+            this.ClientSize = new Size(807, 415);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.RequestIdField);
             this.Controls.Add(this.CustomerField);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox3);
@@ -150,5 +171,7 @@
         private TextBox textBox3;
         private ComboBox comboBox1;
         private ComboBox CustomerField;
+        private MaskedTextBox RequestIdField;
+        private Label label4;
     }
 }

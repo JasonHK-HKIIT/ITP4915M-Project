@@ -46,6 +46,7 @@ namespace Client
                 var reader = command.ExecuteReader();
                 if (reader.Read())
                 {
+                    QuotationIdField.Text = (string) reader["QuotationID"];
                     CustomerField.SelectedValue = reader["CustomerID"];
                     QuotationDateField.Value = (DateTime) reader["QuotationDate"];
                     ProductField.SelectedValue = reader["ProductID"];
@@ -59,6 +60,46 @@ namespace Client
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+
+            var productCommand = new MySqlCommand("SELECT UnitPrice FROM Product WHERE ProductID = ?product", Program.Connection);
+            productCommand.Parameters.AddWithValue("?product", ProductField.SelectedValue);
+            var productReader = productCommand.ExecuteReader();
+            if (!productReader.Read())
+            {
+                MessageBox.Show("Selected product does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                productReader.Close();
+                return;
+            }
+            decimal unitPrice = (decimal)productReader["UnitPrice"];
+            productReader.Close();
+
+            if (IsEditMode)
+            {
+                var command = new MySqlCommand("UPDATE Quotation SET CustomerID = ?customer, QuotationDate = ?date, ProductID = ?product, Quantity = ?quantity, Status = ?status, ValidityPeriod = ?validity, TotalAmount = ?totalAmount WHERE QuotationID = ?id", Program.Connection);
+                command.Parameters.AddWithValue("?id", QuotationIdField.Text);
+                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                command.Parameters.AddWithValue("?date", QuotationDateField.Value);
+                command.Parameters.AddWithValue("?product", ProductField.SelectedValue);
+                command.Parameters.AddWithValue("?quantity", QuantityField.Value);
+                command.Parameters.AddWithValue("?status", StatusField.Text);
+                command.Parameters.AddWithValue("?validity", ValidityPeriodField.Value);
+                command.Parameters.AddWithValue("?totalAmount", unitPrice * QuantityField.Value);
+                command.ExecuteNonQuery();
+            }
+            else
+            {
+                var command = new MySqlCommand("INSERT INTO Quotation (QuotationID, CustomerID, QuotationDate, ProductID, Quantity, Status, ValidityPeriod, TotalAmount) VALUES (?quotationID, ?customer, ?date, ?product, ?quantity, ?status, ?validity, ?totalAmount)", Program.Connection);
+                command.Parameters.AddWithValue("?quotationID", QuotationIdField.Text);
+                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                command.Parameters.AddWithValue("?date", QuotationDateField.Value);
+                command.Parameters.AddWithValue("?product", ProductField.SelectedValue);
+                command.Parameters.AddWithValue("?quantity", QuantityField.Value);
+                command.Parameters.AddWithValue("?status", StatusField.Text);
+                command.Parameters.AddWithValue("?validity", ValidityPeriodField.Value);
+                command.Parameters.AddWithValue("?totalAmount", unitPrice * QuantityField.Value);
+                command.ExecuteNonQuery();
+            }
+
             DialogResult = DialogResult.OK;
             Close();
         }

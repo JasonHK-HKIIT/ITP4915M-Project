@@ -43,6 +43,8 @@
             this.ValidityPeriodField = new DateTimePicker();
             this.QuotationDateField = new DateTimePicker();
             this.StatusField = new ComboBox();
+            this.QuotationIdField = new MaskedTextBox();
+            this.label4 = new Label();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -134,10 +136,22 @@
             resources.ApplyResources(this.StatusField, "StatusField");
             this.StatusField.Name = "StatusField";
             // 
+            // QuotationIdField
+            // 
+            resources.ApplyResources(this.QuotationIdField, "QuotationIdField");
+            this.QuotationIdField.Name = "QuotationIdField";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
             // QuotationDetailForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = AutoScaleMode.Font;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.QuotationIdField);
             this.Controls.Add(this.StatusField);
             this.Controls.Add(this.QuotationDateField);
             this.Controls.Add(QuotationDateLabel);
@@ -178,5 +192,7 @@
         private Label QuotationDateLabel;
         private DateTimePicker QuotationDateField;
         private ComboBox StatusField;
+        private MaskedTextBox QuotationIdField;
+        private Label label4;
     }
 }

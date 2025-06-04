@@ -42,6 +42,7 @@ namespace Client
                 var reader = command.ExecuteReader();
                 if (reader.Read())
                 {
+                    ProductIdField.Text = (string)reader["ProductID"];
                     DesignRequestField.SelectedValue = reader["DesignRequestID"];
                     NameField.Text = (string)reader["ProductName"];
                     TypeField.Text = (string)reader["ProductType"];
@@ -54,6 +55,29 @@ namespace Client
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            if (IsEditMode)
+            {
+                var command = new MySqlCommand("UPDATE Product SET DesignRequestID = ?designRequest, ProductName = ?name, ProductType = ?type, UnitPrice = ?price, ProductSpecifications = ?specifications WHERE ProductID = ?id", Program.Connection);
+                command.Parameters.AddWithValue("?id", ProductId);
+                command.Parameters.AddWithValue("?designRequest", DesignRequestField.SelectedValue);
+                command.Parameters.AddWithValue("?name", NameField.Text);
+                command.Parameters.AddWithValue("?type", TypeField.Text);
+                command.Parameters.AddWithValue("?price", UnitPriceField.Value);
+                command.Parameters.AddWithValue("?specifications", SpecificationsField.Text);
+                command.ExecuteNonQuery();
+            }
+            else
+            {
+                var command = new MySqlCommand("INSERT INTO Product (ProductID, DesignRequestID, ProductName, ProductType, UnitPrice, ProductSpecifications) VALUES (?id, ?designRequest, ?name, ?type, ?price, ?specifications)", Program.Connection);
+                command.Parameters.AddWithValue("?id", ProductIdField.Text);
+                command.Parameters.AddWithValue("?designRequest", DesignRequestField.SelectedValue);
+                command.Parameters.AddWithValue("?name", NameField.Text);
+                command.Parameters.AddWithValue("?type", TypeField.Text);
+                command.Parameters.AddWithValue("?price", UnitPriceField.Value);
+                command.Parameters.AddWithValue("?specifications", SpecificationsField.Text);
+                command.ExecuteNonQuery();
+            }
+
             DialogResult = DialogResult.OK;
             Close();
         }

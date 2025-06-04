@@ -130,7 +130,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 12</value>
+    <value>48, 49</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
@@ -155,7 +155,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <metadata name="label2.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -167,7 +167,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>62, 84</value>
+    <value>63, 117</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -191,7 +191,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
   </data>
   <metadata name="label3.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -203,7 +203,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>58, 117</value>
+    <value>58, 150</value>
   </data>
   <data name="label3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -227,7 +227,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <metadata name="label5.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -239,7 +239,7 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>45, 187</value>
+    <value>45, 218</value>
   </data>
   <data name="label5.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -263,7 +263,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <metadata name="label6.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -275,7 +275,7 @@
     <value>NoControl</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>75, 151</value>
+    <value>74, 184</value>
   </data>
   <data name="label6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -299,7 +299,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <metadata name="QuotationDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -311,7 +311,7 @@
     <value>NoControl</value>
   </data>
   <data name="QuotationDateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 53</value>
+    <value>12, 84</value>
   </data>
   <data name="QuotationDateLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 19</value>
@@ -332,10 +332,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;QuotationDateLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="ProductField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 81</value>
+    <value>133, 114</value>
   </data>
   <data name="ProductField.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -356,10 +356,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ProductField.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="CustomerField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 9</value>
+    <value>133, 46</value>
   </data>
   <data name="CustomerField.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -380,13 +380,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;CustomerField.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="SaveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="SaveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 215</value>
+    <value>262, 248</value>
   </data>
   <data name="SaveButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -410,13 +410,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SaveButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="CancelButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="CancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>368, 215</value>
+    <value>367, 248</value>
   </data>
   <data name="CancelButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>
@@ -440,10 +440,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;CancelButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="QuantityField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 115</value>
+    <value>133, 148</value>
   </data>
   <data name="QuantityField.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 27</value>
@@ -464,10 +464,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;QuantityField.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="ValidityPeriodField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 181</value>
+    <value>133, 214</value>
   </data>
   <data name="ValidityPeriodField.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 27</value>
@@ -485,10 +485,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ValidityPeriodField.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="QuotationDateField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 47</value>
+    <value>133, 80</value>
   </data>
   <data name="QuotationDateField.Size" type="System.Drawing.Size, System.Drawing">
     <value>220, 27</value>
@@ -506,10 +506,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;QuotationDateField.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="StatusField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 148</value>
+    <value>133, 181</value>
   </data>
   <data name="StatusField.Size" type="System.Drawing.Size, System.Drawing">
     <value>151, 27</value>
@@ -527,6 +527,57 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;StatusField.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="QuotationIdField.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 12</value>
+  </data>
+  <data name="QuotationIdField.Mask" xml:space="preserve">
+    <value>QUOTE000</value>
+  </data>
+  <data name="QuotationIdField.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 27</value>
+  </data>
+  <data name="QuotationIdField.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.Name" xml:space="preserve">
+    <value>QuotationIdField</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MaskedTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 15</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 19</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Quotation ID</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -536,7 +587,7 @@
     <value>9, 19</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>477, 258</value>
+    <value>477, 295</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>

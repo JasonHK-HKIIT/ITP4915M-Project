@@ -47,9 +47,10 @@ namespace Client
                 var reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    CustomerField.SelectedValue = reader["CustomerID"].ToString();
-                    comboBox1.SelectedValue = reader["AssignedManagerID"].ToString();
-                    textBox3.Text = reader["Specifications"].ToString();
+                    RequestIdField.Text = (string) reader["DesignRequestID"];
+                    CustomerField.SelectedValue = reader["CustomerID"];
+                    comboBox1.SelectedValue = reader["AssignedManagerID"];
+                    textBox3.Text = (string) reader["Specifications"];
                 }
                 reader.Close();
             }
@@ -57,6 +58,27 @@ namespace Client
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            if (IsEditMode)
+            {
+                var command = new MySqlCommand("UPDATE ProductDesignRequest SET CustomerID = ?customer, AssignedManagerID = ?manager, Specifications = ?specifications WHERE DesignRequestID = ?id", Program.Connection);
+                command.Parameters.AddWithValue("?id", RequestId);
+                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
+                command.Parameters.AddWithValue("?specifications", textBox3.Text);
+                command.ExecuteNonQuery();
+            }
+            else
+            {
+                var command = new MySqlCommand("INSERT INTO ProductDesignRequest (DesignRequestID, CustomerID, AssignedManagerID, Specifications, RequestDate, Status) VALUES (?requestId, ?customer, ?manager, ?specifications, ?requestDate, ?status)", Program.Connection);
+                command.Parameters.AddWithValue("?requestId", RequestIdField.Text);
+                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
+                command.Parameters.AddWithValue("?specifications", textBox3.Text);
+                command.Parameters.AddWithValue("?requestDate", DateTime.Now);
+                command.Parameters.AddWithValue("?status", "Pending");
+                command.ExecuteNonQuery();
+            }
+
             DialogResult = DialogResult.OK;
             Close();
         }
