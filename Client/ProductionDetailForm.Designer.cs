@@ -60,9 +60,9 @@
             label2.Location = new Point(47, 90);
             label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(148, 23);
+            label2.Size = new Size(162, 23);
             label2.TabIndex = 1;
-            label2.Text = "Customer Order";
+            label2.Text = "CustomerOrderID";
             // 
             // label3
             // 
@@ -70,9 +70,9 @@
             label3.Location = new Point(119, 140);
             label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(77, 23);
+            label3.Size = new Size(96, 23);
             label3.TabIndex = 2;
-            label3.Text = "Product";
+            label3.Text = "ProductID";
             // 
             // label4
             // 
@@ -196,6 +196,7 @@
             Margin = new Padding(5);
             Name = "ProductionDetailForm";
             Text = "ProductionDetailForm";
+            Load += ProductionDetailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

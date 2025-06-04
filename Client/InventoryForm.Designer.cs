@@ -99,6 +99,7 @@
             Margin = new Padding(5);
             Name = "InventoryForm";
             Text = "InventoryForm";
+            Load += InventoryForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

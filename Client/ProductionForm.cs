@@ -1,122 +1,167 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Client
 {
     public partial class ProductionForm : Form
     {
-        // Data model
-        public class ProductionOrder
-        {
-            public string ProductionOrderID { get; set; }
-            public string CustomerOrder { get; set; }
-            public string Product { get; set; }
-            public int Quantity { get; set; }
-            public DateTime ScheduledDate { get; set; }
-            public string Status { get; set; }
-        }
-
-        private List<ProductionOrder> productionOrders = new List<ProductionOrder>();
-
         public ProductionForm()
         {
             InitializeComponent();
-            button1.Click += ButtonAdd_Click;
-            button2.Click += ButtonEdit_Click;
-            // button3 for delete if needed
-
-            LoadSampleData();
-            BindDataGrid();
+            button1.Click += ButtonAdd_Click;      // Add Production Order
+            button2.Click += ButtonEdit_Click;     // Edit Selected
+            button3.Click += ButtonDelete_Click;   // Delete Selected
+            textBox1.KeyUp += textBox1_KeyUp;      // Search on Enter
+            LoadData();
         }
 
-        private void LoadSampleData()
+        /// <summary>
+        /// Loads production orders from DB, optionally filtered.
+        /// </summary>
+        private void LoadData()
         {
-            productionOrders.Add(new ProductionOrder
+            string filter = textBox1.Text.Trim();
+            MySqlCommand cmd;
+
+            if (string.IsNullOrEmpty(filter))
             {
-                ProductionOrderID = "PO001",
-                CustomerOrder = "CO001",
-                Product = "Widget X",
-                Quantity = 100,
-                ScheduledDate = DateTime.Today.AddDays(2),
-                Status = "Scheduled"
-            });
+                cmd = new MySqlCommand(
+                    "SELECT ProductionOrderID, CustomerOrderID, ProductID, Quantity, ScheduledDate, Status FROM ProductionOrder",
+                    Program.Connection
+                );
+            }
+            else
+            {
+                cmd = new MySqlCommand(
+                    @"SELECT ProductionOrderID, CustomerOrderID, ProductID, Quantity, ScheduledDate, Status 
+                      FROM ProductionOrder 
+                      WHERE ProductionOrderID LIKE @f OR CustomerOrderID LIKE @f",
+                    Program.Connection
+                );
+                cmd.Parameters.AddWithValue("@f", "%" + filter + "%");
+            }
+
+            var adapter = new MySqlDataAdapter(cmd);
+            var dt = new DataTable();
+            adapter.Fill(dt);
+            dataGridView1.DataSource = dt;
         }
 
-        private void BindDataGrid()
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = productionOrders
-                .Select(p => new
-                {
-                    p.ProductionOrderID,
-                    p.CustomerOrder,
-                    p.Product,
-                    p.Quantity,
-                    ScheduledDate = p.ScheduledDate.ToShortDateString(),
-                    p.Status
-                }).ToList();
+            if (e.KeyCode == Keys.Enter)
+                LoadData();
         }
 
-        // ADD
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            using (var detailForm = new ProductionDetailForm())
+            using (var detail = new ProductionDetailForm())
             {
-                detailForm.Text = "Add Production Order";
-                if (detailForm.ShowDialog() == DialogResult.OK)
+                detail.Text = "Add Production Order";
+                if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    var newOrder = new ProductionOrder
+                    var cmd = new MySqlCommand(
+                        @"INSERT INTO ProductionOrder 
+                            (ProductionOrderID, CustomerOrderID, ProductID, Quantity, ScheduledDate, Status) 
+                          VALUES 
+                            (@id, @co, @pid, @qty, @date, @status)",
+                        Program.Connection
+                    );
+                    cmd.Parameters.AddWithValue("@id", detail.ProductionOrderID);
+                    cmd.Parameters.AddWithValue("@co", detail.CustomerOrderID);
+                    cmd.Parameters.AddWithValue("@pid", detail.ProductID);
+                    cmd.Parameters.AddWithValue("@qty", detail.Quantity);
+                    cmd.Parameters.AddWithValue("@date", detail.ScheduledDate);
+                    cmd.Parameters.AddWithValue("@status", detail.Status);
+
+                    try
                     {
-                        ProductionOrderID = detailForm.ProductionOrderID,
-                        CustomerOrder = detailForm.CustomerOrder,
-                        Product = detailForm.Product,
-                        Quantity = detailForm.Quantity,
-                        ScheduledDate = detailForm.ScheduledDate,
-                        Status = detailForm.Status
-                    };
-                    productionOrders.Add(newOrder);
-                    BindDataGrid();
+                        cmd.ExecuteNonQuery();
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Insert failed: " + ex.Message, "Error");
+                    }
                 }
             }
         }
 
-        // EDIT
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridView1.SelectedRows.Count == 0) return;
+            var row = dataGridView1.SelectedRows[0];
+            string id = row.Cells["ProductionOrderID"].Value.ToString();
+            string co = row.Cells["CustomerOrderID"].Value.ToString();
+            string pid = row.Cells["ProductID"].Value.ToString();
+            int qty = Convert.ToInt32(row.Cells["Quantity"].Value);
+            DateTime date = Convert.ToDateTime(row.Cells["ScheduledDate"].Value);
+            string status = row.Cells["Status"].Value.ToString();
+
+            using (var detail = new ProductionDetailForm())
             {
-                MessageBox.Show("Please select a production order to edit.");
-                return;
-            }
-
-            int idx = dataGridView1.SelectedRows[0].Index;
-            var order = productionOrders[idx];
-
-            using (var detailForm = new ProductionDetailForm())
-            {
-                detailForm.Text = "Edit Production Order";
-                detailForm.SetFields(
-                    order.ProductionOrderID,
-                    order.CustomerOrder,
-                    order.Product,
-                    order.Quantity.ToString(),
-                    order.ScheduledDate,
-                    order.Status);
-
-                if (detailForm.ShowDialog() == DialogResult.OK)
+                detail.Text = "Edit Production Order";
+                detail.SetFields(id, co, pid, qty, date, status);
+                if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    order.ProductionOrderID = detailForm.ProductionOrderID;
-                    order.CustomerOrder = detailForm.CustomerOrder;
-                    order.Product = detailForm.Product;
-                    order.Quantity = detailForm.Quantity;
-                    order.ScheduledDate = detailForm.ScheduledDate;
-                    order.Status = detailForm.Status;
-                    BindDataGrid();
+                    var cmd = new MySqlCommand(
+                        @"UPDATE ProductionOrder 
+                          SET CustomerOrderID=@co, ProductID=@pid, Quantity=@qty, ScheduledDate=@date, Status=@status 
+                          WHERE ProductionOrderID=@id",
+                        Program.Connection
+                    );
+                    cmd.Parameters.AddWithValue("@co", detail.CustomerOrderID);
+                    cmd.Parameters.AddWithValue("@pid", detail.ProductID);
+                    cmd.Parameters.AddWithValue("@qty", detail.Quantity);
+                    cmd.Parameters.AddWithValue("@date", detail.ScheduledDate);
+                    cmd.Parameters.AddWithValue("@status", detail.Status);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Update failed: " + ex.Message, "Error");
+                    }
                 }
             }
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0) return;
+            var row = dataGridView1.SelectedRows[0];
+            string id = row.Cells["ProductionOrderID"].Value.ToString();
+
+            if (MessageBox.Show("Are you sure to delete this production order?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var cmd = new MySqlCommand(
+                    "DELETE FROM ProductionOrder WHERE ProductionOrderID=@id",
+                    Program.Connection
+                );
+                cmd.Parameters.AddWithValue("@id", id);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    LoadData();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Delete failed: " + ex.Message, "Error");
+                }
+            }
+        }
+
+        private void ProductionOrderForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

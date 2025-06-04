@@ -87,6 +87,7 @@
             Margin = new Padding(5);
             Name = "PurchaseOrderForm";
             Text = "PurchaseOrderForm";
+            Load += PurchaseOrderForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

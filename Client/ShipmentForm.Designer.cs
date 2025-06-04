@@ -100,6 +100,7 @@
             Margin = new Padding(5);
             Name = "ShipmentForm";
             Text = "ShipmentForm";
+            Load += ShipmentForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -173,5 +173,10 @@ namespace Client
             }
             LoadData();
         }
+
+        private void ShipmentForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

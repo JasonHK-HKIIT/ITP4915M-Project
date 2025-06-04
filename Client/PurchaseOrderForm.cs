@@ -1,43 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Client
 {
     public partial class PurchaseOrderForm : Form
     {
-        // Data model for Purchase Order
-        public class PurchaseOrder
-        {
-            public string PONumber { get; set; }
-            public string Supplier { get; set; }
-            public DateTime PODate { get; set; }
-            public string Status { get; set; }
-        }
-
-        private List<PurchaseOrder> purchaseOrders = new List<PurchaseOrder>();
-
         public PurchaseOrderForm()
         {
             InitializeComponent();
-            button1.Click += ButtonAdd_Click;   // "Add Purchase Order"
-            button2.Click += ButtonEdit_Click;  // "Edit Selected"
-            // button3 ("View PO Lines") can be wired for additional detail if needed
-
-            BindDataGrid();
+            button1.Click += ButtonAdd_Click;    // Add
+            button2.Click += ButtonEdit_Click;   // Edit
+            textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter
+            LoadData();
         }
 
-        private void BindDataGrid()
+        private void LoadData()
         {
-            dataGridView1.DataSource = null;
-            dataGridView1.DataSource = purchaseOrders.Select(po => new
+            string filter = textBox1.Text.Trim();
+            MySqlCommand cmd;
+
+            if (string.IsNullOrEmpty(filter))
             {
-                po.PONumber,
-                po.Supplier,
-                PODate = po.PODate.ToShortDateString(),
-                po.Status
-            }).ToList();
+                cmd = new MySqlCommand(
+                    @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
+                      FROM PurchaseOrder",
+                    Program.Connection
+                );
+            }
+            else
+            {
+                cmd = new MySqlCommand(
+                    @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
+                      FROM PurchaseOrder 
+                      WHERE PurchaseOrderID LIKE @f OR SupplierID LIKE @f",
+                    Program.Connection
+                );
+                cmd.Parameters.AddWithValue("@f", "%" + filter + "%");
+            }
+
+            var adapter = new MySqlDataAdapter(cmd);
+            var dt = new DataTable();
+            adapter.Fill(dt);
+            dataGridView1.DataSource = dt;
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                LoadData();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -47,40 +59,79 @@ namespace Client
                 detail.Text = "Add Purchase Order";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    purchaseOrders.Add(new PurchaseOrder
+                    var cmd = new MySqlCommand(
+                        @"INSERT INTO PurchaseOrder 
+                            (PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus) 
+                          VALUES 
+                            (@id, @sid, @odate, @ddate, @status, @postatus)",
+                        Program.Connection
+                    );
+                    cmd.Parameters.AddWithValue("@id", detail.PurchaseOrderID);
+                    cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
+                    cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
+                    cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
+                    cmd.Parameters.AddWithValue("@status", detail.Status);
+                    cmd.Parameters.AddWithValue("@postatus", detail.POStatus);
+
+                    try
                     {
-                        PONumber = detail.PONumber,
-                        Supplier = detail.Supplier,
-                        PODate = detail.PODate,
-                        Status = detail.Status
-                    });
-                    BindDataGrid();
+                        cmd.ExecuteNonQuery();
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Insert failed: " + ex.Message, "Error");
+                    }
                 }
             }
         }
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a purchase order to edit.");
-                return;
-            }
-            int idx = dataGridView1.SelectedRows[0].Index;
-            var po = purchaseOrders[idx];
+            if (dataGridView1.SelectedRows.Count == 0) return;
+            var row = dataGridView1.SelectedRows[0];
+            string id = row.Cells["PurchaseOrderID"].Value.ToString();
+            string sid = row.Cells["SupplierID"].Value.ToString();
+            DateTime odate = Convert.ToDateTime(row.Cells["OrderDate"].Value);
+            DateTime ddate = Convert.ToDateTime(row.Cells["ExpectedDeliveryDate"].Value);
+            string status = row.Cells["Status"].Value.ToString();
+            string postatus = row.Cells["POStatus"].Value.ToString();
+
             using (var detail = new PurchaseOrderDetailForm())
             {
                 detail.Text = "Edit Purchase Order";
-                detail.SetFields(po.PONumber, po.Supplier, po.PODate, po.Status);
+                detail.SetFields(id, sid, odate, ddate, status, postatus);
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    po.PONumber = detail.PONumber;
-                    po.Supplier = detail.Supplier;
-                    po.PODate = detail.PODate;
-                    po.Status = detail.Status;
-                    BindDataGrid();
+                    var cmd = new MySqlCommand(
+                        @"UPDATE PurchaseOrder 
+                          SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus 
+                          WHERE PurchaseOrderID=@id",
+                        Program.Connection
+                    );
+                    cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
+                    cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
+                    cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
+                    cmd.Parameters.AddWithValue("@status", detail.Status);
+                    cmd.Parameters.AddWithValue("@postatus", detail.POStatus);
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Update failed: " + ex.Message, "Error");
+                    }
                 }
             }
+        }
+
+        private void PurchaseOrderForm_Load(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

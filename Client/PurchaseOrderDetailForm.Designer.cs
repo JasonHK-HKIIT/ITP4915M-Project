@@ -3,236 +3,251 @@
     partial class PurchaseOrderDetailForm
     {
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.Label labelPOID;
+        private System.Windows.Forms.TextBox textBoxPOID;
+        private System.Windows.Forms.Label labelSupplier;
+        private System.Windows.Forms.ComboBox comboBoxSupplier;
+        private System.Windows.Forms.Label labelOrderDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOrder;
+        private System.Windows.Forms.Label labelDeliveryDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDelivery;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.Label labelPOStatus;
+        private System.Windows.Forms.ComboBox comboBoxPOStatus;
+        private System.Windows.Forms.Label labelLineItems;
+        private System.Windows.Forms.DataGridView dataGridViewLineItems;
+        private System.Windows.Forms.Button buttonAddLine;
+        private System.Windows.Forms.Button buttonDeleteLine;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
+            {
                 components.Dispose();
+            }
             base.Dispose(disposing);
         }
 
+        #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            textBox1 = new TextBox();
-            comboBox1 = new ComboBox();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox2 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
-            label5 = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            label6 = new Label();
-            comboBox3 = new ComboBox();
-            label7 = new Label();
-            dataGridView1 = new DataGridView();
-            button3 = new Button();
-            button4 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.labelPOID = new System.Windows.Forms.Label();
+            this.textBoxPOID = new System.Windows.Forms.TextBox();
+            this.labelSupplier = new System.Windows.Forms.Label();
+            this.comboBoxSupplier = new System.Windows.Forms.ComboBox();
+            this.labelOrderDate = new System.Windows.Forms.Label();
+            this.dateTimePickerOrder = new System.Windows.Forms.DateTimePicker();
+            this.labelDeliveryDate = new System.Windows.Forms.Label();
+            this.dateTimePickerDelivery = new System.Windows.Forms.DateTimePicker();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.labelPOStatus = new System.Windows.Forms.Label();
+            this.comboBoxPOStatus = new System.Windows.Forms.ComboBox();
+            this.labelLineItems = new System.Windows.Forms.Label();
+            this.dataGridViewLineItems = new System.Windows.Forms.DataGridView();
+            this.buttonAddLine = new System.Windows.Forms.Button();
+            this.buttonDeleteLine = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLineItems)).BeginInit();
+            this.SuspendLayout();
             // 
-            // label1
+            // labelPOID
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(61, 26);
-            label1.Name = "label1";
-            label1.Size = new Size(40, 15);
-            label1.TabIndex = 0;
-            label1.Text = "PO ID:";
+            this.labelPOID.AutoSize = true;
+            this.labelPOID.Location = new System.Drawing.Point(35, 24);
+            this.labelPOID.Name = "labelPOID";
+            this.labelPOID.Size = new System.Drawing.Size(46, 17);
+            this.labelPOID.TabIndex = 0;
+            this.labelPOID.Text = "PO ID:";
             // 
-            // label2
+            // textBoxPOID
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(51, 58);
-            label2.Name = "label2";
-            label2.Size = new Size(53, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Supplier:";
+            this.textBoxPOID.Location = new System.Drawing.Point(150, 21);
+            this.textBoxPOID.Name = "textBoxPOID";
+            this.textBoxPOID.Size = new System.Drawing.Size(250, 22);
+            this.textBoxPOID.TabIndex = 1;
             // 
-            // label3
+            // labelSupplier
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(37, 94);
-            label3.Name = "label3";
-            label3.Size = new Size(67, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Order Date:";
+            this.labelSupplier.AutoSize = true;
+            this.labelSupplier.Location = new System.Drawing.Point(35, 62);
+            this.labelSupplier.Name = "labelSupplier";
+            this.labelSupplier.Size = new System.Drawing.Size(61, 17);
+            this.labelSupplier.TabIndex = 2;
+            this.labelSupplier.Text = "Supplier:";
             // 
-            // label4
+            // comboBoxSupplier
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(60, 172);
-            label4.Name = "label4";
-            label4.Size = new Size(39, 15);
-            label4.TabIndex = 3;
-            label4.Text = "Status";
+            this.comboBoxSupplier.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxSupplier.FormattingEnabled = true;
+            this.comboBoxSupplier.Location = new System.Drawing.Point(150, 59);
+            this.comboBoxSupplier.Name = "comboBoxSupplier";
+            this.comboBoxSupplier.Size = new System.Drawing.Size(250, 24);
+            this.comboBoxSupplier.TabIndex = 3;
             // 
-            // textBox1
+            // labelOrderDate
             // 
-            textBox1.Location = new Point(129, 23);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(251, 23);
-            textBox1.TabIndex = 4;
+            this.labelOrderDate.AutoSize = true;
+            this.labelOrderDate.Location = new System.Drawing.Point(35, 102);
+            this.labelOrderDate.Name = "labelOrderDate";
+            this.labelOrderDate.Size = new System.Drawing.Size(80, 17);
+            this.labelOrderDate.TabIndex = 4;
+            this.labelOrderDate.Text = "Order Date:";
             // 
-            // comboBox1
+            // dateTimePickerOrder
             // 
-            comboBox1.Location = new Point(129, 56);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(251, 23);
-            comboBox1.TabIndex = 5;
+            this.dateTimePickerOrder.Location = new System.Drawing.Point(150, 99);
+            this.dateTimePickerOrder.Name = "dateTimePickerOrder";
+            this.dateTimePickerOrder.Size = new System.Drawing.Size(250, 22);
+            this.dateTimePickerOrder.TabIndex = 5;
             // 
-            // dateTimePicker1
+            // labelDeliveryDate
             // 
-            dateTimePicker1.Location = new Point(129, 88);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(251, 23);
-            dateTimePicker1.TabIndex = 6;
+            this.labelDeliveryDate.AutoSize = true;
+            this.labelDeliveryDate.Location = new System.Drawing.Point(35, 140);
+            this.labelDeliveryDate.Name = "labelDeliveryDate";
+            this.labelDeliveryDate.Size = new System.Drawing.Size(97, 17);
+            this.labelDeliveryDate.TabIndex = 6;
+            this.labelDeliveryDate.Text = "Delivery Date:";
             // 
-            // comboBox2
+            // dateTimePickerDelivery
             // 
-            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox2.Items.AddRange(new object[] { "Draft", "Ordered", "Received" });
-            comboBox2.Location = new Point(129, 164);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(251, 23);
-            comboBox2.TabIndex = 7;
+            this.dateTimePickerDelivery.Location = new System.Drawing.Point(150, 137);
+            this.dateTimePickerDelivery.Name = "dateTimePickerDelivery";
+            this.dateTimePickerDelivery.Size = new System.Drawing.Size(250, 22);
+            this.dateTimePickerDelivery.TabIndex = 7;
             // 
-            // button1
+            // labelStatus
             // 
-            button1.Location = new Point(335, 514);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 8;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new System.Drawing.Point(35, 178);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(52, 17);
+            this.labelStatus.TabIndex = 8;
+            this.labelStatus.Text = "Status:";
             // 
-            // button2
+            // comboBoxStatus
             // 
-            button2.Location = new Point(429, 514);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 9;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            this.comboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Location = new System.Drawing.Point(150, 175);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(250, 24);
+            this.comboBoxStatus.TabIndex = 9;
             // 
-            // label5
+            // labelPOStatus
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(25, 135);
-            label5.Name = "label5";
-            label5.Size = new Size(79, 15);
-            label5.TabIndex = 10;
-            label5.Text = "Delivery Date:";
+            this.labelPOStatus.AutoSize = true;
+            this.labelPOStatus.Location = new System.Drawing.Point(35, 216);
+            this.labelPOStatus.Name = "labelPOStatus";
+            this.labelPOStatus.Size = new System.Drawing.Size(73, 17);
+            this.labelPOStatus.TabIndex = 10;
+            this.labelPOStatus.Text = "PO Status:";
             // 
-            // dateTimePicker2
+            // comboBoxPOStatus
             // 
-            dateTimePicker2.Location = new Point(129, 127);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(251, 23);
-            dateTimePicker2.TabIndex = 12;
+            this.comboBoxPOStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPOStatus.FormattingEnabled = true;
+            this.comboBoxPOStatus.Location = new System.Drawing.Point(150, 213);
+            this.comboBoxPOStatus.Name = "comboBoxPOStatus";
+            this.comboBoxPOStatus.Size = new System.Drawing.Size(250, 24);
+            this.comboBoxPOStatus.TabIndex = 11;
             // 
-            // label6
+            // labelLineItems
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(39, 212);
-            label6.Name = "label6";
-            label6.Size = new Size(60, 15);
-            label6.TabIndex = 13;
-            label6.Text = "PO status:";
+            this.labelLineItems.AutoSize = true;
+            this.labelLineItems.Location = new System.Drawing.Point(35, 254);
+            this.labelLineItems.Name = "labelLineItems";
+            this.labelLineItems.Size = new System.Drawing.Size(137, 17);
+            this.labelLineItems.TabIndex = 12;
+            this.labelLineItems.Text = "Line Items (Materials)";
             // 
-            // comboBox3
+            // dataGridViewLineItems
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(129, 204);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 14;
+            this.dataGridViewLineItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLineItems.Location = new System.Drawing.Point(38, 274);
+            this.dataGridViewLineItems.Name = "dataGridViewLineItems";
+            this.dataGridViewLineItems.RowHeadersWidth = 51;
+            this.dataGridViewLineItems.RowTemplate.Height = 24;
+            this.dataGridViewLineItems.Size = new System.Drawing.Size(550, 150);
+            this.dataGridViewLineItems.TabIndex = 13;
             // 
-            // label7
+            // buttonAddLine
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(25, 249);
-            label7.Name = "label7";
-            label7.Size = new Size(120, 15);
-            label7.TabIndex = 15;
-            label7.Text = "Line Items (Materials)";
+            this.buttonAddLine.Location = new System.Drawing.Point(38, 430);
+            this.buttonAddLine.Name = "buttonAddLine";
+            this.buttonAddLine.Size = new System.Drawing.Size(100, 28);
+            this.buttonAddLine.TabIndex = 14;
+            this.buttonAddLine.Text = "Add Line";
+            this.buttonAddLine.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // buttonDeleteLine
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(25, 279);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(479, 150);
-            dataGridView1.TabIndex = 16;
+            this.buttonDeleteLine.Location = new System.Drawing.Point(144, 430);
+            this.buttonDeleteLine.Name = "buttonDeleteLine";
+            this.buttonDeleteLine.Size = new System.Drawing.Size(100, 28);
+            this.buttonDeleteLine.TabIndex = 15;
+            this.buttonDeleteLine.Text = "Delete Line";
+            this.buttonDeleteLine.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // buttonSave
             // 
-            button3.Location = new Point(24, 453);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 17;
-            button3.Text = "Add Line";
-            button3.UseVisualStyleBackColor = true;
+            this.buttonSave.Location = new System.Drawing.Point(388, 480);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(90, 32);
+            this.buttonSave.TabIndex = 16;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // buttonCancel
             // 
-            button4.Location = new Point(114, 453);
-            button4.Name = "button4";
-            button4.Size = new Size(75, 23);
-            button4.TabIndex = 18;
-            button4.Text = "Delete Line";
-            button4.UseVisualStyleBackColor = true;
+            this.buttonCancel.Location = new System.Drawing.Point(498, 480);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(90, 32);
+            this.buttonCancel.TabIndex = 17;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // PurchaseOrderDetailForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(526, 560);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(dataGridView1);
-            Controls.Add(label7);
-            Controls.Add(comboBox3);
-            Controls.Add(label6);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(label5);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(comboBox2);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(comboBox1);
-            Controls.Add(textBox1);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "PurchaseOrderDetailForm";
-            Text = "PurchaseOrderDetailForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(634, 534);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonDeleteLine);
+            this.Controls.Add(this.buttonAddLine);
+            this.Controls.Add(this.dataGridViewLineItems);
+            this.Controls.Add(this.labelLineItems);
+            this.Controls.Add(this.comboBoxPOStatus);
+            this.Controls.Add(this.labelPOStatus);
+            this.Controls.Add(this.comboBoxStatus);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.dateTimePickerDelivery);
+            this.Controls.Add(this.labelDeliveryDate);
+            this.Controls.Add(this.dateTimePickerOrder);
+            this.Controls.Add(this.labelOrderDate);
+            this.Controls.Add(this.comboBoxSupplier);
+            this.Controls.Add(this.labelSupplier);
+            this.Controls.Add(this.textBoxPOID);
+            this.Controls.Add(this.labelPOID);
+            this.Name = "PurchaseOrderDetailForm";
+            this.Text = "PurchaseOrderDetailForm";
+            this.Load += new System.EventHandler(this.PurchaseOrderDetailForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLineItems)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private TextBox textBox1;
-        private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBox2;
-        private Button button1;
-        private Button button2;
-        private Label label5;
-        private DateTimePicker dateTimePicker2;
-        private Label label6;
-        private ComboBox comboBox3;
-        private Label label7;
-        private DataGridView dataGridView1;
-        private Button button3;
-        private Button button4;
+        #endregion
     }
 }
