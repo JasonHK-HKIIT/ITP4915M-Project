@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 03, 2025 at 11:34 AM
+-- Generation Time: Jun 05, 2025 at 12:27 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,7 +67,8 @@ CREATE TABLE `CustomerOrder` (
 --
 
 INSERT INTO `CustomerOrder` (`CustomerOrderID`, `CustomerID`, `QuotationID`, `OrderDate`, `Deadline`, `Status`, `DepositPaid`, `BalanceDue`, `PaymentStatus`, `OrderType`, `TotalAmount`) VALUES
-('ORDER001', 'CUST001', 'QUOTE001', '2025-01-20', '2025-02-20', 'Confirmed', 500.00, 1499.00, 'Partial', NULL, 1999.00);
+('ORD001', 'CUST001', 'QUO001', '2025-06-01', '2025-06-15', 'Confirmed', 100.00, 200.00, 'Partial', 'Online', 300.00),
+('ORD002', 'CUST002', 'QUO002', '2025-06-02', '2025-06-20', 'Pending', 50.00, 150.00, 'Unpaid', 'Offline', 200.00);
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `CustomerOrderInvoice` (
 --
 
 INSERT INTO `CustomerOrderInvoice` (`InvoiceID`, `CustomerOrderID`, `InvoiceDate`, `TotalAmount`) VALUES
-('INV001', 'ORDER001', '2025-01-25', 1999.00);
+('INV001', 'ORD001', '2025-06-01', 300.00),
+('INV002', 'ORD002', '2025-06-02', 200.00);
 
 -- --------------------------------------------------------
 
@@ -112,7 +114,8 @@ CREATE TABLE `CustomerServiceCase` (
 --
 
 INSERT INTO `CustomerServiceCase` (`CaseID`, `CustomerID`, `CustomerOrderID`, `CaseDate`, `Description`, `Status`, `Resolution`, `CaseType`, `AssignedStaffID`) VALUES
-('CASE001', 'CUST001', 'ORDER001', '2025-02-25', 'Customer reported missing parts', 'Open', NULL, 'Complaint', NULL);
+('CASE001', 'CUST001', 'ORD001', '2025-06-03', 'Broken part', 'Open', NULL, 'Complaint', 'U002'),
+('CASE002', 'CUST002', 'ORD002', '2025-06-04', 'Late delivery', 'Closed', 'Refunded', 'Delivery', 'U002');
 
 -- --------------------------------------------------------
 
@@ -133,7 +136,8 @@ CREATE TABLE `Inventory_Product` (
 --
 
 INSERT INTO `Inventory_Product` (`WarehouseID`, `ProductID`, `ProductQuantityInWarehouse`, `MinimumStockLevel`, `ReorderPoint`) VALUES
-('WH001', 'PROD001', 50, 20, 30);
+('WH001', 'PROD001', 100, 20, 30),
+('WH002', 'PROD002', 150, 25, 40);
 
 -- --------------------------------------------------------
 
@@ -153,8 +157,8 @@ CREATE TABLE `Material` (
 --
 
 INSERT INTO `Material` (`MaterialID`, `MaterialName`, `Description`, `QuantityPerUnit`) VALUES
-('MAT001', 'Plastic Wheels', 'Set of 4 wheels', 4.00),
-('MAT002', 'Wooden Blocks', 'Pack of 10 blocks', 10.00);
+('MAT001', 'Plastic', 'High-grade plastic', 1.00),
+('MAT002', 'Metal', 'Durable alloy', 2.50);
 
 -- --------------------------------------------------------
 
@@ -177,7 +181,8 @@ CREATE TABLE `MaterialRequirement` (
 --
 
 INSERT INTO `MaterialRequirement` (`RequirementID`, `ProductionOrderID`, `MaterialID`, `QuantityRequired`, `PriorityLevel`, `DeliveryDateNeeded`, `Status`) VALUES
-('REQMAT001', 'PRODORD001', 'MAT001', 400.00, 'High', '2025-01-28', 'Ordered');
+('REQ001', 'PO001', 'MAT001', 50.00, 'High', '2025-06-10', 'Ordered'),
+('REQ002', 'PO002', 'MAT002', 30.00, 'Medium', '2025-06-15', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -199,8 +204,8 @@ CREATE TABLE `Product` (
 --
 
 INSERT INTO `Product` (`ProductID`, `DesignRequestID`, `ProductName`, `ProductType`, `ProductSpecifications`, `UnitPrice`) VALUES
-('PROD001', 'REQ001', 'Speedy Car', 'Toy Car', 'Red, plastic, pull-back action', 19.99),
-('PROD002', 'REQ002', 'Name Blocks', 'Building Blocks', 'Wooden, personalized', 29.99);
+('PROD001', NULL, 'Deluxe Doll', 'Toy', 'Plastic, Pink dress', 29.99),
+('PROD002', NULL, 'Super Car', 'Toy', 'Die-cast metal, Remote control', 49.99);
 
 -- --------------------------------------------------------
 
@@ -216,16 +221,16 @@ CREATE TABLE `ProductDesignRequest` (
   `Status` varchar(50) NOT NULL,
   `ConsultantFee` decimal(12,2) DEFAULT NULL,
   `ApprovalDate` date DEFAULT NULL,
-  `AssignedManagerID` varchar(50) NOT NULL
+  `UserID` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ProductDesignRequest`
 --
 
-INSERT INTO `ProductDesignRequest` (`DesignRequestID`, `CustomerID`, `RequestDate`, `Specifications`, `Status`, `ConsultantFee`, `ApprovalDate`, `AssignedManagerID`) VALUES
-('REQ001', 'CUST001', '2025-01-10', 'Custom toy car', 'Approved', NULL, NULL, 'WORK001'),
-('REQ002', 'CUST002', '2025-01-15', 'Personalized block set', 'Pending', NULL, NULL, 'WORK001');
+INSERT INTO `ProductDesignRequest` (`DesignRequestID`, `CustomerID`, `RequestDate`, `Specifications`, `Status`, `ConsultantFee`, `ApprovalDate`, `UserID`) VALUES
+('DR001', 'CUST001', '2025-05-20', 'Custom pink doll', 'Approved', 20.00, '2025-05-25', 'U001'),
+('DR002', 'CUST002', '2025-05-21', 'Racing car model', 'Pending', 15.00, NULL, 'U002');
 
 -- --------------------------------------------------------
 
@@ -247,7 +252,8 @@ CREATE TABLE `ProductionOrder` (
 --
 
 INSERT INTO `ProductionOrder` (`ProductionOrderID`, `CustomerOrderID`, `ProductID`, `Quantity`, `ScheduledDate`, `Status`) VALUES
-('PRODORD001', 'ORDER001', 'PROD001', 100, '2025-01-25', 'Scheduled');
+('PO001', 'ORD001', 'PROD001', 100, '2025-06-05', 'Scheduled'),
+('PO002', 'ORD002', 'PROD002', 150, '2025-06-06', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -270,8 +276,8 @@ CREATE TABLE `ProductionStage` (
 --
 
 INSERT INTO `ProductionStage` (`StageID`, `ProductionOrderID`, `StageName`, `AssignedTeamID`, `StartDate`, `EndDate`, `Status`) VALUES
-('STAGE001', 'PRODORD001', 'Design', 'TEAM001', '2025-01-26', NULL, 'In Progress'),
-('STAGE002', 'PRODORD001', 'Assembly', 'TEAM002', '2025-02-01', NULL, 'Pending');
+('STAGE001', 'PO001', 'Assembly', 'T002', '2025-06-05', NULL, 'Not Started'),
+('STAGE002', 'PO002', 'Testing', 'T002', '2025-06-06', NULL, 'Not Started');
 
 -- --------------------------------------------------------
 
@@ -293,7 +299,8 @@ CREATE TABLE `Prototype` (
 --
 
 INSERT INTO `Prototype` (`PrototypeID`, `DesignRequestID`, `PrototypeDate`, `Feedback`, `Status`, `ReviewedBy`) VALUES
-('PROTO001', 'REQ001', '2025-01-15', 'Looks good, minor changes needed', 'In Review', 'WORK002');
+('PROTO001', 'DR001', '2025-05-26', 'Looks good', 'Reviewed', 'U002'),
+('PROTO002', 'DR002', '2025-05-27', 'Needs adjustment', 'In Progress', NULL);
 
 -- --------------------------------------------------------
 
@@ -315,7 +322,8 @@ CREATE TABLE `PurchaseOrder` (
 --
 
 INSERT INTO `PurchaseOrder` (`PurchaseOrderID`, `SupplierID`, `OrderDate`, `ExpectedDeliveryDate`, `Status`, `POStatus`) VALUES
-('PO001', 'SUP001', '2025-01-22', '2025-01-28', 'Open', 'Pending');
+('PUR001', 'SUP001', '2025-05-30', '2025-06-07', 'Ordered', 'In Transit'),
+('PUR002', 'SUP002', '2025-05-31', '2025-06-10', 'Ordered', 'Processing');
 
 -- --------------------------------------------------------
 
@@ -335,7 +343,8 @@ CREATE TABLE `PurchaseOrderInvoice` (
 --
 
 INSERT INTO `PurchaseOrderInvoice` (`InvoiceID`, `PurchaseOrderID`, `InvoiceDate`, `TotalAmount`) VALUES
-('POINV001', 'PO001', '2025-01-28', 1000.00);
+('PINV001', 'PUR001', '2025-06-01', 500.00),
+('PINV002', 'PUR002', '2025-06-02', 400.00);
 
 -- --------------------------------------------------------
 
@@ -356,7 +365,8 @@ CREATE TABLE `PurchaseOrderLine` (
 --
 
 INSERT INTO `PurchaseOrderLine` (`PurchaseOrderLineID`, `PurchaseOrderID`, `MaterialID`, `Quantity`, `ReceivedQuantity`) VALUES
-(1, 'PO001', 'MAT001', 400, 0);
+(1, 'PUR001', 'MAT001', 100, 90),
+(2, 'PUR002', 'MAT002', 80, 70);
 
 -- --------------------------------------------------------
 
@@ -381,8 +391,8 @@ CREATE TABLE `Quotation` (
 --
 
 INSERT INTO `Quotation` (`QuotationID`, `CustomerID`, `QuotationDate`, `ProductID`, `Quantity`, `TotalAmount`, `Status`, `ValidityPeriod`, `DiscountAmount`) VALUES
-('QUOTE001', 'CUST001', '2025-01-12', 'PROD001', 100, 1999.00, 'Sent', '2025-02-12', NULL),
-('QUOTE002', 'CUST002', '2025-01-18', 'PROD002', 50, 1499.50, 'Draft', '2025-02-18', NULL);
+('QUO001', 'CUST001', '2025-05-25', 'PROD001', 10, 300.00, 'Approved', '2025-06-30', 20.00),
+('QUO002', 'CUST002', '2025-05-26', 'PROD002', 5, 200.00, 'Pending', '2025-06-30', 10.00);
 
 -- --------------------------------------------------------
 
@@ -405,7 +415,8 @@ CREATE TABLE `Shipment` (
 --
 
 INSERT INTO `Shipment` (`ShipmentID`, `CustomerOrderID`, `ShipmentDate`, `Carrier`, `TrackingNumber`, `Status`, `IssueDate`) VALUES
-('SHIP001', 'ORDER001', '2025-02-15', 'DHL', 'TRACK123', 'Shipped', '2025-02-14');
+('SHIP001', 'ORD001', '2025-06-05', 'FedEx', 'TRACK123', 'Shipped', '2025-06-05'),
+('SHIP002', 'ORD002', '2025-06-06', 'UPS', 'TRACK456', 'Pending', '2025-06-06');
 
 -- --------------------------------------------------------
 
@@ -430,34 +441,35 @@ CREATE TABLE `Supplier` (
 --
 
 INSERT INTO `Supplier` (`SupplierID`, `SupplierName`, `ContactPerson`, `PhoneNumber`, `Email`, `Address`, `Country`, `Status`, `CreatedAt`) VALUES
-('SUP001', 'Toy Parts Co.', 'Alice Wong', '123-456-7890', 'alice@toyparts.com', '123 Industrial Ave, Hong Kong', 'Hong Kong', 'Active', '2025-06-03 17:32:34'),
-('SUP002', 'Fast Materials Inc.', 'John Smith', '987-654-3210', 'john@fastmaterials.com', '456 Supply Rd, Los Angeles, USA', 'USA', 'Active', '2025-06-03 17:32:34'),
-('SUP003', 'Creative Plastics Ltd.', 'Emily Chen', '852-555-8888', 'emily@creativeplastics.hk', '789 Plastic Ln, Shenzhen, China', 'China', 'Inactive', '2025-06-03 17:32:34'),
-('SUP004', 'Global Packaging Supplies', 'Robert Tan', '65-6666-7777', 'robert@globalpack.sg', '101 Export St, Singapore', 'Singapore', 'Active', '2025-06-03 17:32:34');
+('SUP001', 'Toy Parts Co.', 'Alice Lee', '87654321', 'parts@toyparts.com', '123 Part St', 'USA', 'Active', '2025-06-05 18:26:08'),
+('SUP002', 'Fast Materials Inc.', 'Bob Chan', '76543210', 'fast@materials.com', '456 Fast Rd', 'Canada', 'Active', '2025-06-05 18:26:08');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SystemUser`
+-- Table structure for table `User`
 --
 
-CREATE TABLE `SystemUser` (
-  `UserID` int(11) NOT NULL,
-  `Username` varchar(50) NOT NULL,
+CREATE TABLE `User` (
+  `UserID` varchar(50) NOT NULL,
+  `Username` varchar(50) DEFAULT NULL,
   `PasswordHash` varchar(255) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `PositionTitle` varchar(100) NOT NULL,
   `Role` varchar(50) NOT NULL,
+  `ManagerID` varchar(50) DEFAULT NULL,
   `IsActive` tinyint(1) DEFAULT 1,
-  `CreatedAt` datetime DEFAULT current_timestamp()
+  `CreatedAt` datetime DEFAULT current_timestamp(),
+  `TeamID` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `SystemUser`
+-- Dumping data for table `User`
 --
 
-INSERT INTO `SystemUser` (`UserID`, `Username`, `PasswordHash`, `Role`, `IsActive`, `CreatedAt`) VALUES
-(1, 'admin', 'hashedpassword123', 'Admin', 1, '2025-05-29 16:24:26'),
-(2, 'manager1', 'hashedpassword456', 'Manager', 1, '2025-05-29 16:24:26'),
-(3, 'staff1', 'hashedpassword789', 'Staff', 1, '2025-05-29 16:24:26');
+INSERT INTO `User` (`UserID`, `Username`, `PasswordHash`, `Name`, `PositionTitle`, `Role`, `ManagerID`, `IsActive`, `CreatedAt`, `TeamID`) VALUES
+('U001', 'admin', 'hash123', 'Admin User', 'Administrator', 'Admin', NULL, 1, '2025-06-05 18:26:08', 'T001'),
+('U002', 'john_doe', 'hash456', 'John Doe', 'Production Manager', 'Manager', 'U001', 1, '2025-06-05 18:26:08', 'T002');
 
 -- --------------------------------------------------------
 
@@ -482,28 +494,6 @@ INSERT INTO `Warehouse` (`WarehouseID`, `WarehouseCountry`, `WarehouseAddress`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Worker`
---
-
-CREATE TABLE `Worker` (
-  `WorkerID` varchar(50) NOT NULL,
-  `Name` varchar(100) NOT NULL,
-  `PositionTitle` varchar(100) NOT NULL,
-  `ManagerID` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `Worker`
---
-
-INSERT INTO `Worker` (`WorkerID`, `Name`, `PositionTitle`, `ManagerID`) VALUES
-('WORK001', 'Alice Smith', 'Manager', NULL),
-('WORK002', 'Bob Johnson', 'Designer', NULL),
-('WORK003', 'Charlie Lee', 'Assembler', NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `WorkerTeam`
 --
 
@@ -518,8 +508,8 @@ CREATE TABLE `WorkerTeam` (
 --
 
 INSERT INTO `WorkerTeam` (`TeamID`, `TeamName`, `LeaderID`) VALUES
-('TEAM001', 'Design Team', 'WORK002'),
-('TEAM002', 'Assembly Team', 'WORK003');
+('T001', 'Admin Team', 'U001'),
+('T002', 'Production Team', 'U002');
 
 --
 -- Indexes for dumped tables
@@ -589,7 +579,7 @@ ALTER TABLE `Product`
 ALTER TABLE `ProductDesignRequest`
   ADD PRIMARY KEY (`DesignRequestID`),
   ADD KEY `ProductDesignRequest_CustomerID_fk` (`CustomerID`),
-  ADD KEY `ProductDesignRequest_AssignedManagerID_fk` (`AssignedManagerID`);
+  ADD KEY `ProductDesignRequest_UserID_fk` (`UserID`);
 
 --
 -- Indexes for table `ProductionOrder`
@@ -659,24 +649,19 @@ ALTER TABLE `Supplier`
   ADD PRIMARY KEY (`SupplierID`);
 
 --
--- Indexes for table `SystemUser`
+-- Indexes for table `User`
 --
-ALTER TABLE `SystemUser`
+ALTER TABLE `User`
   ADD PRIMARY KEY (`UserID`),
-  ADD UNIQUE KEY `Username` (`Username`);
+  ADD UNIQUE KEY `Username` (`Username`),
+  ADD KEY `ManagerID` (`ManagerID`),
+  ADD KEY `User_TeamID_fk` (`TeamID`);
 
 --
 -- Indexes for table `Warehouse`
 --
 ALTER TABLE `Warehouse`
   ADD PRIMARY KEY (`WarehouseID`);
-
---
--- Indexes for table `Worker`
---
-ALTER TABLE `Worker`
-  ADD PRIMARY KEY (`WorkerID`),
-  ADD KEY `Worker_ManagerID_fk` (`ManagerID`);
 
 --
 -- Indexes for table `WorkerTeam`
@@ -693,13 +678,7 @@ ALTER TABLE `WorkerTeam`
 -- AUTO_INCREMENT for table `PurchaseOrderLine`
 --
 ALTER TABLE `PurchaseOrderLine`
-  MODIFY `PurchaseOrderLineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `SystemUser`
---
-ALTER TABLE `SystemUser`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `PurchaseOrderLineID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -716,15 +695,14 @@ ALTER TABLE `CustomerOrder`
 -- Constraints for table `CustomerOrderInvoice`
 --
 ALTER TABLE `CustomerOrderInvoice`
-  ADD CONSTRAINT `customerorderinvoice_ibfk_1` FOREIGN KEY (`CustomerOrderID`) REFERENCES `CustomerOrder` (`CustomerOrderID`);
+  ADD CONSTRAINT `CustomerOrderInvoice_ibfk_1` FOREIGN KEY (`CustomerOrderID`) REFERENCES `CustomerOrder` (`CustomerOrderID`);
 
 --
 -- Constraints for table `CustomerServiceCase`
 --
 ALTER TABLE `CustomerServiceCase`
-  ADD CONSTRAINT `customerservicecase_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `Customer` (`CustomerID`),
-  ADD CONSTRAINT `customerservicecase_ibfk_2` FOREIGN KEY (`CustomerOrderID`) REFERENCES `CustomerOrder` (`CustomerOrderID`),
-  ADD CONSTRAINT `customerservicecase_ibfk_3` FOREIGN KEY (`AssignedStaffID`) REFERENCES `Worker` (`WorkerID`);
+  ADD CONSTRAINT `CustomerServiceCase_ibfk_1` FOREIGN KEY (`CustomerID`) REFERENCES `Customer` (`CustomerID`),
+  ADD CONSTRAINT `CustomerServiceCase_ibfk_2` FOREIGN KEY (`CustomerOrderID`) REFERENCES `CustomerOrder` (`CustomerOrderID`);
 
 --
 -- Constraints for table `Inventory_Product`
@@ -750,8 +728,8 @@ ALTER TABLE `Product`
 -- Constraints for table `ProductDesignRequest`
 --
 ALTER TABLE `ProductDesignRequest`
-  ADD CONSTRAINT `ProductDesignRequest_AssignedManagerID_fk` FOREIGN KEY (`AssignedManagerID`) REFERENCES `Worker` (`WorkerID`),
-  ADD CONSTRAINT `ProductDesignRequest_CustomerID_fk` FOREIGN KEY (`CustomerID`) REFERENCES `Customer` (`CustomerID`);
+  ADD CONSTRAINT `ProductDesignRequest_CustomerID_fk` FOREIGN KEY (`CustomerID`) REFERENCES `Customer` (`CustomerID`),
+  ADD CONSTRAINT `ProductDesignRequest_UserID_fk` FOREIGN KEY (`UserID`) REFERENCES `User` (`UserID`);
 
 --
 -- Constraints for table `ProductionOrder`
@@ -771,8 +749,7 @@ ALTER TABLE `ProductionStage`
 -- Constraints for table `Prototype`
 --
 ALTER TABLE `Prototype`
-  ADD CONSTRAINT `prototype_ibfk_1` FOREIGN KEY (`DesignRequestID`) REFERENCES `ProductDesignRequest` (`DesignRequestID`),
-  ADD CONSTRAINT `prototype_ibfk_2` FOREIGN KEY (`ReviewedBy`) REFERENCES `Worker` (`WorkerID`);
+  ADD CONSTRAINT `Prototype_ibfk_1` FOREIGN KEY (`DesignRequestID`) REFERENCES `ProductDesignRequest` (`DesignRequestID`);
 
 --
 -- Constraints for table `PurchaseOrder`
@@ -784,14 +761,14 @@ ALTER TABLE `PurchaseOrder`
 -- Constraints for table `PurchaseOrderInvoice`
 --
 ALTER TABLE `PurchaseOrderInvoice`
-  ADD CONSTRAINT `purchaseorderinvoice_ibfk_1` FOREIGN KEY (`PurchaseOrderID`) REFERENCES `PurchaseOrder` (`PurchaseOrderID`);
+  ADD CONSTRAINT `PurchaseOrderInvoice_ibfk_1` FOREIGN KEY (`PurchaseOrderID`) REFERENCES `PurchaseOrder` (`PurchaseOrderID`);
 
 --
 -- Constraints for table `PurchaseOrderLine`
 --
 ALTER TABLE `PurchaseOrderLine`
-  ADD CONSTRAINT `purchaseorderline_ibfk_1` FOREIGN KEY (`PurchaseOrderID`) REFERENCES `PurchaseOrder` (`PurchaseOrderID`),
-  ADD CONSTRAINT `purchaseorderline_ibfk_2` FOREIGN KEY (`MaterialID`) REFERENCES `Material` (`MaterialID`);
+  ADD CONSTRAINT `PurchaseOrderLine_ibfk_1` FOREIGN KEY (`PurchaseOrderID`) REFERENCES `PurchaseOrder` (`PurchaseOrderID`),
+  ADD CONSTRAINT `PurchaseOrderLine_ibfk_2` FOREIGN KEY (`MaterialID`) REFERENCES `Material` (`MaterialID`);
 
 --
 -- Constraints for table `Quotation`
@@ -807,16 +784,17 @@ ALTER TABLE `Shipment`
   ADD CONSTRAINT `Shipment_OrderID_fk` FOREIGN KEY (`CustomerOrderID`) REFERENCES `CustomerOrder` (`CustomerOrderID`);
 
 --
--- Constraints for table `Worker`
+-- Constraints for table `User`
 --
-ALTER TABLE `Worker`
-  ADD CONSTRAINT `Worker_ManagerID_fk` FOREIGN KEY (`ManagerID`) REFERENCES `Worker` (`WorkerID`);
+ALTER TABLE `User`
+  ADD CONSTRAINT `User_TeamID_fk` FOREIGN KEY (`TeamID`) REFERENCES `WorkerTeam` (`TeamID`),
+  ADD CONSTRAINT `User_ibfk_1` FOREIGN KEY (`ManagerID`) REFERENCES `User` (`UserID`);
 
 --
 -- Constraints for table `WorkerTeam`
 --
 ALTER TABLE `WorkerTeam`
-  ADD CONSTRAINT `WorkerTeam_LeaderID_fk` FOREIGN KEY (`LeaderID`) REFERENCES `Worker` (`WorkerID`);
+  ADD CONSTRAINT `WorkerTeam_LeaderID_fk` FOREIGN KEY (`LeaderID`) REFERENCES `User` (`UserID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
