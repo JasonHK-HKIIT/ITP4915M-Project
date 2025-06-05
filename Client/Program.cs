@@ -1,4 +1,5 @@
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Client
 {
@@ -19,7 +20,23 @@ namespace Client
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            Connection.Open();
+            while (Connection.State != ConnectionState.Open)
+            {
+                try
+                {
+                    Connection.Open();
+                }
+                catch (MySqlException ex)
+                {
+                    var result = MessageBox.Show($"Error connecting to the database: {ex.Message}", "Database Connection Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (result == DialogResult.Cancel)
+                    {
+                        Application.Exit();
+                        return;
+                    }
+                }
+            }
+
             Application.Run(new MF1());
             Connection.Close();
         }
