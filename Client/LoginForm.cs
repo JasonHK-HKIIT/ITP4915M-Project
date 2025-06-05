@@ -20,7 +20,7 @@ namespace Client
                 return false;
             }
 
-            var command = new MySqlCommand("SELECT * FROM SystemUser WHERE Username = ?username AND PasswordHash = ?password", Program.Connection);
+            var command = new MySqlCommand("SELECT * FROM User WHERE Username = ?username AND PasswordHash = ?password", Program.Connection);
             command.Parameters.AddWithValue("username", username);
             command.Parameters.AddWithValue("password", password);
 

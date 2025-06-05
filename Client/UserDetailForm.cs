@@ -31,7 +31,7 @@ namespace Client
         {
             if (IsEditMode)
             {
-                var command = new MySqlCommand("SELECT Username, Role, IsActive FROM SystemUser WHERE UserID = ?id", Program.Connection);
+                var command = new MySqlCommand("SELECT Username, Role, IsActive FROM User WHERE UserID = ?id", Program.Connection);
                 command.Parameters.AddWithValue("?id", UserId);
                 var reader = command.ExecuteReader();
                 if (reader.Read())
@@ -50,7 +50,7 @@ namespace Client
             {
                 if (IsEditMode)
                 {
-                    var command = new MySqlCommand("UPDATE SystemUser SET Username = ?username, Role = ?role, IsActive = ?isActive WHERE UserID = ?id", Program.Connection);
+                    var command = new MySqlCommand("UPDATE User SET Username = ?username, Role = ?role, IsActive = ?isActive WHERE UserID = ?id", Program.Connection);
                     command.Parameters.AddWithValue("?id", UserId);
                     command.Parameters.AddWithValue("?username", UsernameField.Text);
                     command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());
@@ -59,7 +59,7 @@ namespace Client
                 }
                 else
                 {
-                    var command = new MySqlCommand("INSERT INTO SystemUser (Username, PasswordHash, Role, IsActive) VALUES (?username, ?password, ?role, ?isActive)", Program.Connection);
+                    var command = new MySqlCommand("INSERT INTO User (Username, PasswordHash, Role, IsActive) VALUES (?username, ?password, ?role, ?isActive)", Program.Connection);
                     command.Parameters.AddWithValue("?username", UsernameField.Text);
                     command.Parameters.AddWithValue("?password", "defaultPasswordHash"); // Replace with actual password hash logic
                     command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());

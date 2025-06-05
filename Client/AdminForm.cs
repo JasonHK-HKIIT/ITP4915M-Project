@@ -22,8 +22,8 @@ namespace Client
         {
             var query = SearchField.Text.Trim();
             var command = new MySqlCommand(string.IsNullOrEmpty(query)
-                ? "SELECT UserID, Username, Role, IsActive, CreatedAt FROM SystemUser"
-                : "SELECT UserID, Username, Role, IsActive, CreatedAt FROM SystemUser WHERE Username LIKE ?username", Program.Connection);
+                ? "SELECT UserID, Username, Role, IsActive, CreatedAt FROM User"
+                : "SELECT UserID, Username, Role, IsActive, CreatedAt FROM User WHERE Username LIKE ?username", Program.Connection);
             command.Parameters.AddWithValue("?username", $"%{query}%");
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
