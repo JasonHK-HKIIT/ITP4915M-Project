@@ -22,8 +22,8 @@ namespace Client
         {
             var query = SearchField.Text.Trim();
             var command = new MySqlCommand(string.IsNullOrEmpty(query)
-                ? "SELECT UserID, Username, Role, IsActive, CreatedAt FROM User"
-                : "SELECT UserID, Username, Role, IsActive, CreatedAt FROM User WHERE Username LIKE ?username", Program.Connection);
+                ? "SELECT User.UserID, User.Name, TeamName, User.PositionTitle, User.Role, Manager.Name As ManagerName, User.IsActive, User.CreatedAt FROM User LEFT JOIN WorkerTeam ON User.TeamID = WorkerTeam.TeamID LEFT JOIN User AS Manager ON User.ManagerID = Manager.UserID"
+                : "SELECT User.UserID, User.Name, TeamName, User.PositionTitle, User.Role, Manager.Name As ManagerName, User.IsActive, User.CreatedAt FROM User LEFT JOIN WorkerTeam ON User.TeamID = WorkerTeam.TeamID LEFT JOIN User AS Manager ON User.ManagerID = Manager.UserID WHERE User.UserID LIKE ?username", Program.Connection);
             command.Parameters.AddWithValue("?username", $"%{query}%");
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
@@ -73,7 +73,7 @@ namespace Client
                 return;
             }
 
-            var id = (int) dataGridView1.SelectedRows[0].Cells["UserID"].Value;
+            var id = (string) dataGridView1.SelectedRows[0].Cells["UserID"].Value;
             using (var detail = new UserDetailForm(id))
             {
                 if (detail.ShowDialog() == DialogResult.OK)

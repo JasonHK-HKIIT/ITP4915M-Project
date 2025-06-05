@@ -16,12 +16,12 @@ namespace Client
         {
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Username and password cannot be empty.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("User ID and password cannot be empty.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            var command = new MySqlCommand("SELECT * FROM User WHERE Username = ?username AND PasswordHash = ?password", Program.Connection);
-            command.Parameters.AddWithValue("username", username);
+            var command = new MySqlCommand("SELECT * FROM User WHERE UserID = ?uid AND PasswordHash = ?password", Program.Connection);
+            command.Parameters.AddWithValue("uid", username);
             command.Parameters.AddWithValue("password", password);
 
             var reader = command.ExecuteReader();

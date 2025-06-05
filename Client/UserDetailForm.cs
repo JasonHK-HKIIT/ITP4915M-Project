@@ -14,33 +14,61 @@ namespace Client
     public partial class UserDetailForm : Form
     {
         private readonly bool IsEditMode = false;
-        private readonly int UserId;
+        private readonly string UserId;
 
         public UserDetailForm()
         {
             InitializeComponent();
         }
 
-        public UserDetailForm(int userId) : this()
+        public UserDetailForm(string userId) : this()
         {
             IsEditMode = true;
             UserId = userId;
+
+            UserIdField.ReadOnly = true;
         }
 
         private void UserDetailForm_Load(object sender, EventArgs e)
         {
+            var teamsCommand = new MySqlCommand("SELECT TeamID, TeamName FROM WorkerTeam", Program.Connection);
+            var teamsAdapter = new MySqlDataAdapter(teamsCommand);
+            var teamsTable = new DataTable();
+            teamsAdapter.Fill(teamsTable);
+            teamsTable.Rows.InsertAt(teamsTable.NewRow(), 0);
+            TeamField.ValueMember = "TeamID";
+            TeamField.DisplayMember = "TeamName";
+            TeamField.DataSource = teamsTable;
+
+            var managersCommand = new MySqlCommand("SELECT UserID, Name FROM User WHERE Role IN ('Admin', 'Manager')", Program.Connection);
+            var managersAdapter = new MySqlDataAdapter(managersCommand);
+            var managersTable = new DataTable();
+            managersAdapter.Fill(managersTable);
+            managersTable.Rows.InsertAt(managersTable.NewRow(), 0);
+            ManagerField.ValueMember = "UserID";
+            ManagerField.DisplayMember = "Name";
+            ManagerField.DataSource = managersTable;
+
             if (IsEditMode)
             {
-                var command = new MySqlCommand("SELECT Username, Role, IsActive FROM User WHERE UserID = ?id", Program.Connection);
+                var command = new MySqlCommand("SELECT UserID, Name, TeamID, PositionTitle, Role, ManagerID, IsActive FROM User WHERE UserID = ?id", Program.Connection);
                 command.Parameters.AddWithValue("?id", UserId);
                 var reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    UsernameField.Text = (string)reader["Username"];
+                    UserIdField.Text = (string)reader["UserID"];
+                    NameField.Text = (string)reader["Name"];
+                    TeamField.SelectedValue = reader["TeamID"];
+                    PositionField.Text = (string)reader["PositionTitle"];
                     RoleField.SelectedItem = reader["Role"];
+                    ManagerField.SelectedValue = reader["ManagerID"];
                     ActivatedField.Checked = (bool)reader["IsActive"];
                 }
                 reader.Close();
+            }
+            else
+            {
+                RoleField.SelectedIndex = 0;
             }
         }
 
@@ -50,19 +78,26 @@ namespace Client
             {
                 if (IsEditMode)
                 {
-                    var command = new MySqlCommand("UPDATE User SET Username = ?username, Role = ?role, IsActive = ?isActive WHERE UserID = ?id", Program.Connection);
-                    command.Parameters.AddWithValue("?id", UserId);
-                    command.Parameters.AddWithValue("?username", UsernameField.Text);
-                    command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());
+                    var command = new MySqlCommand("UPDATE User SET Name = ?name, TeamID = ?teamId, PositionTitle = ?position, Role = ?role, ManagerID = ?managerId, IsActive = ?isActive WHERE UserID = ?id", Program.Connection);
+                    command.Parameters.AddWithValue("?id", UserIdField.Text);
+                    command.Parameters.AddWithValue("?name", NameField.Text);
+                    command.Parameters.AddWithValue("?teamId", TeamField.SelectedValue ?? DBNull.Value);
+                    command.Parameters.AddWithValue("?position", PositionField.Text);
+                    command.Parameters.AddWithValue("?role", RoleField.SelectedItem);
+                    command.Parameters.AddWithValue("?managerId", ManagerField.SelectedValue ?? DBNull.Value);
                     command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
                     command.ExecuteNonQuery();
                 }
                 else
                 {
-                    var command = new MySqlCommand("INSERT INTO User (Username, PasswordHash, Role, IsActive) VALUES (?username, ?password, ?role, ?isActive)", Program.Connection);
-                    command.Parameters.AddWithValue("?username", UsernameField.Text);
+                    var command = new MySqlCommand("INSERT INTO User (UserID, Name, PasswordHash, TeamID, PositionTitle, Role, ManagerID, IsActive) VALUES (?id, ?name, ?password, ?teamId, ?position, ?role, ?managerId, ?isActive)", Program.Connection);
+                    command.Parameters.AddWithValue("?id", UserIdField.Text);
+                    command.Parameters.AddWithValue("?name", NameField.Text);
                     command.Parameters.AddWithValue("?password", "defaultPasswordHash"); // Replace with actual password hash logic
-                    command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());
+                    command.Parameters.AddWithValue("?teamId", TeamField.SelectedValue ?? DBNull.Value);
+                    command.Parameters.AddWithValue("?position", PositionField.Text);
+                    command.Parameters.AddWithValue("?role", RoleField.SelectedItem);
+                    command.Parameters.AddWithValue("?managerId", ManagerField.SelectedValue ?? DBNull.Value);
                     command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
                     command.ExecuteNonQuery();
                 }

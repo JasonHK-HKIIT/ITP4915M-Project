@@ -21,28 +21,36 @@ namespace Client
             this.label2 = new Label();
             this.label3 = new Label();
             this.label4 = new Label();
-            this.UsernameField = new TextBox();
             this.PasswordField = new TextBox();
             this.RoleField = new ComboBox();
             this.ActivatedField = new CheckBox();
             this.SaveButton = new Button();
             this.CancelButton = new Button();
+            this.UserIdField = new MaskedTextBox();
+            this.PositionField = new TextBox();
+            this.label5 = new Label();
+            this.TeamField = new ComboBox();
+            this.label6 = new Label();
+            this.NameField = new TextBox();
+            this.label7 = new Label();
+            this.ManagerField = new ComboBox();
+            this.label8 = new Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new Point(13, 16);
+            this.label1.Location = new Point(34, 16);
             this.label1.Margin = new Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new Size(80, 19);
+            this.label1.Size = new Size(60, 19);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Username";
+            this.label1.Text = "User ID";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new Point(16, 51);
+            this.label2.Location = new Point(17, 83);
             this.label2.Margin = new Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new Size(77, 19);
@@ -52,7 +60,7 @@ namespace Client
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new Point(53, 86);
+            this.label3.Location = new Point(53, 184);
             this.label3.Margin = new Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new Size(40, 19);
@@ -62,24 +70,16 @@ namespace Client
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new Point(19, 119);
+            this.label4.Location = new Point(19, 251);
             this.label4.Margin = new Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new Size(74, 19);
             this.label4.TabIndex = 3;
             this.label4.Text = "Activated";
             // 
-            // UsernameField
-            // 
-            this.UsernameField.Location = new Point(101, 13);
-            this.UsernameField.Margin = new Padding(4);
-            this.UsernameField.Name = "UsernameField";
-            this.UsernameField.Size = new Size(321, 27);
-            this.UsernameField.TabIndex = 4;
-            // 
             // PasswordField
             // 
-            this.PasswordField.Location = new Point(101, 48);
+            this.PasswordField.Location = new Point(101, 80);
             this.PasswordField.Margin = new Padding(4);
             this.PasswordField.Name = "PasswordField";
             this.PasswordField.Size = new Size(321, 27);
@@ -89,8 +89,8 @@ namespace Client
             // RoleField
             // 
             this.RoleField.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.RoleField.Items.AddRange(new object[] { "Admin", "User", "Manager" });
-            this.RoleField.Location = new Point(101, 83);
+            this.RoleField.Items.AddRange(new object[] { "User", "Manager", "Admin" });
+            this.RoleField.Location = new Point(101, 181);
             this.RoleField.Margin = new Padding(4);
             this.RoleField.Name = "RoleField";
             this.RoleField.Size = new Size(321, 27);
@@ -99,7 +99,9 @@ namespace Client
             // ActivatedField
             // 
             this.ActivatedField.AutoSize = true;
-            this.ActivatedField.Location = new Point(101, 118);
+            this.ActivatedField.Checked = true;
+            this.ActivatedField.CheckState = CheckState.Checked;
+            this.ActivatedField.Location = new Point(101, 250);
             this.ActivatedField.Margin = new Padding(4);
             this.ActivatedField.Name = "ActivatedField";
             this.ActivatedField.Size = new Size(96, 23);
@@ -108,7 +110,7 @@ namespace Client
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new Point(220, 149);
+            this.SaveButton.Location = new Point(220, 281);
             this.SaveButton.Margin = new Padding(4);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new Size(97, 29);
@@ -119,7 +121,7 @@ namespace Client
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new Point(325, 149);
+            this.CancelButton.Location = new Point(325, 281);
             this.CancelButton.Margin = new Padding(4);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new Size(97, 29);
@@ -128,17 +130,101 @@ namespace Client
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += this.CancelButton_Click;
             // 
+            // UserIdField
+            // 
+            this.UserIdField.Location = new Point(101, 13);
+            this.UserIdField.Mask = "U000";
+            this.UserIdField.Name = "UserIdField";
+            this.UserIdField.Size = new Size(321, 27);
+            this.UserIdField.TabIndex = 10;
+            // 
+            // PositionField
+            // 
+            this.PositionField.Location = new Point(101, 147);
+            this.PositionField.Name = "PositionField";
+            this.PositionField.Size = new Size(321, 27);
+            this.PositionField.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new Point(29, 150);
+            this.label5.Name = "label5";
+            this.label5.Size = new Size(65, 19);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Position";
+            // 
+            // TeamField
+            // 
+            this.TeamField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.TeamField.FormattingEnabled = true;
+            this.TeamField.Location = new Point(101, 114);
+            this.TeamField.Name = "TeamField";
+            this.TeamField.Size = new Size(321, 27);
+            this.TeamField.TabIndex = 13;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new Point(46, 117);
+            this.label6.Name = "label6";
+            this.label6.Size = new Size(47, 19);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Team";
+            // 
+            // NameField
+            // 
+            this.NameField.Location = new Point(101, 46);
+            this.NameField.Name = "NameField";
+            this.NameField.Size = new Size(321, 27);
+            this.NameField.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new Point(44, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new Size(51, 19);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Name";
+            // 
+            // ManagerField
+            // 
+            this.ManagerField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ManagerField.FormattingEnabled = true;
+            this.ManagerField.Location = new Point(101, 215);
+            this.ManagerField.Name = "ManagerField";
+            this.ManagerField.Size = new Size(321, 27);
+            this.ManagerField.TabIndex = 17;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new Point(21, 218);
+            this.label8.Name = "label8";
+            this.label8.Size = new Size(72, 19);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Manager";
+            // 
             // UserDetailForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(438, 194);
+            this.ClientSize = new Size(438, 327);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.ManagerField);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.NameField);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.TeamField);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.PositionField);
+            this.Controls.Add(this.UserIdField);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ActivatedField);
             this.Controls.Add(this.RoleField);
             this.Controls.Add(this.PasswordField);
-            this.Controls.Add(this.UsernameField);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -158,11 +244,19 @@ namespace Client
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox UsernameField;
         private TextBox PasswordField;
         private ComboBox RoleField;
         private CheckBox ActivatedField;
         private Button SaveButton;
         private Button CancelButton;
+        private MaskedTextBox UserIdField;
+        private TextBox PositionField;
+        private Label label5;
+        private ComboBox TeamField;
+        private Label label6;
+        private TextBox NameField;
+        private Label label7;
+        private ComboBox ManagerField;
+        private Label label8;
     }
 }
