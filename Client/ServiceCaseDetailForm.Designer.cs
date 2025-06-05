@@ -21,7 +21,6 @@
         private void InitializeComponent()
         {
             labelCaseID = new Label();
-            textBoxCaseID = new TextBox();
             labelCustomerID = new Label();
             comboBoxCustomerID = new ComboBox();
             labelCustomerOrderID = new Label();
@@ -40,28 +39,22 @@
             comboBoxAssignedStaffID = new ComboBox();
             buttonSave = new Button();
             buttonCancel = new Button();
+            maskedTextBox1 = new MaskedTextBox();
             SuspendLayout();
             // 
             // labelCaseID
             // 
             labelCaseID.AutoSize = true;
-            labelCaseID.Location = new Point(101, 9);
+            labelCaseID.Location = new Point(105, 18);
             labelCaseID.Name = "labelCaseID";
             labelCaseID.Size = new Size(46, 15);
             labelCaseID.TabIndex = 0;
             labelCaseID.Text = "Case ID";
             // 
-            // textBoxCaseID
-            // 
-            textBoxCaseID.Location = new Point(258, 6);
-            textBoxCaseID.Name = "textBoxCaseID";
-            textBoxCaseID.Size = new Size(200, 23);
-            textBoxCaseID.TabIndex = 1;
-            // 
             // labelCustomerID
             // 
             labelCustomerID.AutoSize = true;
-            labelCustomerID.Location = new Point(59, 52);
+            labelCustomerID.Location = new Point(78, 52);
             labelCustomerID.Name = "labelCustomerID";
             labelCustomerID.Size = new Size(73, 15);
             labelCustomerID.TabIndex = 2;
@@ -78,7 +71,7 @@
             // labelCustomerOrderID
             // 
             labelCustomerOrderID.AutoSize = true;
-            labelCustomerOrderID.Location = new Point(3, 98);
+            labelCustomerOrderID.Location = new Point(45, 101);
             labelCustomerOrderID.Name = "labelCustomerOrderID";
             labelCustomerOrderID.Size = new Size(106, 15);
             labelCustomerOrderID.TabIndex = 4;
@@ -95,7 +88,7 @@
             // labelCaseDate
             // 
             labelCaseDate.AutoSize = true;
-            labelCaseDate.Location = new Point(80, 155);
+            labelCaseDate.Location = new Point(92, 154);
             labelCaseDate.Name = "labelCaseDate";
             labelCaseDate.Size = new Size(59, 15);
             labelCaseDate.TabIndex = 6;
@@ -112,7 +105,7 @@
             // labelDescription
             // 
             labelDescription.AutoSize = true;
-            labelDescription.Location = new Point(68, 201);
+            labelDescription.Location = new Point(84, 201);
             labelDescription.Name = "labelDescription";
             labelDescription.Size = new Size(67, 15);
             labelDescription.TabIndex = 8;
@@ -146,7 +139,7 @@
             // labelResolution
             // 
             labelResolution.AutoSize = true;
-            labelResolution.Location = new Point(80, 352);
+            labelResolution.Location = new Point(88, 352);
             labelResolution.Name = "labelResolution";
             labelResolution.Size = new Size(63, 15);
             labelResolution.TabIndex = 12;
@@ -163,7 +156,7 @@
             // labelCaseType
             // 
             labelCaseType.AutoSize = true;
-            labelCaseType.Location = new Point(80, 458);
+            labelCaseType.Location = new Point(91, 453);
             labelCaseType.Name = "labelCaseType";
             labelCaseType.Size = new Size(60, 15);
             labelCaseType.TabIndex = 14;
@@ -180,7 +173,7 @@
             // labelAssignedStaffID
             // 
             labelAssignedStaffID.AutoSize = true;
-            labelAssignedStaffID.Location = new Point(30, 525);
+            labelAssignedStaffID.Location = new Point(55, 525);
             labelAssignedStaffID.Name = "labelAssignedStaffID";
             labelAssignedStaffID.Size = new Size(96, 15);
             labelAssignedStaffID.TabIndex = 16;
@@ -212,11 +205,19 @@
             buttonCancel.Text = "Cancel";
             buttonCancel.UseVisualStyleBackColor = true;
             // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(258, 10);
+            maskedTextBox1.Mask = "CASE000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.Size = new Size(200, 23);
+            maskedTextBox1.TabIndex = 20;
+            // 
             // ServiceCaseDetailForm
             // 
             ClientSize = new Size(713, 627);
+            Controls.Add(maskedTextBox1);
             Controls.Add(labelCaseID);
-            Controls.Add(textBoxCaseID);
             Controls.Add(labelCustomerID);
             Controls.Add(comboBoxCustomerID);
             Controls.Add(labelCustomerOrderID);
@@ -245,7 +246,6 @@
         #endregion
 
         private System.Windows.Forms.Label labelCaseID;
-        private System.Windows.Forms.TextBox textBoxCaseID;
         private System.Windows.Forms.Label labelCustomerID;
         private System.Windows.Forms.ComboBox comboBoxCustomerID;
         private System.Windows.Forms.Label labelCustomerOrderID;
@@ -264,6 +264,7 @@
         private System.Windows.Forms.ComboBox comboBoxAssignedStaffID;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private MaskedTextBox maskedTextBox1;
     }
 }
 

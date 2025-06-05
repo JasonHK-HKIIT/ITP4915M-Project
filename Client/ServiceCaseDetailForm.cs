@@ -46,8 +46,8 @@ namespace Client
         // Expose properties for all fields (get/set from outside)
         public string CaseID
         {
-            get => textBoxCaseID.Text.Trim();
-            set => textBoxCaseID.Text = value;
+            get => maskedTextBox1.Text.Trim();   // <-- Use maskedTextBox1
+            set => maskedTextBox1.Text = value;
         }
         public string CustomerID
         {

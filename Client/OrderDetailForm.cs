@@ -51,7 +51,7 @@ namespace Client
             string orderId, string customerId, string quotationId, DateTime orderDate, DateTime deadline,
             string status, decimal deposit, decimal balance, decimal total, string paymentStatus, string orderType)
         {
-            textBoxOrderID.Text = orderId;
+            maskedTextBox1.Text = orderId; // CHANGED
             comboBoxCustomer.SelectedValue = customerId;
             comboBoxQuotation.SelectedValue = quotationId;
             dateTimePickerOrderDate.Value = orderDate;
@@ -64,8 +64,13 @@ namespace Client
             comboBoxOrderType.Text = orderType;
         }
 
+        private void maskedTextBoxOrderID_TextChanged(object sender, EventArgs e) // changed method name
+        {
+
+        }
+
         // Expose properties for reading input
-        public string OrderID => textBoxOrderID.Text.Trim();
+        public string OrderID => maskedTextBox1.Text.Trim(); // CHANGED
         public string CustomerID => comboBoxCustomer.SelectedValue?.ToString() ?? "";
         public string QuotationID => comboBoxQuotation.SelectedValue?.ToString() ?? "";
         public DateTime OrderDate => dateTimePickerOrderDate.Value;

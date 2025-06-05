@@ -32,12 +32,12 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
             button1 = new Button();
             button2 = new Button();
+            maskedTextBox1 = new MaskedTextBox();
             SuspendLayout();
             // 
             // label1
@@ -75,14 +75,6 @@
             label4.Size = new Size(49, 15);
             label4.TabIndex = 3;
             label4.Text = "Address";
-
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(129, 23);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(251, 23);
-            textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
@@ -113,7 +105,6 @@
             button1.TabIndex = 8;
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = true;
-
             // 
             // button2
             // 
@@ -124,23 +115,32 @@
             button2.Text = "Cancel";
             button2.UseVisualStyleBackColor = true;
             // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(129, 18);
+            maskedTextBox1.Mask = "CUST000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.Size = new Size(251, 23);
+            maskedTextBox1.TabIndex = 10;
+            // 
             // CustomerDetailForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(672, 209);
+            Controls.Add(maskedTextBox1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "CustomerDetailForm";
             Text = "CustomerDetailForm";
+            Load += CustomerDetailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -151,11 +151,11 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
         private Button button1;
         private Button button2;
+        private MaskedTextBox maskedTextBox1;
     }
 }
