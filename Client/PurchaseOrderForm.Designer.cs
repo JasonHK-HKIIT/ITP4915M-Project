@@ -29,27 +29,24 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(19, 29);
-            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Location = new Point(12, 19);
             label1.Name = "label1";
-            label1.Size = new Size(299, 23);
+            label1.Size = new Size(185, 15);
             label1.TabIndex = 0;
             label1.Text = "Input purchase order ID to search:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(19, 74);
-            textBox1.Margin = new Padding(5);
+            textBox1.Location = new Point(12, 48);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(279, 30);
+            textBox1.Size = new Size(179, 23);
             textBox1.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(431, 72);
-            button1.Margin = new Padding(5);
+            button1.Location = new Point(274, 47);
             button1.Name = "button1";
-            button1.Size = new Size(190, 35);
+            button1.Size = new Size(121, 23);
             button1.TabIndex = 2;
             button1.Text = "Add Purchase Order";
             button1.UseVisualStyleBackColor = true;
@@ -57,34 +54,32 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(11, 146);
-            dataGridView1.Margin = new Padding(5);
+            dataGridView1.Location = new Point(7, 95);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1914, 655);
+            dataGridView1.Size = new Size(1218, 427);
             dataGridView1.TabIndex = 3;
             // 
             // button2
             // 
-            button2.Location = new Point(663, 72);
-            button2.Margin = new Padding(5);
+            button2.Location = new Point(422, 47);
             button2.Name = "button2";
-            button2.Size = new Size(190, 35);
+            button2.Size = new Size(121, 23);
             button2.TabIndex = 4;
             button2.Text = "Edit Selected";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // PurchaseOrderForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1924, 819);
+            ClientSize = new Size(1224, 534);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Controls.Add(textBox1);
             Controls.Add(label1);
-            Margin = new Padding(5);
             Name = "PurchaseOrderForm";
             Text = "PurchaseOrderForm";
             Load += PurchaseOrderForm_Load;

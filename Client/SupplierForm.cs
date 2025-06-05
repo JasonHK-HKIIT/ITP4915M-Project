@@ -25,13 +25,16 @@ namespace Client
             if (string.IsNullOrEmpty(query))
             {
                 command = new MySqlCommand(
-                    "SELECT SupplierID, SupplierName AS Name, ContactPerson AS Contact FROM Supplier",
+                    @"SELECT SupplierID, SupplierName, ContactPerson, PhoneNumber, Email, Address, Country, Status, CreatedAt 
+                      FROM Supplier",
                     Program.Connection);
             }
             else
             {
                 command = new MySqlCommand(
-                    "SELECT SupplierID, SupplierName AS Name, ContactPerson AS Contact FROM Supplier WHERE SupplierID LIKE @q OR SupplierName LIKE @q",
+                    @"SELECT SupplierID, SupplierName, ContactPerson, PhoneNumber, Email, Address, Country, Status, CreatedAt 
+                      FROM Supplier
+                      WHERE SupplierID LIKE @q OR SupplierName LIKE @q OR ContactPerson LIKE @q OR PhoneNumber LIKE @q OR Country LIKE @q",
                     Program.Connection);
                 command.Parameters.AddWithValue("@q", "%" + query + "%");
             }
@@ -60,12 +63,20 @@ namespace Client
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
                     using (var command = new MySqlCommand(
-                        "INSERT INTO Supplier (SupplierID, SupplierName, ContactPerson) VALUES (@id, @name, @contact)",
+                        @"INSERT INTO Supplier 
+                            (SupplierID, SupplierName, ContactPerson, PhoneNumber, Email, Address, Country, Status) 
+                          VALUES 
+                            (@id, @name, @contact, @phone, @email, @address, @country, @status)",
                         Program.Connection))
                     {
                         command.Parameters.AddWithValue("@id", detail.SupplierID);
                         command.Parameters.AddWithValue("@name", detail.SupplierName);
-                        command.Parameters.AddWithValue("@contact", detail.Contact);
+                        command.Parameters.AddWithValue("@contact", detail.ContactPerson);
+                        command.Parameters.AddWithValue("@phone", detail.PhoneNumber);
+                        command.Parameters.AddWithValue("@email", detail.Email);
+                        command.Parameters.AddWithValue("@address", detail.Address);
+                        command.Parameters.AddWithValue("@country", detail.Country);
+                        command.Parameters.AddWithValue("@status", detail.Status);
 
                         try
                         {
@@ -91,24 +102,46 @@ namespace Client
                 return;
             }
 
-            string originalId = dataGridView1.SelectedRows[0].Cells["SupplierID"].Value.ToString();
-            string name = dataGridView1.SelectedRows[0].Cells["Name"].Value.ToString();
-            string contact = dataGridView1.SelectedRows[0].Cells["Contact"].Value.ToString();
+            var row = dataGridView1.SelectedRows[0];
+            string originalId = row.Cells["SupplierID"].Value.ToString();
 
             using (var detail = new SupplierDetailForm())
             {
                 detail.Text = "Edit Supplier";
-                detail.SetFields(originalId, name, contact);
+                detail.SetFields(
+                    row.Cells["SupplierID"].Value?.ToString(),
+                    row.Cells["SupplierName"].Value?.ToString(),
+                    row.Cells["ContactPerson"].Value?.ToString(),
+                    row.Cells["PhoneNumber"].Value?.ToString(),
+                    row.Cells["Email"].Value?.ToString(),
+                    row.Cells["Address"].Value?.ToString(),
+                    row.Cells["Country"].Value?.ToString(),
+                    row.Cells["Status"].Value?.ToString()
+                );
 
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
                     using (var command = new MySqlCommand(
-                        "UPDATE Supplier SET SupplierID=@id, SupplierName=@name, ContactPerson=@contact WHERE SupplierID=@originalId",
+                        @"UPDATE Supplier SET 
+                            SupplierID=@id, 
+                            SupplierName=@name, 
+                            ContactPerson=@contact, 
+                            PhoneNumber=@phone, 
+                            Email=@email, 
+                            Address=@address, 
+                            Country=@country,
+                            Status=@status
+                          WHERE SupplierID=@originalId",
                         Program.Connection))
                     {
                         command.Parameters.AddWithValue("@id", detail.SupplierID);
                         command.Parameters.AddWithValue("@name", detail.SupplierName);
-                        command.Parameters.AddWithValue("@contact", detail.Contact);
+                        command.Parameters.AddWithValue("@contact", detail.ContactPerson);
+                        command.Parameters.AddWithValue("@phone", detail.PhoneNumber);
+                        command.Parameters.AddWithValue("@email", detail.Email);
+                        command.Parameters.AddWithValue("@address", detail.Address);
+                        command.Parameters.AddWithValue("@country", detail.Country);
+                        command.Parameters.AddWithValue("@status", detail.Status);
                         command.Parameters.AddWithValue("@originalId", originalId);
 
                         try
@@ -154,6 +187,16 @@ namespace Client
                 }
             }
             LoadData();
+        }
+
+        private void SupplierForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

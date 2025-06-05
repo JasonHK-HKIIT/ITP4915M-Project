@@ -92,7 +92,12 @@ namespace Client
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0) return;
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a production order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             var row = dataGridView1.SelectedRows[0];
             string id = row.Cells["ProductionOrderID"].Value.ToString();
             string co = row.Cells["CustomerOrderID"].Value.ToString();
@@ -109,8 +114,8 @@ namespace Client
                 {
                     var cmd = new MySqlCommand(
                         @"UPDATE ProductionOrder 
-                          SET CustomerOrderID=@co, ProductID=@pid, Quantity=@qty, ScheduledDate=@date, Status=@status 
-                          WHERE ProductionOrderID=@id",
+                  SET CustomerOrderID=@co, ProductID=@pid, Quantity=@qty, ScheduledDate=@date, Status=@status 
+                  WHERE ProductionOrderID=@id",
                         Program.Connection
                     );
                     cmd.Parameters.AddWithValue("@co", detail.CustomerOrderID);
@@ -132,6 +137,7 @@ namespace Client
                 }
             }
         }
+
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
@@ -162,6 +168,11 @@ namespace Client
         private void ProductionOrderForm_Load(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

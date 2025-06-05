@@ -88,7 +88,17 @@ namespace Client
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0) return;
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a purchase order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (dataGridView1.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Please select only one purchase order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             var row = dataGridView1.SelectedRows[0];
             string id = row.Cells["PurchaseOrderID"].Value.ToString();
             string sid = row.Cells["SupplierID"].Value.ToString();
@@ -105,8 +115,8 @@ namespace Client
                 {
                     var cmd = new MySqlCommand(
                         @"UPDATE PurchaseOrder 
-                          SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus 
-                          WHERE PurchaseOrderID=@id",
+                  SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus 
+                  WHERE PurchaseOrderID=@id",
                         Program.Connection
                     );
                     cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
@@ -129,9 +139,15 @@ namespace Client
             }
         }
 
+
         private void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

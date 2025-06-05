@@ -5,7 +5,7 @@ namespace Client
 {
     internal static class Program
     {
-        private static readonly string DATABASE_IP = "192.168.122.1"; // "localhost"
+        private static readonly string DATABASE_IP = "127.0.0.1"; // "localhost"
         private static string CONNECTION_STRING = $"Server={Properties.Settings.Default.DatabaseHostname};Database=SmileAndSunshineToyCo;User ID=root;Password=;Pooling=true;";
 
         public static MySqlConnection Connection { get; private set; } = new MySqlConnection(CONNECTION_STRING);

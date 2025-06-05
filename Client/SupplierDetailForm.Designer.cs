@@ -45,7 +45,7 @@
             textBox5 = new TextBox();
             textBox6 = new TextBox();
             textBox7 = new TextBox();
-            textBox8 = new TextBox();
+            comboBox1 = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -187,19 +187,20 @@
             textBox7.Size = new Size(251, 23);
             textBox7.TabIndex = 17;
             // 
-            // textBox8
+            // comboBox1
             // 
-            textBox8.Location = new Point(129, 289);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(251, 23);
-            textBox8.TabIndex = 18;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(129, 284);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(251, 23);
+            comboBox1.TabIndex = 18;
             // 
             // SupplierDetailForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 381);
-            Controls.Add(textBox8);
+            Controls.Add(comboBox1);
             Controls.Add(textBox7);
             Controls.Add(textBox6);
             Controls.Add(textBox5);
@@ -219,6 +220,7 @@
             Controls.Add(label1);
             Name = "SupplierDetailForm";
             Text = "SupplierDetailForm";
+            Load += SupplierDetailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -242,6 +244,6 @@
         private TextBox textBox5;
         private TextBox textBox6;
         private TextBox textBox7;
-        private TextBox textBox8;
+        private ComboBox comboBox1;
     }
 }

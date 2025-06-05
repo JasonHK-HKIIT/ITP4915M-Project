@@ -11,52 +11,37 @@ namespace Client
         public ServiceCaseForm()
         {
             InitializeComponent();
-            button1.Click += ButtonAdd_Click;    // Add
-            button2.Click += ButtonEdit_Click;   // Edit
-            button3.Click += ButtonDelete_Click; // Delete
-            textBox1.KeyUp += textBox1_KeyUp;    // Search
+            button1.Click += ButtonAdd_Click;
+            button2.Click += ButtonEdit_Click;
+            button3.Click += ButtonDelete_Click;
+            textBox1.KeyUp += textBox1_KeyUp;
 
             LoadData();
         }
 
-        // Load (with optional CaseID search)
         private void LoadData()
         {
             string query = textBox1.Text.Trim();
             MySqlCommand command;
 
+            string baseQuery = @"SELECT 
+                    csc.CaseID,
+                    c.CustomerName AS Customer,
+                    csc.CustomerOrderID AS `Order`,
+                    csc.CaseType,
+                    csc.Status,
+                    u.Name AS AssignedTo
+                FROM CustomerServiceCase csc
+                LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
+                LEFT JOIN User u ON csc.AssignedStaffID = u.UserID";
+
             if (string.IsNullOrEmpty(query))
             {
-                command = new MySqlCommand(
-                    @"SELECT 
-                        csc.CaseID,
-                        c.CustomerName AS Customer,
-                        csc.CustomerOrderID AS `Order`,
-                        csc.CaseType,
-                        csc.Status,
-                        w.Name AS AssignedTo
-                    FROM CustomerServiceCase csc
-                    LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
-                    LEFT JOIN Worker w ON csc.AssignedStaffID = w.WorkerID",
-                    Program.Connection
-                );
+                command = new MySqlCommand(baseQuery, Program.Connection);
             }
             else
             {
-                command = new MySqlCommand(
-                    @"SELECT 
-                        csc.CaseID,
-                        c.CustomerName AS Customer,
-                        csc.CustomerOrderID AS `Order`,
-                        csc.CaseType,
-                        csc.Status,
-                        w.Name AS AssignedTo
-                    FROM CustomerServiceCase csc
-                    LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
-                    LEFT JOIN Worker w ON csc.AssignedStaffID = w.WorkerID
-                    WHERE csc.CaseID LIKE @caseid",
-                    Program.Connection
-                );
+                command = new MySqlCommand(baseQuery + " WHERE csc.CaseID LIKE @caseid", Program.Connection);
                 command.Parameters.AddWithValue("@caseid", "%" + query + "%");
             }
 
@@ -66,7 +51,6 @@ namespace Client
             dataGridView1.DataSource = dataTable;
         }
 
-        // Search by CaseID on Enter
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -75,7 +59,6 @@ namespace Client
             }
         }
 
-        // Add
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             var customers = GetCustomers();
@@ -104,10 +87,7 @@ namespace Client
                         command.Parameters.AddWithValue("@CaseType", detail.CaseType);
                         command.Parameters.AddWithValue("@AssignedStaffID", string.IsNullOrWhiteSpace(detail.AssignedStaffID) ? (object)DBNull.Value : detail.AssignedStaffID);
 
-                        try
-                        {
-                            command.ExecuteNonQuery();
-                        }
+                        try { command.ExecuteNonQuery(); }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Error adding service case: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -119,7 +99,6 @@ namespace Client
             }
         }
 
-        // Edit
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -130,7 +109,6 @@ namespace Client
 
             string caseID = dataGridView1.SelectedRows[0].Cells["CaseID"].Value.ToString();
 
-            // Retrieve full record for this CaseID
             string customerID = "", customerOrderID = "", description = "", status = "", resolution = "", caseType = "", assignedStaffID = "";
             DateTime caseDate = DateTime.Now;
 
@@ -194,10 +172,7 @@ namespace Client
                         command.Parameters.AddWithValue("@CaseType", detail.CaseType);
                         command.Parameters.AddWithValue("@AssignedStaffID", string.IsNullOrWhiteSpace(detail.AssignedStaffID) ? (object)DBNull.Value : detail.AssignedStaffID);
 
-                        try
-                        {
-                            command.ExecuteNonQuery();
-                        }
+                        try { command.ExecuteNonQuery(); }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Error updating service case: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,7 +184,6 @@ namespace Client
             }
         }
 
-        // Delete
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -221,15 +195,11 @@ namespace Client
             var confirm = MessageBox.Show("Are you sure you want to delete this service case?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes) return;
 
-            using (var command = new MySqlCommand(
-                "DELETE FROM CustomerServiceCase WHERE CaseID=@id", Program.Connection))
+            using (var command = new MySqlCommand("DELETE FROM CustomerServiceCase WHERE CaseID=@id", Program.Connection))
             {
                 command.Parameters.AddWithValue("@id", caseID);
 
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
+                try { command.ExecuteNonQuery(); }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error deleting service case: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -239,7 +209,6 @@ namespace Client
             LoadData();
         }
 
-        // Helper methods to populate combo boxes in detail form
         private List<ServiceCaseDetailForm.Customer> GetCustomers()
         {
             var list = new List<ServiceCaseDetailForm.Customer>();
@@ -249,6 +218,7 @@ namespace Client
                     list.Add(new ServiceCaseDetailForm.Customer { CustomerID = reader["CustomerID"].ToString(), CustomerName = reader["CustomerName"].ToString() });
             return list;
         }
+
         private List<ServiceCaseDetailForm.Order> GetOrders()
         {
             var list = new List<ServiceCaseDetailForm.Order>();
@@ -258,10 +228,11 @@ namespace Client
                     list.Add(new ServiceCaseDetailForm.Order { CustomerOrderID = reader["CustomerOrderID"].ToString() });
             return list;
         }
+
         private List<ServiceCaseDetailForm.Worker> GetWorkers()
         {
             var list = new List<ServiceCaseDetailForm.Worker>();
-            using (var cmd = new MySqlCommand("SELECT WorkerID, Name FROM Worker", Program.Connection))
+            using (var cmd = new MySqlCommand("SELECT UserID AS WorkerID, Name FROM User", Program.Connection))
             using (var reader = cmd.ExecuteReader())
                 while (reader.Read())
                     list.Add(new ServiceCaseDetailForm.Worker { WorkerID = reader["WorkerID"].ToString(), Name = reader["Name"].ToString() });

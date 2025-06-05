@@ -111,5 +111,10 @@ namespace Client
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void ServiceCaseDetailForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

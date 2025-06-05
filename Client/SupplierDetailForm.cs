@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Client
 {
@@ -18,15 +19,42 @@ namespace Client
             button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
             button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
         }
-        public void SetFields(string id, string name, string contact)
+        public void SetFields(
+    string id,
+    string name,
+    string contact,
+    string phone,
+    string email,
+    string address,
+    string country,
+    string status
+)
         {
             textBox1.Text = id;
             textBox2.Text = name;
             textBox3.Text = contact;
+            textBox4.Text = phone;
+            textBox5.Text = email;
+            textBox6.Text = address;
+            textBox7.Text = country;
+            comboBox1.Text = status;
         }
+
+        private void SupplierDetailForm_Load(object sender, EventArgs e)
+        {
+         
+        }
+
+        // Properties to retrieve form data
         public string SupplierID => textBox1.Text;
         public string SupplierName => textBox2.Text;
-        public string Contact => textBox3.Text;
-    }
+        public string ContactPerson => textBox3.Text;
+        public string PhoneNumber => textBox4.Text;
+        public string Email => textBox5.Text;
+        public string Address => textBox6.Text;
+        public string Country => textBox7.Text;
+        public string Status => comboBox1.Text;
 
+
+    }
 }

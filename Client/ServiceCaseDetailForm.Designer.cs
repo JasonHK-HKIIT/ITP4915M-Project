@@ -47,7 +47,7 @@
             labelCaseID.AutoSize = true;
             labelCaseID.Location = new Point(101, 9);
             labelCaseID.Name = "labelCaseID";
-            labelCaseID.Size = new Size(74, 23);
+            labelCaseID.Size = new Size(46, 15);
             labelCaseID.TabIndex = 0;
             labelCaseID.Text = "Case ID";
             // 
@@ -55,7 +55,7 @@
             // 
             textBoxCaseID.Location = new Point(258, 6);
             textBoxCaseID.Name = "textBoxCaseID";
-            textBoxCaseID.Size = new Size(200, 30);
+            textBoxCaseID.Size = new Size(200, 23);
             textBoxCaseID.TabIndex = 1;
             // 
             // labelCustomerID
@@ -63,7 +63,7 @@
             labelCustomerID.AutoSize = true;
             labelCustomerID.Location = new Point(59, 52);
             labelCustomerID.Name = "labelCustomerID";
-            labelCustomerID.Size = new Size(117, 23);
+            labelCustomerID.Size = new Size(73, 15);
             labelCustomerID.TabIndex = 2;
             labelCustomerID.Text = "Customer ID";
             // 
@@ -72,7 +72,7 @@
             comboBoxCustomerID.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCustomerID.Location = new Point(258, 52);
             comboBoxCustomerID.Name = "comboBoxCustomerID";
-            comboBoxCustomerID.Size = new Size(200, 31);
+            comboBoxCustomerID.Size = new Size(200, 23);
             comboBoxCustomerID.TabIndex = 3;
             // 
             // labelCustomerOrderID
@@ -80,7 +80,7 @@
             labelCustomerOrderID.AutoSize = true;
             labelCustomerOrderID.Location = new Point(3, 98);
             labelCustomerOrderID.Name = "labelCustomerOrderID";
-            labelCustomerOrderID.Size = new Size(172, 23);
+            labelCustomerOrderID.Size = new Size(106, 15);
             labelCustomerOrderID.TabIndex = 4;
             labelCustomerOrderID.Text = "Customer Order ID";
             // 
@@ -89,7 +89,7 @@
             comboBoxCustomerOrderID.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCustomerOrderID.Location = new Point(258, 98);
             comboBoxCustomerOrderID.Name = "comboBoxCustomerOrderID";
-            comboBoxCustomerOrderID.Size = new Size(200, 31);
+            comboBoxCustomerOrderID.Size = new Size(200, 23);
             comboBoxCustomerOrderID.TabIndex = 5;
             // 
             // labelCaseDate
@@ -97,7 +97,7 @@
             labelCaseDate.AutoSize = true;
             labelCaseDate.Location = new Point(80, 155);
             labelCaseDate.Name = "labelCaseDate";
-            labelCaseDate.Size = new Size(96, 23);
+            labelCaseDate.Size = new Size(59, 15);
             labelCaseDate.TabIndex = 6;
             labelCaseDate.Text = "Case Date";
             // 
@@ -106,7 +106,7 @@
             dateTimePickerCaseDate.Format = DateTimePickerFormat.Short;
             dateTimePickerCaseDate.Location = new Point(258, 148);
             dateTimePickerCaseDate.Name = "dateTimePickerCaseDate";
-            dateTimePickerCaseDate.Size = new Size(200, 30);
+            dateTimePickerCaseDate.Size = new Size(200, 23);
             dateTimePickerCaseDate.TabIndex = 7;
             // 
             // labelDescription
@@ -114,7 +114,7 @@
             labelDescription.AutoSize = true;
             labelDescription.Location = new Point(68, 201);
             labelDescription.Name = "labelDescription";
-            labelDescription.Size = new Size(108, 23);
+            labelDescription.Size = new Size(67, 15);
             labelDescription.TabIndex = 8;
             labelDescription.Text = "Description";
             // 
@@ -131,7 +131,7 @@
             labelStatus.AutoSize = true;
             labelStatus.Location = new Point(112, 304);
             labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(63, 23);
+            labelStatus.Size = new Size(39, 15);
             labelStatus.TabIndex = 10;
             labelStatus.Text = "Status";
             // 
@@ -140,7 +140,7 @@
             comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxStatus.Location = new Point(258, 296);
             comboBoxStatus.Name = "comboBoxStatus";
-            comboBoxStatus.Size = new Size(200, 31);
+            comboBoxStatus.Size = new Size(200, 23);
             comboBoxStatus.TabIndex = 11;
             // 
             // labelResolution
@@ -148,7 +148,7 @@
             labelResolution.AutoSize = true;
             labelResolution.Location = new Point(80, 352);
             labelResolution.Name = "labelResolution";
-            labelResolution.Size = new Size(101, 23);
+            labelResolution.Size = new Size(63, 15);
             labelResolution.TabIndex = 12;
             labelResolution.Text = "Resolution";
             // 
@@ -165,7 +165,7 @@
             labelCaseType.AutoSize = true;
             labelCaseType.Location = new Point(80, 458);
             labelCaseType.Name = "labelCaseType";
-            labelCaseType.Size = new Size(95, 23);
+            labelCaseType.Size = new Size(60, 15);
             labelCaseType.TabIndex = 14;
             labelCaseType.Text = "Case Type";
             // 
@@ -174,7 +174,7 @@
             comboBoxCaseType.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCaseType.Location = new Point(258, 450);
             comboBoxCaseType.Name = "comboBoxCaseType";
-            comboBoxCaseType.Size = new Size(200, 31);
+            comboBoxCaseType.Size = new Size(200, 23);
             comboBoxCaseType.TabIndex = 15;
             // 
             // labelAssignedStaffID
@@ -182,7 +182,7 @@
             labelAssignedStaffID.AutoSize = true;
             labelAssignedStaffID.Location = new Point(30, 525);
             labelAssignedStaffID.Name = "labelAssignedStaffID";
-            labelAssignedStaffID.Size = new Size(154, 23);
+            labelAssignedStaffID.Size = new Size(96, 15);
             labelAssignedStaffID.TabIndex = 16;
             labelAssignedStaffID.Text = "Assigned Staff ID";
             // 
@@ -191,7 +191,7 @@
             comboBoxAssignedStaffID.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxAssignedStaffID.Location = new Point(258, 517);
             comboBoxAssignedStaffID.Name = "comboBoxAssignedStaffID";
-            comboBoxAssignedStaffID.Size = new Size(200, 31);
+            comboBoxAssignedStaffID.Size = new Size(200, 23);
             comboBoxAssignedStaffID.TabIndex = 17;
             // 
             // buttonSave
@@ -237,6 +237,7 @@
             Controls.Add(buttonCancel);
             Name = "ServiceCaseDetailForm";
             Text = "Customer Service Case Detail";
+            Load += ServiceCaseDetailForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
