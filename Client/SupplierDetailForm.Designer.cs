@@ -38,7 +38,6 @@
             label8 = new Label();
             button1 = new Button();
             button2 = new Button();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
@@ -46,160 +45,180 @@
             textBox6 = new TextBox();
             textBox7 = new TextBox();
             comboBox1 = new ComboBox();
+            maskedTextBox1 = new MaskedTextBox();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(29, 63);
+            label1.Location = new Point(46, 97);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(85, 15);
+            label1.Size = new Size(137, 23);
             label1.TabIndex = 0;
             label1.Text = "Supplier Name";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(26, 96);
+            label2.Location = new Point(41, 147);
+            label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(88, 15);
+            label2.Size = new Size(140, 23);
             label2.TabIndex = 1;
             label2.Text = "Contact Person";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(26, 131);
+            label3.Location = new Point(41, 201);
+            label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(88, 15);
+            label3.Size = new Size(140, 23);
             label3.TabIndex = 2;
             label3.Text = "Phone Number";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(78, 175);
+            label4.Location = new Point(123, 268);
+            label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(36, 15);
+            label4.Size = new Size(57, 23);
             label4.TabIndex = 3;
             label4.Text = "Email";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(65, 213);
+            label5.Location = new Point(102, 327);
+            label5.Margin = new Padding(5, 0, 5, 0);
             label5.Name = "label5";
-            label5.Size = new Size(49, 15);
+            label5.Size = new Size(77, 23);
             label5.TabIndex = 4;
             label5.Text = "Address";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(64, 248);
+            label6.Location = new Point(101, 380);
+            label6.Margin = new Padding(5, 0, 5, 0);
             label6.Name = "label6";
-            label6.Size = new Size(50, 15);
+            label6.Size = new Size(78, 23);
             label6.TabIndex = 5;
             label6.Text = "Country";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(50, 25);
+            label7.Location = new Point(79, 38);
+            label7.Margin = new Padding(5, 0, 5, 0);
             label7.Name = "label7";
-            label7.Size = new Size(64, 15);
+            label7.Size = new Size(104, 23);
             label7.TabIndex = 6;
             label7.Text = "Supplier ID";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(75, 292);
+            label8.Location = new Point(118, 448);
+            label8.Margin = new Padding(5, 0, 5, 0);
             label8.Name = "label8";
-            label8.Size = new Size(39, 15);
+            label8.Size = new Size(63, 23);
             label8.TabIndex = 7;
             label8.Text = "Status";
             // 
             // button1
             // 
-            button1.Location = new Point(588, 337);
+            button1.Location = new Point(924, 517);
+            button1.Margin = new Padding(5);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(118, 35);
             button1.TabIndex = 9;
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(691, 337);
+            button2.Location = new Point(1086, 517);
+            button2.Margin = new Padding(5);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(118, 35);
             button2.TabIndex = 10;
             button2.Text = "Cancel";
             button2.UseVisualStyleBackColor = true;
             // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(129, 25);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(251, 23);
-            textBox1.TabIndex = 11;
-            // 
             // textBox2
             // 
-            textBox2.Location = new Point(129, 63);
+            textBox2.Location = new Point(203, 97);
+            textBox2.Margin = new Padding(5);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(251, 23);
+            textBox2.Size = new Size(392, 30);
             textBox2.TabIndex = 12;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(129, 96);
+            textBox3.Location = new Point(203, 147);
+            textBox3.Margin = new Padding(5);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(251, 23);
+            textBox3.Size = new Size(392, 30);
             textBox3.TabIndex = 13;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(129, 131);
+            textBox4.Location = new Point(203, 201);
+            textBox4.Margin = new Padding(5);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(251, 23);
+            textBox4.Size = new Size(392, 30);
             textBox4.TabIndex = 14;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(129, 172);
+            textBox5.Location = new Point(203, 264);
+            textBox5.Margin = new Padding(5);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(251, 23);
+            textBox5.Size = new Size(392, 30);
             textBox5.TabIndex = 15;
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(129, 213);
+            textBox6.Location = new Point(203, 327);
+            textBox6.Margin = new Padding(5);
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(603, 23);
+            textBox6.Size = new Size(945, 30);
             textBox6.TabIndex = 16;
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(129, 248);
+            textBox7.Location = new Point(203, 380);
+            textBox7.Margin = new Padding(5);
             textBox7.Name = "textBox7";
-            textBox7.Size = new Size(251, 23);
+            textBox7.Size = new Size(392, 30);
             textBox7.TabIndex = 17;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(129, 284);
+            comboBox1.Location = new Point(203, 435);
+            comboBox1.Margin = new Padding(5);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(251, 23);
+            comboBox1.Size = new Size(392, 31);
             comboBox1.TabIndex = 18;
+            // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(203, 31);
+            maskedTextBox1.Mask = "SUP000";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.Size = new Size(392, 30);
+            maskedTextBox1.TabIndex = 19;
             // 
             // SupplierDetailForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 381);
+            ClientSize = new Size(1257, 584);
+            Controls.Add(maskedTextBox1);
             Controls.Add(comboBox1);
             Controls.Add(textBox7);
             Controls.Add(textBox6);
@@ -207,7 +226,6 @@
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(label8);
@@ -218,6 +236,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(5);
             Name = "SupplierDetailForm";
             Text = "SupplierDetailForm";
             Load += SupplierDetailForm_Load;
@@ -237,7 +256,6 @@
         private Label label8;
         private Button button1;
         private Button button2;
-        private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
@@ -245,5 +263,6 @@
         private TextBox textBox6;
         private TextBox textBox7;
         private ComboBox comboBox1;
+        private MaskedTextBox maskedTextBox1;
     }
 }

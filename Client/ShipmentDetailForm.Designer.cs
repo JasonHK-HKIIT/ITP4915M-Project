@@ -19,7 +19,6 @@
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox4 = new TextBox();
@@ -29,6 +28,7 @@
             button2 = new Button();
             label7 = new Label();
             dateTimePicker2 = new DateTimePicker();
+            maskedTextBox1 = new MaskedTextBox();
             SuspendLayout();
             // 
             // label1
@@ -90,14 +90,6 @@
             label6.Size = new Size(63, 23);
             label6.TabIndex = 5;
             label6.Text = "Status";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(203, 35);
-            textBox1.Margin = new Padding(5);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(392, 30);
-            textBox1.TabIndex = 6;
             // 
             // textBox2
             // 
@@ -177,11 +169,20 @@
             dateTimePicker2.Size = new Size(392, 30);
             dateTimePicker2.TabIndex = 15;
             // 
+            // maskedTextBox1
+            // 
+            maskedTextBox1.Location = new Point(203, 31);
+            maskedTextBox1.Mask = "0";
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.Size = new Size(392, 30);
+            maskedTextBox1.TabIndex = 16;
+            // 
             // ShipmentDetailForm
             // 
             AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(827, 498);
+            Controls.Add(maskedTextBox1);
             Controls.Add(dateTimePicker2);
             Controls.Add(label7);
             Controls.Add(button2);
@@ -191,7 +192,6 @@
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -212,7 +212,6 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox1;
         private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
@@ -222,5 +221,6 @@
         private Button button2;
         private Label label7;
         private DateTimePicker dateTimePicker2;
+        private MaskedTextBox maskedTextBox1;
     }
 }

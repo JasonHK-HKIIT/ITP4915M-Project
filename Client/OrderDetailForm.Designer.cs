@@ -56,78 +56,78 @@
             // comboBoxCustomer
             // 
             comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxCustomer.Location = new Point(150, 47);
+            comboBoxCustomer.Location = new Point(209, 55);
             comboBoxCustomer.Name = "comboBoxCustomer";
-            comboBoxCustomer.Size = new Size(180, 23);
+            comboBoxCustomer.Size = new Size(268, 31);
             comboBoxCustomer.TabIndex = 3;
             // 
             // comboBoxQuotation
             // 
             comboBoxQuotation.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxQuotation.Location = new Point(150, 77);
+            comboBoxQuotation.Location = new Point(209, 98);
             comboBoxQuotation.Name = "comboBoxQuotation";
-            comboBoxQuotation.Size = new Size(180, 23);
+            comboBoxQuotation.Size = new Size(268, 31);
             comboBoxQuotation.TabIndex = 5;
             // 
             // dateTimePickerOrderDate
             // 
-            dateTimePickerOrderDate.Location = new Point(150, 107);
+            dateTimePickerOrderDate.Location = new Point(209, 143);
             dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
-            dateTimePickerOrderDate.Size = new Size(180, 23);
+            dateTimePickerOrderDate.Size = new Size(268, 30);
             dateTimePickerOrderDate.TabIndex = 7;
             // 
             // dateTimePickerDeadline
             // 
-            dateTimePickerDeadline.Location = new Point(150, 137);
+            dateTimePickerDeadline.Location = new Point(209, 188);
             dateTimePickerDeadline.Name = "dateTimePickerDeadline";
-            dateTimePickerDeadline.Size = new Size(180, 23);
+            dateTimePickerDeadline.Size = new Size(268, 30);
             dateTimePickerDeadline.TabIndex = 9;
             // 
             // comboBoxStatus
             // 
-            comboBoxStatus.Location = new Point(150, 167);
+            comboBoxStatus.Location = new Point(209, 233);
             comboBoxStatus.Name = "comboBoxStatus";
-            comboBoxStatus.Size = new Size(180, 23);
+            comboBoxStatus.Size = new Size(268, 31);
             comboBoxStatus.TabIndex = 11;
             // 
             // textBoxDeposit
             // 
-            textBoxDeposit.Location = new Point(150, 197);
+            textBoxDeposit.Location = new Point(209, 281);
             textBoxDeposit.Name = "textBoxDeposit";
-            textBoxDeposit.Size = new Size(180, 23);
+            textBoxDeposit.Size = new Size(268, 30);
             textBoxDeposit.TabIndex = 13;
             // 
             // textBoxBalance
             // 
-            textBoxBalance.Location = new Point(150, 227);
+            textBoxBalance.Location = new Point(209, 332);
             textBoxBalance.Name = "textBoxBalance";
-            textBoxBalance.Size = new Size(180, 23);
+            textBoxBalance.Size = new Size(268, 30);
             textBoxBalance.TabIndex = 15;
             // 
             // textBoxTotalAmount
             // 
-            textBoxTotalAmount.Location = new Point(150, 257);
+            textBoxTotalAmount.Location = new Point(209, 378);
             textBoxTotalAmount.Name = "textBoxTotalAmount";
-            textBoxTotalAmount.Size = new Size(180, 23);
+            textBoxTotalAmount.Size = new Size(268, 30);
             textBoxTotalAmount.TabIndex = 17;
             // 
             // comboBoxPaymentStatus
             // 
-            comboBoxPaymentStatus.Location = new Point(150, 287);
+            comboBoxPaymentStatus.Location = new Point(209, 427);
             comboBoxPaymentStatus.Name = "comboBoxPaymentStatus";
-            comboBoxPaymentStatus.Size = new Size(180, 23);
+            comboBoxPaymentStatus.Size = new Size(268, 31);
             comboBoxPaymentStatus.TabIndex = 19;
             // 
             // comboBoxOrderType
             // 
-            comboBoxOrderType.Location = new Point(150, 317);
+            comboBoxOrderType.Location = new Point(209, 477);
             comboBoxOrderType.Name = "comboBoxOrderType";
-            comboBoxOrderType.Size = new Size(180, 23);
+            comboBoxOrderType.Size = new Size(268, 31);
             comboBoxOrderType.TabIndex = 21;
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(150, 360);
+            buttonSave.Location = new Point(421, 534);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(80, 28);
             buttonSave.TabIndex = 22;
@@ -136,7 +136,7 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(250, 360);
+            buttonCancel.Location = new Point(535, 534);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(80, 28);
             buttonCancel.TabIndex = 23;
@@ -146,113 +146,113 @@
             // labelOrderID
             // 
             labelOrderID.AutoSize = true;
-            labelOrderID.Location = new Point(40, 20);
+            labelOrderID.Location = new Point(83, 19);
             labelOrderID.Name = "labelOrderID";
-            labelOrderID.Size = new Size(54, 15);
+            labelOrderID.Size = new Size(88, 23);
             labelOrderID.TabIndex = 0;
             labelOrderID.Text = "Order ID:";
             // 
             // labelCustomer
             // 
             labelCustomer.AutoSize = true;
-            labelCustomer.Location = new Point(40, 50);
+            labelCustomer.Location = new Point(74, 58);
             labelCustomer.Name = "labelCustomer";
-            labelCustomer.Size = new Size(62, 15);
+            labelCustomer.Size = new Size(97, 23);
             labelCustomer.TabIndex = 2;
             labelCustomer.Text = "Customer:";
             // 
             // labelQuotation
             // 
             labelQuotation.AutoSize = true;
-            labelQuotation.Location = new Point(40, 80);
+            labelQuotation.Location = new Point(69, 106);
             labelQuotation.Name = "labelQuotation";
-            labelQuotation.Size = new Size(64, 15);
+            labelQuotation.Size = new Size(102, 23);
             labelQuotation.TabIndex = 4;
             labelQuotation.Text = "Quotation:";
             // 
             // labelOrderDate
             // 
             labelOrderDate.AutoSize = true;
-            labelOrderDate.Location = new Point(40, 110);
+            labelOrderDate.Location = new Point(61, 150);
             labelOrderDate.Name = "labelOrderDate";
-            labelOrderDate.Size = new Size(67, 15);
+            labelOrderDate.Size = new Size(110, 23);
             labelOrderDate.TabIndex = 6;
             labelOrderDate.Text = "Order Date:";
             // 
             // labelDeadline
             // 
             labelDeadline.AutoSize = true;
-            labelDeadline.Location = new Point(40, 140);
+            labelDeadline.Location = new Point(81, 195);
             labelDeadline.Name = "labelDeadline";
-            labelDeadline.Size = new Size(56, 15);
+            labelDeadline.Size = new Size(90, 23);
             labelDeadline.TabIndex = 8;
             labelDeadline.Text = "Deadline:";
             // 
             // labelStatus
             // 
             labelStatus.AutoSize = true;
-            labelStatus.Location = new Point(40, 170);
+            labelStatus.Location = new Point(104, 241);
             labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(42, 15);
+            labelStatus.Size = new Size(67, 23);
             labelStatus.TabIndex = 10;
             labelStatus.Text = "Status:";
             // 
             // labelDeposit
             // 
             labelDeposit.AutoSize = true;
-            labelDeposit.Location = new Point(40, 200);
+            labelDeposit.Location = new Point(91, 288);
             labelDeposit.Name = "labelDeposit";
-            labelDeposit.Size = new Size(50, 15);
+            labelDeposit.Size = new Size(80, 23);
             labelDeposit.TabIndex = 12;
             labelDeposit.Text = "Deposit:";
             // 
             // labelBalance
             // 
             labelBalance.AutoSize = true;
-            labelBalance.Location = new Point(40, 230);
+            labelBalance.Location = new Point(91, 339);
             labelBalance.Name = "labelBalance";
-            labelBalance.Size = new Size(51, 15);
+            labelBalance.Size = new Size(80, 23);
             labelBalance.TabIndex = 14;
             labelBalance.Text = "Balance:";
             // 
             // labelTotalAmount
             // 
             labelTotalAmount.AutoSize = true;
-            labelTotalAmount.Location = new Point(40, 260);
+            labelTotalAmount.Location = new Point(40, 385);
             labelTotalAmount.Name = "labelTotalAmount";
-            labelTotalAmount.Size = new Size(83, 15);
+            labelTotalAmount.Size = new Size(131, 23);
             labelTotalAmount.TabIndex = 16;
             labelTotalAmount.Text = "Total Amount:";
             // 
             // labelPaymentStatus
             // 
             labelPaymentStatus.AutoSize = true;
-            labelPaymentStatus.Location = new Point(40, 290);
+            labelPaymentStatus.Location = new Point(24, 435);
             labelPaymentStatus.Name = "labelPaymentStatus";
-            labelPaymentStatus.Size = new Size(92, 15);
+            labelPaymentStatus.Size = new Size(147, 23);
             labelPaymentStatus.TabIndex = 18;
             labelPaymentStatus.Text = "Payment Status:";
             // 
             // labelOrderType
             // 
             labelOrderType.AutoSize = true;
-            labelOrderType.Location = new Point(40, 320);
+            labelOrderType.Location = new Point(62, 485);
             labelOrderType.Name = "labelOrderType";
-            labelOrderType.Size = new Size(68, 15);
+            labelOrderType.Size = new Size(109, 23);
             labelOrderType.TabIndex = 20;
             labelOrderType.Text = "Order Type:";
             // 
             // maskedTextBox1
             // 
-            maskedTextBox1.Location = new Point(150, 12);
+            maskedTextBox1.Location = new Point(209, 12);
             maskedTextBox1.Mask = "ORD000";
             maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(180, 23);
+            maskedTextBox1.Size = new Size(268, 30);
             maskedTextBox1.TabIndex = 24;
             // 
             // OrderDetailForm
             // 
-            ClientSize = new Size(400, 410);
+            ClientSize = new Size(637, 592);
             Controls.Add(maskedTextBox1);
             Controls.Add(labelOrderID);
             Controls.Add(labelCustomer);

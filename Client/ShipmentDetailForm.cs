@@ -21,7 +21,7 @@ namespace Client
 
         public void SetFields(string id, string order, string carrier, string tracking, DateTime date, string status,DateTime issueDate)
         {
-            textBox1.Text = id;
+            maskedTextBox1.Text = id;
             textBox2.Text = order;
             textBox3.Text = carrier;
             textBox4.Text = tracking;
@@ -35,7 +35,7 @@ namespace Client
 
         }
 
-        public string ShipmentID => textBox1.Text;
+        public string ShipmentID => maskedTextBox1.Text;
         public string CustomerOrderID => textBox2.Text;
         public string Carrier => textBox3.Text;
         public string TrackingNumber => textBox4.Text;

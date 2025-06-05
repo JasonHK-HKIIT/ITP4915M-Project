@@ -30,7 +30,7 @@ namespace Client
     string status
 )
         {
-            textBox1.Text = id;
+            maskedTextBox1.Text = id;
             textBox2.Text = name;
             textBox3.Text = contact;
             textBox4.Text = phone;
@@ -46,7 +46,7 @@ namespace Client
         }
 
         // Properties to retrieve form data
-        public string SupplierID => textBox1.Text;
+        public string SupplierID => maskedTextBox1.Text;
         public string SupplierName => textBox2.Text;
         public string ContactPerson => textBox3.Text;
         public string PhoneNumber => textBox4.Text;

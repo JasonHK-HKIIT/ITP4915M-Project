@@ -1,120 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
+using MySql.Data.MySqlClient;
 
 namespace Client
 {
     public partial class ServiceCaseDetailForm : Form
     {
-        // These models are for populating the dropdowns, you can adjust as needed
-        public class Customer { public string CustomerID { get; set; } public string CustomerName { get; set; } }
-        public class Order { public string CustomerOrderID { get; set; } }
-        public class Worker { public string WorkerID { get; set; } public string Name { get; set; } }
-
-        // Constructor
-        public ServiceCaseDetailForm(
-            List<Customer> customers,
-            List<Order> orders,
-            List<Worker> workers,
-            string[] statusOptions = null,
-            string[] caseTypeOptions = null)
+        public ServiceCaseDetailForm()
         {
             InitializeComponent();
-
-            // Populate combo boxes
-            comboBoxCustomerID.DataSource = customers;
-            comboBoxCustomerID.DisplayMember = "CustomerName";
-            comboBoxCustomerID.ValueMember = "CustomerID";
-
-            comboBoxCustomerOrderID.DataSource = orders;
-            comboBoxCustomerOrderID.DisplayMember = "CustomerOrderID";
-            comboBoxCustomerOrderID.ValueMember = "CustomerOrderID";
-
-            comboBoxAssignedStaffID.DataSource = workers;
-            comboBoxAssignedStaffID.DisplayMember = "Name";
-            comboBoxAssignedStaffID.ValueMember = "WorkerID";
-
-            comboBoxStatus.Items.AddRange(statusOptions ?? new string[] { "Open", "In Progress", "Resolved", "Closed" });
-            comboBoxCaseType.Items.AddRange(caseTypeOptions ?? new string[] { "Complaint", "Inquiry", "Return", "Request" });
-
-            // Optional: Set default selection
-            comboBoxStatus.SelectedIndex = 0;
-            comboBoxCaseType.SelectedIndex = 0;
-        }
-
-        // Expose properties for all fields (get/set from outside)
-        public string CaseID
-        {
-            get => maskedTextBox1.Text.Trim();   // <-- Use maskedTextBox1
-            set => maskedTextBox1.Text = value;
-        }
-        public string CustomerID
-        {
-            get => comboBoxCustomerID.SelectedValue?.ToString();
-            set => comboBoxCustomerID.SelectedValue = value;
-        }
-        public string CustomerOrderID
-        {
-            get => comboBoxCustomerOrderID.SelectedValue?.ToString();
-            set => comboBoxCustomerOrderID.SelectedValue = value;
-        }
-        public DateTime CaseDate
-        {
-            get => dateTimePickerCaseDate.Value.Date;
-            set => dateTimePickerCaseDate.Value = value;
-        }
-        public string Description
-        {
-            get => textBoxDescription.Text.Trim();
-            set => textBoxDescription.Text = value;
-        }
-        public string Status
-        {
-            get => comboBoxStatus.SelectedItem?.ToString();
-            set => comboBoxStatus.SelectedItem = value;
-        }
-        public string Resolution
-        {
-            get => textBoxResolution.Text.Trim();
-            set => textBoxResolution.Text = value;
-        }
-        public string CaseType
-        {
-            get => comboBoxCaseType.SelectedItem?.ToString();
-            set => comboBoxCaseType.SelectedItem = value;
-        }
-        public string AssignedStaffID
-        {
-            get => comboBoxAssignedStaffID.SelectedValue?.ToString();
-            set => comboBoxAssignedStaffID.SelectedValue = value;
-        }
-
-        // Save Button
-        private void buttonSave_Click(object sender, EventArgs e)
-        {
-            // Validate and save logic here
-            if (string.IsNullOrWhiteSpace(CaseID))
-            {
-                MessageBox.Show("Case ID cannot be empty.");
-                return;
-            }
-            // Add more validation as needed
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        // Cancel Button
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            buttonSave.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
+            buttonCancel.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
+            this.Load += ServiceCaseDetailForm_Load;
         }
 
         private void ServiceCaseDetailForm_Load(object sender, EventArgs e)
         {
+            // --- Customer ComboBox ---
+            using (var cmd = new MySqlCommand("SELECT CustomerID, CustomerName FROM Customer", Program.Connection))
+            using (var adapter = new MySqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                adapter.Fill(dt);
+                comboBoxCustomer.DataSource = dt;
+                comboBoxCustomer.DisplayMember = "CustomerName";
+                comboBoxCustomer.ValueMember = "CustomerID";
+            }
 
+            // --- Customer Order ComboBox ---
+            using (var cmd = new MySqlCommand("SELECT CustomerOrderID FROM CustomerOrder", Program.Connection))
+            using (var adapter = new MySqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                adapter.Fill(dt);
+                comboBoxOrder.DataSource = dt;
+                comboBoxOrder.DisplayMember = "CustomerOrderID";
+                comboBoxOrder.ValueMember = "CustomerOrderID";
+            }
+
+            // --- Assigned Staff ComboBox ---
+            using (var cmd = new MySqlCommand("SELECT UserID, Name FROM User", Program.Connection))
+            using (var adapter = new MySqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                adapter.Fill(dt);
+                comboBoxAssignedStaff.DataSource = dt;
+                comboBoxAssignedStaff.DisplayMember = "Name";
+                comboBoxAssignedStaff.ValueMember = "UserID";
+            }
+
+            // --- Status/CaseType options (you may load these from DB instead) ---
+            comboBoxStatus.Items.AddRange(new[] { "Open", "In Progress", "Resolved", "Closed" });
+            comboBoxCaseType.Items.AddRange(new[] { "Complaint", "Inquiry", "Return", "Request" });
+        }
+
+        // Expose properties for each field
+        public string CaseID => maskedTextBoxCaseID.Text.Trim();
+        public string CustomerID => comboBoxCustomer.SelectedValue?.ToString() ?? "";
+        public string CustomerOrderID => comboBoxOrder.SelectedValue?.ToString() ?? "";
+        public DateTime CaseDate => dateTimePickerCaseDate.Value;
+        public string Description => textBoxDescription.Text.Trim();
+        public string Status => comboBoxStatus.Text.Trim();
+        public string Resolution => textBoxResolution.Text.Trim();
+        public string CaseType => comboBoxCaseType.Text.Trim();
+        public string AssignedStaffID => comboBoxAssignedStaff.SelectedValue?.ToString() ?? "";
+
+        // SetFields for editing existing records
+        public void SetFields(
+            string caseId, string customerId, string customerOrderId, DateTime caseDate,
+            string description, string status, string resolution, string caseType, string assignedStaffId)
+        {
+            maskedTextBoxCaseID.Text = caseId;
+            comboBoxCustomer.SelectedValue = customerId;
+            comboBoxOrder.SelectedValue = customerOrderId;
+            dateTimePickerCaseDate.Value = caseDate;
+            textBoxDescription.Text = description;
+            comboBoxStatus.Text = status;
+            textBoxResolution.Text = resolution;
+            comboBoxCaseType.Text = caseType;
+            comboBoxAssignedStaff.SelectedValue = assignedStaffId;
         }
     }
 }

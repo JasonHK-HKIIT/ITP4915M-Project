@@ -43,91 +43,102 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 26);
+            label1.Location = new Point(38, 40);
+            label1.Margin = new Padding(5, 0, 5, 0);
             label1.Name = "label1";
-            label1.Size = new Size(70, 15);
+            label1.Size = new Size(112, 23);
             label1.TabIndex = 0;
             label1.Text = "CustomerID";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(55, 64);
+            label2.Location = new Point(86, 98);
+            label2.Margin = new Padding(5, 0, 5, 0);
             label2.Name = "label2";
-            label2.Size = new Size(39, 15);
+            label2.Size = new Size(62, 23);
             label2.TabIndex = 1;
             label2.Text = "Name";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(53, 96);
+            label3.Location = new Point(83, 147);
+            label3.Margin = new Padding(5, 0, 5, 0);
             label3.Name = "label3";
-            label3.Size = new Size(41, 15);
+            label3.Size = new Size(64, 23);
             label3.TabIndex = 2;
             label3.Text = "Phone";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(45, 130);
+            label4.Location = new Point(71, 199);
+            label4.Margin = new Padding(5, 0, 5, 0);
             label4.Name = "label4";
-            label4.Size = new Size(49, 15);
+            label4.Size = new Size(77, 23);
             label4.TabIndex = 3;
             label4.Text = "Address";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(129, 56);
+            textBox2.Location = new Point(203, 86);
+            textBox2.Margin = new Padding(5, 5, 5, 5);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(251, 23);
+            textBox2.Size = new Size(392, 30);
             textBox2.TabIndex = 5;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(129, 88);
+            textBox3.Location = new Point(203, 135);
+            textBox3.Margin = new Padding(5, 5, 5, 5);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(251, 23);
+            textBox3.Size = new Size(392, 30);
             textBox3.TabIndex = 6;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(129, 122);
+            textBox4.Location = new Point(203, 187);
+            textBox4.Margin = new Padding(5, 5, 5, 5);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(515, 23);
+            textBox4.Size = new Size(807, 30);
             textBox4.TabIndex = 7;
             // 
             // button1
             // 
-            button1.Location = new Point(477, 164);
+            button1.Location = new Point(750, 251);
+            button1.Margin = new Padding(5, 5, 5, 5);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(118, 35);
             button1.TabIndex = 8;
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(569, 164);
+            button2.Location = new Point(894, 251);
+            button2.Margin = new Padding(5, 5, 5, 5);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(118, 35);
             button2.TabIndex = 9;
             button2.Text = "Cancel";
             button2.UseVisualStyleBackColor = true;
             // 
             // maskedTextBox1
             // 
-            maskedTextBox1.Location = new Point(129, 18);
+            maskedTextBox1.Location = new Point(203, 28);
+            maskedTextBox1.Margin = new Padding(5, 5, 5, 5);
             maskedTextBox1.Mask = "CUST000";
             maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(251, 23);
+            maskedTextBox1.Size = new Size(392, 30);
             maskedTextBox1.TabIndex = 10;
+            maskedTextBox1.Text = "C";
             // 
             // CustomerDetailForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(672, 209);
+            ClientSize = new Size(1056, 320);
             Controls.Add(maskedTextBox1);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -138,6 +149,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "CustomerDetailForm";
             Text = "CustomerDetailForm";
             Load += CustomerDetailForm_Load;

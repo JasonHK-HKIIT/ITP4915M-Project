@@ -24,7 +24,7 @@ namespace Client
             string status, string poStatus, List<PurchaseOrderLine> lines = null
         )
         {
-            textBoxPOID.Text = poId;
+            maskedTextBox1.Text = poId;
             comboBoxSupplier.SelectedValue = supplierId;
             dateTimePickerOrder.Value = orderDate;
             dateTimePickerDelivery.Value = deliveryDate;
@@ -52,7 +52,7 @@ namespace Client
         }
 
         // Expose properties to read form data
-        public string PurchaseOrderID => textBoxPOID.Text;
+        public string PurchaseOrderID => maskedTextBox1.Text;
         public string SupplierID => comboBoxSupplier.SelectedValue?.ToString() ?? "";
         public DateTime OrderDate => dateTimePickerOrder.Value;
         public DateTime DeliveryDate => dateTimePickerDelivery.Value;
