@@ -52,7 +52,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(179, 23);
             textBox1.TabIndex = 1;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // button1
             // 
@@ -80,7 +79,7 @@
             button2.TabIndex = 4;
             button2.Text = "Edit Selected";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+  
             // 
             // button3
             // 
@@ -104,7 +103,6 @@
             Controls.Add(label1);
             Name = "CustomerForm";
             Text = "CustomerForm";
-            Load += CustomerForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
