@@ -55,27 +55,35 @@ namespace Client
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (IsEditMode)
+            try
             {
-                var command = new MySqlCommand("UPDATE Product SET DesignRequestID = ?designRequest, ProductName = ?name, ProductType = ?type, UnitPrice = ?price, ProductSpecifications = ?specifications WHERE ProductID = ?id", Program.Connection);
-                command.Parameters.AddWithValue("?id", ProductId);
-                command.Parameters.AddWithValue("?designRequest", DesignRequestField.SelectedValue);
-                command.Parameters.AddWithValue("?name", NameField.Text);
-                command.Parameters.AddWithValue("?type", TypeField.Text);
-                command.Parameters.AddWithValue("?price", UnitPriceField.Value);
-                command.Parameters.AddWithValue("?specifications", SpecificationsField.Text);
-                command.ExecuteNonQuery();
+                if (IsEditMode)
+                {
+                    var command = new MySqlCommand("UPDATE Product SET DesignRequestID = ?designRequest, ProductName = ?name, ProductType = ?type, UnitPrice = ?price, ProductSpecifications = ?specifications WHERE ProductID = ?id", Program.Connection);
+                    command.Parameters.AddWithValue("?id", ProductId);
+                    command.Parameters.AddWithValue("?designRequest", DesignRequestField.SelectedValue);
+                    command.Parameters.AddWithValue("?name", NameField.Text);
+                    command.Parameters.AddWithValue("?type", TypeField.Text);
+                    command.Parameters.AddWithValue("?price", UnitPriceField.Value);
+                    command.Parameters.AddWithValue("?specifications", SpecificationsField.Text);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    var command = new MySqlCommand("INSERT INTO Product (ProductID, DesignRequestID, ProductName, ProductType, UnitPrice, ProductSpecifications) VALUES (?id, ?designRequest, ?name, ?type, ?price, ?specifications)", Program.Connection);
+                    command.Parameters.AddWithValue("?id", ProductIdField.Text);
+                    command.Parameters.AddWithValue("?designRequest", DesignRequestField.SelectedValue);
+                    command.Parameters.AddWithValue("?name", NameField.Text);
+                    command.Parameters.AddWithValue("?type", TypeField.Text);
+                    command.Parameters.AddWithValue("?price", UnitPriceField.Value);
+                    command.Parameters.AddWithValue("?specifications", SpecificationsField.Text);
+                    command.ExecuteNonQuery();
+                }
             }
-            else
+            catch (MySqlException ex)
             {
-                var command = new MySqlCommand("INSERT INTO Product (ProductID, DesignRequestID, ProductName, ProductType, UnitPrice, ProductSpecifications) VALUES (?id, ?designRequest, ?name, ?type, ?price, ?specifications)", Program.Connection);
-                command.Parameters.AddWithValue("?id", ProductIdField.Text);
-                command.Parameters.AddWithValue("?designRequest", DesignRequestField.SelectedValue);
-                command.Parameters.AddWithValue("?name", NameField.Text);
-                command.Parameters.AddWithValue("?type", TypeField.Text);
-                command.Parameters.AddWithValue("?price", UnitPriceField.Value);
-                command.Parameters.AddWithValue("?specifications", SpecificationsField.Text);
-                command.ExecuteNonQuery();
+                MessageBox.Show($"Error saving product: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             DialogResult = DialogResult.OK;

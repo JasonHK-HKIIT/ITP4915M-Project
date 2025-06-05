@@ -73,31 +73,39 @@ namespace Client
             decimal unitPrice = (decimal)productReader["UnitPrice"];
             productReader.Close();
 
-            if (IsEditMode)
+            try
             {
-                var command = new MySqlCommand("UPDATE Quotation SET CustomerID = ?customer, QuotationDate = ?date, ProductID = ?product, Quantity = ?quantity, Status = ?status, ValidityPeriod = ?validity, TotalAmount = ?totalAmount WHERE QuotationID = ?id", Program.Connection);
-                command.Parameters.AddWithValue("?id", QuotationIdField.Text);
-                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
-                command.Parameters.AddWithValue("?date", QuotationDateField.Value);
-                command.Parameters.AddWithValue("?product", ProductField.SelectedValue);
-                command.Parameters.AddWithValue("?quantity", QuantityField.Value);
-                command.Parameters.AddWithValue("?status", StatusField.Text);
-                command.Parameters.AddWithValue("?validity", ValidityPeriodField.Value);
-                command.Parameters.AddWithValue("?totalAmount", unitPrice * QuantityField.Value);
-                command.ExecuteNonQuery();
+                if (IsEditMode)
+                {
+                    var command = new MySqlCommand("UPDATE Quotation SET CustomerID = ?customer, QuotationDate = ?date, ProductID = ?product, Quantity = ?quantity, Status = ?status, ValidityPeriod = ?validity, TotalAmount = ?totalAmount WHERE QuotationID = ?id", Program.Connection);
+                    command.Parameters.AddWithValue("?id", QuotationIdField.Text);
+                    command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                    command.Parameters.AddWithValue("?date", QuotationDateField.Value);
+                    command.Parameters.AddWithValue("?product", ProductField.SelectedValue);
+                    command.Parameters.AddWithValue("?quantity", QuantityField.Value);
+                    command.Parameters.AddWithValue("?status", StatusField.Text);
+                    command.Parameters.AddWithValue("?validity", ValidityPeriodField.Value);
+                    command.Parameters.AddWithValue("?totalAmount", unitPrice * QuantityField.Value);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    var command = new MySqlCommand("INSERT INTO Quotation (QuotationID, CustomerID, QuotationDate, ProductID, Quantity, Status, ValidityPeriod, TotalAmount) VALUES (?quotationID, ?customer, ?date, ?product, ?quantity, ?status, ?validity, ?totalAmount)", Program.Connection);
+                    command.Parameters.AddWithValue("?quotationID", QuotationIdField.Text);
+                    command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                    command.Parameters.AddWithValue("?date", QuotationDateField.Value);
+                    command.Parameters.AddWithValue("?product", ProductField.SelectedValue);
+                    command.Parameters.AddWithValue("?quantity", QuantityField.Value);
+                    command.Parameters.AddWithValue("?status", StatusField.Text);
+                    command.Parameters.AddWithValue("?validity", ValidityPeriodField.Value);
+                    command.Parameters.AddWithValue("?totalAmount", unitPrice * QuantityField.Value);
+                    command.ExecuteNonQuery();
+                }
             }
-            else
+            catch (MySqlException ex)
             {
-                var command = new MySqlCommand("INSERT INTO Quotation (QuotationID, CustomerID, QuotationDate, ProductID, Quantity, Status, ValidityPeriod, TotalAmount) VALUES (?quotationID, ?customer, ?date, ?product, ?quantity, ?status, ?validity, ?totalAmount)", Program.Connection);
-                command.Parameters.AddWithValue("?quotationID", QuotationIdField.Text);
-                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
-                command.Parameters.AddWithValue("?date", QuotationDateField.Value);
-                command.Parameters.AddWithValue("?product", ProductField.SelectedValue);
-                command.Parameters.AddWithValue("?quantity", QuantityField.Value);
-                command.Parameters.AddWithValue("?status", StatusField.Text);
-                command.Parameters.AddWithValue("?validity", ValidityPeriodField.Value);
-                command.Parameters.AddWithValue("?totalAmount", unitPrice * QuantityField.Value);
-                command.ExecuteNonQuery();
+                MessageBox.Show($"Error saving quotation: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             DialogResult = DialogResult.OK;

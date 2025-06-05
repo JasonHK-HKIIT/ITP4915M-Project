@@ -58,25 +58,33 @@ namespace Client
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (IsEditMode)
+            try
             {
-                var command = new MySqlCommand("UPDATE ProductDesignRequest SET CustomerID = ?customer, AssignedManagerID = ?manager, Specifications = ?specifications WHERE DesignRequestID = ?id", Program.Connection);
-                command.Parameters.AddWithValue("?id", RequestId);
-                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
-                command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
-                command.Parameters.AddWithValue("?specifications", textBox3.Text);
-                command.ExecuteNonQuery();
+                if (IsEditMode)
+                {
+                    var command = new MySqlCommand("UPDATE ProductDesignRequest SET CustomerID = ?customer, AssignedManagerID = ?manager, Specifications = ?specifications WHERE DesignRequestID = ?id", Program.Connection);
+                    command.Parameters.AddWithValue("?id", RequestId);
+                    command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                    command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
+                    command.Parameters.AddWithValue("?specifications", textBox3.Text);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    var command = new MySqlCommand("INSERT INTO ProductDesignRequest (DesignRequestID, CustomerID, AssignedManagerID, Specifications, RequestDate, Status) VALUES (?requestId, ?customer, ?manager, ?specifications, ?requestDate, ?status)", Program.Connection);
+                    command.Parameters.AddWithValue("?requestId", RequestIdField.Text);
+                    command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
+                    command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
+                    command.Parameters.AddWithValue("?specifications", textBox3.Text);
+                    command.Parameters.AddWithValue("?requestDate", DateTime.Now);
+                    command.Parameters.AddWithValue("?status", "Pending");
+                    command.ExecuteNonQuery();
+                }
             }
-            else
+            catch (MySqlException ex)
             {
-                var command = new MySqlCommand("INSERT INTO ProductDesignRequest (DesignRequestID, CustomerID, AssignedManagerID, Specifications, RequestDate, Status) VALUES (?requestId, ?customer, ?manager, ?specifications, ?requestDate, ?status)", Program.Connection);
-                command.Parameters.AddWithValue("?requestId", RequestIdField.Text);
-                command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
-                command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
-                command.Parameters.AddWithValue("?specifications", textBox3.Text);
-                command.Parameters.AddWithValue("?requestDate", DateTime.Now);
-                command.Parameters.AddWithValue("?status", "Pending");
-                command.ExecuteNonQuery();
+                MessageBox.Show($"Error saving design request: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             DialogResult = DialogResult.OK;
