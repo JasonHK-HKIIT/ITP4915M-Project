@@ -29,7 +29,7 @@ namespace Client
                 catch (MySqlException ex)
                 {
                     var result = MessageBox.Show($"Error connecting to the database: {ex.Message}", "Database Connection Error", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                    if (result == DialogResult.Cancel)
+                    if (result != DialogResult.Retry)
                     {
                         Application.Exit();
                         return;
