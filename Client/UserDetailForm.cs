@@ -46,23 +46,31 @@ namespace Client
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (IsEditMode)
+            try
             {
-                var command = new MySqlCommand("UPDATE SystemUser SET Username = ?username, Role = ?role, IsActive = ?isActive WHERE UserID = ?id", Program.Connection);
-                command.Parameters.AddWithValue("?id", UserId);
-                command.Parameters.AddWithValue("?username", UsernameField.Text);
-                command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());
-                command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
-                command.ExecuteNonQuery();
+                if (IsEditMode)
+                {
+                    var command = new MySqlCommand("UPDATE SystemUser SET Username = ?username, Role = ?role, IsActive = ?isActive WHERE UserID = ?id", Program.Connection);
+                    command.Parameters.AddWithValue("?id", UserId);
+                    command.Parameters.AddWithValue("?username", UsernameField.Text);
+                    command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());
+                    command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    var command = new MySqlCommand("INSERT INTO SystemUser (Username, PasswordHash, Role, IsActive) VALUES (?username, ?password, ?role, ?isActive)", Program.Connection);
+                    command.Parameters.AddWithValue("?username", UsernameField.Text);
+                    command.Parameters.AddWithValue("?password", "defaultPasswordHash"); // Replace with actual password hash logic
+                    command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());
+                    command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
+                    command.ExecuteNonQuery();
+                }
             }
-            else
+            catch (MySqlException ex)
             {
-                var command = new MySqlCommand("INSERT INTO SystemUser (Username, PasswordHash, Role, IsActive) VALUES (?username, ?password, ?role, ?isActive)", Program.Connection);
-                command.Parameters.AddWithValue("?username", UsernameField.Text);
-                command.Parameters.AddWithValue("?password", "defaultPasswordHash"); // Replace with actual password hash logic
-                command.Parameters.AddWithValue("?role", RoleField.SelectedItem.ToString());
-                command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
-                command.ExecuteNonQuery();
+                MessageBox.Show($"Error saving user: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
             DialogResult = DialogResult.OK;
