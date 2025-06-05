@@ -131,15 +131,16 @@
             // suppliersToolStripMenuItem
             // 
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
-            this.suppliersToolStripMenuItem.Size = new Size(208, 26);
+            this.suppliersToolStripMenuItem.Size = new Size(224, 26);
             this.suppliersToolStripMenuItem.Text = "Suppliers";
             this.suppliersToolStripMenuItem.Click += this.suppliersToolStripMenuItem_Click;
             // 
             // purchaseOrdersToolStripMenuItem
             // 
             this.purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
-            this.purchaseOrdersToolStripMenuItem.Size = new Size(208, 26);
+            this.purchaseOrdersToolStripMenuItem.Size = new Size(224, 26);
             this.purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
+            this.purchaseOrdersToolStripMenuItem.Click += this.purchaseOrdersToolStripMenuItem_Click;
             // 
             // productsToolStripMenuItem
             // 
@@ -179,21 +180,21 @@
             // productionOrdersToolStripMenuItem
             // 
             this.productionOrdersToolStripMenuItem.Name = "productionOrdersToolStripMenuItem";
-            this.productionOrdersToolStripMenuItem.Size = new Size(224, 26);
+            this.productionOrdersToolStripMenuItem.Size = new Size(222, 26);
             this.productionOrdersToolStripMenuItem.Text = "Production Orders";
             this.productionOrdersToolStripMenuItem.Click += this.productionOrdersToolStripMenuItem_Click;
             // 
             // shipmentsToolStripMenuItem1
             // 
             this.shipmentsToolStripMenuItem1.Name = "shipmentsToolStripMenuItem1";
-            this.shipmentsToolStripMenuItem1.Size = new Size(224, 26);
+            this.shipmentsToolStripMenuItem1.Size = new Size(222, 26);
             this.shipmentsToolStripMenuItem1.Text = "Shipments";
             this.shipmentsToolStripMenuItem1.Click += this.shipmentsToolStripMenuItem1_Click;
             // 
             // inventoryControlToolStripMenuItem
             // 
             this.inventoryControlToolStripMenuItem.Name = "inventoryControlToolStripMenuItem";
-            this.inventoryControlToolStripMenuItem.Size = new Size(224, 26);
+            this.inventoryControlToolStripMenuItem.Size = new Size(222, 26);
             this.inventoryControlToolStripMenuItem.Text = "Inventory Control";
             this.inventoryControlToolStripMenuItem.Click += this.inventoryControlToolStripMenuItem_Click;
             // 

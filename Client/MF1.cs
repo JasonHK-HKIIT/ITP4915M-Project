@@ -288,5 +288,23 @@ namespace Client
             adminForm.MdiParent = this;
             adminForm.Show();
         }
+
+        private void purchaseOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var child in this.MdiChildren)
+            {
+                if (child is PurchaseOrderForm)
+                {
+                    child.MdiParent = this;
+                    child.Focus();
+
+                    return;
+                }
+            }
+
+            var adminForm = new PurchaseOrderForm();
+            adminForm.MdiParent = this;
+            adminForm.Show();
+        }
     }
 }
