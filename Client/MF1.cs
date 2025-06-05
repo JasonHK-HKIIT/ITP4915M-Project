@@ -302,9 +302,9 @@ namespace Client
                 }
             }
 
-            var adminForm = new PurchaseOrderForm();
-            adminForm.MdiParent = this;
-            adminForm.Show();
+            var purchaseOrderForm = new PurchaseOrderForm();
+            purchaseOrderForm.MdiParent = this;
+            purchaseOrderForm.Show();
         }
     }
 }
