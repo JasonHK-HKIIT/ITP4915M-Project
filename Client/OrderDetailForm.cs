@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Data;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Client
 {
@@ -8,33 +11,70 @@ namespace Client
         public OrderDetailForm()
         {
             InitializeComponent();
-            button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };    // Save
-            button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };// Cancel
+            buttonSave.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
+            buttonCancel.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
+            this.Load += CustomerOrderDetailForm_Load;
         }
 
-        // Fill fields for Edit
-        public void SetFields(string customer, string quotation, DateTime date, decimal deposit, decimal balance, decimal total, string status, string payment, string type)
+        private void CustomerOrderDetailForm_Load(object sender, EventArgs e)
         {
-            comboBox2.Text = customer;
-            comboBox1.Text = quotation;
-            dateTimePicker1.Value = date;
-            textBox1.Text = deposit.ToString();
-            textBox6.Text = balance.ToString();
-            textBox2.Text = total.ToString();
-            textBox3.Text = status;
-            textBox4.Text = payment;
-            textBox5.Text = type;
+            // Fill Customer ComboBox
+            using (var cmd = new MySqlCommand("SELECT CustomerID, CustomerName FROM Customer", Program.Connection))
+            using (var adapter = new MySqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                adapter.Fill(dt);
+                comboBoxCustomer.DataSource = dt;
+                comboBoxCustomer.DisplayMember = "CustomerName";
+                comboBoxCustomer.ValueMember = "CustomerID";
+            }
+
+            // Fill Quotation ComboBox
+            using (var cmd = new MySqlCommand("SELECT QuotationID FROM Quotation", Program.Connection))
+            using (var adapter = new MySqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                adapter.Fill(dt);
+                comboBoxQuotation.DataSource = dt;
+                comboBoxQuotation.DisplayMember = "QuotationID";
+                comboBoxQuotation.ValueMember = "QuotationID";
+            }
+
+            // You can replace with data-driven values if you store these in a reference/status table
+            comboBoxStatus.Items.AddRange(new[] { "Confirmed", "Pending", "Cancelled", "Completed" });
+            comboBoxPaymentStatus.Items.AddRange(new[] { "Paid", "Unpaid", "Partial" });
+            comboBoxOrderType.Items.AddRange(new[] { "Normal", "Express", "Bulk" });
         }
 
-        // Expose values for Add/Edit
-        public string Customer => comboBox2.Text;
-        public string Quotation => comboBox1.Text;
-        public DateTime OrderDate => dateTimePicker1.Value;
-        public decimal Deposit => decimal.TryParse(textBox1.Text, out var v) ? v : 0;
-        public decimal Balance => decimal.TryParse(textBox6.Text, out var v) ? v : 0;
-        public decimal TotalAmount => decimal.TryParse(textBox2.Text, out var v) ? v : 0;
-        public string Status => textBox3.Text;
-        public string PaymentStatus => textBox4.Text;
-        public string OrderType => textBox5.Text;
+        // Set fields for Edit mode
+        public void SetFields(
+            string orderId, string customerId, string quotationId, DateTime orderDate, DateTime deadline,
+            string status, decimal deposit, decimal balance, decimal total, string paymentStatus, string orderType)
+        {
+            textBoxOrderID.Text = orderId;
+            comboBoxCustomer.SelectedValue = customerId;
+            comboBoxQuotation.SelectedValue = quotationId;
+            dateTimePickerOrderDate.Value = orderDate;
+            dateTimePickerDeadline.Value = deadline;
+            comboBoxStatus.Text = status;
+            textBoxDeposit.Text = deposit.ToString("0.##");
+            textBoxBalance.Text = balance.ToString("0.##");
+            textBoxTotalAmount.Text = total.ToString("0.##");
+            comboBoxPaymentStatus.Text = paymentStatus;
+            comboBoxOrderType.Text = orderType;
+        }
+
+        // Expose properties for reading input
+        public string OrderID => textBoxOrderID.Text.Trim();
+        public string CustomerID => comboBoxCustomer.SelectedValue?.ToString() ?? "";
+        public string QuotationID => comboBoxQuotation.SelectedValue?.ToString() ?? "";
+        public DateTime OrderDate => dateTimePickerOrderDate.Value;
+        public DateTime Deadline => dateTimePickerDeadline.Value;
+        public string Status => comboBoxStatus.Text.Trim();
+        public decimal DepositPaid => decimal.TryParse(textBoxDeposit.Text, out var v) ? v : 0;
+        public decimal BalanceDue => decimal.TryParse(textBoxBalance.Text, out var v) ? v : 0;
+        public decimal TotalAmount => decimal.TryParse(textBoxTotalAmount.Text, out var v) ? v : 0;
+        public string PaymentStatus => comboBoxPaymentStatus.Text.Trim();
+        public string OrderType => comboBoxOrderType.Text.Trim();
     }
 }

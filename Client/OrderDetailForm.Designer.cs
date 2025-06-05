@@ -2,15 +2,21 @@
 {
     partial class OrderDetailForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.TextBox textBoxOrderID;
+        private System.Windows.Forms.ComboBox comboBoxCustomer;
+        private System.Windows.Forms.ComboBox comboBoxQuotation;
+        private System.Windows.Forms.DateTimePicker dateTimePickerOrderDate;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDeadline;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.TextBox textBoxDeposit;
+        private System.Windows.Forms.TextBox textBoxBalance;
+        private System.Windows.Forms.TextBox textBoxTotalAmount;
+        private System.Windows.Forms.ComboBox comboBoxPaymentStatus;
+        private System.Windows.Forms.ComboBox comboBoxOrderType;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonCancel;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,273 +26,264 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.label2 = new Label();
-            this.label3 = new Label();
-            this.label4 = new Label();
-            this.label5 = new Label();
-            this.label6 = new Label();
-            this.label7 = new Label();
-            this.label8 = new Label();
-            this.label9 = new Label();
-            this.comboBox1 = new ComboBox();
-            this.comboBox2 = new ComboBox();
-            this.button1 = new Button();
-            this.button2 = new Button();
-            this.dateTimePicker1 = new DateTimePicker();
-            this.textBox1 = new TextBox();
-            this.textBox2 = new TextBox();
-            this.textBox3 = new TextBox();
-            this.textBox4 = new TextBox();
-            this.textBox5 = new TextBox();
-            this.textBox6 = new TextBox();
-            this.SuspendLayout();
+            this.textBoxOrderID = new System.Windows.Forms.TextBox();
+            this.comboBoxCustomer = new System.Windows.Forms.ComboBox();
+            this.comboBoxQuotation = new System.Windows.Forms.ComboBox();
+            this.dateTimePickerOrderDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDeadline = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.textBoxDeposit = new System.Windows.Forms.TextBox();
+            this.textBoxBalance = new System.Windows.Forms.TextBox();
+            this.textBoxTotalAmount = new System.Windows.Forms.TextBox();
+            this.comboBoxPaymentStatus = new System.Windows.Forms.ComboBox();
+            this.comboBoxOrderType = new System.Windows.Forms.ComboBox();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+
+            var labelOrderID = new System.Windows.Forms.Label();
+            var labelCustomer = new System.Windows.Forms.Label();
+            var labelQuotation = new System.Windows.Forms.Label();
+            var labelOrderDate = new System.Windows.Forms.Label();
+            var labelDeadline = new System.Windows.Forms.Label();
+            var labelStatus = new System.Windows.Forms.Label();
+            var labelDeposit = new System.Windows.Forms.Label();
+            var labelBalance = new System.Windows.Forms.Label();
+            var labelTotalAmount = new System.Windows.Forms.Label();
+            var labelPaymentStatus = new System.Windows.Forms.Label();
+            var labelOrderType = new System.Windows.Forms.Label();
+
             // 
-            // label1
+            // labelOrderID
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(115, 29);
-            this.label1.Margin = new Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(77, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Customer";
+            labelOrderID.AutoSize = true;
+            labelOrderID.Location = new System.Drawing.Point(40, 20);
+            labelOrderID.Name = "labelOrderID";
+            labelOrderID.Size = new System.Drawing.Size(68, 13);
+            labelOrderID.Text = "Order ID:";
             // 
-            // label2
+            // textBoxOrderID
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new Point(112, 76);
-            this.label2.Margin = new Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new Size(79, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Quotation";
+            this.textBoxOrderID.Location = new System.Drawing.Point(150, 17);
+            this.textBoxOrderID.Name = "textBoxOrderID";
+            this.textBoxOrderID.Size = new System.Drawing.Size(180, 20);
+
             // 
-            // label3
+            // labelCustomer
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new Point(144, 129);
-            this.label3.Margin = new Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new Size(48, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Dates";
+            labelCustomer.AutoSize = true;
+            labelCustomer.Location = new System.Drawing.Point(40, 50);
+            labelCustomer.Name = "labelCustomer";
+            labelCustomer.Size = new System.Drawing.Size(57, 13);
+            labelCustomer.Text = "Customer:";
+
             // 
-            // label4
+            // comboBoxCustomer
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new Point(130, 178);
-            this.label4.Margin = new Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new Size(62, 19);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Deposit";
+            this.comboBoxCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxCustomer.Location = new System.Drawing.Point(150, 47);
+            this.comboBoxCustomer.Name = "comboBoxCustomer";
+            this.comboBoxCustomer.Size = new System.Drawing.Size(180, 21);
+
             // 
-            // label5
+            // labelQuotation
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new Point(128, 235);
-            this.label5.Margin = new Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new Size(62, 19);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Balance";
+            labelQuotation.AutoSize = true;
+            labelQuotation.Location = new System.Drawing.Point(40, 80);
+            labelQuotation.Name = "labelQuotation";
+            labelQuotation.Size = new System.Drawing.Size(59, 13);
+            labelQuotation.Text = "Quotation:";
+
             // 
-            // label6
+            // comboBoxQuotation
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new Point(92, 292);
-            this.label6.Margin = new Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new Size(99, 19);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "TotalAmount";
+            this.comboBoxQuotation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxQuotation.Location = new System.Drawing.Point(150, 77);
+            this.comboBoxQuotation.Name = "comboBoxQuotation";
+            this.comboBoxQuotation.Size = new System.Drawing.Size(180, 21);
+
             // 
-            // label7
+            // labelOrderDate
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new Point(140, 349);
-            this.label7.Margin = new Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new Size(52, 19);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Status";
+            labelOrderDate.AutoSize = true;
+            labelOrderDate.Location = new System.Drawing.Point(40, 110);
+            labelOrderDate.Name = "labelOrderDate";
+            labelOrderDate.Size = new System.Drawing.Size(61, 13);
+            labelOrderDate.Text = "Order Date:";
+
             // 
-            // label8
+            // dateTimePickerOrderDate
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new Point(76, 406);
-            this.label8.Margin = new Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new Size(117, 19);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Payment Status";
+            this.dateTimePickerOrderDate.Location = new System.Drawing.Point(150, 107);
+            this.dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
+            this.dateTimePickerOrderDate.Size = new System.Drawing.Size(180, 20);
+
             // 
-            // label9
+            // labelDeadline
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new Point(106, 470);
-            this.label9.Margin = new Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new Size(88, 19);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Order Type";
+            labelDeadline.AutoSize = true;
+            labelDeadline.Location = new System.Drawing.Point(40, 140);
+            labelDeadline.Name = "labelDeadline";
+            labelDeadline.Size = new System.Drawing.Size(52, 13);
+            labelDeadline.Text = "Deadline:";
+
             // 
-            // comboBox1
+            // dateTimePickerDeadline
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new Point(290, 66);
-            this.comboBox1.Margin = new Padding(4, 4, 4, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new Size(155, 27);
-            this.comboBox1.TabIndex = 9;
+            this.dateTimePickerDeadline.Location = new System.Drawing.Point(150, 137);
+            this.dateTimePickerDeadline.Name = "dateTimePickerDeadline";
+            this.dateTimePickerDeadline.Size = new System.Drawing.Size(180, 20);
+
             // 
-            // comboBox2
+            // labelStatus
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new Point(290, 19);
-            this.comboBox2.Margin = new Padding(4, 4, 4, 4);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new Size(155, 27);
-            this.comboBox2.TabIndex = 10;
+            labelStatus.AutoSize = true;
+            labelStatus.Location = new System.Drawing.Point(40, 170);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new System.Drawing.Size(40, 13);
+            labelStatus.Text = "Status:";
+
             // 
-            // button1
+            // comboBoxStatus
             // 
-            this.button1.Location = new Point(670, 513);
-            this.button1.Margin = new Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new Size(97, 29);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
+            this.comboBoxStatus.Location = new System.Drawing.Point(150, 167);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(180, 21);
+
             // 
-            // button2
+            // labelDeposit
             // 
-            this.button2.Location = new Point(799, 513);
-            this.button2.Margin = new Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new Size(97, 29);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
+            labelDeposit.AutoSize = true;
+            labelDeposit.Location = new System.Drawing.Point(40, 200);
+            labelDeposit.Name = "labelDeposit";
+            labelDeposit.Size = new System.Drawing.Size(49, 13);
+            labelDeposit.Text = "Deposit:";
+
             // 
-            // dateTimePicker1
+            // textBoxDeposit
             // 
-            this.dateTimePicker1.Location = new Point(290, 121);
-            this.dateTimePicker1.Margin = new Padding(4, 4, 4, 4);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new Size(256, 27);
-            this.dateTimePicker1.TabIndex = 14;
+            this.textBoxDeposit.Location = new System.Drawing.Point(150, 197);
+            this.textBoxDeposit.Name = "textBoxDeposit";
+            this.textBoxDeposit.Size = new System.Drawing.Size(180, 20);
+
             // 
-            // textBox1
+            // labelBalance
             // 
-            this.textBox1.Location = new Point(290, 178);
-            this.textBox1.Margin = new Padding(4, 4, 4, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Size(128, 27);
-            this.textBox1.TabIndex = 15;
+            labelBalance.AutoSize = true;
+            labelBalance.Location = new System.Drawing.Point(40, 230);
+            labelBalance.Name = "labelBalance";
+            labelBalance.Size = new System.Drawing.Size(49, 13);
+            labelBalance.Text = "Balance:";
+
             // 
-            // textBox2
+            // textBoxBalance
             // 
-            this.textBox2.Location = new Point(290, 281);
-            this.textBox2.Margin = new Padding(4, 4, 4, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new Size(128, 27);
-            this.textBox2.TabIndex = 16;
+            this.textBoxBalance.Location = new System.Drawing.Point(150, 227);
+            this.textBoxBalance.Name = "textBoxBalance";
+            this.textBoxBalance.Size = new System.Drawing.Size(180, 20);
+
             // 
-            // textBox3
+            // labelTotalAmount
             // 
-            this.textBox3.Location = new Point(290, 338);
-            this.textBox3.Margin = new Padding(4, 4, 4, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new Size(128, 27);
-            this.textBox3.TabIndex = 17;
+            labelTotalAmount.AutoSize = true;
+            labelTotalAmount.Location = new System.Drawing.Point(40, 260);
+            labelTotalAmount.Name = "labelTotalAmount";
+            labelTotalAmount.Size = new System.Drawing.Size(74, 13);
+            labelTotalAmount.Text = "Total Amount:";
+
             // 
-            // textBox4
+            // textBoxTotalAmount
             // 
-            this.textBox4.Location = new Point(290, 401);
-            this.textBox4.Margin = new Padding(4, 4, 4, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new Size(128, 27);
-            this.textBox4.TabIndex = 18;
+            this.textBoxTotalAmount.Location = new System.Drawing.Point(150, 257);
+            this.textBoxTotalAmount.Name = "textBoxTotalAmount";
+            this.textBoxTotalAmount.Size = new System.Drawing.Size(180, 20);
+
             // 
-            // textBox5
+            // labelPaymentStatus
             // 
-            this.textBox5.Location = new Point(290, 466);
-            this.textBox5.Margin = new Padding(4, 4, 4, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new Size(128, 27);
-            this.textBox5.TabIndex = 19;
+            labelPaymentStatus.AutoSize = true;
+            labelPaymentStatus.Location = new System.Drawing.Point(40, 290);
+            labelPaymentStatus.Name = "labelPaymentStatus";
+            labelPaymentStatus.Size = new System.Drawing.Size(86, 13);
+            labelPaymentStatus.Text = "Payment Status:";
+
             // 
-            // textBox6
+            // comboBoxPaymentStatus
             // 
-            this.textBox6.Location = new Point(290, 235);
-            this.textBox6.Margin = new Padding(4, 4, 4, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new Size(128, 27);
-            this.textBox6.TabIndex = 20;
+            this.comboBoxPaymentStatus.Location = new System.Drawing.Point(150, 287);
+            this.comboBoxPaymentStatus.Name = "comboBoxPaymentStatus";
+            this.comboBoxPaymentStatus.Size = new System.Drawing.Size(180, 21);
+
             // 
-            // OrderDetailForm
+            // labelOrderType
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(920, 575);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Margin = new Padding(4, 4, 4, 4);
-            this.Name = "OrderDetailForm";
-            this.Text = "OrderDetailForm";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            labelOrderType.AutoSize = true;
+            labelOrderType.Location = new System.Drawing.Point(40, 320);
+            labelOrderType.Name = "labelOrderType";
+            labelOrderType.Size = new System.Drawing.Size(63, 13);
+            labelOrderType.Text = "Order Type:";
+
+            // 
+            // comboBoxOrderType
+            // 
+            this.comboBoxOrderType.Location = new System.Drawing.Point(150, 317);
+            this.comboBoxOrderType.Name = "comboBoxOrderType";
+            this.comboBoxOrderType.Size = new System.Drawing.Size(180, 21);
+
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(150, 360);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(80, 28);
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(250, 360);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(80, 28);
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+
+            // 
+            // CustomerOrderDetailForm
+            // 
+            this.ClientSize = new System.Drawing.Size(400, 410);
+            this.Controls.Add(labelOrderID);
+            this.Controls.Add(this.textBoxOrderID);
+            this.Controls.Add(labelCustomer);
+            this.Controls.Add(this.comboBoxCustomer);
+            this.Controls.Add(labelQuotation);
+            this.Controls.Add(this.comboBoxQuotation);
+            this.Controls.Add(labelOrderDate);
+            this.Controls.Add(this.dateTimePickerOrderDate);
+            this.Controls.Add(labelDeadline);
+            this.Controls.Add(this.dateTimePickerDeadline);
+            this.Controls.Add(labelStatus);
+            this.Controls.Add(this.comboBoxStatus);
+            this.Controls.Add(labelDeposit);
+            this.Controls.Add(this.textBoxDeposit);
+            this.Controls.Add(labelBalance);
+            this.Controls.Add(this.textBoxBalance);
+            this.Controls.Add(labelTotalAmount);
+            this.Controls.Add(this.textBoxTotalAmount);
+            this.Controls.Add(labelPaymentStatus);
+            this.Controls.Add(this.comboBoxPaymentStatus);
+            this.Controls.Add(labelOrderType);
+            this.Controls.Add(this.comboBoxOrderType);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonCancel);
+
+            this.Name = "CustomerOrderDetailForm";
+            this.Text = "Customer Order Details";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
         }
-
-        #endregion
-
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Label label8;
-        private Label label9;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private Button button1;
-        private Button button2;
-        private DateTimePicker dateTimePicker1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
     }
 }

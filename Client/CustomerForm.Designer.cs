@@ -68,6 +68,7 @@
             dataGridView1.Location = new Point(7, 95);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1218, 427);
             dataGridView1.TabIndex = 3;
             // 
@@ -79,7 +80,6 @@
             button2.TabIndex = 4;
             button2.Text = "Edit Selected";
             button2.UseVisualStyleBackColor = true;
-  
             // 
             // button3
             // 
