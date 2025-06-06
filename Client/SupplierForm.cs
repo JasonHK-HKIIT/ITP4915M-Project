@@ -10,10 +10,11 @@ namespace Client
         public SupplierForm()
         {
             InitializeComponent();
-            button1.Click += ButtonAdd_Click;    // Add Supplier
-            button2.Click += ButtonEdit_Click;   // Edit Supplier
-            button3.Click += ButtonDelete_Click; // Delete Supplier
-            textBox1.KeyUp += textBox1_KeyUp;    // Search
+            button1.Click += ButtonAdd_Click;      // Add Supplier
+            button2.Click += ButtonEdit_Click;     // Edit Supplier
+            button3.Click += ButtonDelete_Click;   // Delete Supplier
+            button4.Click += ButtonToggleActive_Click; // Activate/Deactivate Selected
+            textBox1.KeyUp += textBox1_KeyUp;      // Search
             LoadData();
         }
 
@@ -22,6 +23,7 @@ namespace Client
         {
             string query = textBox1.Text.Trim();
             MySqlCommand command;
+
             if (string.IsNullOrEmpty(query))
             {
                 command = new MySqlCommand(
@@ -41,8 +43,16 @@ namespace Client
 
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
-            adapter.Fill(dataTable);
-            dataGridView1.DataSource = dataTable;
+
+            try
+            {
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading suppliers: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         // Search on Enter key
@@ -159,6 +169,38 @@ namespace Client
             }
         }
 
+        // Activate/Deactivate selected supplier
+        private void ButtonToggleActive_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a supplier to activate/deactivate.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            var row = dataGridView1.SelectedRows[0];
+            string supplierId = row.Cells["SupplierID"].Value.ToString();
+            string currentStatus = row.Cells["Status"].Value.ToString();
+            string newStatus = (currentStatus == "Active") ? "Inactive" : "Active";
+
+            using (var command = new MySqlCommand(
+                "UPDATE Supplier SET Status=@status WHERE SupplierID=@id", Program.Connection))
+            {
+                command.Parameters.AddWithValue("@status", newStatus);
+                command.Parameters.AddWithValue("@id", supplierId);
+
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error updating supplier status: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            LoadData();
+        }
+
         // Delete supplier
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
@@ -190,11 +232,6 @@ namespace Client
         }
 
         private void SupplierForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
         {
 
         }

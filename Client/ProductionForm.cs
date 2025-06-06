@@ -37,8 +37,8 @@ namespace Client
             {
                 cmd = new MySqlCommand(
                     @"SELECT ProductionOrderID, CustomerOrderID, ProductID, Quantity, ScheduledDate, Status 
-                      FROM ProductionOrder 
-                      WHERE ProductionOrderID LIKE @f OR CustomerOrderID LIKE @f",
+              FROM ProductionOrder 
+              WHERE ProductionOrderID LIKE @f OR CustomerOrderID LIKE @f",
                     Program.Connection
                 );
                 cmd.Parameters.AddWithValue("@f", "%" + filter + "%");
@@ -46,9 +46,18 @@ namespace Client
 
             var adapter = new MySqlDataAdapter(cmd);
             var dt = new DataTable();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
+
+            try
+            {
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading production orders: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -170,9 +179,5 @@ namespace Client
             LoadData();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

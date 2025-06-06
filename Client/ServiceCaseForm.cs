@@ -23,15 +23,15 @@ namespace Client
             MySqlCommand command;
 
             string baseQuery = @"SELECT 
-                    csc.CaseID,
-                    c.CustomerName AS Customer,
-                    csc.CustomerOrderID AS `Order`,
-                    csc.CaseType,
-                    csc.Status,
-                    u.Name AS AssignedTo
-                FROM CustomerServiceCase csc
-                LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
-                LEFT JOIN User u ON csc.AssignedStaffID = u.UserID";
+            csc.CaseID,
+            c.CustomerName AS Customer,
+            csc.CustomerOrderID AS `Order`,
+            csc.CaseType,
+            csc.Status,
+            u.Name AS AssignedTo
+        FROM CustomerServiceCase csc
+        LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
+        LEFT JOIN User u ON csc.AssignedStaffID = u.UserID";
 
             if (string.IsNullOrEmpty(query))
             {
@@ -45,9 +45,18 @@ namespace Client
 
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
-            adapter.Fill(dataTable);
-            dataGridView1.DataSource = dataTable;
+
+            try
+            {
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading service cases: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -202,6 +211,11 @@ namespace Client
                 }
             }
             LoadData();
+        }
+
+        private void ServiceCaseForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

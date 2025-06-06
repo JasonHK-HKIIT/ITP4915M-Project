@@ -43,10 +43,17 @@ namespace Client
 
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
-            adapter.Fill(dataTable);
-
-            dataGridView1.DataSource = dataTable;
+            try
+            {
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading inventory: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -106,7 +113,6 @@ namespace Client
             using (var detail = new InventoryDetailForm())
             {
                 detail.Text = "Update Inventory";
-                // Note: SetFields should be (warehouse, product, qty, reorder, min) according to your method signature.
                 detail.SetFields(warehouse, product, quantity, reorder, min);
                 if (detail.ShowDialog() == DialogResult.OK)
                 {

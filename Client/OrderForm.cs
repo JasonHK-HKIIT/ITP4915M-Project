@@ -23,13 +23,14 @@ namespace Client
         {
             string query = textBox1.Text.Trim();
             MySqlCommand command;
+
             if (string.IsNullOrEmpty(query))
             {
                 command = new MySqlCommand(
                     @"SELECT o.CustomerOrderID, c.CustomerName, o.QuotationID, o.OrderDate, o.Deadline, 
-                             o.Status, o.DepositPaid, o.BalanceDue, o.TotalAmount, o.PaymentStatus, o.OrderType
-                      FROM CustomerOrder o
-                      LEFT JOIN Customer c ON o.CustomerID = c.CustomerID",
+                     o.Status, o.DepositPaid, o.BalanceDue, o.TotalAmount, o.PaymentStatus, o.OrderType
+              FROM CustomerOrder o
+              LEFT JOIN Customer c ON o.CustomerID = c.CustomerID",
                     Program.Connection
                 );
             }
@@ -37,10 +38,10 @@ namespace Client
             {
                 command = new MySqlCommand(
                     @"SELECT o.CustomerOrderID, c.CustomerName, o.QuotationID, o.OrderDate, o.Deadline, 
-                             o.Status, o.DepositPaid, o.BalanceDue, o.TotalAmount, o.PaymentStatus, o.OrderType
-                      FROM CustomerOrder o
-                      LEFT JOIN Customer c ON o.CustomerID = c.CustomerID
-                      WHERE o.CustomerOrderID LIKE @q OR c.CustomerName LIKE @q",
+                     o.Status, o.DepositPaid, o.BalanceDue, o.TotalAmount, o.PaymentStatus, o.OrderType
+              FROM CustomerOrder o
+              LEFT JOIN Customer c ON o.CustomerID = c.CustomerID
+              WHERE o.CustomerOrderID LIKE @q OR c.CustomerName LIKE @q",
                     Program.Connection
                 );
                 command.Parameters.AddWithValue("@q", "%" + query + "%");
@@ -48,9 +49,18 @@ namespace Client
 
             var adapter = new MySqlDataAdapter(command);
             var dt = new DataTable();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
+
+            try
+            {
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading orders: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         // Search on Enter key
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
@@ -174,6 +184,11 @@ namespace Client
                     LoadData();
                 }
             }
+        }
+
+        private void OrderForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Client
             {
                 cmd = new MySqlCommand(
                     @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
-                      FROM PurchaseOrder",
+              FROM PurchaseOrder",
                     Program.Connection
                 );
             }
@@ -33,8 +33,8 @@ namespace Client
             {
                 cmd = new MySqlCommand(
                     @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
-                      FROM PurchaseOrder 
-                      WHERE PurchaseOrderID LIKE @f OR SupplierID LIKE @f",
+              FROM PurchaseOrder 
+              WHERE PurchaseOrderID LIKE @f OR SupplierID LIKE @f",
                     Program.Connection
                 );
                 cmd.Parameters.AddWithValue("@f", "%" + filter + "%");
@@ -42,9 +42,18 @@ namespace Client
 
             var adapter = new MySqlDataAdapter(cmd);
             var dt = new DataTable();
-            adapter.Fill(dt);
-            dataGridView1.DataSource = dt;
+
+            try
+            {
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading purchase orders: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
