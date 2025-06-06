@@ -35,26 +35,14 @@ namespace Client
             }
         }
 
-        private void purchaseOrderToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (var child in this.MdiChildren)
-            {
-                if (child is PurchaseOrderForm)
-                {
-                    child.MdiParent = this;
-                    child.Focus();
-
-                    return;
-                }
-            }
-
-            var purchaseOrderForm = new PurchaseOrderForm();
-            purchaseOrderForm.MdiParent = this;
-            purchaseOrderForm.Show();
-        }
-
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is CustomerForm)
@@ -73,6 +61,12 @@ namespace Client
 
         private void customerOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is CustomerForm)
@@ -91,6 +85,12 @@ namespace Client
 
         private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Production Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is SupplierForm)
@@ -109,6 +109,12 @@ namespace Client
 
         private void customerOrdersToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is OrderForm)
@@ -127,6 +133,12 @@ namespace Client
 
         private void serviceCasesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Customer Service Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is ServiceCaseForm)
@@ -145,6 +157,12 @@ namespace Client
 
         private void productDesignRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "R&D Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is DesignRequestForm)
@@ -163,6 +181,12 @@ namespace Client
 
         private void productsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "R&D Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is ProductForm)
@@ -181,6 +205,12 @@ namespace Client
 
         private void quotationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is QuotationForm)
@@ -199,6 +229,12 @@ namespace Client
 
         private void productionOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Production Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is ProductionForm)
@@ -217,6 +253,12 @@ namespace Client
 
         private void shipmentsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Production Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is ShipmentForm)
@@ -235,6 +277,12 @@ namespace Client
 
         private void inventoryControlToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Supply Chain Management Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is InventoryForm)
@@ -253,6 +301,12 @@ namespace Client
 
         private void adminUserManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (Program.User.Role != "Admin")
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is AdminForm)
@@ -271,6 +325,12 @@ namespace Client
 
         private void purchaseOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if ((Program.User.Role != "Supply Chain Management Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             foreach (var child in this.MdiChildren)
             {
                 if (child is PurchaseOrderForm)
