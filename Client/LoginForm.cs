@@ -7,6 +7,8 @@ namespace Client
     {
         public bool LoggedIn { get; private set; } = false;
 
+        public User User { get; private set; }
+
         public LoginForm()
         {
             this.InitializeComponent();
@@ -40,13 +42,27 @@ namespace Client
         {
             if (this.IsValidLogin(this.inputUsername.Text, this.inputPassword.Text))
             {
+                var command = new MySqlCommand("SELECT UserID, TeamID, Role FROM User WHERE UserID = ?uid", Program.Connection);
+                command.Parameters.AddWithValue("uid", this.inputUsername.Text);
+                var reader = command.ExecuteReader();
+                if (!reader.Read())
+                {
+                    MessageBox.Show("User not found in the database. This should not happen.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    reader.Close();
+                    return;
+                }
+
                 this.LoggedIn = true;
+                this.User = new User
+                {
+                    UserId = reader.GetString("UserID"),
+                    TeamId = reader.GetString("TeamID"),
+                    Role = reader.GetString("Role")
+                };
+
+                reader.Close();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            }
-            else
-            {
-                
             }
         }
     }

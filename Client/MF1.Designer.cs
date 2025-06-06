@@ -82,8 +82,9 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new Size(116, 26);
+            this.exitToolStripMenuItem.Size = new Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += this.exitToolStripMenuItem_Click;
             // 
             // modulesToolStripMenuItem
             // 
@@ -131,14 +132,14 @@
             // suppliersToolStripMenuItem
             // 
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
-            this.suppliersToolStripMenuItem.Size = new Size(224, 26);
+            this.suppliersToolStripMenuItem.Size = new Size(208, 26);
             this.suppliersToolStripMenuItem.Text = "Suppliers";
             this.suppliersToolStripMenuItem.Click += this.suppliersToolStripMenuItem_Click;
             // 
             // purchaseOrdersToolStripMenuItem
             // 
             this.purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
-            this.purchaseOrdersToolStripMenuItem.Size = new Size(224, 26);
+            this.purchaseOrdersToolStripMenuItem.Size = new Size(208, 26);
             this.purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
             this.purchaseOrdersToolStripMenuItem.Click += this.purchaseOrdersToolStripMenuItem_Click;
             // 
@@ -278,6 +279,7 @@
             this.Name = "MF1";
             this.Text = "Smile & Sunshine Toy Ltd.";
             this.WindowState = FormWindowState.Maximized;
+            this.FormClosing += this.MF1_FormClosing;
             this.Load += this.MF1_Load;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
