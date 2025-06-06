@@ -10,6 +10,8 @@ namespace Client
 
         public static MySqlConnection Connection { get; private set; } = new MySqlConnection(CONNECTION_STRING);
 
+        public static User User { get; set; }
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>

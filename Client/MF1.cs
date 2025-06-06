@@ -17,27 +17,6 @@ namespace Client
             InitializeComponent();
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void MF1_Load(object sender, EventArgs e)
         {
             this.Visible = false;
@@ -48,6 +27,7 @@ namespace Client
             if (loginForm.DialogResult == DialogResult.OK)
             {
                 this.Visible = true;
+                Program.User = loginForm.User;
             }
             else
             {
@@ -305,6 +285,23 @@ namespace Client
             var purchaseOrderForm = new PurchaseOrderForm();
             purchaseOrderForm.MdiParent = this;
             purchaseOrderForm.Show();
+        }
+
+        private void MF1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure to logout?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            {
+                Program.User = null;
+            }
+            else
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
