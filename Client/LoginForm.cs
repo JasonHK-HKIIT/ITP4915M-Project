@@ -20,19 +20,20 @@ namespace Client
                 return false;
             }
 
-            var command = new MySqlCommand("SELECT * FROM User WHERE UserID = ?uid AND PasswordHash = ?password", Program.Connection);
+            var command = new MySqlCommand("SELECT PasswordHash FROM User WHERE UserID = ?uid", Program.Connection);
             command.Parameters.AddWithValue("uid", username);
             command.Parameters.AddWithValue("password", password);
 
             var reader = command.ExecuteReader();
-            var isValid = reader.HasRows;
-            if (!isValid)
+            if (!reader.Read())
             {
-                MessageBox.Show("Invalid username or password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid User ID or password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                reader.Close();
+                return false;
             }
-
+            var hash = reader.GetString("PasswordHash");
             reader.Close();
-            return isValid;
+            return Program.VerifyPassword(password, hash);
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)

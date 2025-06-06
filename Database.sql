@@ -468,8 +468,8 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`UserID`, `Username`, `PasswordHash`, `Name`, `PositionTitle`, `Role`, `ManagerID`, `IsActive`, `CreatedAt`, `TeamID`) VALUES
-('U001', 'admin', 'hash123', 'Admin User', 'Administrator', 'Admin', NULL, 1, '2025-06-05 18:26:08', 'T001'),
-('U002', 'john_doe', 'hash456', 'John Doe', 'Production Manager', 'Manager', 'U001', 1, '2025-06-05 18:26:08', 'T002');
+('U001', 'admin', '$2a$12$8jqjTs8hn7w.DbLvS2YaEejHzXSYc3/sTBF.Cko4Xl91YHzm9RIeu', 'Admin User', 'Administrator', 'Admin', NULL, 1, '2025-06-05 18:26:08', 'T001'),
+('U002', 'john_doe', '$2a$12$Oc9EMFn2/87aTRsLU6DImumri57fmGTQvvzYDn/R0vGZMF6T4MU9G', 'John Doe', 'Production Manager', 'Manager', 'U001', 1, '2025-06-05 18:26:08', 'T002');
 
 -- --------------------------------------------------------
 

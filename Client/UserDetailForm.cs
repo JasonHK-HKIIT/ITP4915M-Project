@@ -87,13 +87,29 @@ namespace Client
                     command.Parameters.AddWithValue("?managerId", ManagerField.SelectedValue ?? DBNull.Value);
                     command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
                     command.ExecuteNonQuery();
+
+                    var password = PasswordField.Text;
+                    if (!string.IsNullOrEmpty(password))
+                    {
+                        var passwordCommand = new MySqlCommand("UPDATE User SET PasswordHash = ?password WHERE UserID = ?id", Program.Connection);
+                        passwordCommand.Parameters.AddWithValue("?id", UserIdField.Text);
+                        passwordCommand.Parameters.AddWithValue("?password", Program.HashPassword(password));
+                        passwordCommand.ExecuteNonQuery();
+                    }
                 }
                 else
                 {
+                    var password = PasswordField.Text;
+                    if (string.IsNullOrEmpty(password))
+                    {
+                        MessageBox.Show("Password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     var command = new MySqlCommand("INSERT INTO User (UserID, Name, PasswordHash, TeamID, PositionTitle, Role, ManagerID, IsActive) VALUES (?id, ?name, ?password, ?teamId, ?position, ?role, ?managerId, ?isActive)", Program.Connection);
                     command.Parameters.AddWithValue("?id", UserIdField.Text);
                     command.Parameters.AddWithValue("?name", NameField.Text);
-                    command.Parameters.AddWithValue("?password", "defaultPasswordHash"); // Replace with actual password hash logic
+                    command.Parameters.AddWithValue("?password", Program.HashPassword(password));
                     command.Parameters.AddWithValue("?teamId", TeamField.SelectedValue ?? DBNull.Value);
                     command.Parameters.AddWithValue("?position", PositionField.Text);
                     command.Parameters.AddWithValue("?role", RoleField.SelectedItem);
