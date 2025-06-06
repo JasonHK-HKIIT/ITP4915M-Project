@@ -22,6 +22,7 @@ namespace Client
         {
             string query = textBox1.Text.Trim();
             MySqlCommand command;
+
             if (string.IsNullOrEmpty(query))
             {
                 command = new MySqlCommand(
@@ -38,9 +39,18 @@ namespace Client
 
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
-            adapter.Fill(dataTable);
-            dataGridView1.DataSource = dataTable;
+
+            try
+            {
+                adapter.Fill(dataTable);
+                dataGridView1.DataSource = dataTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading shipments: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         // Search by ShipmentID/CustomerOrderID
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
@@ -175,6 +185,11 @@ namespace Client
         }
 
         private void ShipmentForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

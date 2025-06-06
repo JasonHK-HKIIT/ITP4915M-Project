@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Client
@@ -18,6 +19,11 @@ namespace Client
             InitializeComponent();
             button1.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
             button2.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
+            comboBox1.Items.Clear();
+            comboBox1.Items.Add("Active");
+            comboBox1.Items.Add("Inactive");
+            comboBox1.SelectedIndex = 0;
+
         }
         public void SetFields(
     string id,
