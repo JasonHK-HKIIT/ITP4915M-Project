@@ -44,42 +44,42 @@
             labelCaseID.AutoSize = true;
             labelCaseID.Location = new Point(105, 18);
             labelCaseID.Name = "labelCaseID";
-            labelCaseID.Size = new Size(74, 23);
+            labelCaseID.Size = new Size(46, 15);
             labelCaseID.TabIndex = 0;
             labelCaseID.Text = "Case ID";
             // 
             // labelCustomer
             // 
             labelCustomer.AutoSize = true;
-            labelCustomer.Location = new Point(78, 52);
+            labelCustomer.Location = new Point(92, 55);
             labelCustomer.Name = "labelCustomer";
-            labelCustomer.Size = new Size(93, 23);
+            labelCustomer.Size = new Size(59, 15);
             labelCustomer.TabIndex = 2;
             labelCustomer.Text = "Customer";
             // 
             // comboBoxCustomer
             // 
             comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxCustomer.Location = new Point(258, 52);
+            comboBoxCustomer.Location = new Point(195, 52);
             comboBoxCustomer.Name = "comboBoxCustomer";
-            comboBoxCustomer.Size = new Size(200, 31);
+            comboBoxCustomer.Size = new Size(200, 23);
             comboBoxCustomer.TabIndex = 3;
             // 
             // labelOrder
             // 
             labelOrder.AutoSize = true;
-            labelOrder.Location = new Point(45, 101);
+            labelOrder.Location = new Point(59, 101);
             labelOrder.Name = "labelOrder";
-            labelOrder.Size = new Size(148, 23);
+            labelOrder.Size = new Size(92, 15);
             labelOrder.TabIndex = 4;
             labelOrder.Text = "Customer Order";
             // 
             // comboBoxOrder
             // 
             comboBoxOrder.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxOrder.Location = new Point(258, 98);
+            comboBoxOrder.Location = new Point(195, 101);
             comboBoxOrder.Name = "comboBoxOrder";
-            comboBoxOrder.Size = new Size(200, 31);
+            comboBoxOrder.Size = new Size(200, 23);
             comboBoxOrder.TabIndex = 5;
             // 
             // labelCaseDate
@@ -87,30 +87,30 @@
             labelCaseDate.AutoSize = true;
             labelCaseDate.Location = new Point(92, 154);
             labelCaseDate.Name = "labelCaseDate";
-            labelCaseDate.Size = new Size(96, 23);
+            labelCaseDate.Size = new Size(59, 15);
             labelCaseDate.TabIndex = 6;
             labelCaseDate.Text = "Case Date";
             // 
             // dateTimePickerCaseDate
             // 
             dateTimePickerCaseDate.Format = DateTimePickerFormat.Short;
-            dateTimePickerCaseDate.Location = new Point(258, 148);
+            dateTimePickerCaseDate.Location = new Point(195, 146);
             dateTimePickerCaseDate.Name = "dateTimePickerCaseDate";
-            dateTimePickerCaseDate.Size = new Size(200, 30);
+            dateTimePickerCaseDate.Size = new Size(200, 23);
             dateTimePickerCaseDate.TabIndex = 7;
             // 
             // labelDescription
             // 
             labelDescription.AutoSize = true;
-            labelDescription.Location = new Point(84, 201);
+            labelDescription.Location = new Point(84, 198);
             labelDescription.Name = "labelDescription";
-            labelDescription.Size = new Size(108, 23);
+            labelDescription.Size = new Size(67, 15);
             labelDescription.TabIndex = 8;
             labelDescription.Text = "Description";
             // 
             // textBoxDescription
             // 
-            textBoxDescription.Location = new Point(258, 198);
+            textBoxDescription.Location = new Point(195, 198);
             textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
             textBoxDescription.Size = new Size(415, 80);
@@ -119,32 +119,32 @@
             // labelStatus
             // 
             labelStatus.AutoSize = true;
-            labelStatus.Location = new Point(112, 304);
+            labelStatus.Location = new Point(112, 296);
             labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(63, 23);
+            labelStatus.Size = new Size(39, 15);
             labelStatus.TabIndex = 10;
             labelStatus.Text = "Status";
             // 
             // comboBoxStatus
             // 
             comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxStatus.Location = new Point(258, 296);
+            comboBoxStatus.Location = new Point(195, 296);
             comboBoxStatus.Name = "comboBoxStatus";
-            comboBoxStatus.Size = new Size(200, 31);
+            comboBoxStatus.Size = new Size(200, 23);
             comboBoxStatus.TabIndex = 11;
             // 
             // labelResolution
             // 
             labelResolution.AutoSize = true;
-            labelResolution.Location = new Point(88, 352);
+            labelResolution.Location = new Point(92, 352);
             labelResolution.Name = "labelResolution";
-            labelResolution.Size = new Size(101, 23);
+            labelResolution.Size = new Size(63, 15);
             labelResolution.TabIndex = 12;
             labelResolution.Text = "Resolution";
             // 
             // textBoxResolution
             // 
-            textBoxResolution.Location = new Point(258, 352);
+            textBoxResolution.Location = new Point(195, 352);
             textBoxResolution.Multiline = true;
             textBoxResolution.Name = "textBoxResolution";
             textBoxResolution.Size = new Size(415, 80);
@@ -153,35 +153,35 @@
             // labelCaseType
             // 
             labelCaseType.AutoSize = true;
-            labelCaseType.Location = new Point(91, 453);
+            labelCaseType.Location = new Point(95, 450);
             labelCaseType.Name = "labelCaseType";
-            labelCaseType.Size = new Size(95, 23);
+            labelCaseType.Size = new Size(60, 15);
             labelCaseType.TabIndex = 14;
             labelCaseType.Text = "Case Type";
             // 
             // comboBoxCaseType
             // 
             comboBoxCaseType.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxCaseType.Location = new Point(258, 450);
+            comboBoxCaseType.Location = new Point(195, 447);
             comboBoxCaseType.Name = "comboBoxCaseType";
-            comboBoxCaseType.Size = new Size(200, 31);
+            comboBoxCaseType.Size = new Size(200, 23);
             comboBoxCaseType.TabIndex = 15;
             // 
             // labelAssignedStaff
             // 
             labelAssignedStaff.AutoSize = true;
-            labelAssignedStaff.Location = new Point(55, 525);
+            labelAssignedStaff.Location = new Point(73, 525);
             labelAssignedStaff.Name = "labelAssignedStaff";
-            labelAssignedStaff.Size = new Size(130, 23);
+            labelAssignedStaff.Size = new Size(82, 15);
             labelAssignedStaff.TabIndex = 16;
             labelAssignedStaff.Text = "Assigned Staff";
             // 
             // comboBoxAssignedStaff
             // 
             comboBoxAssignedStaff.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxAssignedStaff.Location = new Point(258, 517);
+            comboBoxAssignedStaff.Location = new Point(195, 522);
             comboBoxAssignedStaff.Name = "comboBoxAssignedStaff";
-            comboBoxAssignedStaff.Size = new Size(200, 31);
+            comboBoxAssignedStaff.Size = new Size(200, 23);
             comboBoxAssignedStaff.TabIndex = 17;
             // 
             // buttonSave
@@ -204,10 +204,10 @@
             // 
             // maskedTextBoxCaseID
             // 
-            maskedTextBoxCaseID.Location = new Point(258, 10);
+            maskedTextBoxCaseID.Location = new Point(195, 15);
             maskedTextBoxCaseID.Mask = "CASE000";
             maskedTextBoxCaseID.Name = "maskedTextBoxCaseID";
-            maskedTextBoxCaseID.Size = new Size(200, 30);
+            maskedTextBoxCaseID.Size = new Size(200, 23);
             maskedTextBoxCaseID.TabIndex = 1;
             maskedTextBoxCaseID.Text = "CA";
             maskedTextBoxCaseID.TextMaskFormat = MaskFormat.IncludePrompt;

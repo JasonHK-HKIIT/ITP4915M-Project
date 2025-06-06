@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data;
 
 namespace Client
 {
@@ -16,12 +17,33 @@ namespace Client
         private void LoadData()
         {
             var query = SearchField.Text.Trim();
-            var command = new MySqlCommand(string.IsNullOrEmpty(query)
-                ? "SELECT DesignRequestID, CustomerName, RequestDate, Specifications, Status, ConsultantFee, ApprovalDate, Worker.Name As AssignedManagerName FROM ProductDesignRequest LEFT JOIN Customer ON ProductDesignRequest.CustomerID = Customer.CustomerID LEFT JOIN Worker ON ProductDesignRequest.AssignedManagerID = Worker.WorkerID"
-                : "SELECT DesignRequestID, CustomerName, RequestDate, Specifications, Status, ConsultantFee, ApprovalDate, Worker.Name As AssignedManagerName FROM ProductDesignRequest LEFT JOIN Customer ON ProductDesignRequest.CustomerID = Customer.CustomerID LEFT JOIN Worker ON ProductDesignRequest.AssignedManagerID = Worker.WorkerID WHERE DesignRequestID LIKE ?id", Program.Connection);
-            command.Parameters.AddWithValue("?id", $"%{query}%");
+
+            string baseQuery = @"
+                SELECT 
+                    dr.DesignRequestID,
+                    c.CustomerName,
+                    dr.RequestDate,
+                    dr.Specifications,
+                    dr.Status,
+                    dr.ConsultantFee,
+                    dr.ApprovalDate,
+                    u1.Name AS AssignedManagerName,
+                    u2.Name AS ApprovedBy
+                FROM ProductDesignRequest dr
+                LEFT JOIN Customer c ON dr.CustomerID = c.CustomerID
+                LEFT JOIN User u1 ON dr.UserID = u1.UserID
+                LEFT JOIN User u2 ON dr.ApprovedBy = u2.UserID";
+
+            string filteredQuery = baseQuery + " WHERE dr.DesignRequestID LIKE ?id";
+
+            var command = new MySqlCommand(string.IsNullOrEmpty(query) ? baseQuery : filteredQuery, Program.Connection);
+
+            if (!string.IsNullOrEmpty(query))
+                command.Parameters.AddWithValue("?id", $"%{query}%");
+
             var adapter = new MySqlDataAdapter(command);
-            var dataTable = new System.Data.DataTable();
+            var dataTable = new DataTable();
+
             try
             {
                 adapter.Fill(dataTable);
@@ -44,7 +66,6 @@ namespace Client
             {
                 e.Handled = true;
                 e.SuppressKeyPress = true;
-
                 LoadData();
             }
         }
@@ -76,6 +97,11 @@ namespace Client
                     LoadData();
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Optional: handle cell click events here
         }
     }
 }

@@ -23,15 +23,15 @@ namespace Client
             MySqlCommand command;
 
             string baseQuery = @"SELECT 
-            csc.CaseID,
-            c.CustomerName AS Customer,
-            csc.CustomerOrderID AS `Order`,
-            csc.CaseType,
-            csc.Status,
-            u.Name AS AssignedTo
-        FROM CustomerServiceCase csc
-        LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
-        LEFT JOIN User u ON csc.AssignedStaffID = u.UserID";
+                csc.CaseID,
+                c.CustomerName AS Customer,
+                csc.CustomerOrderID AS `Order`,
+                csc.CaseType,
+                csc.Status,
+                u.Name AS AssignedTo
+                FROM CustomerServiceCase csc
+                LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
+                LEFT JOIN User u ON csc.AssignedStaffID = u.UserID";
 
             if (string.IsNullOrEmpty(query))
             {
@@ -57,7 +57,6 @@ namespace Client
             }
         }
 
-
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -73,19 +72,22 @@ namespace Client
                 {
                     using (var command = new MySqlCommand(
                         @"INSERT INTO CustomerServiceCase
-                            (CustomerID, CustomerOrderID, CaseDate, Description, Status, Resolution, CaseType, AssignedStaffID)
+                          (CustomerID, CustomerOrderID, CaseDate, Description, Status, Resolution, CaseType, AssignedStaffID)
                           VALUES
-                            (@CustomerID, @CustomerOrderID, @CaseDate, @Description, @Status, @Resolution, @CaseType, @AssignedStaffID)",
+                          (@CustomerID, @CustomerOrderID, @CaseDate, @Description, @Status, @Resolution, @CaseType, @AssignedStaffID)",
                         Program.Connection))
                     {
                         command.Parameters.AddWithValue("@CustomerID", detail.CustomerID);
-                        command.Parameters.AddWithValue("@CustomerOrderID", string.IsNullOrWhiteSpace(detail.CustomerOrderID) ? (object)DBNull.Value : (object)Convert.ToInt32(detail.CustomerOrderID));
+                        command.Parameters.AddWithValue("@CustomerOrderID",
+                            string.IsNullOrWhiteSpace(detail.CustomerOrderID) ? (object)DBNull.Value : detail.CustomerOrderID);
                         command.Parameters.AddWithValue("@CaseDate", detail.CaseDate);
                         command.Parameters.AddWithValue("@Description", detail.Description);
                         command.Parameters.AddWithValue("@Status", detail.Status);
-                        command.Parameters.AddWithValue("@Resolution", string.IsNullOrWhiteSpace(detail.Resolution) ? (object)DBNull.Value : detail.Resolution);
+                        command.Parameters.AddWithValue("@Resolution",
+                            string.IsNullOrWhiteSpace(detail.Resolution) ? (object)DBNull.Value : detail.Resolution);
                         command.Parameters.AddWithValue("@CaseType", detail.CaseType);
-                        command.Parameters.AddWithValue("@AssignedStaffID", string.IsNullOrWhiteSpace(detail.AssignedStaffID) ? (object)DBNull.Value : detail.AssignedStaffID);
+                        command.Parameters.AddWithValue("@AssignedStaffID",
+                            string.IsNullOrWhiteSpace(detail.AssignedStaffID) ? (object)DBNull.Value : detail.AssignedStaffID);
 
                         try { command.ExecuteNonQuery(); }
                         catch (Exception ex)
@@ -107,15 +109,12 @@ namespace Client
                 return;
             }
 
-            // Get CaseID from selected row (assume "CaseID" is the column name)
             string caseID = dataGridView1.SelectedRows[0].Cells["CaseID"].Value.ToString();
 
-            // Prepare variables to store the row data
-            int customerOrderID = 0;
+            string customerOrderID = "";
             string customerID = "", description = "", status = "", resolution = "", caseType = "", assignedStaffID = "";
             DateTime caseDate = DateTime.Now;
 
-            // Read full record from DB (matching your schema: ints for PKs)
             using (var fetch = new MySqlCommand("SELECT * FROM CustomerServiceCase WHERE CaseID=@id", Program.Connection))
             {
                 fetch.Parameters.AddWithValue("@id", caseID);
@@ -124,7 +123,7 @@ namespace Client
                     if (reader.Read())
                     {
                         customerID = reader["CustomerID"].ToString();
-                        customerOrderID = reader["CustomerOrderID"] == DBNull.Value ? 0 : Convert.ToInt32(reader["CustomerOrderID"]);
+                        customerOrderID = reader["CustomerOrderID"] == DBNull.Value ? "" : reader["CustomerOrderID"].ToString();
                         caseDate = reader["CaseDate"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["CaseDate"]);
                         description = reader["Description"].ToString();
                         status = reader["Status"].ToString();
@@ -138,11 +137,10 @@ namespace Client
             using (var detail = new ServiceCaseDetailForm())
             {
                 detail.Text = "Edit Service Case";
-                // Use SetFields for assigning all properties at once!
                 detail.SetFields(
-                    caseID,                                        // CaseID as string
-                    customerID,                                    // CustomerID
-                    customerOrderID == 0 ? "" : customerOrderID.ToString(),  // CustomerOrderID as string
+                    caseID,
+                    customerID,
+                    customerOrderID,
                     caseDate,
                     description,
                     status,
@@ -155,25 +153,28 @@ namespace Client
                 {
                     using (var command = new MySqlCommand(
                         @"UPDATE CustomerServiceCase SET
-                    CustomerID=@CustomerID,
-                    CustomerOrderID=@CustomerOrderID,
-                    CaseDate=@CaseDate,
-                    Description=@Description,
-                    Status=@Status,
-                    Resolution=@Resolution,
-                    CaseType=@CaseType,
-                    AssignedStaffID=@AssignedStaffID
-                  WHERE CaseID=@CaseID", Program.Connection))
+                          CustomerID=@CustomerID,
+                          CustomerOrderID=@CustomerOrderID,
+                          CaseDate=@CaseDate,
+                          Description=@Description,
+                          Status=@Status,
+                          Resolution=@Resolution,
+                          CaseType=@CaseType,
+                          AssignedStaffID=@AssignedStaffID
+                          WHERE CaseID=@CaseID", Program.Connection))
                     {
                         command.Parameters.AddWithValue("@CaseID", caseID);
                         command.Parameters.AddWithValue("@CustomerID", detail.CustomerID);
-                        command.Parameters.AddWithValue("@CustomerOrderID", string.IsNullOrWhiteSpace(detail.CustomerOrderID) ? (object)DBNull.Value : detail.CustomerOrderID);
+                        command.Parameters.AddWithValue("@CustomerOrderID",
+                            string.IsNullOrWhiteSpace(detail.CustomerOrderID) ? (object)DBNull.Value : detail.CustomerOrderID);
                         command.Parameters.AddWithValue("@CaseDate", detail.CaseDate);
                         command.Parameters.AddWithValue("@Description", detail.Description);
                         command.Parameters.AddWithValue("@Status", detail.Status);
-                        command.Parameters.AddWithValue("@Resolution", string.IsNullOrWhiteSpace(detail.Resolution) ? (object)DBNull.Value : detail.Resolution);
+                        command.Parameters.AddWithValue("@Resolution",
+                            string.IsNullOrWhiteSpace(detail.Resolution) ? (object)DBNull.Value : detail.Resolution);
                         command.Parameters.AddWithValue("@CaseType", detail.CaseType);
-                        command.Parameters.AddWithValue("@AssignedStaffID", string.IsNullOrWhiteSpace(detail.AssignedStaffID) ? (object)DBNull.Value : detail.AssignedStaffID);
+                        command.Parameters.AddWithValue("@AssignedStaffID",
+                            string.IsNullOrWhiteSpace(detail.AssignedStaffID) ? (object)DBNull.Value : detail.AssignedStaffID);
 
                         try { command.ExecuteNonQuery(); }
                         catch (Exception ex)
@@ -187,7 +188,6 @@ namespace Client
             }
         }
 
-
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -195,7 +195,8 @@ namespace Client
                 MessageBox.Show("Please select a service case to delete.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            int caseID = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["CaseID"].Value);
+
+            string caseID = dataGridView1.SelectedRows[0].Cells["CaseID"].Value.ToString();
             var confirm = MessageBox.Show("Are you sure you want to delete this service case?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes) return;
 
@@ -215,7 +216,7 @@ namespace Client
 
         private void ServiceCaseForm_Load(object sender, EventArgs e)
         {
-
+            // optional: add refresh or setup logic
         }
     }
 }

@@ -28,265 +28,262 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new MenuStrip();
-            this.fileToolStripMenuItem = new ToolStripMenuItem();
-            this.exitToolStripMenuItem = new ToolStripMenuItem();
-            this.modulesToolStripMenuItem = new ToolStripMenuItem();
-            this.customersToolStripMenuItem = new ToolStripMenuItem();
-            this.customerOrdersToolStripMenuItem = new ToolStripMenuItem();
-            this.customerOrdersToolStripMenuItem1 = new ToolStripMenuItem();
-            this.serviceCasesToolStripMenuItem1 = new ToolStripMenuItem();
-            this.suppilersToolStripMenuItem = new ToolStripMenuItem();
-            this.suppliersToolStripMenuItem = new ToolStripMenuItem();
-            this.purchaseOrdersToolStripMenuItem = new ToolStripMenuItem();
-            this.productsToolStripMenuItem = new ToolStripMenuItem();
-            this.productDesignRequestsToolStripMenuItem = new ToolStripMenuItem();
-            this.productsToolStripMenuItem1 = new ToolStripMenuItem();
-            this.quotationsToolStripMenuItem = new ToolStripMenuItem();
-            this.ordersToolStripMenuItem = new ToolStripMenuItem();
-            this.productionOrdersToolStripMenuItem = new ToolStripMenuItem();
-            this.shipmentsToolStripMenuItem1 = new ToolStripMenuItem();
-            this.inventoryControlToolStripMenuItem = new ToolStripMenuItem();
-            this.shipmentsToolStripMenuItem = new ToolStripMenuItem();
-            this.adminUserManagementToolStripMenuItem = new ToolStripMenuItem();
-            this.windowsToolStripMenuItem = new ToolStripMenuItem();
-            this.cascadeToolStripMenuItem = new ToolStripMenuItem();
-            this.tileToolStripMenuItem = new ToolStripMenuItem();
-            this.arrangeIconsToolStripMenuItem = new ToolStripMenuItem();
-            this.statusStrip1 = new StatusStrip();
-            this.toolStripStatusLabel1 = new ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new ToolStripStatusLabel();
-            this.menuStrip1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
+            modulesToolStripMenuItem = new ToolStripMenuItem();
+            customersToolStripMenuItem = new ToolStripMenuItem();
+            customerOrdersToolStripMenuItem = new ToolStripMenuItem();
+            customerOrdersToolStripMenuItem1 = new ToolStripMenuItem();
+            serviceCasesToolStripMenuItem1 = new ToolStripMenuItem();
+            suppilersToolStripMenuItem = new ToolStripMenuItem();
+            suppliersToolStripMenuItem = new ToolStripMenuItem();
+            purchaseOrdersToolStripMenuItem = new ToolStripMenuItem();
+            productsToolStripMenuItem = new ToolStripMenuItem();
+            productDesignRequestsToolStripMenuItem = new ToolStripMenuItem();
+            productsToolStripMenuItem1 = new ToolStripMenuItem();
+            quotationsToolStripMenuItem = new ToolStripMenuItem();
+            ordersToolStripMenuItem = new ToolStripMenuItem();
+            productionOrdersToolStripMenuItem = new ToolStripMenuItem();
+            shipmentsToolStripMenuItem1 = new ToolStripMenuItem();
+            inventoryControlToolStripMenuItem = new ToolStripMenuItem();
+            shipmentsToolStripMenuItem = new ToolStripMenuItem();
+            adminUserManagementToolStripMenuItem = new ToolStripMenuItem();
+            windowsToolStripMenuItem = new ToolStripMenuItem();
+            cascadeToolStripMenuItem = new ToolStripMenuItem();
+            tileToolStripMenuItem = new ToolStripMenuItem();
+            arrangeIconsToolStripMenuItem = new ToolStripMenuItem();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripStatusLabel2 = new ToolStripStatusLabel();
+            toolStripStatusLabel3 = new ToolStripStatusLabel();
+            menuStrip1.SuspendLayout();
+            statusStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.ImageScalingSize = new Size(20, 20);
-            this.menuStrip1.Items.AddRange(new ToolStripItem[] { this.fileToolStripMenuItem, this.modulesToolStripMenuItem, this.windowsToolStripMenuItem });
-            this.menuStrip1.Location = new Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new Padding(8, 3, 0, 3);
-            this.menuStrip1.Size = new Size(1540, 30);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            menuStrip1.ImageScalingSize = new Size(20, 20);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, modulesToolStripMenuItem, windowsToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1125, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.exitToolStripMenuItem });
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new Size(47, 24);
-            this.fileToolStripMenuItem.Text = "File";
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new Size(224, 26);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += this.exitToolStripMenuItem_Click;
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new Size(92, 22);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // modulesToolStripMenuItem
             // 
-            this.modulesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.customersToolStripMenuItem, this.suppilersToolStripMenuItem, this.productsToolStripMenuItem, this.ordersToolStripMenuItem, this.shipmentsToolStripMenuItem });
-            this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new Size(84, 24);
-            this.modulesToolStripMenuItem.Text = "Modules";
+            modulesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { customersToolStripMenuItem, suppilersToolStripMenuItem, productsToolStripMenuItem, ordersToolStripMenuItem, shipmentsToolStripMenuItem });
+            modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
+            modulesToolStripMenuItem.Size = new Size(65, 20);
+            modulesToolStripMenuItem.Text = "Modules";
             // 
             // customersToolStripMenuItem
             // 
-            this.customersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.customerOrdersToolStripMenuItem, this.customerOrdersToolStripMenuItem1, this.serviceCasesToolStripMenuItem1 });
-            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            this.customersToolStripMenuItem.Size = new Size(265, 26);
-            this.customersToolStripMenuItem.Text = "Customer Management";
-            this.customersToolStripMenuItem.Click += this.customersToolStripMenuItem_Click;
+            customersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { customerOrdersToolStripMenuItem, customerOrdersToolStripMenuItem1, serviceCasesToolStripMenuItem1 });
+            customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            customersToolStripMenuItem.Size = new Size(205, 22);
+            customersToolStripMenuItem.Text = "Customer Management";
+            customersToolStripMenuItem.Click += customersToolStripMenuItem_Click;
             // 
             // customerOrdersToolStripMenuItem
             // 
-            this.customerOrdersToolStripMenuItem.Name = "customerOrdersToolStripMenuItem";
-            this.customerOrdersToolStripMenuItem.Size = new Size(213, 26);
-            this.customerOrdersToolStripMenuItem.Text = "Customers";
-            this.customerOrdersToolStripMenuItem.Click += this.customerOrdersToolStripMenuItem_Click;
+            customerOrdersToolStripMenuItem.Name = "customerOrdersToolStripMenuItem";
+            customerOrdersToolStripMenuItem.Size = new Size(164, 22);
+            customerOrdersToolStripMenuItem.Text = "Customers";
+            customerOrdersToolStripMenuItem.Click += customerOrdersToolStripMenuItem_Click;
             // 
             // customerOrdersToolStripMenuItem1
             // 
-            this.customerOrdersToolStripMenuItem1.Name = "customerOrdersToolStripMenuItem1";
-            this.customerOrdersToolStripMenuItem1.Size = new Size(213, 26);
-            this.customerOrdersToolStripMenuItem1.Text = "Customer Orders";
-            this.customerOrdersToolStripMenuItem1.Click += this.customerOrdersToolStripMenuItem1_Click;
+            customerOrdersToolStripMenuItem1.Name = "customerOrdersToolStripMenuItem1";
+            customerOrdersToolStripMenuItem1.Size = new Size(164, 22);
+            customerOrdersToolStripMenuItem1.Text = "Customer Orders";
+            customerOrdersToolStripMenuItem1.Click += customerOrdersToolStripMenuItem1_Click;
             // 
             // serviceCasesToolStripMenuItem1
             // 
-            this.serviceCasesToolStripMenuItem1.Name = "serviceCasesToolStripMenuItem1";
-            this.serviceCasesToolStripMenuItem1.Size = new Size(213, 26);
-            this.serviceCasesToolStripMenuItem1.Text = "Service Cases";
-            this.serviceCasesToolStripMenuItem1.Click += this.serviceCasesToolStripMenuItem1_Click;
+            serviceCasesToolStripMenuItem1.Name = "serviceCasesToolStripMenuItem1";
+            serviceCasesToolStripMenuItem1.Size = new Size(164, 22);
+            serviceCasesToolStripMenuItem1.Text = "Service Cases";
+            serviceCasesToolStripMenuItem1.Click += serviceCasesToolStripMenuItem1_Click;
             // 
             // suppilersToolStripMenuItem
             // 
-            this.suppilersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.suppliersToolStripMenuItem, this.purchaseOrdersToolStripMenuItem });
-            this.suppilersToolStripMenuItem.Name = "suppilersToolStripMenuItem";
-            this.suppilersToolStripMenuItem.Size = new Size(265, 26);
-            this.suppilersToolStripMenuItem.Text = "Supplier Management";
+            suppilersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { suppliersToolStripMenuItem, purchaseOrdersToolStripMenuItem });
+            suppilersToolStripMenuItem.Name = "suppilersToolStripMenuItem";
+            suppilersToolStripMenuItem.Size = new Size(205, 22);
+            suppilersToolStripMenuItem.Text = "Supplier Management";
             // 
             // suppliersToolStripMenuItem
             // 
-            this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
-            this.suppliersToolStripMenuItem.Size = new Size(208, 26);
-            this.suppliersToolStripMenuItem.Text = "Suppliers";
-            this.suppliersToolStripMenuItem.Click += this.suppliersToolStripMenuItem_Click;
+            suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
+            suppliersToolStripMenuItem.Size = new Size(160, 22);
+            suppliersToolStripMenuItem.Text = "Suppliers";
+            suppliersToolStripMenuItem.Click += suppliersToolStripMenuItem_Click;
             // 
             // purchaseOrdersToolStripMenuItem
             // 
-            this.purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
-            this.purchaseOrdersToolStripMenuItem.Size = new Size(208, 26);
-            this.purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
-            this.purchaseOrdersToolStripMenuItem.Click += this.purchaseOrdersToolStripMenuItem_Click;
+            purchaseOrdersToolStripMenuItem.Name = "purchaseOrdersToolStripMenuItem";
+            purchaseOrdersToolStripMenuItem.Size = new Size(160, 22);
+            purchaseOrdersToolStripMenuItem.Text = "Purchase Orders";
+            purchaseOrdersToolStripMenuItem.Click += purchaseOrdersToolStripMenuItem_Click;
             // 
             // productsToolStripMenuItem
             // 
-            this.productsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.productDesignRequestsToolStripMenuItem, this.productsToolStripMenuItem1, this.quotationsToolStripMenuItem });
-            this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
-            this.productsToolStripMenuItem.Size = new Size(265, 26);
-            this.productsToolStripMenuItem.Text = "Products and Design";
+            productsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { productDesignRequestsToolStripMenuItem, productsToolStripMenuItem1, quotationsToolStripMenuItem });
+            productsToolStripMenuItem.Name = "productsToolStripMenuItem";
+            productsToolStripMenuItem.Size = new Size(205, 22);
+            productsToolStripMenuItem.Text = "Products and Design";
             // 
             // productDesignRequestsToolStripMenuItem
             // 
-            this.productDesignRequestsToolStripMenuItem.Name = "productDesignRequestsToolStripMenuItem";
-            this.productDesignRequestsToolStripMenuItem.Size = new Size(268, 26);
-            this.productDesignRequestsToolStripMenuItem.Text = "Product Design Requests";
-            this.productDesignRequestsToolStripMenuItem.Click += this.productDesignRequestsToolStripMenuItem_Click;
+            productDesignRequestsToolStripMenuItem.Name = "productDesignRequestsToolStripMenuItem";
+            productDesignRequestsToolStripMenuItem.Size = new Size(205, 22);
+            productDesignRequestsToolStripMenuItem.Text = "Product Design Requests";
+            productDesignRequestsToolStripMenuItem.Click += productDesignRequestsToolStripMenuItem_Click;
             // 
             // productsToolStripMenuItem1
             // 
-            this.productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
-            this.productsToolStripMenuItem1.Size = new Size(268, 26);
-            this.productsToolStripMenuItem1.Text = "Products";
-            this.productsToolStripMenuItem1.Click += this.productsToolStripMenuItem1_Click;
+            productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
+            productsToolStripMenuItem1.Size = new Size(205, 22);
+            productsToolStripMenuItem1.Text = "Products";
+            productsToolStripMenuItem1.Click += productsToolStripMenuItem1_Click;
             // 
             // quotationsToolStripMenuItem
             // 
-            this.quotationsToolStripMenuItem.Name = "quotationsToolStripMenuItem";
-            this.quotationsToolStripMenuItem.Size = new Size(268, 26);
-            this.quotationsToolStripMenuItem.Text = "Quotations";
-            this.quotationsToolStripMenuItem.Click += this.quotationsToolStripMenuItem_Click;
+            quotationsToolStripMenuItem.Name = "quotationsToolStripMenuItem";
+            quotationsToolStripMenuItem.Size = new Size(205, 22);
+            quotationsToolStripMenuItem.Text = "Quotations";
+            quotationsToolStripMenuItem.Click += quotationsToolStripMenuItem_Click;
             // 
             // ordersToolStripMenuItem
             // 
-            this.ordersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.productionOrdersToolStripMenuItem, this.shipmentsToolStripMenuItem1, this.inventoryControlToolStripMenuItem });
-            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new Size(265, 26);
-            this.ordersToolStripMenuItem.Text = "Production and Logistics";
+            ordersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { productionOrdersToolStripMenuItem, shipmentsToolStripMenuItem1, inventoryControlToolStripMenuItem });
+            ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
+            ordersToolStripMenuItem.Size = new Size(205, 22);
+            ordersToolStripMenuItem.Text = "Production and Logistics";
             // 
             // productionOrdersToolStripMenuItem
             // 
-            this.productionOrdersToolStripMenuItem.Name = "productionOrdersToolStripMenuItem";
-            this.productionOrdersToolStripMenuItem.Size = new Size(222, 26);
-            this.productionOrdersToolStripMenuItem.Text = "Production Orders";
-            this.productionOrdersToolStripMenuItem.Click += this.productionOrdersToolStripMenuItem_Click;
+            productionOrdersToolStripMenuItem.Name = "productionOrdersToolStripMenuItem";
+            productionOrdersToolStripMenuItem.Size = new Size(171, 22);
+            productionOrdersToolStripMenuItem.Text = "Production Orders";
+            productionOrdersToolStripMenuItem.Click += productionOrdersToolStripMenuItem_Click;
             // 
             // shipmentsToolStripMenuItem1
             // 
-            this.shipmentsToolStripMenuItem1.Name = "shipmentsToolStripMenuItem1";
-            this.shipmentsToolStripMenuItem1.Size = new Size(222, 26);
-            this.shipmentsToolStripMenuItem1.Text = "Shipments";
-            this.shipmentsToolStripMenuItem1.Click += this.shipmentsToolStripMenuItem1_Click;
+            shipmentsToolStripMenuItem1.Name = "shipmentsToolStripMenuItem1";
+            shipmentsToolStripMenuItem1.Size = new Size(171, 22);
+            shipmentsToolStripMenuItem1.Text = "Shipments";
+            shipmentsToolStripMenuItem1.Click += shipmentsToolStripMenuItem1_Click;
             // 
             // inventoryControlToolStripMenuItem
             // 
-            this.inventoryControlToolStripMenuItem.Name = "inventoryControlToolStripMenuItem";
-            this.inventoryControlToolStripMenuItem.Size = new Size(222, 26);
-            this.inventoryControlToolStripMenuItem.Text = "Inventory Control";
-            this.inventoryControlToolStripMenuItem.Click += this.inventoryControlToolStripMenuItem_Click;
+            inventoryControlToolStripMenuItem.Name = "inventoryControlToolStripMenuItem";
+            inventoryControlToolStripMenuItem.Size = new Size(171, 22);
+            inventoryControlToolStripMenuItem.Text = "Inventory Control";
+            inventoryControlToolStripMenuItem.Click += inventoryControlToolStripMenuItem_Click;
             // 
             // shipmentsToolStripMenuItem
             // 
-            this.shipmentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.adminUserManagementToolStripMenuItem });
-            this.shipmentsToolStripMenuItem.Name = "shipmentsToolStripMenuItem";
-            this.shipmentsToolStripMenuItem.Size = new Size(265, 26);
-            this.shipmentsToolStripMenuItem.Text = "Administration";
+            shipmentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { adminUserManagementToolStripMenuItem });
+            shipmentsToolStripMenuItem.Name = "shipmentsToolStripMenuItem";
+            shipmentsToolStripMenuItem.Size = new Size(205, 22);
+            shipmentsToolStripMenuItem.Text = "Administration";
             // 
             // adminUserManagementToolStripMenuItem
             // 
-            this.adminUserManagementToolStripMenuItem.Name = "adminUserManagementToolStripMenuItem";
-            this.adminUserManagementToolStripMenuItem.Size = new Size(274, 26);
-            this.adminUserManagementToolStripMenuItem.Text = "Admin/User Management";
-            this.adminUserManagementToolStripMenuItem.Click += this.adminUserManagementToolStripMenuItem_Click;
+            adminUserManagementToolStripMenuItem.Name = "adminUserManagementToolStripMenuItem";
+            adminUserManagementToolStripMenuItem.Size = new Size(212, 22);
+            adminUserManagementToolStripMenuItem.Text = "Admin/User Management";
+            adminUserManagementToolStripMenuItem.Click += adminUserManagementToolStripMenuItem_Click;
             // 
             // windowsToolStripMenuItem
             // 
-            this.windowsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.cascadeToolStripMenuItem, this.tileToolStripMenuItem, this.arrangeIconsToolStripMenuItem });
-            this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
-            this.windowsToolStripMenuItem.Size = new Size(89, 24);
-            this.windowsToolStripMenuItem.Text = "Windows";
+            windowsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem, tileToolStripMenuItem, arrangeIconsToolStripMenuItem });
+            windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
+            windowsToolStripMenuItem.Size = new Size(68, 20);
+            windowsToolStripMenuItem.Text = "Windows";
             // 
             // cascadeToolStripMenuItem
             // 
-            this.cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            this.cascadeToolStripMenuItem.Size = new Size(189, 26);
-            this.cascadeToolStripMenuItem.Text = "Cascade";
+            cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
+            cascadeToolStripMenuItem.Size = new Size(147, 22);
+            cascadeToolStripMenuItem.Text = "Cascade";
             // 
             // tileToolStripMenuItem
             // 
-            this.tileToolStripMenuItem.Name = "tileToolStripMenuItem";
-            this.tileToolStripMenuItem.Size = new Size(189, 26);
-            this.tileToolStripMenuItem.Text = "Tile";
+            tileToolStripMenuItem.Name = "tileToolStripMenuItem";
+            tileToolStripMenuItem.Size = new Size(147, 22);
+            tileToolStripMenuItem.Text = "Tile";
             // 
             // arrangeIconsToolStripMenuItem
             // 
-            this.arrangeIconsToolStripMenuItem.Name = "arrangeIconsToolStripMenuItem";
-            this.arrangeIconsToolStripMenuItem.Size = new Size(189, 26);
-            this.arrangeIconsToolStripMenuItem.Text = "Arrange Icons";
+            arrangeIconsToolStripMenuItem.Name = "arrangeIconsToolStripMenuItem";
+            arrangeIconsToolStripMenuItem.Size = new Size(147, 22);
+            arrangeIconsToolStripMenuItem.Text = "Arrange Icons";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.ImageScalingSize = new Size(20, 20);
-            this.statusStrip1.Items.AddRange(new ToolStripItem[] { this.toolStripStatusLabel1, this.toolStripStatusLabel2, this.toolStripStatusLabel3 });
-            this.statusStrip1.Location = new Point(0, 622);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new Padding(1, 0, 18, 0);
-            this.statusStrip1.Size = new Size(1540, 25);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, toolStripStatusLabel3 });
+            statusStrip1.Location = new Point(0, 489);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(1125, 22);
+            statusStrip1.TabIndex = 1;
+            statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new Size(117, 19);
-            this.toolStripStatusLabel1.Text = "Logged-in user";
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(87, 17);
+            toolStripStatusLabel1.Text = "Logged-in user";
             // 
             // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new Size(100, 19);
-            this.toolStripStatusLabel2.Text = "Current Time";
+            toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            toolStripStatusLabel2.Size = new Size(77, 17);
+            toolStripStatusLabel2.Text = "Current Time";
             // 
             // toolStripStatusLabel3
             // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new Size(107, 19);
-            this.toolStripStatusLabel3.Text = "System Status";
+            toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            toolStripStatusLabel3.Size = new Size(80, 17);
+            toolStripStatusLabel3.Text = "System Status";
             // 
             // MF1
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1540, 647);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
-            this.IsMdiContainer = true;
-            this.Margin = new Padding(4);
-            this.Name = "MF1";
-            this.Text = "Smile & Sunshine Toy Ltd.";
-            this.WindowState = FormWindowState.Maximized;
-            this.FormClosing += this.MF1_FormClosing;
-            this.Load += this.MF1_Load;
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1125, 511);
+            Controls.Add(statusStrip1);
+            Controls.Add(menuStrip1);
+            IsMdiContainer = true;
+            Name = "MF1";
+            Text = "Smile & Sunshine Toy Ltd.";
+            WindowState = FormWindowState.Maximized;
+            FormClosing += MF1_FormClosing;
+            Load += MF1_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

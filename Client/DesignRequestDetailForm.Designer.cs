@@ -28,137 +28,234 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.label2 = new Label();
-            this.label3 = new Label();
-            this.SaveButton = new Button();
-            this.CancelButton = new Button();
-            this.textBox3 = new TextBox();
-            this.comboBox1 = new ComboBox();
-            this.CustomerField = new ComboBox();
-            this.RequestIdField = new MaskedTextBox();
-            this.label4 = new Label();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            SaveButton = new Button();
+            CancelButton = new Button();
+            SpecificationsField = new TextBox();
+            AssignedManagerField = new ComboBox();
+            CustomerField = new ComboBox();
+            RequestIdField = new MaskedTextBox();
+            label4 = new Label();
+            label5 = new Label();
+            RequestDateField = new DateTimePicker();
+            label6 = new Label();
+            ConsultantFeeField = new TextBox();
+            label7 = new Label();
+            StatusField = new ComboBox();
+            label8 = new Label();
+            ApprovalDateField = new DateTimePicker();
+            label9 = new Label();
+            ApprovedByField = new ComboBox();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(77, 49);
-            this.label1.Margin = new Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(77, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Customer";
+            label1.AutoSize = true;
+            label1.Location = new Point(55, 42);
+            label1.Name = "label1";
+            label1.Size = new Size(59, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Customer";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new Point(13, 84);
-            this.label2.Margin = new Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new Size(141, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Assigned Manager";
+            label2.AutoSize = true;
+            label2.Location = new Point(13, 462);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Assigned Manager";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new Point(48, 119);
-            this.label3.Margin = new Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new Size(104, 19);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Specifications";
+            label3.AutoSize = true;
+            label3.Location = new Point(38, 119);
+            label3.Name = "label3";
+            label3.Size = new Size(80, 15);
+            label3.TabIndex = 2;
+            label3.Text = "Specifications";
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new Point(588, 366);
-            this.SaveButton.Margin = new Padding(4);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new Size(96, 29);
-            this.SaveButton.TabIndex = 9;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += this.SaveButton_Click;
+            SaveButton.Location = new Point(435, 564);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(75, 23);
+            SaveButton.TabIndex = 9;
+            SaveButton.Text = "Save";
+            SaveButton.UseVisualStyleBackColor = true;
+            SaveButton.Click += SaveButton_Click;
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new Point(692, 366);
-            this.CancelButton.Margin = new Padding(4);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new Size(96, 29);
-            this.CancelButton.TabIndex = 10;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += this.CancelButton_Click;
+            CancelButton.Location = new Point(526, 564);
+            CancelButton.Name = "CancelButton";
+            CancelButton.Size = new Size(75, 23);
+            CancelButton.TabIndex = 10;
+            CancelButton.Text = "Cancel";
+            CancelButton.UseVisualStyleBackColor = true;
+            CancelButton.Click += CancelButton_Click;
             // 
-            // textBox3
+            // SpecificationsField
             // 
-            this.textBox3.Location = new Point(160, 116);
-            this.textBox3.Margin = new Padding(4);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new Size(628, 242);
-            this.textBox3.TabIndex = 13;
+            SpecificationsField.Location = new Point(124, 119);
+            SpecificationsField.Multiline = true;
+            SpecificationsField.Name = "SpecificationsField";
+            SpecificationsField.Size = new Size(489, 192);
+            SpecificationsField.TabIndex = 13;
             // 
-            // comboBox1
+            // AssignedManagerField
             // 
-            this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new Point(162, 81);
-            this.comboBox1.Margin = new Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new Size(154, 27);
-            this.comboBox1.TabIndex = 14;
+            AssignedManagerField.DropDownStyle = ComboBoxStyle.DropDownList;
+            AssignedManagerField.FormattingEnabled = true;
+            AssignedManagerField.Location = new Point(124, 459);
+            AssignedManagerField.Name = "AssignedManagerField";
+            AssignedManagerField.Size = new Size(121, 23);
+            AssignedManagerField.TabIndex = 14;
             // 
             // CustomerField
             // 
-            this.CustomerField.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.CustomerField.FormattingEnabled = true;
-            this.CustomerField.Location = new Point(162, 46);
-            this.CustomerField.Margin = new Padding(4);
-            this.CustomerField.Name = "CustomerField";
-            this.CustomerField.Size = new Size(154, 27);
-            this.CustomerField.TabIndex = 15;
+            CustomerField.DropDownStyle = ComboBoxStyle.DropDownList;
+            CustomerField.FormattingEnabled = true;
+            CustomerField.Location = new Point(124, 39);
+            CustomerField.Name = "CustomerField";
+            CustomerField.Size = new Size(121, 23);
+            CustomerField.TabIndex = 15;
             // 
             // RequestIdField
             // 
-            this.RequestIdField.Location = new Point(162, 12);
-            this.RequestIdField.Mask = "REQ000";
-            this.RequestIdField.Name = "RequestIdField";
-            this.RequestIdField.Size = new Size(125, 27);
-            this.RequestIdField.TabIndex = 16;
+            RequestIdField.Location = new Point(124, 11);
+            RequestIdField.Margin = new Padding(2);
+            RequestIdField.Mask = "REQ000";
+            RequestIdField.Name = "RequestIdField";
+            RequestIdField.Size = new Size(98, 23);
+            RequestIdField.TabIndex = 16;
+            RequestIdField.MaskInputRejected += RequestIdField_MaskInputRejected;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new Point(71, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new Size(85, 19);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Request ID";
+            label4.AutoSize = true;
+            label4.Location = new Point(55, 14);
+            label4.Margin = new Padding(2, 0, 2, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(63, 15);
+            label4.TabIndex = 17;
+            label4.Text = "Request ID";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(42, 78);
+            label5.Name = "label5";
+            label5.Size = new Size(76, 15);
+            label5.TabIndex = 18;
+            label5.Text = "Request Date";
+            // 
+            // RequestDateField
+            // 
+            RequestDateField.Location = new Point(124, 78);
+            RequestDateField.Name = "RequestDateField";
+            RequestDateField.Size = new Size(200, 23);
+            RequestDateField.TabIndex = 19;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(28, 326);
+            label6.Name = "label6";
+            label6.Size = new Size(86, 15);
+            label6.TabIndex = 20;
+            label6.Text = "Consultant Fee";
+            // 
+            // ConsultantFeeField
+            // 
+            ConsultantFeeField.Location = new Point(125, 326);
+            ConsultantFeeField.Name = "ConsultantFeeField";
+            ConsultantFeeField.Size = new Size(149, 23);
+            ConsultantFeeField.TabIndex = 21;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(75, 373);
+            label7.Name = "label7";
+            label7.Size = new Size(39, 15);
+            label7.TabIndex = 22;
+            label7.Text = "Status";
+            // 
+            // StatusField
+            // 
+            StatusField.FormattingEnabled = true;
+            StatusField.Location = new Point(126, 373);
+            StatusField.Name = "StatusField";
+            StatusField.Size = new Size(121, 23);
+            StatusField.TabIndex = 23;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(28, 416);
+            label8.Name = "label8";
+            label8.Size = new Size(82, 15);
+            label8.TabIndex = 24;
+            label8.Text = "Approval Date";
+            // 
+            // ApprovalDateField
+            // 
+            ApprovalDateField.Location = new Point(125, 416);
+            ApprovalDateField.Name = "ApprovalDateField";
+            ApprovalDateField.Size = new Size(200, 23);
+            ApprovalDateField.TabIndex = 25;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(42, 503);
+            label9.Name = "label9";
+            label9.Size = new Size(72, 15);
+            label9.TabIndex = 26;
+            label9.Text = "ApprovedBy";
+            // 
+            // ApprovedByField
+            // 
+            ApprovedByField.DropDownStyle = ComboBoxStyle.DropDownList;
+            ApprovedByField.FormattingEnabled = true;
+            ApprovedByField.Location = new Point(124, 500);
+            ApprovedByField.Name = "ApprovedByField";
+            ApprovedByField.Size = new Size(121, 23);
+            ApprovedByField.TabIndex = 27;
             // 
             // DesignRequestDetailForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(807, 415);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.RequestIdField);
-            this.Controls.Add(this.CustomerField);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Margin = new Padding(4);
-            this.Name = "DesignRequestDetailForm";
-            this.Text = "DesignRequestDetailForm";
-            this.Load += this.DesignRequestDetailForm_Load;
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(628, 601);
+            Controls.Add(ApprovedByField);
+            Controls.Add(label9);
+            Controls.Add(ApprovalDateField);
+            Controls.Add(label8);
+            Controls.Add(StatusField);
+            Controls.Add(label7);
+            Controls.Add(ConsultantFeeField);
+            Controls.Add(label6);
+            Controls.Add(RequestDateField);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(RequestIdField);
+            Controls.Add(CustomerField);
+            Controls.Add(AssignedManagerField);
+            Controls.Add(SpecificationsField);
+            Controls.Add(CancelButton);
+            Controls.Add(SaveButton);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Name = "DesignRequestDetailForm";
+            Text = "DesignRequestDetailForm";
+            Load += DesignRequestDetailForm_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -168,10 +265,20 @@
         private Label label3;
         private Button SaveButton;
         private Button CancelButton;
-        private TextBox textBox3;
-        private ComboBox comboBox1;
+        private TextBox SpecificationsField;
+        private ComboBox AssignedManagerField;
         private ComboBox CustomerField;
         private MaskedTextBox RequestIdField;
         private Label label4;
+        private Label label5;
+        private DateTimePicker RequestDateField;
+        private Label label6;
+        private TextBox ConsultantFeeField;
+        private Label label7;
+        private ComboBox StatusField;
+        private Label label8;
+        private DateTimePicker ApprovalDateField;
+        private Label label9;
+        private ComboBox ApprovedByField;
     }
 }

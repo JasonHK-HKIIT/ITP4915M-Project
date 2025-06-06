@@ -8,7 +8,6 @@ namespace Client
     public partial class DesignRequestDetailForm : Form
     {
         private readonly bool IsEditMode = false;
-
         private readonly string RequestId;
 
         public DesignRequestDetailForm()
@@ -24,35 +23,59 @@ namespace Client
 
         private void DesignRequestDetailForm_Load(object sender, EventArgs e)
         {
-            var customersCcommand = new MySqlCommand("SELECT CustomerID, CustomerName FROM Customer", Program.Connection);
-            var customersAdapter = new MySqlDataAdapter(customersCcommand);
+            // Load Customers
+            var customersCommand = new MySqlCommand("SELECT CustomerID, CustomerName FROM Customer", Program.Connection);
+            var customersAdapter = new MySqlDataAdapter(customersCommand);
             var customersTable = new DataTable();
             customersAdapter.Fill(customersTable);
-            CustomerField.ValueMember = "CustomerID";
             CustomerField.DisplayMember = "CustomerName";
+            CustomerField.ValueMember = "CustomerID";
             CustomerField.DataSource = customersTable;
 
-            var managersCommand = new MySqlCommand("SELECT WorkerID, Name FROM Worker", Program.Connection);
-            var managersAdapter = new MySqlDataAdapter(managersCommand);
-            var managersTable = new DataTable();
-            managersAdapter.Fill(managersTable);
-            comboBox1.ValueMember = "WorkerID";
-            comboBox1.DisplayMember = "Name";
-            comboBox1.DataSource = managersTable;
+            // Load Assigned Managers (UserID where Role = 'Manager')
+            var managerCommand = new MySqlCommand("SELECT UserID, Name FROM User WHERE Role = 'Manager'", Program.Connection);
+            var managerAdapter = new MySqlDataAdapter(managerCommand);
+            var managerTable = new DataTable();
+            managerAdapter.Fill(managerTable);
+            AssignedManagerField.DisplayMember = "Name";
+            AssignedManagerField.ValueMember = "UserID";
+            AssignedManagerField.DataSource = managerTable;
 
+            // Load ApprovedBy Dropdown (optional)
+            var approverCommand = new MySqlCommand("SELECT UserID, Name FROM User", Program.Connection);
+            var approverAdapter = new MySqlDataAdapter(approverCommand);
+            var approverTable = new DataTable();
+            approverAdapter.Fill(approverTable);
+            ApprovedByField.DisplayMember = "Name";
+            ApprovedByField.ValueMember = "UserID";
+            ApprovedByField.DataSource = approverTable;
+
+            // Load Status options
+            StatusField.Items.AddRange(new[] { "Pending", "Approved", "Rejected" });
+
+            // Edit Mode
             if (IsEditMode)
             {
-                var command = new MySqlCommand("SELECT * FROM ProductDesignRequest WHERE DesignRequestID = ?id", Program.Connection);
-                command.Parameters.AddWithValue("?id", RequestId);
-                var reader = command.ExecuteReader();
+                var command = new MySqlCommand("SELECT * FROM ProductDesignRequest WHERE DesignRequestID = @id", Program.Connection);
+                command.Parameters.AddWithValue("@id", RequestId);
+                using var reader = command.ExecuteReader();
                 if (reader.Read())
                 {
-                    RequestIdField.Text = (string) reader["DesignRequestID"];
-                    CustomerField.SelectedValue = reader["CustomerID"];
-                    comboBox1.SelectedValue = reader["AssignedManagerID"];
-                    textBox3.Text = (string) reader["Specifications"];
+                    RequestIdField.Text = reader["DesignRequestID"].ToString();
+                    CustomerField.SelectedValue = reader["CustomerID"].ToString();
+                    RequestDateField.Value = reader.GetDateTime("RequestDate");
+                    SpecificationsField.Text = reader["Specifications"].ToString();
+                    ConsultantFeeField.Text = reader["ConsultantFee"]?.ToString() ?? "";
+                    StatusField.SelectedItem = reader["Status"].ToString();
+                    ApprovalDateField.Value = reader["ApprovalDate"] == DBNull.Value ? DateTime.Today : Convert.ToDateTime(reader["ApprovalDate"]);
+                    AssignedManagerField.SelectedValue = reader["UserID"].ToString();
+                    ApprovedByField.SelectedValue = reader["ApprovedBy"]?.ToString() ?? "";
                 }
-                reader.Close();
+            }
+            else
+            {
+                RequestDateField.Value = DateTime.Today;
+                ApprovalDateField.Value = DateTime.Today;
             }
         }
 
@@ -62,28 +85,52 @@ namespace Client
             {
                 if (IsEditMode)
                 {
-                    var command = new MySqlCommand("UPDATE ProductDesignRequest SET CustomerID = ?customer, AssignedManagerID = ?manager, Specifications = ?specifications WHERE DesignRequestID = ?id", Program.Connection);
-                    command.Parameters.AddWithValue("?id", RequestId);
-                    command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
-                    command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
-                    command.Parameters.AddWithValue("?specifications", textBox3.Text);
-                    command.ExecuteNonQuery();
+                    var update = new MySqlCommand(@"
+                        UPDATE ProductDesignRequest SET
+                            CustomerID = @CustomerID,
+                            RequestDate = @RequestDate,
+                            Specifications = @Specifications,
+                            ConsultantFee = @ConsultantFee,
+                            Status = @Status,
+                            ApprovalDate = @ApprovalDate,
+                            UserID = @UserID,
+                            ApprovedBy = @ApprovedBy
+                        WHERE DesignRequestID = @DesignRequestID", Program.Connection);
+
+                    update.Parameters.AddWithValue("@DesignRequestID", RequestId);
+                    update.Parameters.AddWithValue("@CustomerID", CustomerField.SelectedValue);
+                    update.Parameters.AddWithValue("@RequestDate", RequestDateField.Value.Date);
+                    update.Parameters.AddWithValue("@Specifications", SpecificationsField.Text);
+                    update.Parameters.AddWithValue("@ConsultantFee", string.IsNullOrWhiteSpace(ConsultantFeeField.Text) ? DBNull.Value : (object)decimal.Parse(ConsultantFeeField.Text));
+                    update.Parameters.AddWithValue("@Status", StatusField.Text);
+                    update.Parameters.AddWithValue("@ApprovalDate", ApprovalDateField.Value.Date);
+                    update.Parameters.AddWithValue("@UserID", AssignedManagerField.SelectedValue);
+                    update.Parameters.AddWithValue("@ApprovedBy", ApprovedByField.SelectedValue);
+                    update.ExecuteNonQuery();
                 }
                 else
                 {
-                    var command = new MySqlCommand("INSERT INTO ProductDesignRequest (DesignRequestID, CustomerID, AssignedManagerID, Specifications, RequestDate, Status) VALUES (?requestId, ?customer, ?manager, ?specifications, ?requestDate, ?status)", Program.Connection);
-                    command.Parameters.AddWithValue("?requestId", RequestIdField.Text);
-                    command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
-                    command.Parameters.AddWithValue("?manager", comboBox1.SelectedValue);
-                    command.Parameters.AddWithValue("?specifications", textBox3.Text);
-                    command.Parameters.AddWithValue("?requestDate", DateTime.Now);
-                    command.Parameters.AddWithValue("?status", "Pending");
-                    command.ExecuteNonQuery();
+                    var insert = new MySqlCommand(@"
+                        INSERT INTO ProductDesignRequest
+                            (DesignRequestID, CustomerID, RequestDate, Specifications, ConsultantFee, Status, ApprovalDate, UserID, ApprovedBy)
+                        VALUES
+                            (@DesignRequestID, @CustomerID, @RequestDate, @Specifications, @ConsultantFee, @Status, @ApprovalDate, @UserID, @ApprovedBy)", Program.Connection);
+
+                    insert.Parameters.AddWithValue("@DesignRequestID", RequestIdField.Text);
+                    insert.Parameters.AddWithValue("@CustomerID", CustomerField.SelectedValue);
+                    insert.Parameters.AddWithValue("@RequestDate", RequestDateField.Value.Date);
+                    insert.Parameters.AddWithValue("@Specifications", SpecificationsField.Text);
+                    insert.Parameters.AddWithValue("@ConsultantFee", string.IsNullOrWhiteSpace(ConsultantFeeField.Text) ? DBNull.Value : (object)decimal.Parse(ConsultantFeeField.Text));
+                    insert.Parameters.AddWithValue("@Status", StatusField.Text);
+                    insert.Parameters.AddWithValue("@ApprovalDate", ApprovalDateField.Value.Date);
+                    insert.Parameters.AddWithValue("@UserID", AssignedManagerField.SelectedValue);
+                    insert.Parameters.AddWithValue("@ApprovedBy", ApprovedByField.SelectedValue);
+                    insert.ExecuteNonQuery();
                 }
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show($"Error saving design request: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error saving design request:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -95,6 +142,11 @@ namespace Client
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void RequestIdField_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

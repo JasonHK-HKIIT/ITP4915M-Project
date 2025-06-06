@@ -58,7 +58,7 @@
             comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxCustomer.Location = new Point(209, 55);
             comboBoxCustomer.Name = "comboBoxCustomer";
-            comboBoxCustomer.Size = new Size(268, 31);
+            comboBoxCustomer.Size = new Size(268, 23);
             comboBoxCustomer.TabIndex = 3;
             // 
             // comboBoxQuotation
@@ -66,63 +66,63 @@
             comboBoxQuotation.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxQuotation.Location = new Point(209, 98);
             comboBoxQuotation.Name = "comboBoxQuotation";
-            comboBoxQuotation.Size = new Size(268, 31);
+            comboBoxQuotation.Size = new Size(268, 23);
             comboBoxQuotation.TabIndex = 5;
             // 
             // dateTimePickerOrderDate
             // 
             dateTimePickerOrderDate.Location = new Point(209, 143);
             dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
-            dateTimePickerOrderDate.Size = new Size(268, 30);
+            dateTimePickerOrderDate.Size = new Size(268, 23);
             dateTimePickerOrderDate.TabIndex = 7;
             // 
             // dateTimePickerDeadline
             // 
             dateTimePickerDeadline.Location = new Point(209, 188);
             dateTimePickerDeadline.Name = "dateTimePickerDeadline";
-            dateTimePickerDeadline.Size = new Size(268, 30);
+            dateTimePickerDeadline.Size = new Size(268, 23);
             dateTimePickerDeadline.TabIndex = 9;
             // 
             // comboBoxStatus
             // 
             comboBoxStatus.Location = new Point(209, 233);
             comboBoxStatus.Name = "comboBoxStatus";
-            comboBoxStatus.Size = new Size(268, 31);
+            comboBoxStatus.Size = new Size(268, 23);
             comboBoxStatus.TabIndex = 11;
             // 
             // textBoxDeposit
             // 
             textBoxDeposit.Location = new Point(209, 281);
             textBoxDeposit.Name = "textBoxDeposit";
-            textBoxDeposit.Size = new Size(268, 30);
+            textBoxDeposit.Size = new Size(268, 23);
             textBoxDeposit.TabIndex = 13;
             // 
             // textBoxBalance
             // 
             textBoxBalance.Location = new Point(209, 332);
             textBoxBalance.Name = "textBoxBalance";
-            textBoxBalance.Size = new Size(268, 30);
+            textBoxBalance.Size = new Size(268, 23);
             textBoxBalance.TabIndex = 15;
             // 
             // textBoxTotalAmount
             // 
             textBoxTotalAmount.Location = new Point(209, 378);
             textBoxTotalAmount.Name = "textBoxTotalAmount";
-            textBoxTotalAmount.Size = new Size(268, 30);
+            textBoxTotalAmount.Size = new Size(268, 23);
             textBoxTotalAmount.TabIndex = 17;
             // 
             // comboBoxPaymentStatus
             // 
             comboBoxPaymentStatus.Location = new Point(209, 427);
             comboBoxPaymentStatus.Name = "comboBoxPaymentStatus";
-            comboBoxPaymentStatus.Size = new Size(268, 31);
+            comboBoxPaymentStatus.Size = new Size(268, 23);
             comboBoxPaymentStatus.TabIndex = 19;
             // 
             // comboBoxOrderType
             // 
             comboBoxOrderType.Location = new Point(209, 477);
             comboBoxOrderType.Name = "comboBoxOrderType";
-            comboBoxOrderType.Size = new Size(268, 31);
+            comboBoxOrderType.Size = new Size(268, 23);
             comboBoxOrderType.TabIndex = 21;
             // 
             // buttonSave
@@ -148,7 +148,7 @@
             labelOrderID.AutoSize = true;
             labelOrderID.Location = new Point(83, 19);
             labelOrderID.Name = "labelOrderID";
-            labelOrderID.Size = new Size(88, 23);
+            labelOrderID.Size = new Size(54, 15);
             labelOrderID.TabIndex = 0;
             labelOrderID.Text = "Order ID:";
             // 
@@ -157,7 +157,7 @@
             labelCustomer.AutoSize = true;
             labelCustomer.Location = new Point(74, 58);
             labelCustomer.Name = "labelCustomer";
-            labelCustomer.Size = new Size(97, 23);
+            labelCustomer.Size = new Size(62, 15);
             labelCustomer.TabIndex = 2;
             labelCustomer.Text = "Customer:";
             // 
@@ -166,70 +166,70 @@
             labelQuotation.AutoSize = true;
             labelQuotation.Location = new Point(69, 106);
             labelQuotation.Name = "labelQuotation";
-            labelQuotation.Size = new Size(102, 23);
+            labelQuotation.Size = new Size(64, 15);
             labelQuotation.TabIndex = 4;
             labelQuotation.Text = "Quotation:";
             // 
             // labelOrderDate
             // 
             labelOrderDate.AutoSize = true;
-            labelOrderDate.Location = new Point(61, 150);
+            labelOrderDate.Location = new Point(66, 149);
             labelOrderDate.Name = "labelOrderDate";
-            labelOrderDate.Size = new Size(110, 23);
+            labelOrderDate.Size = new Size(67, 15);
             labelOrderDate.TabIndex = 6;
             labelOrderDate.Text = "Order Date:";
             // 
             // labelDeadline
             // 
             labelDeadline.AutoSize = true;
-            labelDeadline.Location = new Point(81, 195);
+            labelDeadline.Location = new Point(77, 194);
             labelDeadline.Name = "labelDeadline";
-            labelDeadline.Size = new Size(90, 23);
+            labelDeadline.Size = new Size(56, 15);
             labelDeadline.TabIndex = 8;
             labelDeadline.Text = "Deadline:";
             // 
             // labelStatus
             // 
             labelStatus.AutoSize = true;
-            labelStatus.Location = new Point(104, 241);
+            labelStatus.Location = new Point(88, 241);
             labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(67, 23);
+            labelStatus.Size = new Size(42, 15);
             labelStatus.TabIndex = 10;
             labelStatus.Text = "Status:";
             // 
             // labelDeposit
             // 
             labelDeposit.AutoSize = true;
-            labelDeposit.Location = new Point(91, 288);
+            labelDeposit.Location = new Point(80, 289);
             labelDeposit.Name = "labelDeposit";
-            labelDeposit.Size = new Size(80, 23);
+            labelDeposit.Size = new Size(50, 15);
             labelDeposit.TabIndex = 12;
             labelDeposit.Text = "Deposit:";
             // 
             // labelBalance
             // 
             labelBalance.AutoSize = true;
-            labelBalance.Location = new Point(91, 339);
+            labelBalance.Location = new Point(79, 335);
             labelBalance.Name = "labelBalance";
-            labelBalance.Size = new Size(80, 23);
+            labelBalance.Size = new Size(51, 15);
             labelBalance.TabIndex = 14;
             labelBalance.Text = "Balance:";
             // 
             // labelTotalAmount
             // 
             labelTotalAmount.AutoSize = true;
-            labelTotalAmount.Location = new Point(40, 385);
+            labelTotalAmount.Location = new Point(47, 381);
             labelTotalAmount.Name = "labelTotalAmount";
-            labelTotalAmount.Size = new Size(131, 23);
+            labelTotalAmount.Size = new Size(83, 15);
             labelTotalAmount.TabIndex = 16;
             labelTotalAmount.Text = "Total Amount:";
             // 
             // labelPaymentStatus
             // 
             labelPaymentStatus.AutoSize = true;
-            labelPaymentStatus.Location = new Point(24, 435);
+            labelPaymentStatus.Location = new Point(38, 435);
             labelPaymentStatus.Name = "labelPaymentStatus";
-            labelPaymentStatus.Size = new Size(147, 23);
+            labelPaymentStatus.Size = new Size(92, 15);
             labelPaymentStatus.TabIndex = 18;
             labelPaymentStatus.Text = "Payment Status:";
             // 
@@ -238,7 +238,7 @@
             labelOrderType.AutoSize = true;
             labelOrderType.Location = new Point(62, 485);
             labelOrderType.Name = "labelOrderType";
-            labelOrderType.Size = new Size(109, 23);
+            labelOrderType.Size = new Size(68, 15);
             labelOrderType.TabIndex = 20;
             labelOrderType.Text = "Order Type:";
             // 
@@ -247,7 +247,7 @@
             maskedTextBox1.Location = new Point(209, 12);
             maskedTextBox1.Mask = "ORD000";
             maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(268, 30);
+            maskedTextBox1.Size = new Size(268, 23);
             maskedTextBox1.TabIndex = 24;
             // 
             // OrderDetailForm
