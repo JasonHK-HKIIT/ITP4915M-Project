@@ -56,7 +56,7 @@ namespace Client
         }
 
         // Expose properties for each field
-        public string CaseID => maskedTextBoxCaseID.Text.Trim();
+        public string CaseID => maskedTextBoxCaseID.Text;
         public string CustomerID => comboBoxCustomer.SelectedValue?.ToString() ?? "";
         public string CustomerOrderID => comboBoxOrder.SelectedValue?.ToString() ?? "";
         public DateTime CaseDate => dateTimePickerCaseDate.Value;
