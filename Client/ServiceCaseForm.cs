@@ -72,11 +72,12 @@ namespace Client
                 {
                     using (var command = new MySqlCommand(
                         @"INSERT INTO CustomerServiceCase
-                          (CustomerID, CustomerOrderID, CaseDate, Description, Status, Resolution, CaseType, AssignedStaffID)
+                          (CaseID, CustomerID, CustomerOrderID, CaseDate, Description, Status, Resolution, CaseType, AssignedStaffID)
                           VALUES
-                          (@CustomerID, @CustomerOrderID, @CaseDate, @Description, @Status, @Resolution, @CaseType, @AssignedStaffID)",
+                          (@CaseID, @CustomerID, @CustomerOrderID, @CaseDate, @Description, @Status, @Resolution, @CaseType, @AssignedStaffID)",
                         Program.Connection))
                     {
+                        command.Parameters.AddWithValue("@CaseID", detail.CaseID);
                         command.Parameters.AddWithValue("@CustomerID", detail.CustomerID);
                         command.Parameters.AddWithValue("@CustomerOrderID",
                             string.IsNullOrWhiteSpace(detail.CustomerOrderID) ? (object)DBNull.Value : detail.CustomerOrderID);

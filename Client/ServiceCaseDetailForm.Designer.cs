@@ -17,235 +17,232 @@
 
         private void InitializeComponent()
         {
-            labelCaseID = new Label();
-            labelCustomer = new Label();
-            comboBoxCustomer = new ComboBox();
-            labelOrder = new Label();
-            comboBoxOrder = new ComboBox();
-            labelCaseDate = new Label();
-            dateTimePickerCaseDate = new DateTimePicker();
-            labelDescription = new Label();
-            textBoxDescription = new TextBox();
-            labelStatus = new Label();
-            comboBoxStatus = new ComboBox();
-            labelResolution = new Label();
-            textBoxResolution = new TextBox();
-            labelCaseType = new Label();
-            comboBoxCaseType = new ComboBox();
-            labelAssignedStaff = new Label();
-            comboBoxAssignedStaff = new ComboBox();
-            buttonSave = new Button();
-            buttonCancel = new Button();
-            maskedTextBoxCaseID = new MaskedTextBox();
-            SuspendLayout();
+            this.labelCaseID = new Label();
+            this.labelCustomer = new Label();
+            this.comboBoxCustomer = new ComboBox();
+            this.labelOrder = new Label();
+            this.comboBoxOrder = new ComboBox();
+            this.labelCaseDate = new Label();
+            this.dateTimePickerCaseDate = new DateTimePicker();
+            this.labelDescription = new Label();
+            this.textBoxDescription = new TextBox();
+            this.labelStatus = new Label();
+            this.comboBoxStatus = new ComboBox();
+            this.labelResolution = new Label();
+            this.textBoxResolution = new TextBox();
+            this.labelCaseType = new Label();
+            this.comboBoxCaseType = new ComboBox();
+            this.labelAssignedStaff = new Label();
+            this.comboBoxAssignedStaff = new ComboBox();
+            this.buttonSave = new Button();
+            this.buttonCancel = new Button();
+            this.maskedTextBoxCaseID = new MaskedTextBox();
+            this.SuspendLayout();
             // 
             // labelCaseID
             // 
-            labelCaseID.AutoSize = true;
-            labelCaseID.Location = new Point(105, 18);
-            labelCaseID.Name = "labelCaseID";
-            labelCaseID.Size = new Size(46, 15);
-            labelCaseID.TabIndex = 0;
-            labelCaseID.Text = "Case ID";
+            this.labelCaseID.AutoSize = true;
+            this.labelCaseID.Location = new Point(105, 18);
+            this.labelCaseID.Name = "labelCaseID";
+            this.labelCaseID.Size = new Size(61, 19);
+            this.labelCaseID.TabIndex = 0;
+            this.labelCaseID.Text = "Case ID";
             // 
             // labelCustomer
             // 
-            labelCustomer.AutoSize = true;
-            labelCustomer.Location = new Point(92, 55);
-            labelCustomer.Name = "labelCustomer";
-            labelCustomer.Size = new Size(59, 15);
-            labelCustomer.TabIndex = 2;
-            labelCustomer.Text = "Customer";
+            this.labelCustomer.AutoSize = true;
+            this.labelCustomer.Location = new Point(92, 55);
+            this.labelCustomer.Name = "labelCustomer";
+            this.labelCustomer.Size = new Size(77, 19);
+            this.labelCustomer.TabIndex = 2;
+            this.labelCustomer.Text = "Customer";
             // 
             // comboBoxCustomer
             // 
-            comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxCustomer.Location = new Point(195, 52);
-            comboBoxCustomer.Name = "comboBoxCustomer";
-            comboBoxCustomer.Size = new Size(200, 23);
-            comboBoxCustomer.TabIndex = 3;
+            this.comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxCustomer.Location = new Point(195, 52);
+            this.comboBoxCustomer.Name = "comboBoxCustomer";
+            this.comboBoxCustomer.Size = new Size(200, 27);
+            this.comboBoxCustomer.TabIndex = 3;
             // 
             // labelOrder
             // 
-            labelOrder.AutoSize = true;
-            labelOrder.Location = new Point(59, 101);
-            labelOrder.Name = "labelOrder";
-            labelOrder.Size = new Size(92, 15);
-            labelOrder.TabIndex = 4;
-            labelOrder.Text = "Customer Order";
+            this.labelOrder.AutoSize = true;
+            this.labelOrder.Location = new Point(59, 101);
+            this.labelOrder.Name = "labelOrder";
+            this.labelOrder.Size = new Size(123, 19);
+            this.labelOrder.TabIndex = 4;
+            this.labelOrder.Text = "Customer Order";
             // 
             // comboBoxOrder
             // 
-            comboBoxOrder.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxOrder.Location = new Point(195, 101);
-            comboBoxOrder.Name = "comboBoxOrder";
-            comboBoxOrder.Size = new Size(200, 23);
-            comboBoxOrder.TabIndex = 5;
+            this.comboBoxOrder.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxOrder.Location = new Point(195, 101);
+            this.comboBoxOrder.Name = "comboBoxOrder";
+            this.comboBoxOrder.Size = new Size(200, 27);
+            this.comboBoxOrder.TabIndex = 5;
             // 
             // labelCaseDate
             // 
-            labelCaseDate.AutoSize = true;
-            labelCaseDate.Location = new Point(92, 154);
-            labelCaseDate.Name = "labelCaseDate";
-            labelCaseDate.Size = new Size(59, 15);
-            labelCaseDate.TabIndex = 6;
-            labelCaseDate.Text = "Case Date";
+            this.labelCaseDate.AutoSize = true;
+            this.labelCaseDate.Location = new Point(92, 154);
+            this.labelCaseDate.Name = "labelCaseDate";
+            this.labelCaseDate.Size = new Size(78, 19);
+            this.labelCaseDate.TabIndex = 6;
+            this.labelCaseDate.Text = "Case Date";
             // 
             // dateTimePickerCaseDate
             // 
-            dateTimePickerCaseDate.Format = DateTimePickerFormat.Short;
-            dateTimePickerCaseDate.Location = new Point(195, 146);
-            dateTimePickerCaseDate.Name = "dateTimePickerCaseDate";
-            dateTimePickerCaseDate.Size = new Size(200, 23);
-            dateTimePickerCaseDate.TabIndex = 7;
+            this.dateTimePickerCaseDate.Format = DateTimePickerFormat.Short;
+            this.dateTimePickerCaseDate.Location = new Point(195, 146);
+            this.dateTimePickerCaseDate.Name = "dateTimePickerCaseDate";
+            this.dateTimePickerCaseDate.Size = new Size(200, 27);
+            this.dateTimePickerCaseDate.TabIndex = 7;
             // 
             // labelDescription
             // 
-            labelDescription.AutoSize = true;
-            labelDescription.Location = new Point(84, 198);
-            labelDescription.Name = "labelDescription";
-            labelDescription.Size = new Size(67, 15);
-            labelDescription.TabIndex = 8;
-            labelDescription.Text = "Description";
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Location = new Point(84, 198);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new Size(88, 19);
+            this.labelDescription.TabIndex = 8;
+            this.labelDescription.Text = "Description";
             // 
             // textBoxDescription
             // 
-            textBoxDescription.Location = new Point(195, 198);
-            textBoxDescription.Multiline = true;
-            textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.Size = new Size(415, 80);
-            textBoxDescription.TabIndex = 9;
+            this.textBoxDescription.Location = new Point(195, 198);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new Size(415, 80);
+            this.textBoxDescription.TabIndex = 9;
             // 
             // labelStatus
             // 
-            labelStatus.AutoSize = true;
-            labelStatus.Location = new Point(112, 296);
-            labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(39, 15);
-            labelStatus.TabIndex = 10;
-            labelStatus.Text = "Status";
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new Point(112, 296);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new Size(52, 19);
+            this.labelStatus.TabIndex = 10;
+            this.labelStatus.Text = "Status";
             // 
             // comboBoxStatus
             // 
-            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxStatus.Location = new Point(195, 296);
-            comboBoxStatus.Name = "comboBoxStatus";
-            comboBoxStatus.Size = new Size(200, 23);
-            comboBoxStatus.TabIndex = 11;
+            this.comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.Location = new Point(195, 296);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new Size(200, 27);
+            this.comboBoxStatus.TabIndex = 11;
             // 
             // labelResolution
             // 
-            labelResolution.AutoSize = true;
-            labelResolution.Location = new Point(92, 352);
-            labelResolution.Name = "labelResolution";
-            labelResolution.Size = new Size(63, 15);
-            labelResolution.TabIndex = 12;
-            labelResolution.Text = "Resolution";
+            this.labelResolution.AutoSize = true;
+            this.labelResolution.Location = new Point(92, 352);
+            this.labelResolution.Name = "labelResolution";
+            this.labelResolution.Size = new Size(83, 19);
+            this.labelResolution.TabIndex = 12;
+            this.labelResolution.Text = "Resolution";
             // 
             // textBoxResolution
             // 
-            textBoxResolution.Location = new Point(195, 352);
-            textBoxResolution.Multiline = true;
-            textBoxResolution.Name = "textBoxResolution";
-            textBoxResolution.Size = new Size(415, 80);
-            textBoxResolution.TabIndex = 13;
+            this.textBoxResolution.Location = new Point(195, 352);
+            this.textBoxResolution.Multiline = true;
+            this.textBoxResolution.Name = "textBoxResolution";
+            this.textBoxResolution.Size = new Size(415, 80);
+            this.textBoxResolution.TabIndex = 13;
             // 
             // labelCaseType
             // 
-            labelCaseType.AutoSize = true;
-            labelCaseType.Location = new Point(95, 450);
-            labelCaseType.Name = "labelCaseType";
-            labelCaseType.Size = new Size(60, 15);
-            labelCaseType.TabIndex = 14;
-            labelCaseType.Text = "Case Type";
+            this.labelCaseType.AutoSize = true;
+            this.labelCaseType.Location = new Point(95, 450);
+            this.labelCaseType.Name = "labelCaseType";
+            this.labelCaseType.Size = new Size(79, 19);
+            this.labelCaseType.TabIndex = 14;
+            this.labelCaseType.Text = "Case Type";
             // 
             // comboBoxCaseType
             // 
-            comboBoxCaseType.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxCaseType.Location = new Point(195, 447);
-            comboBoxCaseType.Name = "comboBoxCaseType";
-            comboBoxCaseType.Size = new Size(200, 23);
-            comboBoxCaseType.TabIndex = 15;
+            this.comboBoxCaseType.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxCaseType.Location = new Point(195, 447);
+            this.comboBoxCaseType.Name = "comboBoxCaseType";
+            this.comboBoxCaseType.Size = new Size(200, 27);
+            this.comboBoxCaseType.TabIndex = 15;
             // 
             // labelAssignedStaff
             // 
-            labelAssignedStaff.AutoSize = true;
-            labelAssignedStaff.Location = new Point(73, 525);
-            labelAssignedStaff.Name = "labelAssignedStaff";
-            labelAssignedStaff.Size = new Size(82, 15);
-            labelAssignedStaff.TabIndex = 16;
-            labelAssignedStaff.Text = "Assigned Staff";
+            this.labelAssignedStaff.AutoSize = true;
+            this.labelAssignedStaff.Location = new Point(73, 525);
+            this.labelAssignedStaff.Name = "labelAssignedStaff";
+            this.labelAssignedStaff.Size = new Size(110, 19);
+            this.labelAssignedStaff.TabIndex = 16;
+            this.labelAssignedStaff.Text = "Assigned Staff";
             // 
             // comboBoxAssignedStaff
             // 
-            comboBoxAssignedStaff.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxAssignedStaff.Location = new Point(195, 522);
-            comboBoxAssignedStaff.Name = "comboBoxAssignedStaff";
-            comboBoxAssignedStaff.Size = new Size(200, 23);
-            comboBoxAssignedStaff.TabIndex = 17;
+            this.comboBoxAssignedStaff.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxAssignedStaff.Location = new Point(195, 522);
+            this.comboBoxAssignedStaff.Name = "comboBoxAssignedStaff";
+            this.comboBoxAssignedStaff.Size = new Size(200, 27);
+            this.comboBoxAssignedStaff.TabIndex = 17;
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(452, 569);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(90, 30);
-            buttonSave.TabIndex = 18;
-            buttonSave.Text = "Save";
-            buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Location = new Point(452, 569);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new Size(90, 30);
+            this.buttonSave.TabIndex = 18;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(592, 569);
-            buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(90, 30);
-            buttonCancel.TabIndex = 19;
-            buttonCancel.Text = "Cancel";
-            buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Location = new Point(592, 569);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new Size(90, 30);
+            this.buttonCancel.TabIndex = 19;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // maskedTextBoxCaseID
             // 
-            maskedTextBoxCaseID.Location = new Point(195, 15);
-            maskedTextBoxCaseID.Mask = "CASE000";
-            maskedTextBoxCaseID.Name = "maskedTextBoxCaseID";
-            maskedTextBoxCaseID.Size = new Size(200, 23);
-            maskedTextBoxCaseID.TabIndex = 1;
-            maskedTextBoxCaseID.Text = "CA";
-            maskedTextBoxCaseID.TextMaskFormat = MaskFormat.IncludePrompt;
+            this.maskedTextBoxCaseID.Location = new Point(195, 15);
+            this.maskedTextBoxCaseID.Mask = "\\C\\ASE000";
+            this.maskedTextBoxCaseID.Name = "maskedTextBoxCaseID";
+            this.maskedTextBoxCaseID.Size = new Size(200, 27);
+            this.maskedTextBoxCaseID.TabIndex = 20;
             // 
             // ServiceCaseDetailForm
             // 
-            ClientSize = new Size(713, 627);
-            Controls.Add(maskedTextBoxCaseID);
-            Controls.Add(labelCaseID);
-            Controls.Add(labelCustomer);
-            Controls.Add(comboBoxCustomer);
-            Controls.Add(labelOrder);
-            Controls.Add(comboBoxOrder);
-            Controls.Add(labelCaseDate);
-            Controls.Add(dateTimePickerCaseDate);
-            Controls.Add(labelDescription);
-            Controls.Add(textBoxDescription);
-            Controls.Add(labelStatus);
-            Controls.Add(comboBoxStatus);
-            Controls.Add(labelResolution);
-            Controls.Add(textBoxResolution);
-            Controls.Add(labelCaseType);
-            Controls.Add(comboBoxCaseType);
-            Controls.Add(labelAssignedStaff);
-            Controls.Add(comboBoxAssignedStaff);
-            Controls.Add(buttonSave);
-            Controls.Add(buttonCancel);
-            Name = "ServiceCaseDetailForm";
-            Text = "Customer Service Case Detail";
-            Load += ServiceCaseDetailForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.ClientSize = new Size(713, 627);
+            this.Controls.Add(this.maskedTextBoxCaseID);
+            this.Controls.Add(this.labelCaseID);
+            this.Controls.Add(this.labelCustomer);
+            this.Controls.Add(this.comboBoxCustomer);
+            this.Controls.Add(this.labelOrder);
+            this.Controls.Add(this.comboBoxOrder);
+            this.Controls.Add(this.labelCaseDate);
+            this.Controls.Add(this.dateTimePickerCaseDate);
+            this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.textBoxDescription);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.comboBoxStatus);
+            this.Controls.Add(this.labelResolution);
+            this.Controls.Add(this.textBoxResolution);
+            this.Controls.Add(this.labelCaseType);
+            this.Controls.Add(this.comboBoxCaseType);
+            this.Controls.Add(this.labelAssignedStaff);
+            this.Controls.Add(this.comboBoxAssignedStaff);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonCancel);
+            this.Name = "ServiceCaseDetailForm";
+            this.Text = "Customer Service Case Detail";
+            this.Load += this.ServiceCaseDetailForm_Load;
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Label labelCaseID;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxCaseID;
         private System.Windows.Forms.Label labelCustomer;
         private System.Windows.Forms.ComboBox comboBoxCustomer;
         private System.Windows.Forms.Label labelOrder;
@@ -264,5 +261,6 @@
         private System.Windows.Forms.ComboBox comboBoxAssignedStaff;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        private MaskedTextBox maskedTextBoxCaseID;
     }
 }

@@ -13,197 +13,200 @@
 
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox1 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
-            label7 = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            maskedTextBox1 = new MaskedTextBox();
-            SuspendLayout();
+            this.label1 = new Label();
+            this.label2 = new Label();
+            this.label3 = new Label();
+            this.label4 = new Label();
+            this.label5 = new Label();
+            this.label6 = new Label();
+            this.textBox2 = new TextBox();
+            this.textBox3 = new TextBox();
+            this.textBox4 = new TextBox();
+            this.dateTimePicker1 = new DateTimePicker();
+            this.comboBox1 = new ComboBox();
+            this.button1 = new Button();
+            this.button2 = new Button();
+            this.label7 = new Label();
+            this.dateTimePicker2 = new DateTimePicker();
+            this.maskedTextBox1 = new MaskedTextBox();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(60, 38);
-            label1.Margin = new Padding(5, 0, 5, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(111, 23);
-            label1.TabIndex = 0;
-            label1.Text = "ShipmentID";
+            this.label1.AutoSize = true;
+            this.label1.Location = new Point(49, 31);
+            this.label1.Margin = new Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(91, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ShipmentID";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(9, 89);
-            label2.Margin = new Padding(5, 0, 5, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(162, 23);
-            label2.TabIndex = 1;
-            label2.Text = "CustomerOrderID";
+            this.label2.AutoSize = true;
+            this.label2.Location = new Point(7, 74);
+            this.label2.Margin = new Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new Size(134, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "CustomerOrderID";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(103, 135);
-            label3.Margin = new Padding(5, 0, 5, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(68, 23);
-            label3.TabIndex = 2;
-            label3.Text = "Carrier";
+            this.label3.AutoSize = true;
+            this.label3.Location = new Point(84, 112);
+            this.label3.Margin = new Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new Size(57, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Carrier";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(17, 187);
-            label4.Margin = new Padding(5, 0, 5, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(154, 23);
-            label4.TabIndex = 3;
-            label4.Text = "TrackingNumber";
+            this.label4.AutoSize = true;
+            this.label4.Location = new Point(14, 154);
+            this.label4.Margin = new Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new Size(127, 19);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "TrackingNumber";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(38, 239);
-            label5.Margin = new Padding(5, 0, 5, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(133, 23);
-            label5.TabIndex = 4;
-            label5.Text = "ShipmentDate";
+            this.label5.AutoSize = true;
+            this.label5.Location = new Point(31, 197);
+            this.label5.Margin = new Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new Size(108, 19);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "ShipmentDate";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(103, 290);
-            label6.Margin = new Padding(5, 0, 5, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(63, 23);
-            label6.TabIndex = 5;
-            label6.Text = "Status";
+            this.label6.AutoSize = true;
+            this.label6.Location = new Point(84, 240);
+            this.label6.Margin = new Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new Size(52, 19);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Status";
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(203, 86);
-            textBox2.Margin = new Padding(5);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(392, 30);
-            textBox2.TabIndex = 7;
+            this.textBox2.Location = new Point(166, 71);
+            this.textBox2.Margin = new Padding(4, 4, 4, 4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new Size(321, 27);
+            this.textBox2.TabIndex = 7;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(203, 135);
-            textBox3.Margin = new Padding(5);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(392, 30);
-            textBox3.TabIndex = 8;
+            this.textBox3.Location = new Point(166, 112);
+            this.textBox3.Margin = new Padding(4, 4, 4, 4);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new Size(321, 27);
+            this.textBox3.TabIndex = 8;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(203, 184);
-            textBox4.Margin = new Padding(5);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(392, 30);
-            textBox4.TabIndex = 9;
+            this.textBox4.Location = new Point(166, 152);
+            this.textBox4.Margin = new Padding(4, 4, 4, 4);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new Size(321, 27);
+            this.textBox4.TabIndex = 9;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(203, 233);
-            dateTimePicker1.Margin = new Padding(5);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(392, 30);
-            dateTimePicker1.TabIndex = 10;
+            this.dateTimePicker1.Location = new Point(166, 192);
+            this.dateTimePicker1.Margin = new Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new Size(321, 27);
+            this.dateTimePicker1.TabIndex = 10;
             // 
             // comboBox1
             // 
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Items.AddRange(new object[] { "Preparing", "In Transit", "Delivered" });
-            comboBox1.Location = new Point(203, 282);
-            comboBox1.Margin = new Padding(5);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(392, 31);
-            comboBox1.TabIndex = 11;
+            this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBox1.Items.AddRange(new object[] { "Preparing", "In Transit", "Delivered" });
+            this.comboBox1.Location = new Point(166, 233);
+            this.comboBox1.Margin = new Padding(4, 4, 4, 4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new Size(321, 27);
+            this.comboBox1.TabIndex = 11;
             // 
             // button1
             // 
-            button1.Location = new Point(538, 430);
-            button1.Margin = new Padding(5);
-            button1.Name = "button1";
-            button1.Size = new Size(118, 35);
-            button1.TabIndex = 12;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            this.button1.Location = new Point(440, 355);
+            this.button1.Margin = new Padding(4, 4, 4, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new Size(97, 29);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(695, 430);
-            button2.Margin = new Padding(5);
-            button2.Name = "button2";
-            button2.Size = new Size(118, 35);
-            button2.TabIndex = 13;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Location = new Point(569, 355);
+            this.button2.Margin = new Padding(4, 4, 4, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new Size(97, 29);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(73, 349);
-            label7.Name = "label7";
-            label7.Size = new Size(93, 23);
-            label7.TabIndex = 14;
-            label7.Text = "IssueDate";
+            this.label7.AutoSize = true;
+            this.label7.Location = new Point(60, 288);
+            this.label7.Margin = new Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new Size(76, 19);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "IssueDate";
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.Location = new Point(203, 343);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(392, 30);
-            dateTimePicker2.TabIndex = 15;
+            this.dateTimePicker2.Location = new Point(166, 283);
+            this.dateTimePicker2.Margin = new Padding(2, 2, 2, 2);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new Size(321, 27);
+            this.dateTimePicker2.TabIndex = 15;
             // 
             // maskedTextBox1
             // 
-            maskedTextBox1.Location = new Point(203, 31);
-            maskedTextBox1.Mask = "0";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(392, 30);
-            maskedTextBox1.TabIndex = 16;
+            this.maskedTextBox1.Location = new Point(166, 26);
+            this.maskedTextBox1.Margin = new Padding(2, 2, 2, 2);
+            this.maskedTextBox1.Mask = "SHIP000";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new Size(321, 27);
+            this.maskedTextBox1.TabIndex = 16;
             // 
             // ShipmentDetailForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(827, 498);
-            Controls.Add(maskedTextBox1);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(label7);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(comboBox1);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Margin = new Padding(5);
-            Name = "ShipmentDetailForm";
-            Text = "ShipmentDetailForm";
-            Load += ShipmentDetailForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(677, 411);
+            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Margin = new Padding(4, 4, 4, 4);
+            this.Name = "ShipmentDetailForm";
+            this.Text = "ShipmentDetailForm";
+            this.Load += this.ShipmentDetailForm_Load;
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         private Label label1;
