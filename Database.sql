@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 05, 2025 at 12:27 PM
+-- Generation Time: Jun 06, 2025 at 05:31 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -221,16 +221,18 @@ CREATE TABLE `ProductDesignRequest` (
   `Status` varchar(50) NOT NULL,
   `ConsultantFee` decimal(12,2) DEFAULT NULL,
   `ApprovalDate` date DEFAULT NULL,
-  `UserID` varchar(50) NOT NULL
+  `UserID` varchar(50) NOT NULL,
+  `ApprovedBy` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `ProductDesignRequest`
 --
 
-INSERT INTO `ProductDesignRequest` (`DesignRequestID`, `CustomerID`, `RequestDate`, `Specifications`, `Status`, `ConsultantFee`, `ApprovalDate`, `UserID`) VALUES
-('DR001', 'CUST001', '2025-05-20', 'Custom pink doll', 'Approved', 20.00, '2025-05-25', 'U001'),
-('DR002', 'CUST002', '2025-05-21', 'Racing car model', 'Pending', 15.00, NULL, 'U002');
+INSERT INTO `ProductDesignRequest` (`DesignRequestID`, `CustomerID`, `RequestDate`, `Specifications`, `Status`, `ConsultantFee`, `ApprovalDate`, `UserID`, `ApprovedBy`) VALUES
+('DR001', 'CUST001', '2025-05-20', 'Custom pink doll', 'Approved', 20.00, '2025-05-25', 'U001', NULL),
+('DR002', 'CUST002', '2025-05-21', 'Racing car model', 'Pending', 15.00, NULL, 'U002', NULL),
+('DR003', 'CUST001', '2025-06-06', 'Toy robot with lights', 'Approved', 25.00, '2025-06-07', 'U002', 'U003');
 
 -- --------------------------------------------------------
 
@@ -469,7 +471,8 @@ CREATE TABLE `User` (
 
 INSERT INTO `User` (`UserID`, `Username`, `PasswordHash`, `Name`, `PositionTitle`, `Role`, `ManagerID`, `IsActive`, `CreatedAt`, `TeamID`) VALUES
 ('U001', 'admin', '$2a$12$8jqjTs8hn7w.DbLvS2YaEejHzXSYc3/sTBF.Cko4Xl91YHzm9RIeu', 'Admin User', 'Administrator', 'Admin', NULL, 1, '2025-06-05 18:26:08', 'T001'),
-('U002', 'john_doe', '$2a$12$Oc9EMFn2/87aTRsLU6DImumri57fmGTQvvzYDn/R0vGZMF6T4MU9G', 'John Doe', 'Production Manager', 'Manager', 'U001', 1, '2025-06-05 18:26:08', 'T002');
+('U002', 'john_doe', '$2a$12$Oc9EMFn2/87aTRsLU6DImumri57fmGTQvvzYDn/R0vGZMF6T4MU9G', 'John Doe', 'Production Manager', 'Manager', 'U001', 1, '2025-06-05 18:26:08', 'T002'),
+('U003', 'rd_manager', '<hashed_pw>', 'Rachel Wong', 'R&D Manager', 'Manager', 'U001', 1, '2025-06-06 11:30:02', 'T003');
 
 -- --------------------------------------------------------
 
@@ -509,7 +512,8 @@ CREATE TABLE `WorkerTeam` (
 
 INSERT INTO `WorkerTeam` (`TeamID`, `TeamName`, `LeaderID`) VALUES
 ('T001', 'Admin Team', 'U001'),
-('T002', 'Production Team', 'U002');
+('T002', 'Production Team', 'U002'),
+('T003', 'R&D Team', 'U003');
 
 --
 -- Indexes for dumped tables
