@@ -38,38 +38,33 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(19, 29);
-            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Location = new Point(12, 19);
             label1.Name = "label1";
-            label1.Size = new Size(217, 23);
+            label1.Size = new Size(545, 18);
             label1.TabIndex = 8;
-            label1.Text = "Input order ID to search:";
+            label1.Text = "Input (Customer Order ID) / (Customer Name) / (Quotation ID) / (Status) / (Payment Status) to search:\r\n";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(19, 77);
-            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Location = new Point(12, 50);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(279, 30);
+            textBox1.Size = new Size(179, 23);
             textBox1.TabIndex = 9;
             // 
             // button3
             // 
-            button3.Location = new Point(492, 77);
-            button3.Margin = new Padding(5, 5, 5, 5);
+            button3.Location = new Point(562, 50);
             button3.Name = "button3";
-            button3.Size = new Size(190, 35);
+            button3.Size = new Size(121, 23);
             button3.TabIndex = 12;
             button3.Text = "Add Order";
             button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(740, 77);
-            button2.Margin = new Padding(5, 5, 5, 5);
+            button2.Location = new Point(699, 50);
             button2.Name = "button2";
-            button2.Size = new Size(190, 35);
+            button2.Size = new Size(121, 23);
             button2.TabIndex = 13;
             button2.Text = "Edit Selected";
             button2.UseVisualStyleBackColor = true;
@@ -77,25 +72,23 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(11, 146);
-            dataGridView1.Margin = new Padding(5, 5, 5, 5);
+            dataGridView1.Location = new Point(7, 95);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1914, 655);
+            dataGridView1.Size = new Size(1218, 427);
             dataGridView1.TabIndex = 14;
             // 
             // OrderForm
             // 
-            AutoScaleDimensions = new SizeF(11F, 23F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1924, 819);
+            ClientSize = new Size(1224, 534);
             Controls.Add(dataGridView1);
             Controls.Add(button2);
             Controls.Add(button3);
             Controls.Add(textBox1);
             Controls.Add(label1);
-            Margin = new Padding(5, 5, 5, 5);
             Name = "OrderForm";
             Text = "OrderForm";
             Load += OrderForm_Load;

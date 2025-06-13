@@ -21,23 +21,27 @@ namespace Client
             string filter = textBox1.Text.Trim();
             MySqlCommand cmd;
 
+            string baseQuery = @"
+        SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
+        FROM PurchaseOrder";
+
             if (string.IsNullOrEmpty(filter))
             {
-                cmd = new MySqlCommand(
-                    @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
-              FROM PurchaseOrder",
-                    Program.Connection
-                );
+                cmd = new MySqlCommand(baseQuery, Program.Connection);
             }
             else
             {
-                cmd = new MySqlCommand(
-                    @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
-              FROM PurchaseOrder 
-              WHERE PurchaseOrderID LIKE @f OR SupplierID LIKE @f",
-                    Program.Connection
-                );
-                cmd.Parameters.AddWithValue("@f", "%" + filter + "%");
+                // Filter across all columns, including date fields as string
+                baseQuery += @"
+            WHERE PurchaseOrderID LIKE @f
+               OR SupplierID LIKE @f
+               OR CAST(OrderDate AS CHAR) LIKE @f
+               OR CAST(ExpectedDeliveryDate AS CHAR) LIKE @f
+               OR Status LIKE @f
+               OR POStatus LIKE @f";
+
+                cmd = new MySqlCommand(baseQuery, Program.Connection);
+                cmd.Parameters.AddWithValue("@f", $"%{filter}%");
             }
 
             var adapter = new MySqlDataAdapter(cmd);
@@ -47,13 +51,18 @@ namespace Client
             {
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
+
+                // Format date columns to match DB format (yyyy-MM-dd)
+                if (dataGridView1.Columns.Contains("OrderDate"))
+                    dataGridView1.Columns["OrderDate"].DefaultCellStyle.Format = "yyyy-MM-dd";
+                if (dataGridView1.Columns.Contains("ExpectedDeliveryDate"))
+                    dataGridView1.Columns["ExpectedDeliveryDate"].DefaultCellStyle.Format = "yyyy-MM-dd";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading purchase orders: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {

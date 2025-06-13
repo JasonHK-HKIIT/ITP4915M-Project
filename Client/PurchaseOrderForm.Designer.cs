@@ -31,9 +31,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 19);
             label1.Name = "label1";
-            label1.Size = new Size(185, 15);
+            label1.Size = new Size(231, 15);
             label1.TabIndex = 0;
-            label1.Text = "Input purchase order ID to search:";
+            label1.Text = "Filter purchase order by any column value:\r\n";
             // 
             // textBox1
             // 

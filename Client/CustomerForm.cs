@@ -11,37 +11,34 @@ namespace Client
         {
             InitializeComponent();
 
-            button1.Click += ButtonAdd_Click;    // Add Customer
-            button2.Click += ButtonEdit_Click;   // Edit Customer
-            button3.Click += ButtonDelete_Click; // Delete Customer
-            textBox1.KeyUp += textBox1_KeyUp;    // Search by phone
+            button1.Click += ButtonAdd_Click;
+            button2.Click += ButtonEdit_Click;
+            button3.Click += ButtonDelete_Click;
+            textBox1.KeyUp += TextBoxSearch_KeyUp;
 
             LoadData();
         }
 
-        // Load customers (filtered by phone if entered)
+        // Load customers based on search input
         private void LoadData()
         {
             string query = textBox1.Text.Trim();
-            MySqlCommand command;
+            string sql = @"
+                SELECT CustomerID, CustomerName AS Name, CustomerPhoneNo AS Phone, Address 
+                FROM Customer";
 
-            if (string.IsNullOrEmpty(query))
+            if (!string.IsNullOrEmpty(query))
             {
-                command = new MySqlCommand(
-                    "SELECT CustomerID, CustomerName AS Name, CustomerPhoneNo AS Phone, Address FROM Customer",
-                    Program.Connection
-                );
-            }
-            else
-            {
-                command = new MySqlCommand(
-                    "SELECT CustomerID, CustomerName AS Name, CustomerPhoneNo AS Phone, Address FROM Customer WHERE CustomerPhoneNo LIKE @phone",
-                    Program.Connection
-                );
-                command.Parameters.AddWithValue("@phone", "%" + query + "%");
+                sql += " WHERE CustomerID LIKE @q OR CustomerName LIKE @q OR CustomerPhoneNo LIKE @q";
             }
 
-            var adapter = new MySqlDataAdapter(command);
+            using var command = new MySqlCommand(sql, Program.Connection);
+            if (!string.IsNullOrEmpty(query))
+            {
+                command.Parameters.AddWithValue("@q", $"%{query}%");
+            }
+
+            using var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
             try
             {
@@ -54,9 +51,7 @@ namespace Client
             }
         }
 
-
-        // Search on Enter key
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        private void TextBoxSearch_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -64,39 +59,30 @@ namespace Client
             }
         }
 
-        // Add new customer
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            using (var detail = new CustomerDetailForm())
-            {
-                detail.Text = "Add Customer";
-                if (detail.ShowDialog() == DialogResult.OK)
-                {
-                    using (var command = new MySqlCommand(
-                        "INSERT INTO Customer (CustomerID, CustomerName, CustomerPhoneNo, Address) VALUES (@id, @name, @phone, @address)",
-                        Program.Connection))
-                    {
-                        command.Parameters.AddWithValue("@id", detail.CustomerID);
-                        command.Parameters.AddWithValue("@name", detail.CustomerName);
-                        command.Parameters.AddWithValue("@phone", detail.CustomerPhone);
-                        command.Parameters.AddWithValue("@address", detail.CustomerAddress);
+            using var detail = new CustomerDetailForm { Text = "Add Customer" };
+            if (detail.ShowDialog() != DialogResult.OK) return;
 
-                        try
-                        {
-                            command.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error adding customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
-                    LoadData();
-                }
+            using var command = new MySqlCommand(
+                "INSERT INTO Customer (CustomerID, CustomerName, CustomerPhoneNo, Address) VALUES (@id, @name, @phone, @address)",
+                Program.Connection);
+            command.Parameters.AddWithValue("@id", detail.CustomerID);
+            command.Parameters.AddWithValue("@name", detail.CustomerName);
+            command.Parameters.AddWithValue("@phone", detail.CustomerPhone);
+            command.Parameters.AddWithValue("@address", detail.CustomerAddress);
+
+            try
+            {
+                command.ExecuteNonQuery();
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Edit existing customer
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -105,44 +91,37 @@ namespace Client
                 return;
             }
 
-            string originalId = dataGridView1.SelectedRows[0].Cells["CustomerID"].Value.ToString();
-            string name = dataGridView1.SelectedRows[0].Cells["Name"].Value.ToString();
-            string phone = dataGridView1.SelectedRows[0].Cells["Phone"].Value.ToString();
-            string address = dataGridView1.SelectedRows[0].Cells["Address"].Value.ToString();
+            var row = dataGridView1.SelectedRows[0];
+            string originalId = row.Cells["CustomerID"].Value.ToString();
+            string name = row.Cells["Name"].Value.ToString();
+            string phone = row.Cells["Phone"].Value.ToString();
+            string address = row.Cells["Address"].Value.ToString();
 
-            using (var detail = new CustomerDetailForm())
+            using var detail = new CustomerDetailForm { Text = "Edit Customer" };
+            detail.SetFields(originalId, name, phone, address);
+
+            if (detail.ShowDialog() != DialogResult.OK) return;
+
+            using var command = new MySqlCommand(
+                "UPDATE Customer SET CustomerID=@id, CustomerName=@name, CustomerPhoneNo=@phone, Address=@address WHERE CustomerID=@originalId",
+                Program.Connection);
+            command.Parameters.AddWithValue("@id", detail.CustomerID);
+            command.Parameters.AddWithValue("@name", detail.CustomerName);
+            command.Parameters.AddWithValue("@phone", detail.CustomerPhone);
+            command.Parameters.AddWithValue("@address", detail.CustomerAddress);
+            command.Parameters.AddWithValue("@originalId", originalId);
+
+            try
             {
-                detail.Text = "Edit Customer";
-                detail.SetFields(originalId, name, phone, address);
-
-                if (detail.ShowDialog() == DialogResult.OK)
-                {
-                    using (var command = new MySqlCommand(
-                        "UPDATE Customer SET CustomerID=@id, CustomerName=@name, CustomerPhoneNo=@phone, Address=@address WHERE CustomerID=@originalId",
-                        Program.Connection))
-                    {
-                        command.Parameters.AddWithValue("@id", detail.CustomerID);
-                        command.Parameters.AddWithValue("@name", detail.CustomerName);
-                        command.Parameters.AddWithValue("@phone", detail.CustomerPhone);
-                        command.Parameters.AddWithValue("@address", detail.CustomerAddress);
-                        command.Parameters.AddWithValue("@originalId", originalId);
-
-                        try
-                        {
-                            command.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error updating customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
-                    LoadData();
-                }
+                command.ExecuteNonQuery();
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        // Delete customer
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -155,27 +134,19 @@ namespace Client
             var confirm = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes) return;
 
-            using (var command = new MySqlCommand(
-                "DELETE FROM Customer WHERE CustomerID=@id", Program.Connection))
+            using var command = new MySqlCommand("DELETE FROM Customer WHERE CustomerID=@id", Program.Connection);
+            command.Parameters.AddWithValue("@id", customerId);
+
+            try
             {
-                command.Parameters.AddWithValue("@id", customerId);
-
-                try
-                {
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error deleting customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                command.ExecuteNonQuery();
+                LoadData();
             }
-            LoadData();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error deleting customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void CustomerForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

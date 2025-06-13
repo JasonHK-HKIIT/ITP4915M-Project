@@ -11,40 +11,57 @@ namespace Client
         {
             InitializeComponent();
 
+            // Wire up button click events
             button3.Click += ButtonAdd_Click;    // Add Order
             button2.Click += ButtonEdit_Click;   // Edit Order
-            textBox1.KeyUp += textBox1_KeyUp;    // Search (OrderID or Customer Name)
+            textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter key
 
-            LoadData();
+            LoadData(); // Initial load
         }
 
-        // Load orders, optionally filtered by ID or Customer name
+        /// <summary>
+        /// Load customer orders from the database.
+        /// Supports search by OrderID, CustomerName, QuotationID, Status, or PaymentStatus.
+        /// </summary>
         private void LoadData()
         {
             string query = textBox1.Text.Trim();
             MySqlCommand command;
 
+            // Base SQL query with JOIN to include CustomerName
+            string baseQuery = @"
+                SELECT 
+                    o.CustomerOrderID, 
+                    c.CustomerName, 
+                    o.QuotationID, 
+                    o.OrderDate, 
+                    o.Deadline, 
+                    o.Status, 
+                    o.DepositPaid, 
+                    o.BalanceDue, 
+                    o.TotalAmount, 
+                    o.PaymentStatus, 
+                    o.OrderType
+                FROM CustomerOrder o
+                LEFT JOIN Customer c ON o.CustomerID = c.CustomerID";
+
+            // If search term exists, filter by multiple fields
             if (string.IsNullOrEmpty(query))
             {
-                command = new MySqlCommand(
-                    @"SELECT o.CustomerOrderID, c.CustomerName, o.QuotationID, o.OrderDate, o.Deadline, 
-                     o.Status, o.DepositPaid, o.BalanceDue, o.TotalAmount, o.PaymentStatus, o.OrderType
-              FROM CustomerOrder o
-              LEFT JOIN Customer c ON o.CustomerID = c.CustomerID",
-                    Program.Connection
-                );
+                command = new MySqlCommand(baseQuery, Program.Connection);
             }
             else
             {
-                command = new MySqlCommand(
-                    @"SELECT o.CustomerOrderID, c.CustomerName, o.QuotationID, o.OrderDate, o.Deadline, 
-                     o.Status, o.DepositPaid, o.BalanceDue, o.TotalAmount, o.PaymentStatus, o.OrderType
-              FROM CustomerOrder o
-              LEFT JOIN Customer c ON o.CustomerID = c.CustomerID
-              WHERE o.CustomerOrderID LIKE @q OR c.CustomerName LIKE @q",
-                    Program.Connection
-                );
-                command.Parameters.AddWithValue("@q", "%" + query + "%");
+                baseQuery += @"
+                    WHERE 
+                        o.CustomerOrderID LIKE @q OR 
+                        c.CustomerName LIKE @q OR 
+                        o.QuotationID LIKE @q OR 
+                        o.Status LIKE @q OR 
+                        o.PaymentStatus LIKE @q";
+
+                command = new MySqlCommand(baseQuery, Program.Connection);
+                command.Parameters.AddWithValue("@q", $"%{query}%");
             }
 
             var adapter = new MySqlDataAdapter(command);
@@ -61,8 +78,9 @@ namespace Client
             }
         }
 
-
-        // Search on Enter key
+        /// <summary>
+        /// Trigger search when Enter is pressed in search box.
+        /// </summary>
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -71,7 +89,10 @@ namespace Client
             }
         }
 
-        // Add new order
+        /// <summary>
+        /// Handle adding a new customer order.
+        /// Opens the OrderDetailForm and inserts into the database on success.
+        /// </summary>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             using (var detail = new OrderDetailForm())
@@ -79,13 +100,15 @@ namespace Client
                 detail.Text = "Add Order";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    // Prepare insert command
                     using (var command = new MySqlCommand(
                         @"INSERT INTO CustomerOrder 
-                            (CustomerOrderID, CustomerID, QuotationID, OrderDate, Deadline, Status, DepositPaid, BalanceDue, TotalAmount, PaymentStatus, OrderType)
+                          (CustomerOrderID, CustomerID, QuotationID, OrderDate, Deadline, Status, DepositPaid, BalanceDue, TotalAmount, PaymentStatus, OrderType)
                           VALUES
-                            (@id, @customerId, @quotationId, @orderDate, @deadline, @status, @deposit, @balance, @total, @paymentStatus, @orderType)",
+                          (@id, @customerId, @quotationId, @orderDate, @deadline, @status, @deposit, @balance, @total, @paymentStatus, @orderType)",
                         Program.Connection))
                     {
+                        // Bind form data to SQL parameters
                         command.Parameters.AddWithValue("@id", detail.OrderID);
                         command.Parameters.AddWithValue("@customerId", detail.CustomerID);
                         command.Parameters.AddWithValue("@quotationId", detail.QuotationID);
@@ -113,7 +136,10 @@ namespace Client
             }
         }
 
-        // Edit existing order
+        /// <summary>
+        /// Handle editing an existing customer order.
+        /// Pre-fills OrderDetailForm with selected row data and updates database if confirmed.
+        /// </summary>
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -124,7 +150,7 @@ namespace Client
 
             var row = dataGridView1.SelectedRows[0];
 
-            // Map row fields to the detail form
+            // Extract data from selected row
             string orderId = row.Cells["CustomerOrderID"].Value.ToString();
             string customerName = row.Cells["CustomerName"].Value.ToString();
             string quotationId = row.Cells["QuotationID"].Value.ToString();
@@ -159,6 +185,7 @@ namespace Client
                           WHERE CustomerOrderID=@id",
                         Program.Connection))
                     {
+                        // Bind form values to update
                         command.Parameters.AddWithValue("@id", orderId);
                         command.Parameters.AddWithValue("@customerId", detail.CustomerID);
                         command.Parameters.AddWithValue("@quotationId", detail.QuotationID);
@@ -188,7 +215,7 @@ namespace Client
 
         private void OrderForm_Load(object sender, EventArgs e)
         {
-
+            // Optional: logic when form loads (already covered by constructor)
         }
     }
 }

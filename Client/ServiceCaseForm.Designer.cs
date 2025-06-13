@@ -30,12 +30,11 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
             label1.Location = new Point(12, 19);
             label1.Name = "label1";
-            label1.Size = new Size(129, 15);
+            label1.Size = new Size(312, 16);
             label1.TabIndex = 0;
-            label1.Text = "Input case ID to search:";
+            label1.Text = "Input (Case ID) / (Customer Name) / (Order ID) to search:";
             // 
             // textBox1
             // 
@@ -46,7 +45,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(274, 47);
+            button1.Location = new Point(319, 47);
             button1.Name = "button1";
             button1.Size = new Size(121, 23);
             button1.TabIndex = 2;
@@ -65,7 +64,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(422, 47);
+            button2.Location = new Point(457, 48);
             button2.Name = "button2";
             button2.Size = new Size(121, 23);
             button2.TabIndex = 4;
@@ -74,7 +73,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(568, 47);
+            button3.Location = new Point(594, 48);
             button3.Name = "button3";
             button3.Size = new Size(121, 23);
             button3.TabIndex = 5;

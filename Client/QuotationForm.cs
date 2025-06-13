@@ -15,12 +15,34 @@ namespace Client
 
         private void LoadData()
         {
-            var query = SearchField.Text.Trim();
-            var command = new MySqlCommand(string.IsNullOrEmpty(query)
-                ? "SELECT QuotationID, CustomerName, QuotationDate, ProductName, Quantity, TotalAmount, Status, ValidityPeriod, DiscountAmount FROM Quotation LEFT JOIN Customer ON Quotation.CustomerID = Customer.CustomerID LEFT JOIN Product ON Quotation.ProductID = Product.ProductID"
-                : "SELECT QuotationID, CustomerName, QuotationDate, ProductName, Quantity, TotalAmount, Status, ValidityPeriod, DiscountAmount FROM Quotation LEFT JOIN Customer ON Quotation.CustomerID = Customer.CustomerID LEFT JOIN Product ON Quotation.ProductID = Product.ProductID QuotationID LIKE ?id", Program.Connection);
-            command.Parameters.AddWithValue("?id", $"%{query}%");
-            var adapter = new MySqlDataAdapter(command);
+            string query = SearchField.Text.Trim();
+            string sql = @"
+        SELECT 
+            QuotationID, 
+            CustomerName, 
+            QuotationDate, 
+            ProductName, 
+            Quantity, 
+            TotalAmount, 
+            Status, 
+            ValidityPeriod, 
+            DiscountAmount 
+        FROM Quotation 
+        LEFT JOIN Customer ON Quotation.CustomerID = Customer.CustomerID 
+        LEFT JOIN Product ON Quotation.ProductID = Product.ProductID";
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                sql += " WHERE QuotationID LIKE @q OR CustomerName LIKE @q";
+            }
+
+            using var command = new MySqlCommand(sql, Program.Connection);
+            if (!string.IsNullOrEmpty(query))
+            {
+                command.Parameters.AddWithValue("@q", $"%{query}%");
+            }
+
+            using var adapter = new MySqlDataAdapter(command);
             var dataTable = new System.Data.DataTable();
             try
             {
@@ -32,6 +54,7 @@ namespace Client
                 MessageBox.Show($"Error loading quotations: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void QuotationForm_Load(object sender, EventArgs e)
         {

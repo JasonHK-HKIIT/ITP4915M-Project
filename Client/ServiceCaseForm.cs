@@ -22,16 +22,20 @@ namespace Client
             string query = textBox1.Text.Trim();
             MySqlCommand command;
 
+            // Updated SQL to show all key fields and support searching CaseID, CustomerName, OrderID
             string baseQuery = @"SELECT 
-                csc.CaseID,
-                c.CustomerName AS Customer,
-                csc.CustomerOrderID AS `Order`,
-                csc.CaseType,
-                csc.Status,
-                u.Name AS AssignedTo
-                FROM CustomerServiceCase csc
-                LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
-                LEFT JOIN User u ON csc.AssignedStaffID = u.UserID";
+        csc.CaseID,
+        c.CustomerName AS Customer,
+        csc.CustomerOrderID AS `Order`,
+        csc.CaseDate,
+        csc.Description,
+        csc.Status,
+        csc.Resolution,
+        csc.CaseType,
+        u.Name AS AssignedTo
+    FROM CustomerServiceCase csc
+    LEFT JOIN Customer c ON csc.CustomerID = c.CustomerID
+    LEFT JOIN User u ON csc.AssignedStaffID = u.UserID";
 
             if (string.IsNullOrEmpty(query))
             {
@@ -39,8 +43,13 @@ namespace Client
             }
             else
             {
-                command = new MySqlCommand(baseQuery + " WHERE csc.CaseID LIKE @caseid", Program.Connection);
-                command.Parameters.AddWithValue("@caseid", "%" + query + "%");
+                // Only search by CaseID, CustomerName, or CustomerOrderID
+                baseQuery += @"
+            WHERE csc.CaseID LIKE @q 
+               OR c.CustomerName LIKE @q 
+               OR csc.CustomerOrderID LIKE @q";
+                command = new MySqlCommand(baseQuery, Program.Connection);
+                command.Parameters.AddWithValue("@q", $"%{query}%");
             }
 
             var adapter = new MySqlDataAdapter(command);

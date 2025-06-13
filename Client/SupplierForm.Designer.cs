@@ -53,9 +53,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 19);
             label1.Name = "label1";
-            label1.Size = new Size(171, 15);
+            label1.Size = new Size(199, 30);
             label1.TabIndex = 5;
-            label1.Text = "Input supplier phone to search:";
+            label1.Text = "Filter suppliers by any column value:\r\n\r\n";
             // 
             // textBox1
             // 
@@ -114,7 +114,6 @@
             Controls.Add(dataGridView1);
             Name = "SupplierForm";
             Text = "SupplierForm";
-            Load += SupplierForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

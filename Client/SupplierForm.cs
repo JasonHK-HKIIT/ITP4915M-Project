@@ -24,21 +24,29 @@ namespace Client
             string query = textBox1.Text.Trim();
             MySqlCommand command;
 
+            string baseSql = @"
+        SELECT SupplierID, SupplierName, ContactPerson, PhoneNumber, Email, Address, Country, Status, CreatedAt 
+        FROM Supplier";
+
             if (string.IsNullOrEmpty(query))
             {
-                command = new MySqlCommand(
-                    @"SELECT SupplierID, SupplierName, ContactPerson, PhoneNumber, Email, Address, Country, Status, CreatedAt 
-                      FROM Supplier",
-                    Program.Connection);
+                command = new MySqlCommand(baseSql, Program.Connection);
             }
             else
             {
-                command = new MySqlCommand(
-                    @"SELECT SupplierID, SupplierName, ContactPerson, PhoneNumber, Email, Address, Country, Status, CreatedAt 
-                      FROM Supplier
-                      WHERE SupplierID LIKE @q OR SupplierName LIKE @q OR ContactPerson LIKE @q OR PhoneNumber LIKE @q OR Country LIKE @q",
-                    Program.Connection);
-                command.Parameters.AddWithValue("@q", "%" + query + "%");
+                baseSql += @"
+            WHERE SupplierID LIKE @q
+               OR SupplierName LIKE @q
+               OR ContactPerson LIKE @q
+               OR PhoneNumber LIKE @q
+               OR Email LIKE @q
+               OR Address LIKE @q
+               OR Country LIKE @q
+               OR Status LIKE @q
+               OR CAST(CreatedAt AS CHAR) LIKE @q";
+
+                command = new MySqlCommand(baseSql, Program.Connection);
+                command.Parameters.AddWithValue("@q", $"%{query}%");
             }
 
             var adapter = new MySqlDataAdapter(command);
@@ -48,12 +56,18 @@ namespace Client
             {
                 adapter.Fill(dataTable);
                 dataGridView1.DataSource = dataTable;
+
+                // Format CreatedAt consistently with database (yyyy-MM-dd HH:mm)
+                if (dataGridView1.Columns.Contains("CreatedAt"))
+                    dataGridView1.Columns["CreatedAt"].DefaultCellStyle.Format = "yyyy-MM-dd HH:mm";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading suppliers: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         // Search on Enter key
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
@@ -229,11 +243,6 @@ namespace Client
                 }
             }
             LoadData();
-        }
-
-        private void SupplierForm_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
