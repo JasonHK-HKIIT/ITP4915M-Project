@@ -40,8 +40,8 @@
             this.SpecificationsField = new TextBox();
             this.DesignRequestField = new ComboBox();
             this.UnitPriceField = new NumericUpDown();
-            this.ProductIdField = new MaskedTextBox();
             this.label6 = new Label();
+            this.ProductIdField = new TextBox();
             ((System.ComponentModel.ISupportInitialize)this.UnitPriceField).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,14 +162,6 @@
             this.UnitPriceField.Size = new Size(95, 27);
             this.UnitPriceField.TabIndex = 18;
             // 
-            // ProductIdField
-            // 
-            this.ProductIdField.Location = new Point(191, 12);
-            this.ProductIdField.Mask = "PROD000";
-            this.ProductIdField.Name = "ProductIdField";
-            this.ProductIdField.Size = new Size(125, 27);
-            this.ProductIdField.TabIndex = 19;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -179,13 +171,21 @@
             this.label6.TabIndex = 20;
             this.label6.Text = "Product ID";
             // 
+            // ProductIdField
+            // 
+            this.ProductIdField.Location = new Point(191, 12);
+            this.ProductIdField.Name = "ProductIdField";
+            this.ProductIdField.ReadOnly = true;
+            this.ProductIdField.Size = new Size(125, 27);
+            this.ProductIdField.TabIndex = 21;
+            // 
             // ProductDetailForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(818, 396);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.ProductIdField);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.UnitPriceField);
             this.Controls.Add(this.DesignRequestField);
             this.Controls.Add(this.SpecificationsField);
@@ -225,7 +225,7 @@
         private TextBox SpecificationsField;
         private ComboBox DesignRequestField;
         private NumericUpDown UnitPriceField;
-        private MaskedTextBox ProductIdField;
         private Label label6;
+        private TextBox ProductIdField;
     }
 }

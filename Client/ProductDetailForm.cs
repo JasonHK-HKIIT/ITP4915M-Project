@@ -70,8 +70,12 @@ namespace Client
                 }
                 else
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT ProductID FROM Product ORDER BY ProductID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "PROD000";
+                    var nextId = int.Parse(lastIdString.Substring(4)) + 1;
+
                     var command = new MySqlCommand("INSERT INTO Product (ProductID, DesignRequestID, ProductName, ProductType, UnitPrice, ProductSpecifications) VALUES (?id, ?designRequest, ?name, ?type, ?price, ?specifications)", Program.Connection);
-                    command.Parameters.AddWithValue("?id", ProductIdField.Text);
+                    command.Parameters.AddWithValue("?id", $"PROD{nextId.ToString().PadLeft(3, '0')}");
                     command.Parameters.AddWithValue("?designRequest", DesignRequestField.SelectedValue);
                     command.Parameters.AddWithValue("?name", NameField.Text);
                     command.Parameters.AddWithValue("?type", TypeField.Text);
