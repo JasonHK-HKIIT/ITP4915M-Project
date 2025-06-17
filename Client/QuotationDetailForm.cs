@@ -90,8 +90,12 @@ namespace Client
                 }
                 else
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT QuotationID FROM Quotation ORDER BY QuotationID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "QUO000";
+                    var nextId = int.Parse(lastIdString.Substring(3)) + 1;
+
                     var command = new MySqlCommand("INSERT INTO Quotation (QuotationID, CustomerID, QuotationDate, ProductID, Quantity, Status, ValidityPeriod, TotalAmount) VALUES (?quotationID, ?customer, ?date, ?product, ?quantity, ?status, ?validity, ?totalAmount)", Program.Connection);
-                    command.Parameters.AddWithValue("?quotationID", QuotationIdField.Text);
+                    command.Parameters.AddWithValue("?quotationID", $"QUO{nextId.ToString().PadLeft(3, '0')}");
                     command.Parameters.AddWithValue("?customer", CustomerField.SelectedValue);
                     command.Parameters.AddWithValue("?date", QuotationDateField.Value);
                     command.Parameters.AddWithValue("?product", ProductField.SelectedValue);

@@ -529,30 +529,6 @@
   <data name="&gt;&gt;StatusField.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="QuotationIdField.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 12</value>
-  </data>
-  <data name="QuotationIdField.Mask" xml:space="preserve">
-    <value>QUO000</value>
-  </data>
-  <data name="QuotationIdField.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 27</value>
-  </data>
-  <data name="QuotationIdField.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;QuotationIdField.Name" xml:space="preserve">
-    <value>QuotationIdField</value>
-  </data>
-  <data name="&gt;&gt;QuotationIdField.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MaskedTextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;QuotationIdField.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;QuotationIdField.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -578,6 +554,27 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="QuotationIdField.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 12</value>
+  </data>
+  <data name="QuotationIdField.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 27</value>
+  </data>
+  <data name="QuotationIdField.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.Name" xml:space="preserve">
+    <value>QuotationIdField</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;QuotationIdField.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
