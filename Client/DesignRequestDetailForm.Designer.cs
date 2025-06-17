@@ -28,234 +28,250 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            SaveButton = new Button();
-            CancelButton = new Button();
-            SpecificationsField = new TextBox();
-            AssignedManagerField = new ComboBox();
-            CustomerField = new ComboBox();
-            RequestIdField = new MaskedTextBox();
-            label4 = new Label();
-            label5 = new Label();
-            RequestDateField = new DateTimePicker();
-            label6 = new Label();
-            ConsultantFeeField = new TextBox();
-            label7 = new Label();
-            StatusField = new ComboBox();
-            label8 = new Label();
-            ApprovalDateField = new DateTimePicker();
-            label9 = new Label();
-            ApprovedByField = new ComboBox();
-            SuspendLayout();
+            this.label1 = new Label();
+            this.label2 = new Label();
+            this.label3 = new Label();
+            this.SaveButton = new Button();
+            this.CancelButton = new Button();
+            this.SpecificationsField = new TextBox();
+            this.AssignedManagerField = new ComboBox();
+            this.CustomerField = new ComboBox();
+            this.label4 = new Label();
+            this.label5 = new Label();
+            this.RequestDateField = new DateTimePicker();
+            this.label6 = new Label();
+            this.ConsultantFeeField = new TextBox();
+            this.label7 = new Label();
+            this.StatusField = new ComboBox();
+            this.label8 = new Label();
+            this.ApprovalDateField = new DateTimePicker();
+            this.label9 = new Label();
+            this.ApprovedByField = new ComboBox();
+            this.RequestIdField = new TextBox();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(55, 42);
-            label1.Name = "label1";
-            label1.Size = new Size(59, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Customer";
+            this.label1.AutoSize = true;
+            this.label1.Location = new Point(71, 53);
+            this.label1.Margin = new Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(77, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Customer";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(13, 462);
-            label2.Name = "label2";
-            label2.Size = new Size(105, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Assigned Manager";
+            this.label2.AutoSize = true;
+            this.label2.Location = new Point(17, 585);
+            this.label2.Margin = new Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new Size(141, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Assigned Manager";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(38, 119);
-            label3.Name = "label3";
-            label3.Size = new Size(80, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Specifications";
+            this.label3.AutoSize = true;
+            this.label3.Location = new Point(49, 151);
+            this.label3.Margin = new Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new Size(104, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Specifications";
             // 
             // SaveButton
             // 
-            SaveButton.Location = new Point(435, 564);
-            SaveButton.Name = "SaveButton";
-            SaveButton.Size = new Size(75, 23);
-            SaveButton.TabIndex = 9;
-            SaveButton.Text = "Save";
-            SaveButton.UseVisualStyleBackColor = true;
-            SaveButton.Click += SaveButton_Click;
+            this.SaveButton.Location = new Point(559, 714);
+            this.SaveButton.Margin = new Padding(4);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new Size(96, 29);
+            this.SaveButton.TabIndex = 9;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += this.SaveButton_Click;
             // 
             // CancelButton
             // 
-            CancelButton.Location = new Point(526, 564);
-            CancelButton.Name = "CancelButton";
-            CancelButton.Size = new Size(75, 23);
-            CancelButton.TabIndex = 10;
-            CancelButton.Text = "Cancel";
-            CancelButton.UseVisualStyleBackColor = true;
-            CancelButton.Click += CancelButton_Click;
+            this.CancelButton.Location = new Point(676, 714);
+            this.CancelButton.Margin = new Padding(4);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new Size(96, 29);
+            this.CancelButton.TabIndex = 10;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += this.CancelButton_Click;
             // 
             // SpecificationsField
             // 
-            SpecificationsField.Location = new Point(124, 119);
-            SpecificationsField.Multiline = true;
-            SpecificationsField.Name = "SpecificationsField";
-            SpecificationsField.Size = new Size(489, 192);
-            SpecificationsField.TabIndex = 13;
+            this.SpecificationsField.Location = new Point(159, 151);
+            this.SpecificationsField.Margin = new Padding(4);
+            this.SpecificationsField.Multiline = true;
+            this.SpecificationsField.Name = "SpecificationsField";
+            this.SpecificationsField.Size = new Size(628, 242);
+            this.SpecificationsField.TabIndex = 13;
             // 
             // AssignedManagerField
             // 
-            AssignedManagerField.DropDownStyle = ComboBoxStyle.DropDownList;
-            AssignedManagerField.FormattingEnabled = true;
-            AssignedManagerField.Location = new Point(124, 459);
-            AssignedManagerField.Name = "AssignedManagerField";
-            AssignedManagerField.Size = new Size(121, 23);
-            AssignedManagerField.TabIndex = 14;
+            this.AssignedManagerField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.AssignedManagerField.FormattingEnabled = true;
+            this.AssignedManagerField.Location = new Point(159, 581);
+            this.AssignedManagerField.Margin = new Padding(4);
+            this.AssignedManagerField.Name = "AssignedManagerField";
+            this.AssignedManagerField.Size = new Size(154, 27);
+            this.AssignedManagerField.TabIndex = 14;
             // 
             // CustomerField
             // 
-            CustomerField.DropDownStyle = ComboBoxStyle.DropDownList;
-            CustomerField.FormattingEnabled = true;
-            CustomerField.Location = new Point(124, 39);
-            CustomerField.Name = "CustomerField";
-            CustomerField.Size = new Size(121, 23);
-            CustomerField.TabIndex = 15;
-            // 
-            // RequestIdField
-            // 
-            RequestIdField.Location = new Point(124, 11);
-            RequestIdField.Margin = new Padding(2);
-            RequestIdField.Mask = "REQ000";
-            RequestIdField.Name = "RequestIdField";
-            RequestIdField.Size = new Size(98, 23);
-            RequestIdField.TabIndex = 16;
-            RequestIdField.MaskInputRejected += RequestIdField_MaskInputRejected;
+            this.CustomerField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.CustomerField.FormattingEnabled = true;
+            this.CustomerField.Location = new Point(159, 49);
+            this.CustomerField.Margin = new Padding(4);
+            this.CustomerField.Name = "CustomerField";
+            this.CustomerField.Size = new Size(154, 27);
+            this.CustomerField.TabIndex = 15;
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(55, 14);
-            label4.Margin = new Padding(2, 0, 2, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(63, 15);
-            label4.TabIndex = 17;
-            label4.Text = "Request ID";
+            this.label4.AutoSize = true;
+            this.label4.Location = new Point(71, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new Size(85, 19);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Request ID";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(42, 78);
-            label5.Name = "label5";
-            label5.Size = new Size(76, 15);
-            label5.TabIndex = 18;
-            label5.Text = "Request Date";
+            this.label5.AutoSize = true;
+            this.label5.Location = new Point(54, 99);
+            this.label5.Margin = new Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new Size(102, 19);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Request Date";
             // 
             // RequestDateField
             // 
-            RequestDateField.Location = new Point(124, 78);
-            RequestDateField.Name = "RequestDateField";
-            RequestDateField.Size = new Size(200, 23);
-            RequestDateField.TabIndex = 19;
+            this.RequestDateField.Location = new Point(159, 99);
+            this.RequestDateField.Margin = new Padding(4);
+            this.RequestDateField.Name = "RequestDateField";
+            this.RequestDateField.Size = new Size(256, 27);
+            this.RequestDateField.TabIndex = 19;
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(28, 326);
-            label6.Name = "label6";
-            label6.Size = new Size(86, 15);
-            label6.TabIndex = 20;
-            label6.Text = "Consultant Fee";
+            this.label6.AutoSize = true;
+            this.label6.Location = new Point(36, 413);
+            this.label6.Margin = new Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new Size(112, 19);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Consultant Fee";
             // 
             // ConsultantFeeField
             // 
-            ConsultantFeeField.Location = new Point(125, 326);
-            ConsultantFeeField.Name = "ConsultantFeeField";
-            ConsultantFeeField.Size = new Size(149, 23);
-            ConsultantFeeField.TabIndex = 21;
+            this.ConsultantFeeField.Location = new Point(161, 413);
+            this.ConsultantFeeField.Margin = new Padding(4);
+            this.ConsultantFeeField.Name = "ConsultantFeeField";
+            this.ConsultantFeeField.Size = new Size(190, 27);
+            this.ConsultantFeeField.TabIndex = 21;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(75, 373);
-            label7.Name = "label7";
-            label7.Size = new Size(39, 15);
-            label7.TabIndex = 22;
-            label7.Text = "Status";
+            this.label7.AutoSize = true;
+            this.label7.Location = new Point(96, 472);
+            this.label7.Margin = new Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new Size(52, 19);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Status";
             // 
             // StatusField
             // 
-            StatusField.FormattingEnabled = true;
-            StatusField.Location = new Point(126, 373);
-            StatusField.Name = "StatusField";
-            StatusField.Size = new Size(121, 23);
-            StatusField.TabIndex = 23;
+            this.StatusField.FormattingEnabled = true;
+            this.StatusField.Location = new Point(162, 472);
+            this.StatusField.Margin = new Padding(4);
+            this.StatusField.Name = "StatusField";
+            this.StatusField.Size = new Size(154, 27);
+            this.StatusField.TabIndex = 23;
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(28, 416);
-            label8.Name = "label8";
-            label8.Size = new Size(82, 15);
-            label8.TabIndex = 24;
-            label8.Text = "Approval Date";
+            this.label8.AutoSize = true;
+            this.label8.Location = new Point(36, 527);
+            this.label8.Margin = new Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new Size(108, 19);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "Approval Date";
             // 
             // ApprovalDateField
             // 
-            ApprovalDateField.Location = new Point(125, 416);
-            ApprovalDateField.Name = "ApprovalDateField";
-            ApprovalDateField.Size = new Size(200, 23);
-            ApprovalDateField.TabIndex = 25;
+            this.ApprovalDateField.Location = new Point(161, 527);
+            this.ApprovalDateField.Margin = new Padding(4);
+            this.ApprovalDateField.Name = "ApprovalDateField";
+            this.ApprovalDateField.Size = new Size(256, 27);
+            this.ApprovalDateField.TabIndex = 25;
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(42, 503);
-            label9.Name = "label9";
-            label9.Size = new Size(72, 15);
-            label9.TabIndex = 26;
-            label9.Text = "ApprovedBy";
+            this.label9.AutoSize = true;
+            this.label9.Location = new Point(54, 637);
+            this.label9.Margin = new Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new Size(95, 19);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "ApprovedBy";
             // 
             // ApprovedByField
             // 
-            ApprovedByField.DropDownStyle = ComboBoxStyle.DropDownList;
-            ApprovedByField.FormattingEnabled = true;
-            ApprovedByField.Location = new Point(124, 500);
-            ApprovedByField.Name = "ApprovedByField";
-            ApprovedByField.Size = new Size(121, 23);
-            ApprovedByField.TabIndex = 27;
+            this.ApprovedByField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.ApprovedByField.FormattingEnabled = true;
+            this.ApprovedByField.Location = new Point(159, 633);
+            this.ApprovedByField.Margin = new Padding(4);
+            this.ApprovedByField.Name = "ApprovedByField";
+            this.ApprovedByField.Size = new Size(154, 27);
+            this.ApprovedByField.TabIndex = 27;
+            // 
+            // RequestIdField
+            // 
+            this.RequestIdField.Location = new Point(162, 15);
+            this.RequestIdField.Name = "RequestIdField";
+            this.RequestIdField.ReadOnly = true;
+            this.RequestIdField.Size = new Size(125, 27);
+            this.RequestIdField.TabIndex = 28;
             // 
             // DesignRequestDetailForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(628, 601);
-            Controls.Add(ApprovedByField);
-            Controls.Add(label9);
-            Controls.Add(ApprovalDateField);
-            Controls.Add(label8);
-            Controls.Add(StatusField);
-            Controls.Add(label7);
-            Controls.Add(ConsultantFeeField);
-            Controls.Add(label6);
-            Controls.Add(RequestDateField);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(RequestIdField);
-            Controls.Add(CustomerField);
-            Controls.Add(AssignedManagerField);
-            Controls.Add(SpecificationsField);
-            Controls.Add(CancelButton);
-            Controls.Add(SaveButton);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "DesignRequestDetailForm";
-            Text = "DesignRequestDetailForm";
-            Load += DesignRequestDetailForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(807, 761);
+            this.Controls.Add(this.RequestIdField);
+            this.Controls.Add(this.ApprovedByField);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.ApprovalDateField);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.StatusField);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.ConsultantFeeField);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.RequestDateField);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.CustomerField);
+            this.Controls.Add(this.AssignedManagerField);
+            this.Controls.Add(this.SpecificationsField);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Margin = new Padding(4);
+            this.Name = "DesignRequestDetailForm";
+            this.Text = "DesignRequestDetailForm";
+            this.Load += this.DesignRequestDetailForm_Load;
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
@@ -268,7 +284,6 @@
         private TextBox SpecificationsField;
         private ComboBox AssignedManagerField;
         private ComboBox CustomerField;
-        private MaskedTextBox RequestIdField;
         private Label label4;
         private Label label5;
         private DateTimePicker RequestDateField;
@@ -280,5 +295,6 @@
         private DateTimePicker ApprovalDateField;
         private Label label9;
         private ComboBox ApprovedByField;
+        private TextBox RequestIdField;
     }
 }

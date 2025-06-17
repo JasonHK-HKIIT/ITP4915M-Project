@@ -110,13 +110,17 @@ namespace Client
                 }
                 else
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT DesignRequestID FROM ProductDesignRequest ORDER BY DesignRequestID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "DR000";
+                    var nextId = int.Parse(lastIdString.Substring(2)) + 1;
+
                     var insert = new MySqlCommand(@"
                         INSERT INTO ProductDesignRequest
                             (DesignRequestID, CustomerID, RequestDate, Specifications, ConsultantFee, Status, ApprovalDate, UserID, ApprovedBy)
                         VALUES
                             (@DesignRequestID, @CustomerID, @RequestDate, @Specifications, @ConsultantFee, @Status, @ApprovalDate, @UserID, @ApprovedBy)", Program.Connection);
 
-                    insert.Parameters.AddWithValue("@DesignRequestID", RequestIdField.Text);
+                    insert.Parameters.AddWithValue("@DesignRequestID", $"DR{nextId.ToString().PadLeft(3, '0')}");
                     insert.Parameters.AddWithValue("@CustomerID", CustomerField.SelectedValue);
                     insert.Parameters.AddWithValue("@RequestDate", RequestDateField.Value.Date);
                     insert.Parameters.AddWithValue("@Specifications", SpecificationsField.Text);
