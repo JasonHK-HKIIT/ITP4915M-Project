@@ -26,7 +26,6 @@ namespace Client
             this.ActivatedField = new CheckBox();
             this.SaveButton = new Button();
             this.CancelButton = new Button();
-            this.UserIdField = new MaskedTextBox();
             this.PositionField = new TextBox();
             this.label5 = new Label();
             this.TeamField = new ComboBox();
@@ -35,6 +34,7 @@ namespace Client
             this.label7 = new Label();
             this.ManagerField = new ComboBox();
             this.label8 = new Label();
+            this.UserIdField = new TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -130,14 +130,6 @@ namespace Client
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += this.CancelButton_Click;
             // 
-            // UserIdField
-            // 
-            this.UserIdField.Location = new Point(101, 13);
-            this.UserIdField.Mask = "U000";
-            this.UserIdField.Name = "UserIdField";
-            this.UserIdField.Size = new Size(321, 27);
-            this.UserIdField.TabIndex = 10;
-            // 
             // PositionField
             // 
             this.PositionField.Location = new Point(101, 147);
@@ -206,11 +198,20 @@ namespace Client
             this.label8.TabIndex = 18;
             this.label8.Text = "Manager";
             // 
+            // UserIdField
+            // 
+            this.UserIdField.Location = new Point(101, 13);
+            this.UserIdField.Name = "UserIdField";
+            this.UserIdField.ReadOnly = true;
+            this.UserIdField.Size = new Size(321, 27);
+            this.UserIdField.TabIndex = 19;
+            // 
             // UserDetailForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(438, 327);
+            this.Controls.Add(this.UserIdField);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.ManagerField);
             this.Controls.Add(this.label7);
@@ -219,7 +220,6 @@ namespace Client
             this.Controls.Add(this.TeamField);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.PositionField);
-            this.Controls.Add(this.UserIdField);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ActivatedField);
@@ -249,7 +249,6 @@ namespace Client
         private CheckBox ActivatedField;
         private Button SaveButton;
         private Button CancelButton;
-        private MaskedTextBox UserIdField;
         private TextBox PositionField;
         private Label label5;
         private ComboBox TeamField;
@@ -258,5 +257,6 @@ namespace Client
         private Label label7;
         private ComboBox ManagerField;
         private Label label8;
+        private TextBox UserIdField;
     }
 }

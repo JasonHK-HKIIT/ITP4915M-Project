@@ -106,8 +106,12 @@ namespace Client
                         return;
                     }
 
+                    var lastIdCommand = new MySqlCommand("SELECT UserID FROM User ORDER BY UserID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "U000";
+                    var nextId = int.Parse(lastIdString.Substring(1)) + 1;
+
                     var command = new MySqlCommand("INSERT INTO User (UserID, Name, PasswordHash, TeamID, PositionTitle, Role, ManagerID, IsActive) VALUES (?id, ?name, ?password, ?teamId, ?position, ?role, ?managerId, ?isActive)", Program.Connection);
-                    command.Parameters.AddWithValue("?id", UserIdField.Text);
+                    command.Parameters.AddWithValue("?id", $"U{nextId.ToString().PadLeft(3, '0')}");
                     command.Parameters.AddWithValue("?name", NameField.Text);
                     command.Parameters.AddWithValue("?password", Program.HashPassword(password));
                     command.Parameters.AddWithValue("?teamId", TeamField.SelectedValue ?? DBNull.Value);
