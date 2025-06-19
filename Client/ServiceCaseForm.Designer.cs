@@ -19,84 +19,92 @@
 
         private void InitializeComponent()
         {
-            label1 = new Label();
-            textBox1 = new TextBox();
-            button1 = new Button();
-            dataGridView1 = new DataGridView();
-            button2 = new Button();
-            button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.label1 = new Label();
+            this.textBox1 = new TextBox();
+            this.button1 = new Button();
+            this.dataGridView1 = new DataGridView();
+            this.button2 = new Button();
+            this.button3 = new Button();
+            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.Location = new Point(12, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(312, 16);
-            label1.TabIndex = 0;
-            label1.Text = "Input (Case ID) / (Customer Name) / (Order ID) to search:";
+            this.label1.Location = new Point(15, 24);
+            this.label1.Margin = new Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(401, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Input (Case ID) / (Customer Name) / (Order ID) to search:";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 48);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(179, 23);
-            textBox1.TabIndex = 1;
+            this.textBox1.Location = new Point(15, 61);
+            this.textBox1.Margin = new Padding(4, 4, 4, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new Size(229, 27);
+            this.textBox1.TabIndex = 1;
             // 
             // button1
             // 
-            button1.Location = new Point(319, 47);
-            button1.Name = "button1";
-            button1.Size = new Size(121, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Add Case";
-            button1.UseVisualStyleBackColor = true;
+            this.button1.Location = new Point(410, 60);
+            this.button1.Margin = new Padding(4, 4, 4, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new Size(156, 29);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Add Case";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(7, 95);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(1205, 427);
-            dataGridView1.TabIndex = 3;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new Point(9, 120);
+            this.dataGridView1.Margin = new Padding(4, 4, 4, 4);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new Size(1549, 541);
+            this.dataGridView1.TabIndex = 3;
             // 
             // button2
             // 
-            button2.Location = new Point(457, 48);
-            button2.Name = "button2";
-            button2.Size = new Size(121, 23);
-            button2.TabIndex = 4;
-            button2.Text = "Edit Selected";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Location = new Point(588, 61);
+            this.button2.Margin = new Padding(4, 4, 4, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new Size(156, 29);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Edit Selected";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
-            button3.Location = new Point(594, 48);
-            button3.Name = "button3";
-            button3.Size = new Size(121, 23);
-            button3.TabIndex = 5;
-            button3.Text = "Delete Selected";
-            button3.UseVisualStyleBackColor = true;
+            this.button3.Location = new Point(764, 61);
+            this.button3.Margin = new Padding(4, 4, 4, 4);
+            this.button3.Name = "button3";
+            this.button3.Size = new Size(156, 29);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Delete Selected";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // ServiceCaseForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1218, 534);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(dataGridView1);
-            Controls.Add(button1);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Name = "ServiceCaseForm";
-            Text = "ServiceCaseForm";
-            Load += ServiceCaseForm_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(1566, 676);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label1);
+            this.Margin = new Padding(4, 4, 4, 4);
+            this.Name = "ServiceCaseForm";
+            this.Text = "ServiceCaseForm";
+            this.Load += this.ServiceCaseForm_Load;
+            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
     }
 }
