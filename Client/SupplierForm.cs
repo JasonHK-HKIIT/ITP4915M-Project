@@ -86,6 +86,10 @@ namespace Client
                 detail.Text = "Add Supplier";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT SupplierID FROM Supplier ORDER BY SupplierID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "SUP000";
+                    var nextId = int.Parse(lastIdString.Substring(3)) + 1;
+
                     using (var command = new MySqlCommand(
                         @"INSERT INTO Supplier 
                             (SupplierID, SupplierName, ContactPerson, PhoneNumber, Email, Address, Country, Status) 
@@ -93,7 +97,7 @@ namespace Client
                             (@id, @name, @contact, @phone, @email, @address, @country, @status)",
                         Program.Connection))
                     {
-                        command.Parameters.AddWithValue("@id", detail.SupplierID);
+                        command.Parameters.AddWithValue("@id", $"SUP{nextId.ToString().PadLeft(3, '0')}");
                         command.Parameters.AddWithValue("@name", detail.SupplierName);
                         command.Parameters.AddWithValue("@contact", detail.ContactPerson);
                         command.Parameters.AddWithValue("@phone", detail.PhoneNumber);
