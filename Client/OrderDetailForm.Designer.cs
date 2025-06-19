@@ -27,264 +27,264 @@
 
         private void InitializeComponent()
         {
-            comboBoxCustomer = new ComboBox();
-            comboBoxQuotation = new ComboBox();
-            dateTimePickerOrderDate = new DateTimePicker();
-            dateTimePickerDeadline = new DateTimePicker();
-            comboBoxStatus = new ComboBox();
-            textBoxDeposit = new TextBox();
-            textBoxBalance = new TextBox();
-            textBoxTotalAmount = new TextBox();
-            comboBoxPaymentStatus = new ComboBox();
-            comboBoxOrderType = new ComboBox();
-            buttonSave = new Button();
-            buttonCancel = new Button();
-            labelOrderID = new Label();
-            labelCustomer = new Label();
-            labelQuotation = new Label();
-            labelOrderDate = new Label();
-            labelDeadline = new Label();
-            labelStatus = new Label();
-            labelDeposit = new Label();
-            labelBalance = new Label();
-            labelTotalAmount = new Label();
-            labelPaymentStatus = new Label();
-            labelOrderType = new Label();
-            maskedTextBox1 = new MaskedTextBox();
-            SuspendLayout();
+            this.comboBoxCustomer = new ComboBox();
+            this.comboBoxQuotation = new ComboBox();
+            this.dateTimePickerOrderDate = new DateTimePicker();
+            this.dateTimePickerDeadline = new DateTimePicker();
+            this.comboBoxStatus = new ComboBox();
+            this.textBoxDeposit = new TextBox();
+            this.textBoxBalance = new TextBox();
+            this.textBoxTotalAmount = new TextBox();
+            this.comboBoxPaymentStatus = new ComboBox();
+            this.comboBoxOrderType = new ComboBox();
+            this.buttonSave = new Button();
+            this.buttonCancel = new Button();
+            this.labelOrderID = new Label();
+            this.labelCustomer = new Label();
+            this.labelQuotation = new Label();
+            this.labelOrderDate = new Label();
+            this.labelDeadline = new Label();
+            this.labelStatus = new Label();
+            this.labelDeposit = new Label();
+            this.labelBalance = new Label();
+            this.labelTotalAmount = new Label();
+            this.labelPaymentStatus = new Label();
+            this.labelOrderType = new Label();
+            this.maskedTextBox1 = new TextBox();
+            this.SuspendLayout();
             // 
             // comboBoxCustomer
             // 
-            comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxCustomer.Location = new Point(209, 55);
-            comboBoxCustomer.Name = "comboBoxCustomer";
-            comboBoxCustomer.Size = new Size(268, 23);
-            comboBoxCustomer.TabIndex = 3;
+            this.comboBoxCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxCustomer.Location = new Point(209, 55);
+            this.comboBoxCustomer.Name = "comboBoxCustomer";
+            this.comboBoxCustomer.Size = new Size(268, 27);
+            this.comboBoxCustomer.TabIndex = 3;
             // 
             // comboBoxQuotation
             // 
-            comboBoxQuotation.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxQuotation.Location = new Point(209, 98);
-            comboBoxQuotation.Name = "comboBoxQuotation";
-            comboBoxQuotation.Size = new Size(268, 23);
-            comboBoxQuotation.TabIndex = 5;
+            this.comboBoxQuotation.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxQuotation.Location = new Point(209, 98);
+            this.comboBoxQuotation.Name = "comboBoxQuotation";
+            this.comboBoxQuotation.Size = new Size(268, 27);
+            this.comboBoxQuotation.TabIndex = 5;
             // 
             // dateTimePickerOrderDate
             // 
-            dateTimePickerOrderDate.Location = new Point(209, 143);
-            dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
-            dateTimePickerOrderDate.Size = new Size(268, 23);
-            dateTimePickerOrderDate.TabIndex = 7;
+            this.dateTimePickerOrderDate.Location = new Point(209, 143);
+            this.dateTimePickerOrderDate.Name = "dateTimePickerOrderDate";
+            this.dateTimePickerOrderDate.Size = new Size(268, 27);
+            this.dateTimePickerOrderDate.TabIndex = 7;
             // 
             // dateTimePickerDeadline
             // 
-            dateTimePickerDeadline.Location = new Point(209, 188);
-            dateTimePickerDeadline.Name = "dateTimePickerDeadline";
-            dateTimePickerDeadline.Size = new Size(268, 23);
-            dateTimePickerDeadline.TabIndex = 9;
+            this.dateTimePickerDeadline.Location = new Point(209, 188);
+            this.dateTimePickerDeadline.Name = "dateTimePickerDeadline";
+            this.dateTimePickerDeadline.Size = new Size(268, 27);
+            this.dateTimePickerDeadline.TabIndex = 9;
             // 
             // comboBoxStatus
             // 
-            comboBoxStatus.Location = new Point(209, 233);
-            comboBoxStatus.Name = "comboBoxStatus";
-            comboBoxStatus.Size = new Size(268, 23);
-            comboBoxStatus.TabIndex = 11;
+            this.comboBoxStatus.Location = new Point(209, 233);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new Size(268, 27);
+            this.comboBoxStatus.TabIndex = 11;
             // 
             // textBoxDeposit
             // 
-            textBoxDeposit.Location = new Point(209, 281);
-            textBoxDeposit.Name = "textBoxDeposit";
-            textBoxDeposit.Size = new Size(268, 23);
-            textBoxDeposit.TabIndex = 13;
+            this.textBoxDeposit.Location = new Point(209, 281);
+            this.textBoxDeposit.Name = "textBoxDeposit";
+            this.textBoxDeposit.Size = new Size(268, 27);
+            this.textBoxDeposit.TabIndex = 13;
             // 
             // textBoxBalance
             // 
-            textBoxBalance.Location = new Point(209, 332);
-            textBoxBalance.Name = "textBoxBalance";
-            textBoxBalance.Size = new Size(268, 23);
-            textBoxBalance.TabIndex = 15;
+            this.textBoxBalance.Location = new Point(209, 332);
+            this.textBoxBalance.Name = "textBoxBalance";
+            this.textBoxBalance.Size = new Size(268, 27);
+            this.textBoxBalance.TabIndex = 15;
             // 
             // textBoxTotalAmount
             // 
-            textBoxTotalAmount.Location = new Point(209, 378);
-            textBoxTotalAmount.Name = "textBoxTotalAmount";
-            textBoxTotalAmount.Size = new Size(268, 23);
-            textBoxTotalAmount.TabIndex = 17;
+            this.textBoxTotalAmount.Location = new Point(209, 378);
+            this.textBoxTotalAmount.Name = "textBoxTotalAmount";
+            this.textBoxTotalAmount.Size = new Size(268, 27);
+            this.textBoxTotalAmount.TabIndex = 17;
             // 
             // comboBoxPaymentStatus
             // 
-            comboBoxPaymentStatus.Location = new Point(209, 427);
-            comboBoxPaymentStatus.Name = "comboBoxPaymentStatus";
-            comboBoxPaymentStatus.Size = new Size(268, 23);
-            comboBoxPaymentStatus.TabIndex = 19;
+            this.comboBoxPaymentStatus.Location = new Point(209, 427);
+            this.comboBoxPaymentStatus.Name = "comboBoxPaymentStatus";
+            this.comboBoxPaymentStatus.Size = new Size(268, 27);
+            this.comboBoxPaymentStatus.TabIndex = 19;
             // 
             // comboBoxOrderType
             // 
-            comboBoxOrderType.Location = new Point(209, 477);
-            comboBoxOrderType.Name = "comboBoxOrderType";
-            comboBoxOrderType.Size = new Size(268, 23);
-            comboBoxOrderType.TabIndex = 21;
+            this.comboBoxOrderType.Location = new Point(209, 477);
+            this.comboBoxOrderType.Name = "comboBoxOrderType";
+            this.comboBoxOrderType.Size = new Size(268, 27);
+            this.comboBoxOrderType.TabIndex = 21;
             // 
             // buttonSave
             // 
-            buttonSave.Location = new Point(421, 534);
-            buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(80, 28);
-            buttonSave.TabIndex = 22;
-            buttonSave.Text = "Save";
-            buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Location = new Point(421, 534);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new Size(80, 28);
+            this.buttonSave.TabIndex = 22;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(535, 534);
-            buttonCancel.Name = "buttonCancel";
-            buttonCancel.Size = new Size(80, 28);
-            buttonCancel.TabIndex = 23;
-            buttonCancel.Text = "Cancel";
-            buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Location = new Point(535, 534);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new Size(80, 28);
+            this.buttonCancel.TabIndex = 23;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // labelOrderID
             // 
-            labelOrderID.AutoSize = true;
-            labelOrderID.Location = new Point(83, 19);
-            labelOrderID.Name = "labelOrderID";
-            labelOrderID.Size = new Size(54, 15);
-            labelOrderID.TabIndex = 0;
-            labelOrderID.Text = "Order ID:";
+            this.labelOrderID.AutoSize = true;
+            this.labelOrderID.Location = new Point(83, 19);
+            this.labelOrderID.Name = "labelOrderID";
+            this.labelOrderID.Size = new Size(73, 19);
+            this.labelOrderID.TabIndex = 0;
+            this.labelOrderID.Text = "Order ID:";
             // 
             // labelCustomer
             // 
-            labelCustomer.AutoSize = true;
-            labelCustomer.Location = new Point(74, 58);
-            labelCustomer.Name = "labelCustomer";
-            labelCustomer.Size = new Size(62, 15);
-            labelCustomer.TabIndex = 2;
-            labelCustomer.Text = "Customer:";
+            this.labelCustomer.AutoSize = true;
+            this.labelCustomer.Location = new Point(74, 58);
+            this.labelCustomer.Name = "labelCustomer";
+            this.labelCustomer.Size = new Size(80, 19);
+            this.labelCustomer.TabIndex = 2;
+            this.labelCustomer.Text = "Customer:";
             // 
             // labelQuotation
             // 
-            labelQuotation.AutoSize = true;
-            labelQuotation.Location = new Point(69, 106);
-            labelQuotation.Name = "labelQuotation";
-            labelQuotation.Size = new Size(64, 15);
-            labelQuotation.TabIndex = 4;
-            labelQuotation.Text = "Quotation:";
+            this.labelQuotation.AutoSize = true;
+            this.labelQuotation.Location = new Point(69, 106);
+            this.labelQuotation.Name = "labelQuotation";
+            this.labelQuotation.Size = new Size(82, 19);
+            this.labelQuotation.TabIndex = 4;
+            this.labelQuotation.Text = "Quotation:";
             // 
             // labelOrderDate
             // 
-            labelOrderDate.AutoSize = true;
-            labelOrderDate.Location = new Point(66, 149);
-            labelOrderDate.Name = "labelOrderDate";
-            labelOrderDate.Size = new Size(67, 15);
-            labelOrderDate.TabIndex = 6;
-            labelOrderDate.Text = "Order Date:";
+            this.labelOrderDate.AutoSize = true;
+            this.labelOrderDate.Location = new Point(66, 149);
+            this.labelOrderDate.Name = "labelOrderDate";
+            this.labelOrderDate.Size = new Size(90, 19);
+            this.labelOrderDate.TabIndex = 6;
+            this.labelOrderDate.Text = "Order Date:";
             // 
             // labelDeadline
             // 
-            labelDeadline.AutoSize = true;
-            labelDeadline.Location = new Point(77, 194);
-            labelDeadline.Name = "labelDeadline";
-            labelDeadline.Size = new Size(56, 15);
-            labelDeadline.TabIndex = 8;
-            labelDeadline.Text = "Deadline:";
+            this.labelDeadline.AutoSize = true;
+            this.labelDeadline.Location = new Point(77, 194);
+            this.labelDeadline.Name = "labelDeadline";
+            this.labelDeadline.Size = new Size(74, 19);
+            this.labelDeadline.TabIndex = 8;
+            this.labelDeadline.Text = "Deadline:";
             // 
             // labelStatus
             // 
-            labelStatus.AutoSize = true;
-            labelStatus.Location = new Point(88, 241);
-            labelStatus.Name = "labelStatus";
-            labelStatus.Size = new Size(42, 15);
-            labelStatus.TabIndex = 10;
-            labelStatus.Text = "Status:";
+            this.labelStatus.AutoSize = true;
+            this.labelStatus.Location = new Point(88, 241);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new Size(55, 19);
+            this.labelStatus.TabIndex = 10;
+            this.labelStatus.Text = "Status:";
             // 
             // labelDeposit
             // 
-            labelDeposit.AutoSize = true;
-            labelDeposit.Location = new Point(80, 289);
-            labelDeposit.Name = "labelDeposit";
-            labelDeposit.Size = new Size(50, 15);
-            labelDeposit.TabIndex = 12;
-            labelDeposit.Text = "Deposit:";
+            this.labelDeposit.AutoSize = true;
+            this.labelDeposit.Location = new Point(80, 289);
+            this.labelDeposit.Name = "labelDeposit";
+            this.labelDeposit.Size = new Size(65, 19);
+            this.labelDeposit.TabIndex = 12;
+            this.labelDeposit.Text = "Deposit:";
             // 
             // labelBalance
             // 
-            labelBalance.AutoSize = true;
-            labelBalance.Location = new Point(79, 335);
-            labelBalance.Name = "labelBalance";
-            labelBalance.Size = new Size(51, 15);
-            labelBalance.TabIndex = 14;
-            labelBalance.Text = "Balance:";
+            this.labelBalance.AutoSize = true;
+            this.labelBalance.Location = new Point(79, 335);
+            this.labelBalance.Name = "labelBalance";
+            this.labelBalance.Size = new Size(65, 19);
+            this.labelBalance.TabIndex = 14;
+            this.labelBalance.Text = "Balance:";
             // 
             // labelTotalAmount
             // 
-            labelTotalAmount.AutoSize = true;
-            labelTotalAmount.Location = new Point(47, 381);
-            labelTotalAmount.Name = "labelTotalAmount";
-            labelTotalAmount.Size = new Size(83, 15);
-            labelTotalAmount.TabIndex = 16;
-            labelTotalAmount.Text = "Total Amount:";
+            this.labelTotalAmount.AutoSize = true;
+            this.labelTotalAmount.Location = new Point(47, 381);
+            this.labelTotalAmount.Name = "labelTotalAmount";
+            this.labelTotalAmount.Size = new Size(106, 19);
+            this.labelTotalAmount.TabIndex = 16;
+            this.labelTotalAmount.Text = "Total Amount:";
             // 
             // labelPaymentStatus
             // 
-            labelPaymentStatus.AutoSize = true;
-            labelPaymentStatus.Location = new Point(38, 435);
-            labelPaymentStatus.Name = "labelPaymentStatus";
-            labelPaymentStatus.Size = new Size(92, 15);
-            labelPaymentStatus.TabIndex = 18;
-            labelPaymentStatus.Text = "Payment Status:";
+            this.labelPaymentStatus.AutoSize = true;
+            this.labelPaymentStatus.Location = new Point(38, 435);
+            this.labelPaymentStatus.Name = "labelPaymentStatus";
+            this.labelPaymentStatus.Size = new Size(120, 19);
+            this.labelPaymentStatus.TabIndex = 18;
+            this.labelPaymentStatus.Text = "Payment Status:";
             // 
             // labelOrderType
             // 
-            labelOrderType.AutoSize = true;
-            labelOrderType.Location = new Point(62, 485);
-            labelOrderType.Name = "labelOrderType";
-            labelOrderType.Size = new Size(68, 15);
-            labelOrderType.TabIndex = 20;
-            labelOrderType.Text = "Order Type:";
+            this.labelOrderType.AutoSize = true;
+            this.labelOrderType.Location = new Point(62, 485);
+            this.labelOrderType.Name = "labelOrderType";
+            this.labelOrderType.Size = new Size(91, 19);
+            this.labelOrderType.TabIndex = 20;
+            this.labelOrderType.Text = "Order Type:";
             // 
             // maskedTextBox1
             // 
-            maskedTextBox1.Location = new Point(209, 12);
-            maskedTextBox1.Mask = "ORD000";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(268, 23);
-            maskedTextBox1.TabIndex = 24;
+            this.maskedTextBox1.Location = new Point(209, 16);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.ReadOnly = true;
+            this.maskedTextBox1.Size = new Size(268, 27);
+            this.maskedTextBox1.TabIndex = 24;
             // 
             // OrderDetailForm
             // 
-            ClientSize = new Size(637, 592);
-            Controls.Add(maskedTextBox1);
-            Controls.Add(labelOrderID);
-            Controls.Add(labelCustomer);
-            Controls.Add(comboBoxCustomer);
-            Controls.Add(labelQuotation);
-            Controls.Add(comboBoxQuotation);
-            Controls.Add(labelOrderDate);
-            Controls.Add(dateTimePickerOrderDate);
-            Controls.Add(labelDeadline);
-            Controls.Add(dateTimePickerDeadline);
-            Controls.Add(labelStatus);
-            Controls.Add(comboBoxStatus);
-            Controls.Add(labelDeposit);
-            Controls.Add(textBoxDeposit);
-            Controls.Add(labelBalance);
-            Controls.Add(textBoxBalance);
-            Controls.Add(labelTotalAmount);
-            Controls.Add(textBoxTotalAmount);
-            Controls.Add(labelPaymentStatus);
-            Controls.Add(comboBoxPaymentStatus);
-            Controls.Add(labelOrderType);
-            Controls.Add(comboBoxOrderType);
-            Controls.Add(buttonSave);
-            Controls.Add(buttonCancel);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "OrderDetailForm";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "Customer Order Details";
-            ResumeLayout(false);
-            PerformLayout();
+            this.ClientSize = new Size(637, 592);
+            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.labelOrderID);
+            this.Controls.Add(this.labelCustomer);
+            this.Controls.Add(this.comboBoxCustomer);
+            this.Controls.Add(this.labelQuotation);
+            this.Controls.Add(this.comboBoxQuotation);
+            this.Controls.Add(this.labelOrderDate);
+            this.Controls.Add(this.dateTimePickerOrderDate);
+            this.Controls.Add(this.labelDeadline);
+            this.Controls.Add(this.dateTimePickerDeadline);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.comboBoxStatus);
+            this.Controls.Add(this.labelDeposit);
+            this.Controls.Add(this.textBoxDeposit);
+            this.Controls.Add(this.labelBalance);
+            this.Controls.Add(this.textBoxBalance);
+            this.Controls.Add(this.labelTotalAmount);
+            this.Controls.Add(this.textBoxTotalAmount);
+            this.Controls.Add(this.labelPaymentStatus);
+            this.Controls.Add(this.comboBoxPaymentStatus);
+            this.Controls.Add(this.labelOrderType);
+            this.Controls.Add(this.comboBoxOrderType);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.buttonCancel);
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "OrderDetailForm";
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.Text = "Customer Order Details";
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
         private Label labelOrderID;
         private Label labelCustomer;
@@ -297,6 +297,6 @@
         private Label labelTotalAmount;
         private Label labelPaymentStatus;
         private Label labelOrderType;
-        private MaskedTextBox maskedTextBox1;
+        private TextBox maskedTextBox1;
     }
 }

@@ -100,6 +100,10 @@ namespace Client
                 detail.Text = "Add Order";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT CustomerOrderID FROM CustomerOrder ORDER BY CustomerOrderID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "ORD000";
+                    var nextId = int.Parse(lastIdString.Substring(3)) + 1;
+
                     // Prepare insert command
                     using (var command = new MySqlCommand(
                         @"INSERT INTO CustomerOrder 
@@ -109,7 +113,7 @@ namespace Client
                         Program.Connection))
                     {
                         // Bind form data to SQL parameters
-                        command.Parameters.AddWithValue("@id", detail.OrderID);
+                        command.Parameters.AddWithValue("@id", $"ORD{nextId.ToString().PadLeft(3, '0')}");
                         command.Parameters.AddWithValue("@customerId", detail.CustomerID);
                         command.Parameters.AddWithValue("@quotationId", detail.QuotationID);
                         command.Parameters.AddWithValue("@orderDate", detail.OrderDate);
