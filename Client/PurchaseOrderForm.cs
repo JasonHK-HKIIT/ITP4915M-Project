@@ -77,6 +77,10 @@ namespace Client
                 detail.Text = "Add Purchase Order";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT PurchaseOrderID FROM PurchaseOrder ORDER BY PurchaseOrderID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "PUR000";
+                    var nextId = int.Parse(lastIdString.Substring(3)) + 1;
+
                     var cmd = new MySqlCommand(
                         @"INSERT INTO PurchaseOrder 
                             (PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus) 
@@ -84,7 +88,7 @@ namespace Client
                             (@id, @sid, @odate, @ddate, @status, @postatus)",
                         Program.Connection
                     );
-                    cmd.Parameters.AddWithValue("@id", detail.PurchaseOrderID);
+                    cmd.Parameters.AddWithValue("@id", $"PUR{nextId.ToString().PadLeft(3, '0')}");
                     cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
                     cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
                     cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
