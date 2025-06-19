@@ -13,27 +13,6 @@ namespace Client
             InitializeComponent();
             buttonSave.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
             buttonCancel.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
-            this.Load += CustomerOrderDetailForm_Load;
-        }
-
-        private void CustomerOrderDetailForm_Load(object sender, EventArgs e)
-        {
-            // Fill Customer ComboBox
-            using (var cmd = new MySqlCommand("SELECT CustomerID, CustomerName FROM Customer", Program.Connection))
-            using (var adapter = new MySqlDataAdapter(cmd))
-            {
-                var dt = new DataTable();
-                adapter.Fill(dt);
-                comboBoxCustomer.DataSource = dt;
-                comboBoxCustomer.DisplayMember = "CustomerName";
-                comboBoxCustomer.ValueMember = "CustomerID";
-            }
-
-            UpdateQuotationsList(); // Initial load of quotations
-
-            comboBoxOrderType.SelectedIndex = 0;
-            comboBoxPaymentStatus.SelectedIndex = 0;
-            comboBoxStatus.SelectedIndex = 0;
         }
 
         // Set fields for Edit mode
@@ -81,9 +60,24 @@ namespace Client
             }
         }
 
-        private void maskedTextBoxOrderID_TextChanged(object sender, EventArgs e) // changed method name
+        private void OrderDetailForm_Load(object sender, EventArgs e)
         {
+            // Fill Customer ComboBox
+            using (var cmd = new MySqlCommand("SELECT CustomerID, CustomerName FROM Customer", Program.Connection))
+            using (var adapter = new MySqlDataAdapter(cmd))
+            {
+                var dt = new DataTable();
+                adapter.Fill(dt);
+                comboBoxCustomer.DataSource = dt;
+                comboBoxCustomer.DisplayMember = "CustomerName";
+                comboBoxCustomer.ValueMember = "CustomerID";
+            }
 
+            UpdateQuotationsList(); // Initial load of quotations
+
+            comboBoxOrderType.SelectedIndex = 0;
+            comboBoxPaymentStatus.SelectedIndex = 0;
+            comboBoxStatus.SelectedIndex = 0;
         }
 
         private void comboBoxCustomer_SelectionChangeCommitted(object sender, EventArgs e)

@@ -290,6 +290,7 @@
             this.Name = "OrderDetailForm";
             this.StartPosition = FormStartPosition.CenterParent;
             this.Text = "Customer Order Details";
+            this.Load += this.OrderDetailForm_Load;
             this.ResumeLayout(false);
             this.PerformLayout();
         }
