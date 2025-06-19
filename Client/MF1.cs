@@ -349,6 +349,11 @@ namespace Client
 
         private void MF1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (Program.User == null)
+            {
+                return; // No user logged in, no need to confirm logout
+            }
+
             if (MessageBox.Show("Are you sure to logout?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 Program.User = null;

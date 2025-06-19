@@ -64,6 +64,7 @@
             this.comboBoxCustomer.Name = "comboBoxCustomer";
             this.comboBoxCustomer.Size = new Size(200, 27);
             this.comboBoxCustomer.TabIndex = 3;
+            this.comboBoxCustomer.SelectionChangeCommitted += this.comboBoxCustomer_SelectionChangeCommitted;
             // 
             // labelOrder
             // 
@@ -128,6 +129,7 @@
             // comboBoxStatus
             // 
             this.comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.Items.AddRange(new object[] { "Open", "In Progress", "Resolved", "Closed" });
             this.comboBoxStatus.Location = new Point(195, 296);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new Size(200, 27);
@@ -162,6 +164,7 @@
             // comboBoxCaseType
             // 
             this.comboBoxCaseType.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxCaseType.Items.AddRange(new object[] { "Inquiry", "Complaint", "Return", "Request" });
             this.comboBoxCaseType.Location = new Point(195, 447);
             this.comboBoxCaseType.Name = "comboBoxCaseType";
             this.comboBoxCaseType.Size = new Size(200, 27);

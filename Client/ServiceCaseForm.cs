@@ -140,10 +140,10 @@ namespace Client
                         customerOrderID = reader["CustomerOrderID"] == DBNull.Value ? "" : reader["CustomerOrderID"].ToString();
                         caseDate = reader["CaseDate"] == DBNull.Value ? DateTime.Now : Convert.ToDateTime(reader["CaseDate"]);
                         description = reader["Description"].ToString();
-                        status = reader["Status"].ToString();
+                        status = reader.GetString("Status");
                         resolution = reader["Resolution"] == DBNull.Value ? "" : reader["Resolution"].ToString();
-                        caseType = reader["CaseType"].ToString();
-                        assignedStaffID = reader["AssignedStaffID"] == DBNull.Value ? "" : reader["AssignedStaffID"].ToString();
+                        caseType = reader.GetString("CaseType");
+                        assignedStaffID = reader.GetString("AssignedStaffID");
                     }
                 }
             }

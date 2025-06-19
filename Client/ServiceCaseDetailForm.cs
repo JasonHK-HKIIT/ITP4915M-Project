@@ -12,32 +12,20 @@ namespace Client
             InitializeComponent();
             buttonSave.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
             buttonCancel.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
-            this.Load += ServiceCaseDetailForm_Load;
-        }
 
-        private void ServiceCaseDetailForm_Load(object sender, EventArgs e)
-        {
             // --- Customer ComboBox ---
             using (var cmd = new MySqlCommand("SELECT CustomerID, CustomerName FROM Customer", Program.Connection))
             using (var adapter = new MySqlDataAdapter(cmd))
             {
                 var dt = new DataTable();
                 adapter.Fill(dt);
-                comboBoxCustomer.DataSource = dt;
                 comboBoxCustomer.DisplayMember = "CustomerName";
                 comboBoxCustomer.ValueMember = "CustomerID";
+                comboBoxCustomer.DataSource = dt;
             }
 
             // --- Customer Order ComboBox ---
-            using (var cmd = new MySqlCommand("SELECT CustomerOrderID FROM CustomerOrder", Program.Connection))
-            using (var adapter = new MySqlDataAdapter(cmd))
-            {
-                var dt = new DataTable();
-                adapter.Fill(dt);
-                comboBoxOrder.DataSource = dt;
-                comboBoxOrder.DisplayMember = "CustomerOrderID";
-                comboBoxOrder.ValueMember = "CustomerOrderID";
-            }
+            UpdateOrdersList();
 
             // --- Assigned Staff ComboBox ---
             using (var cmd = new MySqlCommand("SELECT UserID, Name FROM User", Program.Connection))
@@ -45,14 +33,18 @@ namespace Client
             {
                 var dt = new DataTable();
                 adapter.Fill(dt);
-                comboBoxAssignedStaff.DataSource = dt;
                 comboBoxAssignedStaff.DisplayMember = "Name";
                 comboBoxAssignedStaff.ValueMember = "UserID";
+                comboBoxAssignedStaff.DataSource = dt;
+                comboBoxAssignedStaff.SelectedValue = Program.User.UserId;
             }
 
-            // --- Status/CaseType options (you may load these from DB instead) ---
-            comboBoxStatus.Items.AddRange(new[] { "Open", "In Progress", "Resolved", "Closed" });
-            comboBoxCaseType.Items.AddRange(new[] { "Complaint", "Inquiry", "Return", "Request" });
+            comboBoxStatus.SelectedIndex = 0; // Default to first item
+            comboBoxCaseType.SelectedIndex = 0; // Default to first item
+        }
+
+        private void ServiceCaseDetailForm_Load(object sender, EventArgs e)
+        {
         }
 
         // Expose properties for each field
@@ -73,13 +65,44 @@ namespace Client
         {
             maskedTextBoxCaseID.Text = caseId;
             comboBoxCustomer.SelectedValue = customerId;
+            UpdateOrdersList();
             comboBoxOrder.SelectedValue = customerOrderId;
             dateTimePickerCaseDate.Value = caseDate;
             textBoxDescription.Text = description;
-            comboBoxStatus.Text = status;
+            comboBoxStatus.SelectedItem = status;
             textBoxResolution.Text = resolution;
-            comboBoxCaseType.Text = caseType;
+            comboBoxCaseType.SelectedItem = caseType;
             comboBoxAssignedStaff.SelectedValue = assignedStaffId;
+        }
+
+        private void UpdateOrdersList()
+        {
+            var command = new MySqlCommand("SELECT CustomerOrderID, ProductName FROM CustomerOrder LEFT JOIN Quotation ON CustomerOrder.QuotationID = Quotation.QuotationID LEFT JOIN Product ON Quotation.ProductID = Product.ProductID WHERE CustomerOrder.CustomerID = ?Customer", Program.Connection);
+            command.Parameters.AddWithValue("?Customer", comboBoxCustomer.SelectedValue);
+
+            var reader = command.ExecuteReader();
+            var dict = new Dictionary<string, string>();
+            while (reader.Read())
+            {
+                dict.Add(reader.GetString("CustomerOrderID"), $"{reader["CustomerOrderID"]} - {reader["ProductName"]}");
+            }
+            reader.Close();
+
+            if (dict.Count > 0)
+            {
+                comboBoxOrder.ValueMember = "Key";
+                comboBoxOrder.DisplayMember = "Value";
+                comboBoxOrder.DataSource = new BindingSource(dict, null);
+            }
+            else
+            {
+                comboBoxOrder.DataSource = null; // Clear if no quotations found
+            }
+        }
+
+        private void comboBoxCustomer_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateOrdersList();
         }
     }
 }
