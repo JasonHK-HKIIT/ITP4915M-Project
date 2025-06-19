@@ -60,6 +60,7 @@
             this.comboBoxCustomer.Name = "comboBoxCustomer";
             this.comboBoxCustomer.Size = new Size(268, 27);
             this.comboBoxCustomer.TabIndex = 3;
+            this.comboBoxCustomer.SelectionChangeCommitted += this.comboBoxCustomer_SelectionChangeCommitted;
             // 
             // comboBoxQuotation
             // 
@@ -85,6 +86,8 @@
             // 
             // comboBoxStatus
             // 
+            this.comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxStatus.Items.AddRange(new object[] { "Pending", "Confirmed", "Completed", "Cancelled" });
             this.comboBoxStatus.Location = new Point(209, 233);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new Size(268, 27);
@@ -113,6 +116,8 @@
             // 
             // comboBoxPaymentStatus
             // 
+            this.comboBoxPaymentStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxPaymentStatus.Items.AddRange(new object[] { "Unpaid", "Partial", "Paid" });
             this.comboBoxPaymentStatus.Location = new Point(209, 427);
             this.comboBoxPaymentStatus.Name = "comboBoxPaymentStatus";
             this.comboBoxPaymentStatus.Size = new Size(268, 27);
@@ -120,6 +125,8 @@
             // 
             // comboBoxOrderType
             // 
+            this.comboBoxOrderType.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxOrderType.Items.AddRange(new object[] { "Normal", "Express", "Bulk" });
             this.comboBoxOrderType.Location = new Point(209, 477);
             this.comboBoxOrderType.Name = "comboBoxOrderType";
             this.comboBoxOrderType.Size = new Size(268, 27);

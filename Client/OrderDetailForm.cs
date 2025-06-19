@@ -29,21 +29,11 @@ namespace Client
                 comboBoxCustomer.ValueMember = "CustomerID";
             }
 
-            // Fill Quotation ComboBox
-            using (var cmd = new MySqlCommand("SELECT QuotationID FROM Quotation", Program.Connection))
-            using (var adapter = new MySqlDataAdapter(cmd))
-            {
-                var dt = new DataTable();
-                adapter.Fill(dt);
-                comboBoxQuotation.DataSource = dt;
-                comboBoxQuotation.DisplayMember = "QuotationID";
-                comboBoxQuotation.ValueMember = "QuotationID";
-            }
+            UpdateQuotationsList(); // Initial load of quotations
 
-            // You can replace with data-driven values if you store these in a reference/status table
-            comboBoxStatus.Items.AddRange(new[] { "Confirmed", "Pending", "Cancelled", "Completed" });
-            comboBoxPaymentStatus.Items.AddRange(new[] { "Paid", "Unpaid", "Partial" });
-            comboBoxOrderType.Items.AddRange(new[] { "Normal", "Express", "Bulk" });
+            comboBoxOrderType.SelectedIndex = 0;
+            comboBoxPaymentStatus.SelectedIndex = 0;
+            comboBoxStatus.SelectedIndex = 0;
         }
 
         // Set fields for Edit mode
@@ -53,20 +43,52 @@ namespace Client
         {
             maskedTextBox1.Text = orderId; // CHANGED
             comboBoxCustomer.SelectedValue = customerId;
+            UpdateQuotationsList(); // Ensure quotations are updated based on selected customer
+
             comboBoxQuotation.SelectedValue = quotationId;
             dateTimePickerOrderDate.Value = orderDate;
             dateTimePickerDeadline.Value = deadline;
-            comboBoxStatus.Text = status;
+            comboBoxStatus.SelectedItem = status;
             textBoxDeposit.Text = deposit.ToString("0.##");
             textBoxBalance.Text = balance.ToString("0.##");
             textBoxTotalAmount.Text = total.ToString("0.##");
-            comboBoxPaymentStatus.Text = paymentStatus;
-            comboBoxOrderType.Text = orderType;
+            comboBoxPaymentStatus.SelectedItem = paymentStatus;
+            comboBoxOrderType.SelectedItem = orderType;
+        }
+
+        private void UpdateQuotationsList()
+        {
+            var command = new MySqlCommand("SELECT QuotationID, ProductName FROM Quotation LEFT JOIN Product ON Quotation.ProductID = Product.ProductID WHERE CustomerID = ?Customer", Program.Connection);
+            command.Parameters.AddWithValue("?Customer", comboBoxCustomer.SelectedValue);
+
+            var reader = command.ExecuteReader();
+            var dict = new Dictionary<string, string>();
+            while (reader.Read())
+            {
+                dict.Add(reader.GetString("QuotationID"), $"{reader["QuotationID"]} - {reader["ProductName"]}");
+            }
+            reader.Close();
+            
+            if (dict.Count > 0)
+            {
+                comboBoxQuotation.ValueMember = "Key";
+                comboBoxQuotation.DisplayMember = "Value";
+                comboBoxQuotation.DataSource = new BindingSource(dict, null);
+            }
+            else
+            {
+                comboBoxQuotation.DataSource = null; // Clear if no quotations found
+            }
         }
 
         private void maskedTextBoxOrderID_TextChanged(object sender, EventArgs e) // changed method name
         {
 
+        }
+
+        private void comboBoxCustomer_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateQuotationsList();
         }
 
         // Expose properties for reading input
@@ -75,11 +97,11 @@ namespace Client
         public string QuotationID => comboBoxQuotation.SelectedValue?.ToString() ?? "";
         public DateTime OrderDate => dateTimePickerOrderDate.Value;
         public DateTime Deadline => dateTimePickerDeadline.Value;
-        public string Status => comboBoxStatus.Text.Trim();
+        public string Status => (string)comboBoxStatus.SelectedItem;
         public decimal DepositPaid => decimal.TryParse(textBoxDeposit.Text, out var v) ? v : 0;
         public decimal BalanceDue => decimal.TryParse(textBoxBalance.Text, out var v) ? v : 0;
         public decimal TotalAmount => decimal.TryParse(textBoxTotalAmount.Text, out var v) ? v : 0;
-        public string PaymentStatus => comboBoxPaymentStatus.Text.Trim();
-        public string OrderType => comboBoxOrderType.Text.Trim();
+        public string PaymentStatus => (string)comboBoxPaymentStatus.SelectedItem;
+        public string OrderType => (string)comboBoxOrderType.SelectedItem;
     }
 }
