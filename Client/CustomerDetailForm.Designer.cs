@@ -37,7 +37,7 @@
             this.textBox4 = new TextBox();
             this.button1 = new Button();
             this.button2 = new Button();
-            this.maskedTextBox1 = new MaskedTextBox();
+            this.maskedTextBox1 = new TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +83,7 @@
             // textBox2
             // 
             this.textBox2.Location = new Point(166, 71);
-            this.textBox2.Margin = new Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new Size(321, 27);
             this.textBox2.TabIndex = 5;
@@ -91,7 +91,7 @@
             // textBox3
             // 
             this.textBox3.Location = new Point(166, 112);
-            this.textBox3.Margin = new Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new Size(321, 27);
             this.textBox3.TabIndex = 6;
@@ -99,7 +99,7 @@
             // textBox4
             // 
             this.textBox4.Location = new Point(166, 154);
-            this.textBox4.Margin = new Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new Size(661, 27);
             this.textBox4.TabIndex = 7;
@@ -107,7 +107,7 @@
             // button1
             // 
             this.button1.Location = new Point(614, 207);
-            this.button1.Margin = new Padding(4, 4, 4, 4);
+            this.button1.Margin = new Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new Size(97, 29);
             this.button1.TabIndex = 8;
@@ -117,7 +117,7 @@
             // button2
             // 
             this.button2.Location = new Point(731, 207);
-            this.button2.Margin = new Padding(4, 4, 4, 4);
+            this.button2.Margin = new Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new Size(97, 29);
             this.button2.TabIndex = 9;
@@ -126,13 +126,11 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new Point(166, 23);
-            this.maskedTextBox1.Margin = new Padding(4, 4, 4, 4);
-            this.maskedTextBox1.Mask = "CUST000";
+            this.maskedTextBox1.Location = new Point(166, 30);
             this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.ReadOnly = true;
             this.maskedTextBox1.Size = new Size(321, 27);
             this.maskedTextBox1.TabIndex = 10;
-            this.maskedTextBox1.Text = "C";
             // 
             // CustomerDetailForm
             // 
@@ -149,7 +147,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new Padding(4, 4, 4, 4);
+            this.Margin = new Padding(4);
             this.Name = "CustomerDetailForm";
             this.Text = "CustomerDetailForm";
             this.Load += this.CustomerDetailForm_Load;
@@ -168,6 +166,6 @@
         private TextBox textBox4;
         private Button button1;
         private Button button2;
-        private MaskedTextBox maskedTextBox1;
+        private TextBox maskedTextBox1;
     }
 }

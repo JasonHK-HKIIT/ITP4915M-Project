@@ -64,10 +64,14 @@ namespace Client
             using var detail = new CustomerDetailForm { Text = "Add Customer" };
             if (detail.ShowDialog() != DialogResult.OK) return;
 
+            var lastIdCommand = new MySqlCommand("SELECT CustomerID FROM Customer ORDER BY CustomerID DESC LIMIT 1", Program.Connection);
+            var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "CUST000";
+            var nextId = int.Parse(lastIdString.Substring(4)) + 1;
+
             using var command = new MySqlCommand(
                 "INSERT INTO Customer (CustomerID, CustomerName, CustomerPhoneNo, Address) VALUES (@id, @name, @phone, @address)",
                 Program.Connection);
-            command.Parameters.AddWithValue("@id", detail.CustomerID);
+            command.Parameters.AddWithValue("@id", $"CUST{nextId.ToString().PadLeft(3, '0')}");
             command.Parameters.AddWithValue("@name", detail.CustomerName);
             command.Parameters.AddWithValue("@phone", detail.CustomerPhone);
             command.Parameters.AddWithValue("@address", detail.CustomerAddress);
