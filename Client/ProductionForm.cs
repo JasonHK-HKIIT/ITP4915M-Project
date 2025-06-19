@@ -72,6 +72,10 @@ namespace Client
                 detail.Text = "Add Production Order";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT ProductionOrderID FROM ProductionOrder ORDER BY ProductionOrderID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "PO000";
+                    var nextId = int.Parse(lastIdString.Substring(2)) + 1;
+
                     var cmd = new MySqlCommand(
                         @"INSERT INTO ProductionOrder 
                             (ProductionOrderID, CustomerOrderID, ProductID, Quantity, ScheduledDate, Status) 
@@ -79,7 +83,7 @@ namespace Client
                             (@id, @co, @pid, @qty, @date, @status)",
                         Program.Connection
                     );
-                    cmd.Parameters.AddWithValue("@id", detail.ProductionOrderID);
+                    cmd.Parameters.AddWithValue("@id", $"PO{nextId.ToString().PadLeft(3, '0')}");
                     cmd.Parameters.AddWithValue("@co", detail.CustomerOrderID);
                     cmd.Parameters.AddWithValue("@pid", detail.ProductID);
                     cmd.Parameters.AddWithValue("@qty", detail.Quantity);

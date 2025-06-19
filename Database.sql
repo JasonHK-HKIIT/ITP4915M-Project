@@ -255,7 +255,7 @@ CREATE TABLE `ProductionOrder` (
 
 INSERT INTO `ProductionOrder` (`ProductionOrderID`, `CustomerOrderID`, `ProductID`, `Quantity`, `ScheduledDate`, `Status`) VALUES
 ('PO001', 'ORD001', 'PROD001', 100, '2025-06-05', 'Scheduled'),
-('PO002', 'ORD002', 'PROD002', 150, '2025-06-06', 'Pending');
+('PO002', 'ORD002', 'PROD002', 150, '2025-06-06', 'In Progress');
 
 -- --------------------------------------------------------
 
