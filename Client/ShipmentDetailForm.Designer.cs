@@ -19,7 +19,6 @@
             this.label4 = new Label();
             this.label5 = new Label();
             this.label6 = new Label();
-            this.textBox2 = new TextBox();
             this.textBox3 = new TextBox();
             this.textBox4 = new TextBox();
             this.dateTimePicker1 = new DateTimePicker();
@@ -28,7 +27,8 @@
             this.button2 = new Button();
             this.label7 = new Label();
             this.dateTimePicker2 = new DateTimePicker();
-            this.maskedTextBox1 = new MaskedTextBox();
+            this.textBox2 = new ComboBox();
+            this.maskedTextBox1 = new TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -91,18 +91,10 @@
             this.label6.TabIndex = 5;
             this.label6.Text = "Status";
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new Point(166, 71);
-            this.textBox2.Margin = new Padding(4, 4, 4, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new Size(321, 27);
-            this.textBox2.TabIndex = 7;
-            // 
             // textBox3
             // 
             this.textBox3.Location = new Point(166, 112);
-            this.textBox3.Margin = new Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new Size(321, 27);
             this.textBox3.TabIndex = 8;
@@ -110,7 +102,7 @@
             // textBox4
             // 
             this.textBox4.Location = new Point(166, 152);
-            this.textBox4.Margin = new Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new Size(321, 27);
             this.textBox4.TabIndex = 9;
@@ -118,7 +110,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new Point(166, 192);
-            this.dateTimePicker1.Margin = new Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new Size(321, 27);
             this.dateTimePicker1.TabIndex = 10;
@@ -126,9 +118,9 @@
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.comboBox1.Items.AddRange(new object[] { "Preparing", "In Transit", "Delivered" });
+            this.comboBox1.Items.AddRange(new object[] { "Pending", "Shipped", "Delivered" });
             this.comboBox1.Location = new Point(166, 233);
-            this.comboBox1.Margin = new Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new Size(321, 27);
             this.comboBox1.TabIndex = 11;
@@ -136,7 +128,7 @@
             // button1
             // 
             this.button1.Location = new Point(440, 355);
-            this.button1.Margin = new Padding(4, 4, 4, 4);
+            this.button1.Margin = new Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new Size(97, 29);
             this.button1.TabIndex = 12;
@@ -146,7 +138,7 @@
             // button2
             // 
             this.button2.Location = new Point(569, 355);
-            this.button2.Margin = new Padding(4, 4, 4, 4);
+            this.button2.Margin = new Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new Size(97, 29);
             this.button2.TabIndex = 13;
@@ -166,19 +158,27 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new Point(166, 283);
-            this.dateTimePicker2.Margin = new Padding(2, 2, 2, 2);
+            this.dateTimePicker2.Margin = new Padding(2);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new Size(321, 27);
             this.dateTimePicker2.TabIndex = 15;
             // 
+            // textBox2
+            // 
+            this.textBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.textBox2.FormattingEnabled = true;
+            this.textBox2.Location = new Point(166, 71);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new Size(321, 27);
+            this.textBox2.TabIndex = 17;
+            // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new Point(166, 26);
-            this.maskedTextBox1.Margin = new Padding(2, 2, 2, 2);
-            this.maskedTextBox1.Mask = "SHIP000";
+            this.maskedTextBox1.Location = new Point(166, 28);
             this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.ReadOnly = true;
             this.maskedTextBox1.Size = new Size(321, 27);
-            this.maskedTextBox1.TabIndex = 16;
+            this.maskedTextBox1.TabIndex = 18;
             // 
             // ShipmentDetailForm
             // 
@@ -186,6 +186,7 @@
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(677, 411);
             this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button2);
@@ -194,14 +195,13 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new Padding(4, 4, 4, 4);
+            this.Margin = new Padding(4);
             this.Name = "ShipmentDetailForm";
             this.Text = "ShipmentDetailForm";
             this.Load += this.ShipmentDetailForm_Load;
@@ -215,7 +215,6 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox4;
         private DateTimePicker dateTimePicker1;
@@ -224,6 +223,7 @@
         private Button button2;
         private Label label7;
         private DateTimePicker dateTimePicker2;
-        private MaskedTextBox maskedTextBox1;
+        private ComboBox textBox2;
+        private TextBox maskedTextBox1;
     }
 }

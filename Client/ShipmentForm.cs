@@ -70,13 +70,17 @@ namespace Client
                 detail.Text = "Add Shipment";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT ShipmentID FROM Shipment ORDER BY ShipmentID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "SHIP000";
+                    var nextId = int.Parse(lastIdString.Substring(4)) + 1;
+
                     using (var command = new MySqlCommand(
                         @"INSERT INTO Shipment
                         (ShipmentID, CustomerOrderID, Carrier, TrackingNumber, ShipmentDate, Status, IssueDate)
                         VALUES (@sid, @coid, @car, @track, @sdate, @status, @idate)",
                         Program.Connection))
                     {
-                        command.Parameters.AddWithValue("@sid", detail.ShipmentID);
+                        command.Parameters.AddWithValue("@sid", $"SHIP{nextId.ToString().PadLeft(3, '0')}");
                         command.Parameters.AddWithValue("@coid", detail.CustomerOrderID);
                         command.Parameters.AddWithValue("@car", detail.Carrier);
                         command.Parameters.AddWithValue("@track", detail.TrackingNumber);

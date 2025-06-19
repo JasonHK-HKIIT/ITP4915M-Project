@@ -47,7 +47,7 @@ namespace Client
         public string ProductID => textBox3.Text.Substring(0, 7);
         public int Quantity => ((int)textBox4.Value);
         public DateTime ScheduledDate => dateTimePicker1.Value;
-        public string Status => comboBox1.Text;
+        public string Status => (string)comboBox1.SelectedItem;
 
         private void ButtonSave_Click(object sender, EventArgs e)
         {
