@@ -79,6 +79,10 @@ namespace Client
                 detail.Text = "Add Service Case";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    var lastIdCommand = new MySqlCommand("SELECT CaseID FROM CustomerServiceCase ORDER BY CaseID DESC LIMIT 1", Program.Connection);
+                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "CASE000";
+                    var nextId = int.Parse(lastIdString.Substring(4)) + 1;
+
                     using (var command = new MySqlCommand(
                         @"INSERT INTO CustomerServiceCase
                           (CaseID, CustomerID, CustomerOrderID, CaseDate, Description, Status, Resolution, CaseType, AssignedStaffID)
@@ -86,7 +90,7 @@ namespace Client
                           (@CaseID, @CustomerID, @CustomerOrderID, @CaseDate, @Description, @Status, @Resolution, @CaseType, @AssignedStaffID)",
                         Program.Connection))
                     {
-                        command.Parameters.AddWithValue("@CaseID", detail.CaseID);
+                        command.Parameters.AddWithValue("@CaseID", $"CASE{nextId.ToString().PadLeft(3, '0')}");
                         command.Parameters.AddWithValue("@CustomerID", detail.CustomerID);
                         command.Parameters.AddWithValue("@CustomerOrderID",
                             string.IsNullOrWhiteSpace(detail.CustomerOrderID) ? (object)DBNull.Value : detail.CustomerOrderID);

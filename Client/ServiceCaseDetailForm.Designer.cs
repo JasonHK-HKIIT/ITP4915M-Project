@@ -36,7 +36,7 @@
             this.comboBoxAssignedStaff = new ComboBox();
             this.buttonSave = new Button();
             this.buttonCancel = new Button();
-            this.maskedTextBoxCaseID = new MaskedTextBox();
+            this.maskedTextBoxCaseID = new TextBox();
             this.SuspendLayout();
             // 
             // labelCaseID
@@ -205,8 +205,8 @@
             // maskedTextBoxCaseID
             // 
             this.maskedTextBoxCaseID.Location = new Point(195, 15);
-            this.maskedTextBoxCaseID.Mask = "\\C\\ASE000";
             this.maskedTextBoxCaseID.Name = "maskedTextBoxCaseID";
+            this.maskedTextBoxCaseID.ReadOnly = true;
             this.maskedTextBoxCaseID.Size = new Size(200, 27);
             this.maskedTextBoxCaseID.TabIndex = 20;
             // 
@@ -261,6 +261,6 @@
         private System.Windows.Forms.ComboBox comboBoxAssignedStaff;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
-        private MaskedTextBox maskedTextBoxCaseID;
+        private TextBox maskedTextBoxCaseID;
     }
 }
