@@ -67,8 +67,8 @@ CREATE TABLE `CustomerOrder` (
 --
 
 INSERT INTO `CustomerOrder` (`CustomerOrderID`, `CustomerID`, `QuotationID`, `OrderDate`, `Deadline`, `Status`, `DepositPaid`, `BalanceDue`, `PaymentStatus`, `OrderType`, `TotalAmount`) VALUES
-('ORD001', 'CUST001', 'QUO001', '2025-06-01', '2025-06-15', 'Confirmed', 100.00, 200.00, 'Partial', 'Online', 300.00),
-('ORD002', 'CUST002', 'QUO002', '2025-06-02', '2025-06-20', 'Pending', 50.00, 150.00, 'Unpaid', 'Offline', 200.00);
+('ORD001', 'CUST001', 'QUO001', '2025-06-01', '2025-06-15', 'Confirmed', 100.00, 200.00, 'Partial', 'Normal', 300.00),
+('ORD002', 'CUST002', 'QUO002', '2025-06-02', '2025-06-20', 'Pending', 50.00, 150.00, 'Unpaid', 'Express', 200.00);
 
 -- --------------------------------------------------------
 
