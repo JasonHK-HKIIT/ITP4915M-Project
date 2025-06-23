@@ -23,6 +23,9 @@ namespace Client
                 this.Visible = true;
                 Program.User = loginForm.User;
 
+                // Set form title (will appear in top-left)
+                this.Icon = Properties.Resources.Icon_Sun;
+
                 // Apply font style
                 Font font;
                 try { font = new Font("Helvetica", 10); }

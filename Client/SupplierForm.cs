@@ -17,7 +17,7 @@ namespace Client
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.Text = "SupplierForm";
-            this.Icon = Properties.Resources.Icon_Sun;
+            this.Icon = Properties.Resources.Icon_Form;
 
             // ─── Font styling ───
             Font font;

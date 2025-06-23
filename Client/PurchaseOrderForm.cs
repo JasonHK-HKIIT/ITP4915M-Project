@@ -17,7 +17,7 @@ namespace Client
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.Text = "PurchaseOrderForm";
-            this.Icon = Properties.Resources.Icon_Sun;
+            this.Icon = Properties.Resources.Icon_Form;
 
             // Apply font (Helvetica with fallback)
             Font font;

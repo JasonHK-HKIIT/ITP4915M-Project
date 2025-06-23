@@ -19,7 +19,7 @@ namespace Client
 
             // Set form title (will appear in top-left)
             this.Text = "CustomerForm";
-            this.Icon = Properties.Resources.Icon_Sun;
+            this.Icon = Properties.Resources.Icon_Form;
 
             // Set UI font
             Font font;
