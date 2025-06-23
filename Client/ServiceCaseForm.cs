@@ -17,7 +17,7 @@ namespace Client
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.Text = "ServiceCaseForm";
-            this.Icon = Properties.Resources.Icon_Sun;
+            this.Icon = Properties.Resources.Icon_Form;
 
             // ─── Font cascade (Helvetica → Segoe UI fallback) ───
             Font uiFont;
