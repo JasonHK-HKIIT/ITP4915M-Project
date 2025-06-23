@@ -187,6 +187,20 @@ namespace Client
             }
             LoadData();
         }
+        private void buttonGenerateNote_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a shipment to generate a delivery note.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string shipmentId = dataGridView1.SelectedRows[0].Cells["ShipmentID"].Value.ToString();
+            var noteForm = new DeliveryNoteForm(shipmentId);
+            noteForm.MdiParent = this.MdiParent;
+            noteForm.Show();
+        }
+
 
         private void ShipmentForm_Load(object sender, EventArgs e)
         {
