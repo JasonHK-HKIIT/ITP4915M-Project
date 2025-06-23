@@ -1,17 +1,38 @@
-using MySql.Data.MySqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Client
 {
     public partial class LoginForm : Form
     {
         public bool LoggedIn { get; private set; } = false;
-
         public User User { get; private set; }
 
         public LoginForm()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
+            // Set PictureBox image and window icon
+            pictureBox1.Image = Properties.Resources.Logo_Sun;
+            this.Icon = Properties.Resources.Icon_Sun;
+
+            // Apply UI font
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
         }
 
         private bool IsValidLogin(string username, string password)
@@ -24,7 +45,7 @@ namespace Client
 
             var command = new MySqlCommand("SELECT PasswordHash FROM User WHERE UserID = ?uid", Program.Connection);
             command.Parameters.AddWithValue("uid", username);
-            command.Parameters.AddWithValue("password", password);
+            command.Parameters.AddWithValue("password", password);  // NOTE: You probably don't need this unless the query uses it
 
             var reader = command.ExecuteReader();
             if (!reader.Read())
@@ -33,6 +54,7 @@ namespace Client
                 reader.Close();
                 return false;
             }
+
             var hash = reader.GetString("PasswordHash");
             reader.Close();
             return Program.VerifyPassword(password, hash);
@@ -45,6 +67,7 @@ namespace Client
                 var command = new MySqlCommand("SELECT UserID, TeamID, Role FROM User WHERE UserID = ?uid", Program.Connection);
                 command.Parameters.AddWithValue("uid", this.inputUsername.Text);
                 var reader = command.ExecuteReader();
+
                 if (!reader.Read())
                 {
                     MessageBox.Show("User not found in the database. This should not happen.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

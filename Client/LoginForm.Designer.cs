@@ -28,97 +28,103 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.label2 = new Label();
-            this.inputUsername = new TextBox();
-            this.label3 = new Label();
-            this.inputPassword = new TextBox();
-            this.buttonLogin = new Button();
-            this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new Font("Microsoft JhengHei UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 136);
-            this.label1.Location = new Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(301, 36);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Smile && Sunshine Toy";
+            label2 = new Label();
+            inputUsername = new TextBox();
+            label3 = new Label();
+            inputPassword = new TextBox();
+            buttonLogin = new Button();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new Point(17, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new Size(80, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Username";
+            label2.AutoSize = true;
+            label2.Location = new Point(12, 168);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(60, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Username";
             // 
             // inputUsername
             // 
-            this.inputUsername.Location = new Point(103, 62);
-            this.inputUsername.Name = "inputUsername";
-            this.inputUsername.Size = new Size(200, 27);
-            this.inputUsername.TabIndex = 2;
-            this.inputUsername.Text = "U001";
+            inputUsername.Location = new Point(84, 165);
+            inputUsername.Margin = new Padding(2);
+            inputUsername.Name = "inputUsername";
+            inputUsername.Size = new Size(156, 23);
+            inputUsername.TabIndex = 2;
+            inputUsername.Text = "U001";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new Point(17, 98);
-            this.label3.Name = "label3";
-            this.label3.Size = new Size(77, 19);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Password";
+            label3.AutoSize = true;
+            label3.Location = new Point(15, 205);
+            label3.Margin = new Padding(2, 0, 2, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(57, 15);
+            label3.TabIndex = 3;
+            label3.Text = "Password";
             // 
             // inputPassword
             // 
-            this.inputPassword.Location = new Point(103, 95);
-            this.inputPassword.Name = "inputPassword";
-            this.inputPassword.Size = new Size(200, 27);
-            this.inputPassword.TabIndex = 4;
-            this.inputPassword.Text = "hash123";
-            this.inputPassword.UseSystemPasswordChar = true;
+            inputPassword.Location = new Point(84, 202);
+            inputPassword.Margin = new Padding(2);
+            inputPassword.Name = "inputPassword";
+            inputPassword.Size = new Size(156, 23);
+            inputPassword.TabIndex = 4;
+            inputPassword.Text = "hash123";
+            inputPassword.UseSystemPasswordChar = true;
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new Point(113, 143);
-            this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new Size(94, 29);
-            this.buttonLogin.TabIndex = 5;
-            this.buttonLogin.Text = "Login";
-            this.buttonLogin.UseVisualStyleBackColor = true;
-            this.buttonLogin.Click += this.buttonLogin_Click;
+            buttonLogin.Location = new Point(84, 241);
+            buttonLogin.Margin = new Padding(2);
+            buttonLogin.Name = "buttonLogin";
+            buttonLogin.Size = new Size(61, 24);
+            buttonLogin.TabIndex = 5;
+            buttonLogin.Text = "Login";
+            buttonLogin.UseVisualStyleBackColor = true;
+            buttonLogin.Click += buttonLogin_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(12, 21);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(265, 117);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(324, 186);
-            this.Controls.Add(this.buttonLogin);
-            this.Controls.Add(this.inputPassword);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.inputUsername);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "LoginForm";
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.Text = "Smile & Sunshine Toy";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(288, 285);
+            Controls.Add(pictureBox1);
+            Controls.Add(buttonLogin);
+            Controls.Add(inputPassword);
+            Controls.Add(label3);
+            Controls.Add(inputUsername);
+            Controls.Add(label2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(2);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "LoginForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Smile & Sunshine Toy";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private TextBox inputUsername;
         private Label label3;
         private TextBox inputPassword;
         private Button buttonLogin;
+        private PictureBox pictureBox1;
     }
 }

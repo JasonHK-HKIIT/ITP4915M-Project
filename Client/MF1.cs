@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client
@@ -28,10 +22,36 @@ namespace Client
             {
                 this.Visible = true;
                 Program.User = loginForm.User;
+
+                // Apply font style
+                Font font;
+                try { font = new Font("Helvetica", 10); }
+                catch { font = new Font("Segoe UI", 10); }
+                ApplyFont(this, font);
+
+                // Set background image
+                foreach (Control ctrl in this.Controls)
+                {
+                    if (ctrl is MdiClient client)
+                    {
+                        client.BackgroundImage = Properties.Resources.Background;
+                        client.BackgroundImageLayout = ImageLayout.Stretch;
+                    }
+                }
             }
             else
             {
                 Application.Exit();
+            }
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
             }
         }
 
@@ -49,7 +69,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -73,7 +92,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -97,7 +115,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -121,7 +138,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -145,7 +161,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -169,7 +184,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -193,7 +207,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -217,7 +230,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -241,7 +253,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -265,7 +276,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -289,7 +299,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -313,7 +322,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -337,7 +345,6 @@ namespace Client
                 {
                     child.MdiParent = this;
                     child.Focus();
-
                     return;
                 }
             }
@@ -349,10 +356,7 @@ namespace Client
 
         private void MF1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Program.User == null)
-            {
-                return; // No user logged in, no need to confirm logout
-            }
+            if (Program.User == null) return;
 
             if (MessageBox.Show("Are you sure to logout?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {

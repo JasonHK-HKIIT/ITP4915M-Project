@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Client
@@ -11,6 +12,26 @@ namespace Client
         {
             InitializeComponent();
 
+            // Restore default Windows form border
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;  // enable maximize if needed
+            this.MinimizeBox = true;
+
+            // Set form title (will appear in top-left)
+            this.Text = "CustomerForm";
+            this.Icon = Properties.Resources.Icon_Sun;
+
+            // Set UI font
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply UI styles
+            StyleButtons();
+            StyleGrid();
+
+            // Hook up event handlers
             button1.Click += ButtonAdd_Click;
             button2.Click += ButtonEdit_Click;
             button3.Click += ButtonDelete_Click;
@@ -19,7 +40,42 @@ namespace Client
             LoadData();
         }
 
-        // Load customers based on search input
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            ButtonStyle(button1, "Add Customer", Color.MediumSeaGreen);
+            ButtonStyle(button2, "Edit Selected", Color.CornflowerBlue);
+            ButtonStyle(button3, "Delete Selected", Color.IndianRed);
+        }
+
+        private void ButtonStyle(Button button, string text, Color backColor)
+        {
+            button.Text = text;
+            button.BackColor = backColor;
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dataGridView1.BackgroundColor = Color.WhiteSmoke;
+        }
+
         private void LoadData()
         {
             string query = textBox1.Text.Trim();
@@ -28,15 +84,11 @@ namespace Client
                 FROM Customer";
 
             if (!string.IsNullOrEmpty(query))
-            {
                 sql += " WHERE CustomerID LIKE @q OR CustomerName LIKE @q OR CustomerPhoneNo LIKE @q";
-            }
 
             using var command = new MySqlCommand(sql, Program.Connection);
             if (!string.IsNullOrEmpty(query))
-            {
                 command.Parameters.AddWithValue("@q", $"%{query}%");
-            }
 
             using var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
@@ -47,16 +99,13 @@ namespace Client
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading customers: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading customers:\n{ex.Message}", "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void TextBoxSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                LoadData();
-            }
+            if (e.KeyCode == Keys.Enter) LoadData();
         }
 
         private void ButtonAdd_Click(object sender, EventArgs e)
@@ -83,7 +132,7 @@ namespace Client
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error adding customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error adding customer:\n{ex.Message}", "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -91,7 +140,7 @@ namespace Client
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a customer to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select a customer to edit.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -103,7 +152,6 @@ namespace Client
 
             using var detail = new CustomerDetailForm { Text = "Edit Customer" };
             detail.SetFields(originalId, name, phone, address);
-
             if (detail.ShowDialog() != DialogResult.OK) return;
 
             using var command = new MySqlCommand(
@@ -122,7 +170,7 @@ namespace Client
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error updating customer:\n{ex.Message}", "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -130,12 +178,12 @@ namespace Client
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select a customer to delete.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select a customer to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             string customerId = dataGridView1.SelectedRows[0].Cells["CustomerID"].Value.ToString();
-            var confirm = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = MessageBox.Show("Are you sure you want to delete this customer?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes) return;
 
             using var command = new MySqlCommand("DELETE FROM Customer WHERE CustomerID=@id", Program.Connection);
@@ -148,9 +196,8 @@ namespace Client
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error deleting customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error deleting customer:\n{ex.Message}", "Delete Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }
