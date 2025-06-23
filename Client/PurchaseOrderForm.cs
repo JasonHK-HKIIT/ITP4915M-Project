@@ -14,6 +14,29 @@ namespace Client
             buttonEdit.Click += ButtonEdit_Click;   // Edit
             buttonViewLines.Click += ButtonViewPOLines_Click; // View PO Lines
             textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter
+
+            // Apply fixed border, title and icon
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
+            this.Text = "PurchaseOrderForm";
+            this.Icon = Properties.Resources.Icon_Form;
+
+            // Apply font (Helvetica with fallback)
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply button styles
+            StyleButtons();
+            StyleGrid();
+
+            // Hook events
+            button1.Click += ButtonAdd_Click;
+            button2.Click += ButtonEdit_Click;
+            textBox1.KeyUp += textBox1_KeyUp;
+
             LoadData();
         }
 
