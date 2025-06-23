@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Client
@@ -11,215 +12,237 @@ namespace Client
         {
             InitializeComponent();
 
-            // Wire up button click events
-            button3.Click += ButtonAdd_Click;    // Add Order
-            button2.Click += ButtonEdit_Click;   // Edit Order
-            textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter key
+            // ─── Standard form chrome ─────────────────────────────
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
+            this.Text = "OrderForm";
+            this.Icon = Properties.Resources.Icon_Sun;
 
-            LoadData(); // Initial load
+            // ─── Font cascade (Helvetica → Segoe UI fallback) ─────
+            Font uiFont;
+            try { uiFont = new Font("Helvetica", 10); }
+            catch { uiFont = new Font("Segoe UI", 10); }
+            ApplyFont(this, uiFont);
+
+            // ─── Style buttons & grid ─────────────────────────────
+            StyleButtons();
+            StyleGrid();
+
+            // ─── Hook up events ───────────────────────────────────
+            button3.Click += ButtonAdd_Click;   // Add
+            button2.Click += ButtonEdit_Click;  // Edit
+            textBox1.KeyUp += TextBoxSearch_KeyUp;
+
+            LoadData(); // initial load
         }
 
-        /// <summary>
-        /// Load customer orders from the database.
-        /// Supports search by OrderID, CustomerName, QuotationID, Status, or PaymentStatus.
-        /// </summary>
+        /*──────────────────────────────────────────────────────────
+         *  UI-STYLE HELPERS (copied from CustomerForm.cs)
+         * ─────────────────────────────────────────────────────────*/
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren) ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            if (button3 != null) ButtonStyle(button3, "Add Order", Color.MediumSeaGreen); // ✅
+            if (button2 != null) ButtonStyle(button2, "Edit Order", Color.CornflowerBlue); // ✏️
+            // No delete button in this form
+        }
+
+        private static void ButtonStyle(Button btn, string text, Color backColor)
+        {
+            btn.Text = text;
+            btn.BackColor = backColor;
+            btn.ForeColor = Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dataGridView1.BackgroundColor = Color.WhiteSmoke;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = this.Font;
+        }
+
+        /*──────────────────────────────────────────────────────────
+         *  SEARCH & LOAD
+         * ─────────────────────────────────────────────────────────*/
+        private void TextBoxSearch_KeyUp(object sender, KeyEventArgs e)
+        { if (e.KeyCode == Keys.Enter) LoadData(); }
+
         private void LoadData()
         {
-            string query = textBox1.Text.Trim();
-            MySqlCommand command;
+            string q = textBox1.Text.Trim();
 
-            // Base SQL query with JOIN to include CustomerName
-            string baseQuery = @"
-                SELECT 
-                    o.CustomerOrderID, 
-                    c.CustomerName, 
-                    o.QuotationID, 
-                    o.OrderDate, 
-                    o.Deadline, 
-                    o.Status, 
-                    o.DepositPaid, 
-                    o.BalanceDue, 
-                    o.TotalAmount, 
-                    o.PaymentStatus, 
+            string sql = @"
+                SELECT
+                    o.CustomerOrderID,
+                    c.CustomerName,
+                    o.QuotationID,
+                    o.OrderDate,
+                    o.Deadline,
+                    o.Status,
+                    o.DepositPaid,
+                    o.BalanceDue,
+                    o.TotalAmount,
+                    o.PaymentStatus,
                     o.OrderType
                 FROM CustomerOrder o
                 LEFT JOIN Customer c ON o.CustomerID = c.CustomerID";
 
-            // If search term exists, filter by multiple fields
-            if (string.IsNullOrEmpty(query))
-            {
-                command = new MySqlCommand(baseQuery, Program.Connection);
-            }
-            else
-            {
-                baseQuery += @"
-                    WHERE 
-                        o.CustomerOrderID LIKE @q OR 
-                        c.CustomerName LIKE @q OR 
-                        o.QuotationID LIKE @q OR 
-                        o.Status LIKE @q OR 
-                        o.PaymentStatus LIKE @q";
+            using var cmd = new MySqlCommand(sql, Program.Connection);
 
-                command = new MySqlCommand(baseQuery, Program.Connection);
-                command.Parameters.AddWithValue("@q", $"%{query}%");
+            if (!string.IsNullOrEmpty(q))
+            {
+                sql += @"
+                    WHERE
+                        o.CustomerOrderID LIKE @q OR
+                        c.CustomerName     LIKE @q OR
+                        o.QuotationID      LIKE @q OR
+                        o.Status           LIKE @q OR
+                        o.PaymentStatus    LIKE @q";
+                cmd.CommandText = sql;
+                cmd.Parameters.AddWithValue("@q", $"%{q}%");
             }
 
-            var adapter = new MySqlDataAdapter(command);
+            using var adp = new MySqlDataAdapter(cmd);
             var dt = new DataTable();
-
             try
             {
-                adapter.Fill(dt);
+                adp.Fill(dt);
                 dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading orders: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error loading orders:\n{ex.Message}",
+                                "Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Trigger search when Enter is pressed in search box.
-        /// </summary>
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                LoadData();
-            }
-        }
-
-        /// <summary>
-        /// Handle adding a new customer order.
-        /// Opens the OrderDetailForm and inserts into the database on success.
-        /// </summary>
+        /*──────────────────────────────────────────────────────────
+         *  ADD ORDER
+         * ─────────────────────────────────────────────────────────*/
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
-            using (var detail = new OrderDetailForm())
+            using var detail = new OrderDetailForm { Text = "Add Order" };
+            if (detail.ShowDialog() != DialogResult.OK) return;
+
+            var lastCmd = new MySqlCommand(
+                "SELECT CustomerOrderID FROM CustomerOrder ORDER BY CustomerOrderID DESC LIMIT 1",
+                Program.Connection);
+            var last = lastCmd.ExecuteScalar() as string ?? "ORD000";
+            int next = int.Parse(last.Substring(3)) + 1;
+
+            using var cmd = new MySqlCommand(@"
+                INSERT INTO CustomerOrder
+                    (CustomerOrderID, CustomerID, QuotationID, OrderDate, Deadline,
+                     Status, DepositPaid, BalanceDue, TotalAmount, PaymentStatus, OrderType)
+                VALUES
+                    (@id, @custId, @quoId, @oDate, @deadline,
+                     @status, @deposit, @balance, @total, @payStatus, @oType)",
+                Program.Connection);
+
+            cmd.Parameters.AddWithValue("@id", $"ORD{next.ToString().PadLeft(3, '0')}");
+            cmd.Parameters.AddWithValue("@custId", detail.CustomerID);
+            cmd.Parameters.AddWithValue("@quoId", detail.QuotationID);
+            cmd.Parameters.AddWithValue("@oDate", detail.OrderDate);
+            cmd.Parameters.AddWithValue("@deadline", detail.Deadline);
+            cmd.Parameters.AddWithValue("@status", detail.Status);
+            cmd.Parameters.AddWithValue("@deposit", detail.DepositPaid);
+            cmd.Parameters.AddWithValue("@balance", detail.BalanceDue);
+            cmd.Parameters.AddWithValue("@total", detail.TotalAmount);
+            cmd.Parameters.AddWithValue("@payStatus", detail.PaymentStatus);
+            cmd.Parameters.AddWithValue("@oType", detail.OrderType);
+
+            try { cmd.ExecuteNonQuery(); LoadData(); }
+            catch (Exception ex)
             {
-                detail.Text = "Add Order";
-                if (detail.ShowDialog() == DialogResult.OK)
-                {
-                    var lastIdCommand = new MySqlCommand("SELECT CustomerOrderID FROM CustomerOrder ORDER BY CustomerOrderID DESC LIMIT 1", Program.Connection);
-                    var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "ORD000";
-                    var nextId = int.Parse(lastIdString.Substring(3)) + 1;
-
-                    // Prepare insert command
-                    using (var command = new MySqlCommand(
-                        @"INSERT INTO CustomerOrder 
-                          (CustomerOrderID, CustomerID, QuotationID, OrderDate, Deadline, Status, DepositPaid, BalanceDue, TotalAmount, PaymentStatus, OrderType)
-                          VALUES
-                          (@id, @customerId, @quotationId, @orderDate, @deadline, @status, @deposit, @balance, @total, @paymentStatus, @orderType)",
-                        Program.Connection))
-                    {
-                        // Bind form data to SQL parameters
-                        command.Parameters.AddWithValue("@id", $"ORD{nextId.ToString().PadLeft(3, '0')}");
-                        command.Parameters.AddWithValue("@customerId", detail.CustomerID);
-                        command.Parameters.AddWithValue("@quotationId", detail.QuotationID);
-                        command.Parameters.AddWithValue("@orderDate", detail.OrderDate);
-                        command.Parameters.AddWithValue("@deadline", detail.Deadline);
-                        command.Parameters.AddWithValue("@status", detail.Status);
-                        command.Parameters.AddWithValue("@deposit", detail.DepositPaid);
-                        command.Parameters.AddWithValue("@balance", detail.BalanceDue);
-                        command.Parameters.AddWithValue("@total", detail.TotalAmount);
-                        command.Parameters.AddWithValue("@paymentStatus", detail.PaymentStatus);
-                        command.Parameters.AddWithValue("@orderType", detail.OrderType);
-
-                        try
-                        {
-                            command.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error adding order: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
-                    LoadData();
-                }
+                MessageBox.Show($"Error adding order:\n{ex.Message}",
+                                "Insert Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        /// <summary>
-        /// Handle editing an existing customer order.
-        /// Pre-fills OrderDetailForm with selected row data and updates database if confirmed.
-        /// </summary>
+        /*──────────────────────────────────────────────────────────
+         *  EDIT ORDER
+         * ─────────────────────────────────────────────────────────*/
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select an order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select an order to edit.",
+                                "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            var row = dataGridView1.SelectedRows[0];
+            var r = dataGridView1.SelectedRows[0];
 
-            // Extract data from selected row
-            string orderId = row.Cells["CustomerOrderID"].Value.ToString();
-            string customerName = row.Cells["CustomerName"].Value.ToString();
-            string quotationId = row.Cells["QuotationID"].Value.ToString();
-            DateTime orderDate = Convert.ToDateTime(row.Cells["OrderDate"].Value);
-            DateTime deadline = Convert.ToDateTime(row.Cells["Deadline"].Value);
-            string status = row.Cells["Status"].Value.ToString();
-            decimal deposit = Convert.ToDecimal(row.Cells["DepositPaid"].Value);
-            decimal balance = Convert.ToDecimal(row.Cells["BalanceDue"].Value);
-            decimal total = row.Cells["TotalAmount"].Value == DBNull.Value ? 0 : Convert.ToDecimal(row.Cells["TotalAmount"].Value);
-            string paymentStatus = row.Cells["PaymentStatus"].Value.ToString();
-            string orderType = row.Cells["OrderType"].Value.ToString();
+            string id = r.Cells["CustomerOrderID"].Value.ToString();
+            string quo = r.Cells["QuotationID"].Value.ToString();
+            string custName = r.Cells["CustomerName"].Value.ToString();
 
-            using (var detail = new OrderDetailForm())
+            DateTime oDate = Convert.ToDateTime(r.Cells["OrderDate"].Value);
+            DateTime dlDate = Convert.ToDateTime(r.Cells["Deadline"].Value);
+            string status = r.Cells["Status"].Value.ToString();
+            decimal deposit = Convert.ToDecimal(r.Cells["DepositPaid"].Value);
+            decimal balance = Convert.ToDecimal(r.Cells["BalanceDue"].Value);
+            decimal total = r.Cells["TotalAmount"].Value == DBNull.Value ? 0
+                               : Convert.ToDecimal(r.Cells["TotalAmount"].Value);
+            string payStat = r.Cells["PaymentStatus"].Value.ToString();
+            string oType = r.Cells["OrderType"].Value.ToString();
+
+            using var detail = new OrderDetailForm
             {
-                detail.Text = "Edit Order";
-                detail.SetFields(orderId, customerName, quotationId, orderDate, deadline, status, deposit, balance, total, paymentStatus, orderType);
+                Text = "Edit Order"
+            };
+            detail.SetFields(id, custName, quo, oDate, dlDate,
+                             status, deposit, balance, total, payStat, oType);
 
-                if (detail.ShowDialog() == DialogResult.OK)
-                {
-                    using (var command = new MySqlCommand(
-                        @"UPDATE CustomerOrder SET 
-                              CustomerID=@customerId,
-                              QuotationID=@quotationId,
-                              OrderDate=@orderDate,
-                              Deadline=@deadline,
-                              Status=@status,
-                              DepositPaid=@deposit,
-                              BalanceDue=@balance,
-                              TotalAmount=@total,
-                              PaymentStatus=@paymentStatus,
-                              OrderType=@orderType
-                          WHERE CustomerOrderID=@id",
-                        Program.Connection))
-                    {
-                        // Bind form values to update
-                        command.Parameters.AddWithValue("@id", orderId);
-                        command.Parameters.AddWithValue("@customerId", detail.CustomerID);
-                        command.Parameters.AddWithValue("@quotationId", detail.QuotationID);
-                        command.Parameters.AddWithValue("@orderDate", detail.OrderDate);
-                        command.Parameters.AddWithValue("@deadline", detail.Deadline);
-                        command.Parameters.AddWithValue("@status", detail.Status);
-                        command.Parameters.AddWithValue("@deposit", detail.DepositPaid);
-                        command.Parameters.AddWithValue("@balance", detail.BalanceDue);
-                        command.Parameters.AddWithValue("@total", detail.TotalAmount);
-                        command.Parameters.AddWithValue("@paymentStatus", detail.PaymentStatus);
-                        command.Parameters.AddWithValue("@orderType", detail.OrderType);
+            if (detail.ShowDialog() != DialogResult.OK) return;
 
-                        try
-                        {
-                            command.ExecuteNonQuery();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error updating order: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-                    }
-                    LoadData();
-                }
+            using var cmd = new MySqlCommand(@"
+                UPDATE CustomerOrder SET
+                    CustomerID     = @custId,
+                    QuotationID    = @quoId,
+                    OrderDate      = @oDate,
+                    Deadline       = @deadline,
+                    Status         = @status,
+                    DepositPaid    = @deposit,
+                    BalanceDue     = @balance,
+                    TotalAmount    = @total,
+                    PaymentStatus  = @payStatus,
+                    OrderType      = @oType
+                WHERE CustomerOrderID = @id", Program.Connection);
+
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@custId", detail.CustomerID);
+            cmd.Parameters.AddWithValue("@quoId", detail.QuotationID);
+            cmd.Parameters.AddWithValue("@oDate", detail.OrderDate);
+            cmd.Parameters.AddWithValue("@deadline", detail.Deadline);
+            cmd.Parameters.AddWithValue("@status", detail.Status);
+            cmd.Parameters.AddWithValue("@deposit", detail.DepositPaid);
+            cmd.Parameters.AddWithValue("@balance", detail.BalanceDue);
+            cmd.Parameters.AddWithValue("@total", detail.TotalAmount);
+            cmd.Parameters.AddWithValue("@payStatus", detail.PaymentStatus);
+            cmd.Parameters.AddWithValue("@oType", detail.OrderType);
+
+            try { cmd.ExecuteNonQuery(); LoadData(); }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating order:\n{ex.Message}",
+                                "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void OrderForm_Load(object sender, EventArgs e)
-        {
-            // Optional: logic when form loads (already covered by constructor)
         }
     }
 }

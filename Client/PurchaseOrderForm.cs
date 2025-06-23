@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Client
@@ -10,10 +11,66 @@ namespace Client
         public PurchaseOrderForm()
         {
             InitializeComponent();
-            button1.Click += ButtonAdd_Click;    // Add
-            button2.Click += ButtonEdit_Click;   // Edit
-            textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter
+
+            // Apply fixed border, title and icon
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;
+            this.MinimizeBox = true;
+            this.Text = "PurchaseOrderForm";
+            this.Icon = Properties.Resources.Icon_Sun;
+
+            // Apply font (Helvetica with fallback)
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply button styles
+            StyleButtons();
+            StyleGrid();
+
+            // Hook events
+            button1.Click += ButtonAdd_Click;
+            button2.Click += ButtonEdit_Click;
+            textBox1.KeyUp += textBox1_KeyUp;
+
             LoadData();
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            ButtonStyle(button1, "Add Purchase Order", Color.MediumSeaGreen);
+            ButtonStyle(button2, "Edit Purchase Order", Color.CornflowerBlue);
+        }
+
+        private void ButtonStyle(Button btn, string text, Color backColor)
+        {
+            btn.Text = text;
+            btn.BackColor = backColor;
+            btn.ForeColor = Color.White;
+            btn.FlatStyle = FlatStyle.Flat;
+            btn.FlatAppearance.BorderSize = 0;
+            btn.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+            dataGridView1.BackgroundColor = Color.WhiteSmoke;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = this.Font;
         }
 
         private void LoadData()
@@ -31,7 +88,6 @@ namespace Client
             }
             else
             {
-                // Filter across all columns, including date fields as string
                 baseQuery += @"
             WHERE PurchaseOrderID LIKE @f
                OR SupplierID LIKE @f
@@ -52,7 +108,6 @@ namespace Client
                 adapter.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                // Format date columns to match DB format (yyyy-MM-dd)
                 if (dataGridView1.Columns.Contains("OrderDate"))
                     dataGridView1.Columns["OrderDate"].DefaultCellStyle.Format = "yyyy-MM-dd";
                 if (dataGridView1.Columns.Contains("ExpectedDeliveryDate"))
@@ -137,8 +192,8 @@ namespace Client
                 {
                     var cmd = new MySqlCommand(
                         @"UPDATE PurchaseOrder 
-                  SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus 
-                  WHERE PurchaseOrderID=@id",
+                          SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus 
+                          WHERE PurchaseOrderID=@id",
                         Program.Connection
                     );
                     cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
@@ -161,7 +216,6 @@ namespace Client
             }
         }
 
-
         private void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -169,7 +223,7 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            // Optional additional handler
         }
     }
 }
