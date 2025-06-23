@@ -18,40 +18,43 @@ namespace Client
             this.Load += PurchaseOrderDetailForm_Load;
         }
 
-        // Pre-fill form fields for Edit
         public void SetFields(
             string poId, string supplierId, DateTime orderDate, DateTime deliveryDate,
-            string status, string poStatus, List<PurchaseOrderLine> lines = null
-        )
+            string status, string poStatus, List<PurchaseOrderLine> lines = null)
         {
             maskedTextBox1.Text = poId;
             comboBoxSupplier.SelectedValue = supplierId;
             dateTimePickerOrder.Value = orderDate;
             dateTimePickerDelivery.Value = deliveryDate;
 
-            // Ensure the status exists in comboBoxStatus before selecting
             if (!comboBoxStatus.Items.Contains(status))
                 comboBoxStatus.Items.Add(status);
             comboBoxStatus.SelectedItem = status;
 
-            // Ensure the PO status exists in comboBoxPOStatus before selecting
             if (!comboBoxPOStatus.Items.Contains(poStatus))
                 comboBoxPOStatus.Items.Add(poStatus);
             comboBoxPOStatus.SelectedItem = poStatus;
 
-            // Load existing line items if provided
+            if (dataGridViewLineItems.DataSource == null)
+            {
+                var dt = new DataTable();
+                dt.Columns.Add("MaterialID", typeof(string));
+                dt.Columns.Add("Quantity", typeof(int));
+                dt.Columns.Add("ReceivedQuantity", typeof(int));
+                dataGridViewLineItems.DataSource = dt;
+            }
+
             if (lines != null)
             {
                 var dt = (DataTable)dataGridViewLineItems.DataSource;
                 dt.Rows.Clear();
                 foreach (var line in lines)
                 {
-                    dt.Rows.Add(line.MaterialID, line.MaterialName, line.Quantity, line.ReceivedQuantity);
+                    dt.Rows.Add(line.MaterialID, line.Quantity, line.ReceivedQuantity);
                 }
             }
         }
 
-        // Expose properties to read form data
         public string PurchaseOrderID => maskedTextBox1.Text;
         public string SupplierID => comboBoxSupplier.SelectedValue?.ToString() ?? "";
         public DateTime OrderDate => dateTimePickerOrder.Value;
@@ -59,10 +62,8 @@ namespace Client
         public string Status => comboBoxStatus.SelectedItem?.ToString() ?? comboBoxStatus.Text;
         public string POStatus => comboBoxPOStatus.SelectedItem?.ToString() ?? comboBoxPOStatus.Text;
 
-        // Line items as DataGridView
         public DataGridView LineItemsGrid => dataGridViewLineItems;
 
-        // Optionally: Get line items as a strongly typed list
         public List<PurchaseOrderLine> GetLineItems()
         {
             var list = new List<PurchaseOrderLine>();
@@ -72,7 +73,6 @@ namespace Client
                 list.Add(new PurchaseOrderLine
                 {
                     MaterialID = row.Cells["MaterialID"].Value?.ToString(),
-                    MaterialName = row.Cells["MaterialName"].Value?.ToString(),
                     Quantity = Convert.ToInt32(row.Cells["Quantity"].Value ?? 0),
                     ReceivedQuantity = Convert.ToInt32(row.Cells["ReceivedQuantity"].Value ?? 0)
                 });
@@ -82,7 +82,15 @@ namespace Client
 
         private void PurchaseOrderDetailForm_Load(object sender, EventArgs e)
         {
-            // --- Fill Supplier ComboBox from DB ---
+            if (dataGridViewLineItems.DataSource == null)
+            {
+                var dt = new DataTable();
+                dt.Columns.Add("MaterialID", typeof(string));
+                dt.Columns.Add("Quantity", typeof(int));
+                dt.Columns.Add("ReceivedQuantity", typeof(int));
+                dataGridViewLineItems.DataSource = dt;
+            }
+
             using (var cmd = new MySqlCommand("SELECT SupplierID, SupplierName FROM Supplier", Program.Connection))
             using (var adapter = new MySqlDataAdapter(cmd))
             {
@@ -93,7 +101,6 @@ namespace Client
                 comboBoxSupplier.ValueMember = "SupplierID";
             }
 
-            // --- Fill Status from DB ---
             comboBoxStatus.Items.Clear();
             using (var cmd = new MySqlCommand("SELECT DISTINCT Status FROM PurchaseOrder WHERE Status IS NOT NULL AND Status <> ''", Program.Connection))
             using (var reader = cmd.ExecuteReader())
@@ -104,7 +111,6 @@ namespace Client
                 }
             }
 
-            // --- Fill POStatus from DB ---
             comboBoxPOStatus.Items.Clear();
             using (var cmd = new MySqlCommand("SELECT DISTINCT POStatus FROM PurchaseOrder WHERE POStatus IS NOT NULL AND POStatus <> ''", Program.Connection))
             using (var reader = cmd.ExecuteReader())
@@ -114,22 +120,11 @@ namespace Client
                     comboBoxPOStatus.Items.Add(reader.GetString(0));
                 }
             }
-
-            // --- Line Items Grid Setup (if not already) ---
-            if (dataGridViewLineItems.Columns.Count == 0)
-            {
-                var dtLines = new DataTable();
-                dtLines.Columns.Add("MaterialID", typeof(string));
-                dtLines.Columns.Add("MaterialName", typeof(string));
-                dtLines.Columns.Add("Quantity", typeof(int));
-                dtLines.Columns.Add("ReceivedQuantity", typeof(int));
-                dataGridViewLineItems.DataSource = dtLines;
-            }
         }
 
         private void ButtonAddLine_Click(object sender, EventArgs e)
         {
-            using (var cmd = new MySqlCommand("SELECT MaterialID, MaterialName FROM Material", Program.Connection))
+            using (var cmd = new MySqlCommand("SELECT MaterialID FROM Material", Program.Connection))
             using (var adapter = new MySqlDataAdapter(cmd))
             {
                 var dtMat = new DataTable();
@@ -137,17 +132,12 @@ namespace Client
 
                 if (dtMat.Rows.Count > 0)
                 {
-                    var firstMat = dtMat.Rows[0];
-                    ((DataTable)dataGridViewLineItems.DataSource).Rows.Add(
-                        firstMat["MaterialID"].ToString(),
-                        firstMat["MaterialName"].ToString(),
-                        1, // default Quantity
-                        0  // default ReceivedQuantity
-                    );
+                    string materialId = dtMat.Rows[0]["MaterialID"].ToString();
+                    ((DataTable)dataGridViewLineItems.DataSource).Rows.Add(materialId, 1, 0);
                 }
                 else
                 {
-                    ((DataTable)dataGridViewLineItems.DataSource).Rows.Add("", "", 1, 0);
+                    ((DataTable)dataGridViewLineItems.DataSource).Rows.Add("", 1, 0);
                 }
             }
         }
@@ -161,11 +151,9 @@ namespace Client
             }
         }
 
-        // Model class for line items
         public class PurchaseOrderLine
         {
             public string MaterialID { get; set; }
-            public string MaterialName { get; set; }
             public int Quantity { get; set; }
             public int ReceivedQuantity { get; set; }
         }

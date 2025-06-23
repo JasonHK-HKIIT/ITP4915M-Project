@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace Client
@@ -11,66 +10,11 @@ namespace Client
         public PurchaseOrderForm()
         {
             InitializeComponent();
-
-            // Apply fixed border, title and icon
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = true;
-            this.MinimizeBox = true;
-            this.Text = "PurchaseOrderForm";
-            this.Icon = Properties.Resources.Icon_Sun;
-
-            // Apply font (Helvetica with fallback)
-            Font font;
-            try { font = new Font("Helvetica", 10); }
-            catch { font = new Font("Segoe UI", 10); }
-            ApplyFont(this, font);
-
-            // Apply button styles
-            StyleButtons();
-            StyleGrid();
-
-            // Hook events
-            button1.Click += ButtonAdd_Click;
-            button2.Click += ButtonEdit_Click;
-            textBox1.KeyUp += textBox1_KeyUp;
-
+            buttonAdd.Click += ButtonAdd_Click;    // Add
+            buttonEdit.Click += ButtonEdit_Click;   // Edit
+            buttonViewLines.Click += ButtonViewPOLines_Click; // View PO Lines
+            textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter
             LoadData();
-        }
-
-        private void ApplyFont(Control parent, Font font)
-        {
-            foreach (Control ctrl in parent.Controls)
-            {
-                ctrl.Font = font;
-                if (ctrl.HasChildren)
-                    ApplyFont(ctrl, font);
-            }
-        }
-
-        private void StyleButtons()
-        {
-            ButtonStyle(button1, "Add Purchase Order", Color.MediumSeaGreen);
-            ButtonStyle(button2, "Edit Purchase Order", Color.CornflowerBlue);
-        }
-
-        private void ButtonStyle(Button btn, string text, Color backColor)
-        {
-            btn.Text = text;
-            btn.BackColor = backColor;
-            btn.ForeColor = Color.White;
-            btn.FlatStyle = FlatStyle.Flat;
-            btn.FlatAppearance.BorderSize = 0;
-            btn.Cursor = Cursors.Hand;
-        }
-
-        private void StyleGrid()
-        {
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.MultiSelect = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
-            dataGridView1.BackgroundColor = Color.WhiteSmoke;
-            dataGridView1.ColumnHeadersDefaultCellStyle.Font = this.Font;
         }
 
         private void LoadData()
@@ -143,7 +87,8 @@ namespace Client
                             (@id, @sid, @odate, @ddate, @status, @postatus)",
                         Program.Connection
                     );
-                    cmd.Parameters.AddWithValue("@id", $"PUR{nextId.ToString().PadLeft(3, '0')}");
+                    string newId = $"PUR{nextId.ToString().PadLeft(3, '0')}";
+                    cmd.Parameters.AddWithValue("@id", newId);
                     cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
                     cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
                     cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
@@ -153,6 +98,19 @@ namespace Client
                     try
                     {
                         cmd.ExecuteNonQuery();
+
+                        foreach (var line in detail.GetLineItems())
+                        {
+                            var lineCmd = new MySqlCommand(
+                                "INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
+                                Program.Connection);
+                            lineCmd.Parameters.AddWithValue("@poid", newId);
+                            lineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                            lineCmd.Parameters.AddWithValue("@qty", line.Quantity);
+                            lineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
+                            lineCmd.ExecuteNonQuery();
+                        }
+
                         LoadData();
                     }
                     catch (Exception ex)
@@ -165,14 +123,9 @@ namespace Client
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridView1.SelectedRows.Count != 1)
             {
-                MessageBox.Show("Please select a purchase order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            if (dataGridView1.SelectedRows.Count > 1)
-            {
-                MessageBox.Show("Please select only one purchase order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select one purchase order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -184,10 +137,28 @@ namespace Client
             string status = row.Cells["Status"].Value.ToString();
             string postatus = row.Cells["POStatus"].Value.ToString();
 
+            var lines = new List<PurchaseOrderDetailForm.PurchaseOrderLine>();
+            using (var lineCmd = new MySqlCommand("SELECT * FROM PurchaseOrderLine WHERE PurchaseOrderID=@id", Program.Connection))
+            {
+                lineCmd.Parameters.AddWithValue("@id", id);
+                using (var reader = lineCmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        lines.Add(new PurchaseOrderDetailForm.PurchaseOrderLine
+                        {
+                            MaterialID = reader["MaterialID"].ToString(),
+                            Quantity = Convert.ToInt32(reader["Quantity"]),
+                            ReceivedQuantity = Convert.ToInt32(reader["ReceivedQuantity"] ?? 0)
+                        });
+                    }
+                }
+            }
+
             using (var detail = new PurchaseOrderDetailForm())
             {
                 detail.Text = "Edit Purchase Order";
-                detail.SetFields(id, sid, odate, ddate, status, postatus);
+                detail.SetFields(id, sid, odate, ddate, status, postatus, lines);
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
                     var cmd = new MySqlCommand(
@@ -206,6 +177,23 @@ namespace Client
                     try
                     {
                         cmd.ExecuteNonQuery();
+
+                        var deleteCmd = new MySqlCommand("DELETE FROM PurchaseOrderLine WHERE PurchaseOrderID=@id", Program.Connection);
+                        deleteCmd.Parameters.AddWithValue("@id", id);
+                        deleteCmd.ExecuteNonQuery();
+
+                        foreach (var line in detail.GetLineItems())
+                        {
+                            var insertLine = new MySqlCommand(
+                                "INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
+                                Program.Connection);
+                            insertLine.Parameters.AddWithValue("@poid", id);
+                            insertLine.Parameters.AddWithValue("@mid", line.MaterialID);
+                            insertLine.Parameters.AddWithValue("@qty", line.Quantity);
+                            insertLine.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
+                            insertLine.ExecuteNonQuery();
+                        }
+
                         LoadData();
                     }
                     catch (Exception ex)
@@ -216,14 +204,22 @@ namespace Client
             }
         }
 
+        private void ButtonViewPOLines_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Please select one purchase order to view.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            string poId = dataGridView1.SelectedRows[0].Cells["PurchaseOrderID"].Value.ToString();
+            var linesForm = new ViewPurchaseOrderLinesForm(poId);
+            linesForm.ShowDialog();
+        }
+
         private void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
             LoadData();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Optional additional handler
         }
     }
 }
