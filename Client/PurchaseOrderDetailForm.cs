@@ -13,33 +13,17 @@ namespace Client
         public PurchaseOrderDetailForm()
         {
             InitializeComponent();
+            comboBoxStatus.SelectedIndex = 0; // Default to first item
+            comboBoxPOStatus.SelectedIndex = 0; // Default to first item
+
             buttonSave.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
             buttonCancel.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
             buttonAddLine.Click += ButtonAddLine_Click;
             buttonDeleteLine.Click += ButtonDeleteLine_Click;
-            this.Load += PurchaseOrderDetailForm_Load;
         }
 
-        private void InitStatusDropdowns()
+        public void SetFields(string poId, string supplierId, DateTime orderDate, DateTime deliveryDate, string status, string poStatus, List<PurchaseOrderLine> lines = null)
         {
-            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxStatus.Items.Clear();
-            comboBoxStatus.Items.AddRange(new object[] { "Pending", "Approved", "Shipped", "Delivered", "Cancelled", "Ordered" });
-
-            comboBoxPOStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxPOStatus.Items.Clear();
-            comboBoxPOStatus.Items.AddRange(new object[] { "In Transit", "Processing" });
-        }
-
-        public void SetFields(string poId, string supplierId, DateTime orderDate, DateTime deliveryDate,
-       string status, string poStatus, List<PurchaseOrderLine> lines = null)
-        {
-            // Ensure dropdowns are filled before setting values
-            if (comboBoxStatus.Items.Count == 0 || comboBoxPOStatus.Items.Count == 0)
-            {
-                InitStatusDropdowns();
-            }
-
             maskedTextBox1.Text = poId;
             comboBoxSupplier.SelectedValue = supplierId;
             dateTimePickerOrder.Value = orderDate;
@@ -105,8 +89,6 @@ namespace Client
                 comboBoxSupplier.DisplayMember = "SupplierName";
                 comboBoxSupplier.ValueMember = "SupplierID";
             }
-
-            InitStatusDropdowns();
 
             materialDict.Clear();
             using (var cmd = new MySqlCommand("SELECT MaterialID, MaterialName, Description FROM Material", Program.Connection))

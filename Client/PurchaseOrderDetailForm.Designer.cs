@@ -84,7 +84,7 @@
             this.comboBoxSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
             this.comboBoxSupplier.FormattingEnabled = true;
             this.comboBoxSupplier.Location = new Point(169, 69);
-            this.comboBoxSupplier.Margin = new Padding(4, 4, 4, 4);
+            this.comboBoxSupplier.Margin = new Padding(4);
             this.comboBoxSupplier.Name = "comboBoxSupplier";
             this.comboBoxSupplier.Size = new Size(281, 27);
             this.comboBoxSupplier.TabIndex = 3;
@@ -102,7 +102,7 @@
             // dateTimePickerOrder
             // 
             this.dateTimePickerOrder.Location = new Point(169, 118);
-            this.dateTimePickerOrder.Margin = new Padding(4, 4, 4, 4);
+            this.dateTimePickerOrder.Margin = new Padding(4);
             this.dateTimePickerOrder.Name = "dateTimePickerOrder";
             this.dateTimePickerOrder.Size = new Size(281, 27);
             this.dateTimePickerOrder.TabIndex = 5;
@@ -120,7 +120,7 @@
             // dateTimePickerDelivery
             // 
             this.dateTimePickerDelivery.Location = new Point(169, 162);
-            this.dateTimePickerDelivery.Margin = new Padding(4, 4, 4, 4);
+            this.dateTimePickerDelivery.Margin = new Padding(4);
             this.dateTimePickerDelivery.Name = "dateTimePickerDelivery";
             this.dateTimePickerDelivery.Size = new Size(281, 27);
             this.dateTimePickerDelivery.TabIndex = 7;
@@ -139,8 +139,9 @@
             // 
             this.comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] { "Pending", "Approved", "Shipped", "Delivered", "Cancelled", "Ordered" });
             this.comboBoxStatus.Location = new Point(169, 207);
-            this.comboBoxStatus.Margin = new Padding(4, 4, 4, 4);
+            this.comboBoxStatus.Margin = new Padding(4);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new Size(281, 27);
             this.comboBoxStatus.TabIndex = 9;
@@ -159,8 +160,9 @@
             // 
             this.comboBoxPOStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             this.comboBoxPOStatus.FormattingEnabled = true;
+            this.comboBoxPOStatus.Items.AddRange(new object[] { "Processing", "In Transit" });
             this.comboBoxPOStatus.Location = new Point(169, 254);
-            this.comboBoxPOStatus.Margin = new Padding(4, 4, 4, 4);
+            this.comboBoxPOStatus.Margin = new Padding(4);
             this.comboBoxPOStatus.Name = "comboBoxPOStatus";
             this.comboBoxPOStatus.Size = new Size(281, 27);
             this.comboBoxPOStatus.TabIndex = 11;
@@ -179,7 +181,7 @@
             // 
             this.dataGridViewLineItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewLineItems.Location = new Point(43, 325);
-            this.dataGridViewLineItems.Margin = new Padding(4, 4, 4, 4);
+            this.dataGridViewLineItems.Margin = new Padding(4);
             this.dataGridViewLineItems.Name = "dataGridViewLineItems";
             this.dataGridViewLineItems.RowHeadersWidth = 51;
             this.dataGridViewLineItems.RowTemplate.Height = 24;
@@ -189,7 +191,7 @@
             // buttonAddLine
             // 
             this.buttonAddLine.Location = new Point(43, 511);
-            this.buttonAddLine.Margin = new Padding(4, 4, 4, 4);
+            this.buttonAddLine.Margin = new Padding(4);
             this.buttonAddLine.Name = "buttonAddLine";
             this.buttonAddLine.Size = new Size(113, 33);
             this.buttonAddLine.TabIndex = 14;
@@ -199,7 +201,7 @@
             // buttonDeleteLine
             // 
             this.buttonDeleteLine.Location = new Point(162, 511);
-            this.buttonDeleteLine.Margin = new Padding(4, 4, 4, 4);
+            this.buttonDeleteLine.Margin = new Padding(4);
             this.buttonDeleteLine.Name = "buttonDeleteLine";
             this.buttonDeleteLine.Size = new Size(113, 33);
             this.buttonDeleteLine.TabIndex = 15;
@@ -209,7 +211,7 @@
             // buttonSave
             // 
             this.buttonSave.Location = new Point(437, 570);
-            this.buttonSave.Margin = new Padding(4, 4, 4, 4);
+            this.buttonSave.Margin = new Padding(4);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new Size(101, 38);
             this.buttonSave.TabIndex = 16;
@@ -219,7 +221,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Location = new Point(560, 570);
-            this.buttonCancel.Margin = new Padding(4, 4, 4, 4);
+            this.buttonCancel.Margin = new Padding(4);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new Size(101, 38);
             this.buttonCancel.TabIndex = 17;
@@ -257,7 +259,7 @@
             this.Controls.Add(this.comboBoxSupplier);
             this.Controls.Add(this.labelSupplier);
             this.Controls.Add(this.labelPOID);
-            this.Margin = new Padding(4, 4, 4, 4);
+            this.Margin = new Padding(4);
             this.Name = "PurchaseOrderDetailForm";
             this.Text = "PurchaseOrderDetailForm";
             this.Load += this.PurchaseOrderDetailForm_Load;
