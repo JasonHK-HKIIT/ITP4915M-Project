@@ -443,7 +443,28 @@ namespace Client
             }
         }
 
+        private void materialsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Program.User.IsRole("Supply Chain Management Department", "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            foreach (var child in this.MdiChildren)
+            {
+                if (child is MaterialsForm)
+                {
+                    child.MdiParent = this;
+                    child.Focus();
+                    return;
+                }
+            }
+
+            var materialsForm = new MaterialsForm();
+            materialsForm.MdiParent = this;
+            materialsForm.Show();
+        }
     }
-    }
+}
 
