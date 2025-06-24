@@ -9,6 +9,11 @@ namespace Client
         public MF1()
         {
             InitializeComponent();
+            this.cascadeToolStripMenuItem.Click += new System.EventHandler(this.cascadeToolStripMenuItem_Click);
+            this.tileToolStripMenuItem.Click += new System.EventHandler(this.tileHorizontalToolStripMenuItem_Click);
+            this.arrangeIconsToolStripMenuItem.Click += new System.EventHandler(this.arrangeIconsToolStripMenuItem_Click);
+            this.windowsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.windowsToolStripMenuItem_DropDownOpening);
+
         }
 
         private void MF1_Load(object sender, EventArgs e)
@@ -311,6 +316,30 @@ namespace Client
             inventoryForm.Show();
         }
 
+        private void materialInventoryControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if ((Program.User.Role != "Supply Chain Management Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            foreach (var child in this.MdiChildren)
+            {
+                if (child is MaterialInventoryForm)
+                {
+                    child.MdiParent = this;
+                    child.Focus();
+                    return;
+                }
+            }
+
+            var materialinventoryForm = new MaterialInventoryForm();
+            materialinventoryForm.MdiParent = this;
+            materialinventoryForm.Show();
+        }
+
         private void adminUserManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Program.User.Role != "Admin")
@@ -375,5 +404,46 @@ namespace Client
         {
             Close();
         }
+        private void cascadeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.Cascade);
+        }
+
+        private void tileHorizontalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.TileHorizontal);
+        }
+
+        private void tileVerticalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.TileVertical);
+        }
+
+        private void arrangeIconsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LayoutMdi(MdiLayout.ArrangeIcons);
+        }
+        private void windowsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            // Remove old items except for layout-related ones
+            for (int i = windowsToolStripMenuItem.DropDownItems.Count - 1; i >= 3; i--)
+            {
+                windowsToolStripMenuItem.DropDownItems.RemoveAt(i);
+            }
+
+            // Add active child forms
+            foreach (Form child in this.MdiChildren)
+            {
+                var item = new ToolStripMenuItem(child.Text)
+                {
+                    Tag = child
+                };
+                item.Click += (s, ev) => ((Form)((ToolStripMenuItem)s).Tag).Activate();
+                windowsToolStripMenuItem.DropDownItems.Add(item);
+            }
+        }
+
+
     }
-}
+    }
+

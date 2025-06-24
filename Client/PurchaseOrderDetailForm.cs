@@ -8,6 +8,8 @@ namespace Client
 {
     public partial class PurchaseOrderDetailForm : Form
     {
+        private Dictionary<string, (string Name, string Description)> materialDict = new();
+
         public PurchaseOrderDetailForm()
         {
             InitializeComponent();
@@ -18,51 +20,60 @@ namespace Client
             this.Load += PurchaseOrderDetailForm_Load;
         }
 
-        public void SetFields(
-            string poId, string supplierId, DateTime orderDate, DateTime deliveryDate,
-            string status, string poStatus, List<PurchaseOrderLine> lines = null)
+        private void InitStatusDropdowns()
         {
+            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxStatus.Items.Clear();
+            comboBoxStatus.Items.AddRange(new object[] { "Pending", "Approved", "Shipped", "Delivered", "Cancelled", "Ordered" });
+
+            comboBoxPOStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxPOStatus.Items.Clear();
+            comboBoxPOStatus.Items.AddRange(new object[] { "In Transit", "Processing" });
+        }
+
+        public void SetFields(string poId, string supplierId, DateTime orderDate, DateTime deliveryDate,
+       string status, string poStatus, List<PurchaseOrderLine> lines = null)
+        {
+            // Ensure dropdowns are filled before setting values
+            if (comboBoxStatus.Items.Count == 0 || comboBoxPOStatus.Items.Count == 0)
+            {
+                InitStatusDropdowns();
+            }
+
             maskedTextBox1.Text = poId;
             comboBoxSupplier.SelectedValue = supplierId;
             dateTimePickerOrder.Value = orderDate;
             dateTimePickerDelivery.Value = deliveryDate;
 
-            if (!comboBoxStatus.Items.Contains(status))
-                comboBoxStatus.Items.Add(status);
-            comboBoxStatus.SelectedItem = status;
+            if (comboBoxStatus.Items.Contains(status))
+                comboBoxStatus.SelectedItem = status;
 
-            if (!comboBoxPOStatus.Items.Contains(poStatus))
-                comboBoxPOStatus.Items.Add(poStatus);
-            comboBoxPOStatus.SelectedItem = poStatus;
-
-            if (dataGridViewLineItems.DataSource == null)
-            {
-                var dt = new DataTable();
-                dt.Columns.Add("MaterialID", typeof(string));
-                dt.Columns.Add("Quantity", typeof(int));
-                dt.Columns.Add("ReceivedQuantity", typeof(int));
-                dataGridViewLineItems.DataSource = dt;
-            }
+            if (comboBoxPOStatus.Items.Contains(poStatus))
+                comboBoxPOStatus.SelectedItem = poStatus;
 
             if (lines != null)
             {
                 var dt = (DataTable)dataGridViewLineItems.DataSource;
+                if (dt == null) return;
+
                 dt.Rows.Clear();
                 foreach (var line in lines)
                 {
-                    dt.Rows.Add(line.MaterialID, line.Quantity, line.ReceivedQuantity);
+                    string name = materialDict.TryGetValue(line.MaterialID, out var val) ? val.Name : "";
+                    string desc = materialDict.TryGetValue(line.MaterialID, out val) ? val.Description : "";
+                    dt.Rows.Add(line.MaterialID, name, desc, line.Quantity, line.ReceivedQuantity);
                 }
             }
         }
+
+
 
         public string PurchaseOrderID => maskedTextBox1.Text;
         public string SupplierID => comboBoxSupplier.SelectedValue?.ToString() ?? "";
         public DateTime OrderDate => dateTimePickerOrder.Value;
         public DateTime DeliveryDate => dateTimePickerDelivery.Value;
-        public string Status => comboBoxStatus.SelectedItem?.ToString() ?? comboBoxStatus.Text;
-        public string POStatus => comboBoxPOStatus.SelectedItem?.ToString() ?? comboBoxPOStatus.Text;
-
-        public DataGridView LineItemsGrid => dataGridViewLineItems;
+        public string Status => (string)comboBoxStatus.SelectedItem;
+        public string POStatus => (string)comboBoxPOStatus.SelectedItem;
 
         public List<PurchaseOrderLine> GetLineItems()
         {
@@ -73,6 +84,8 @@ namespace Client
                 list.Add(new PurchaseOrderLine
                 {
                     MaterialID = row.Cells["MaterialID"].Value?.ToString(),
+                    MaterialName = row.Cells["MaterialName"].Value?.ToString(),
+                    Description = row.Cells["Description"].Value?.ToString(),
                     Quantity = Convert.ToInt32(row.Cells["Quantity"].Value ?? 0),
                     ReceivedQuantity = Convert.ToInt32(row.Cells["ReceivedQuantity"].Value ?? 0)
                 });
@@ -82,15 +95,7 @@ namespace Client
 
         private void PurchaseOrderDetailForm_Load(object sender, EventArgs e)
         {
-            if (dataGridViewLineItems.DataSource == null)
-            {
-                var dt = new DataTable();
-                dt.Columns.Add("MaterialID", typeof(string));
-                dt.Columns.Add("Quantity", typeof(int));
-                dt.Columns.Add("ReceivedQuantity", typeof(int));
-                dataGridViewLineItems.DataSource = dt;
-            }
-
+            // Supplier dropdown
             using (var cmd = new MySqlCommand("SELECT SupplierID, SupplierName FROM Supplier", Program.Connection))
             using (var adapter = new MySqlDataAdapter(cmd))
             {
@@ -101,45 +106,35 @@ namespace Client
                 comboBoxSupplier.ValueMember = "SupplierID";
             }
 
-            comboBoxStatus.Items.Clear();
-            using (var cmd = new MySqlCommand("SELECT DISTINCT Status FROM PurchaseOrder WHERE Status IS NOT NULL AND Status <> ''", Program.Connection))
+            InitStatusDropdowns();
+
+            materialDict.Clear();
+            using (var cmd = new MySqlCommand("SELECT MaterialID, MaterialName, Description FROM Material", Program.Connection))
             using (var reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    comboBoxStatus.Items.Add(reader.GetString(0));
+                    string id = reader.GetString("MaterialID");
+                    string name = reader.GetString("MaterialName");
+                    string desc = reader.GetString("Description");
+                    materialDict[id] = (name, desc);
                 }
             }
 
-            comboBoxPOStatus.Items.Clear();
-            using (var cmd = new MySqlCommand("SELECT DISTINCT POStatus FROM PurchaseOrder WHERE POStatus IS NOT NULL AND POStatus <> ''", Program.Connection))
-            using (var reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    comboBoxPOStatus.Items.Add(reader.GetString(0));
-                }
-            }
+            var dtLines = new DataTable();
+            dtLines.Columns.Add("MaterialID", typeof(string));
+            dtLines.Columns.Add("MaterialName", typeof(string));
+            dtLines.Columns.Add("Description", typeof(string));
+            dtLines.Columns.Add("Quantity", typeof(int));
+            dtLines.Columns.Add("ReceivedQuantity", typeof(int));
+            dataGridViewLineItems.DataSource = dtLines;
+
+            dataGridViewLineItems.CellValueChanged += dataGridViewLineItems_CellValueChanged;
         }
 
         private void ButtonAddLine_Click(object sender, EventArgs e)
         {
-            using (var cmd = new MySqlCommand("SELECT MaterialID FROM Material", Program.Connection))
-            using (var adapter = new MySqlDataAdapter(cmd))
-            {
-                var dtMat = new DataTable();
-                adapter.Fill(dtMat);
-
-                if (dtMat.Rows.Count > 0)
-                {
-                    string materialId = dtMat.Rows[0]["MaterialID"].ToString();
-                    ((DataTable)dataGridViewLineItems.DataSource).Rows.Add(materialId, 1, 0);
-                }
-                else
-                {
-                    ((DataTable)dataGridViewLineItems.DataSource).Rows.Add("", 1, 0);
-                }
-            }
+            ((DataTable)dataGridViewLineItems.DataSource).Rows.Add("", "", "", 1, 0);
         }
 
         private void ButtonDeleteLine_Click(object sender, EventArgs e)
@@ -151,9 +146,29 @@ namespace Client
             }
         }
 
+        private void dataGridViewLineItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridViewLineItems.Columns[e.ColumnIndex].Name == "MaterialID")
+            {
+                var matId = dataGridViewLineItems.Rows[e.RowIndex].Cells["MaterialID"].Value?.ToString();
+                if (materialDict.TryGetValue(matId, out var mat))
+                {
+                    dataGridViewLineItems.Rows[e.RowIndex].Cells["MaterialName"].Value = mat.Name;
+                    dataGridViewLineItems.Rows[e.RowIndex].Cells["Description"].Value = mat.Description;
+                }
+                else
+                {
+                    dataGridViewLineItems.Rows[e.RowIndex].Cells["MaterialName"].Value = "";
+                    dataGridViewLineItems.Rows[e.RowIndex].Cells["Description"].Value = "";
+                }
+            }
+        }
+
         public class PurchaseOrderLine
         {
             public string MaterialID { get; set; }
+            public string MaterialName { get; set; }
+            public string Description { get; set; }
             public int Quantity { get; set; }
             public int ReceivedQuantity { get; set; }
         }
