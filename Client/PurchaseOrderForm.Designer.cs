@@ -78,6 +78,7 @@
             this.buttonViewLines.TabIndex = 4;
             this.buttonViewLines.Text = "View PO Lines";
             this.buttonViewLines.UseVisualStyleBackColor = true;
+            this.buttonViewLines.Click += this.ButtonViewPOLines_Click;
             // 
             // dataGridView1
             // 

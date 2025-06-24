@@ -10,10 +10,6 @@ namespace Client
         public PurchaseOrderForm()
         {
             InitializeComponent();
-            buttonAdd.Click += ButtonAdd_Click;    // Add
-            buttonEdit.Click += ButtonEdit_Click;   // Edit
-            buttonViewLines.Click += ButtonViewPOLines_Click; // View PO Lines
-            textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter
 
             // Apply fixed border, title and icon
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
