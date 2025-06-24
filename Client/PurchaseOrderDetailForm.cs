@@ -79,7 +79,7 @@ namespace Client
 
         private void PurchaseOrderDetailForm_Load(object sender, EventArgs e)
         {
-            // Supplier dropdown
+            // 1. Load Supplier dropdown
             using (var cmd = new MySqlCommand("SELECT SupplierID, SupplierName FROM Supplier", Program.Connection))
             using (var adapter = new MySqlDataAdapter(cmd))
             {
@@ -90,6 +90,7 @@ namespace Client
                 comboBoxSupplier.ValueMember = "SupplierID";
             }
 
+            // 2. Load materials into materialDict
             materialDict.Clear();
             using (var cmd = new MySqlCommand("SELECT MaterialID, MaterialName, Description FROM Material", Program.Connection))
             using (var reader = cmd.ExecuteReader())
@@ -103,16 +104,52 @@ namespace Client
                 }
             }
 
+            // 3. Create DataTable for line items
             var dtLines = new DataTable();
             dtLines.Columns.Add("MaterialID", typeof(string));
             dtLines.Columns.Add("MaterialName", typeof(string));
             dtLines.Columns.Add("Description", typeof(string));
             dtLines.Columns.Add("Quantity", typeof(int));
             dtLines.Columns.Add("ReceivedQuantity", typeof(int));
+
+            // 4. Setup DataGridView
+            dataGridViewLineItems.AutoGenerateColumns = false;
+            dataGridViewLineItems.Columns.Clear();
+
+            // 5. Create MaterialID ComboBox column
+            var comboCol = new DataGridViewComboBoxColumn
+            {
+                Name = "MaterialID",
+                HeaderText = "Material ID",
+                DataPropertyName = "MaterialID",
+                DropDownWidth = 150,
+                Width = 100,
+                FlatStyle = FlatStyle.Flat
+            };
+            comboCol.Items.AddRange(materialDict.Keys.Cast<object>().ToArray());
+
+            // 6. Add columns to DataGridView
+            dataGridViewLineItems.Columns.Add(comboCol);
+            dataGridViewLineItems.Columns.Add("MaterialName", "Material Name");
+            dataGridViewLineItems.Columns.Add("Description", "Description");
+            dataGridViewLineItems.Columns.Add("Quantity", "Quantity");
+            dataGridViewLineItems.Columns.Add("ReceivedQuantity", "Received Quantity");
+
+            // 7. Set the data source
             dataGridViewLineItems.DataSource = dtLines;
 
+            // 8. Bind events
             dataGridViewLineItems.CellValueChanged += dataGridViewLineItems_CellValueChanged;
+
+            // 9. Prevent crash if an invalid value is selected
+            dataGridViewLineItems.DataError += (s, args) =>
+            {
+                MessageBox.Show("Please select a valid Material ID.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                args.ThrowException = false;
+            };
         }
+
+
 
         private void ButtonAddLine_Click(object sender, EventArgs e)
         {
