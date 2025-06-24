@@ -8,9 +8,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerOrderDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerDeadline;
         private System.Windows.Forms.ComboBox comboBoxStatus;
-        private System.Windows.Forms.TextBox textBoxDeposit;
-        private System.Windows.Forms.TextBox textBoxBalance;
-        private System.Windows.Forms.TextBox textBoxTotalAmount;
         private System.Windows.Forms.ComboBox comboBoxPaymentStatus;
         private System.Windows.Forms.ComboBox comboBoxOrderType;
         private System.Windows.Forms.Button buttonSave;
@@ -32,9 +29,6 @@
             this.dateTimePickerOrderDate = new DateTimePicker();
             this.dateTimePickerDeadline = new DateTimePicker();
             this.comboBoxStatus = new ComboBox();
-            this.textBoxDeposit = new TextBox();
-            this.textBoxBalance = new TextBox();
-            this.textBoxTotalAmount = new TextBox();
             this.comboBoxPaymentStatus = new ComboBox();
             this.comboBoxOrderType = new ComboBox();
             this.buttonSave = new Button();
@@ -51,6 +45,12 @@
             this.labelPaymentStatus = new Label();
             this.labelOrderType = new Label();
             this.maskedTextBox1 = new TextBox();
+            this.textBoxDeposit = new NumericUpDown();
+            this.textBoxBalance = new NumericUpDown();
+            this.textBoxTotalAmount = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)this.textBoxDeposit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBoxBalance).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBoxTotalAmount).BeginInit();
             this.SuspendLayout();
             // 
             // comboBoxCustomer
@@ -92,27 +92,6 @@
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new Size(268, 27);
             this.comboBoxStatus.TabIndex = 11;
-            // 
-            // textBoxDeposit
-            // 
-            this.textBoxDeposit.Location = new Point(209, 281);
-            this.textBoxDeposit.Name = "textBoxDeposit";
-            this.textBoxDeposit.Size = new Size(268, 27);
-            this.textBoxDeposit.TabIndex = 13;
-            // 
-            // textBoxBalance
-            // 
-            this.textBoxBalance.Location = new Point(209, 332);
-            this.textBoxBalance.Name = "textBoxBalance";
-            this.textBoxBalance.Size = new Size(268, 27);
-            this.textBoxBalance.TabIndex = 15;
-            // 
-            // textBoxTotalAmount
-            // 
-            this.textBoxTotalAmount.Location = new Point(209, 378);
-            this.textBoxTotalAmount.Name = "textBoxTotalAmount";
-            this.textBoxTotalAmount.Size = new Size(268, 27);
-            this.textBoxTotalAmount.TabIndex = 17;
             // 
             // comboBoxPaymentStatus
             // 
@@ -257,9 +236,42 @@
             this.maskedTextBox1.Size = new Size(268, 27);
             this.maskedTextBox1.TabIndex = 24;
             // 
+            // textBoxDeposit
+            // 
+            this.textBoxDeposit.DecimalPlaces = 2;
+            this.textBoxDeposit.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            this.textBoxDeposit.Location = new Point(209, 287);
+            this.textBoxDeposit.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
+            this.textBoxDeposit.Name = "textBoxDeposit";
+            this.textBoxDeposit.Size = new Size(268, 27);
+            this.textBoxDeposit.TabIndex = 25;
+            // 
+            // textBoxBalance
+            // 
+            this.textBoxBalance.DecimalPlaces = 2;
+            this.textBoxBalance.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            this.textBoxBalance.Location = new Point(209, 333);
+            this.textBoxBalance.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
+            this.textBoxBalance.Name = "textBoxBalance";
+            this.textBoxBalance.Size = new Size(268, 27);
+            this.textBoxBalance.TabIndex = 26;
+            // 
+            // textBoxTotalAmount
+            // 
+            this.textBoxTotalAmount.DecimalPlaces = 2;
+            this.textBoxTotalAmount.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            this.textBoxTotalAmount.Location = new Point(209, 379);
+            this.textBoxTotalAmount.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
+            this.textBoxTotalAmount.Name = "textBoxTotalAmount";
+            this.textBoxTotalAmount.Size = new Size(268, 27);
+            this.textBoxTotalAmount.TabIndex = 27;
+            // 
             // OrderDetailForm
             // 
             this.ClientSize = new Size(637, 592);
+            this.Controls.Add(this.textBoxTotalAmount);
+            this.Controls.Add(this.textBoxBalance);
+            this.Controls.Add(this.textBoxDeposit);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.labelOrderID);
             this.Controls.Add(this.labelCustomer);
@@ -273,11 +285,8 @@
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.labelDeposit);
-            this.Controls.Add(this.textBoxDeposit);
             this.Controls.Add(this.labelBalance);
-            this.Controls.Add(this.textBoxBalance);
             this.Controls.Add(this.labelTotalAmount);
-            this.Controls.Add(this.textBoxTotalAmount);
             this.Controls.Add(this.labelPaymentStatus);
             this.Controls.Add(this.comboBoxPaymentStatus);
             this.Controls.Add(this.labelOrderType);
@@ -291,6 +300,9 @@
             this.StartPosition = FormStartPosition.CenterParent;
             this.Text = "Customer Order Details";
             this.Load += this.OrderDetailForm_Load;
+            ((System.ComponentModel.ISupportInitialize)this.textBoxDeposit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBoxBalance).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBoxTotalAmount).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -306,5 +318,8 @@
         private Label labelPaymentStatus;
         private Label labelOrderType;
         private TextBox maskedTextBox1;
+        private NumericUpDown textBoxDeposit;
+        private NumericUpDown textBoxBalance;
+        private NumericUpDown textBoxTotalAmount;
     }
 }
