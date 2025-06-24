@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Client
@@ -10,34 +12,27 @@ namespace Client
         public PurchaseOrderForm()
         {
             InitializeComponent();
-            buttonAdd.Click += ButtonAdd_Click;    // Add
-            buttonEdit.Click += ButtonEdit_Click;   // Edit
-            buttonViewLines.Click += ButtonViewPOLines_Click; // View PO Lines
-            textBox1.KeyUp += textBox1_KeyUp;    // Search on Enter
 
-            // Apply fixed border, title and icon
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = true;
             this.MinimizeBox = true;
             this.Text = "PurchaseOrderForm";
             this.Icon = Properties.Resources.Icon_Form;
 
-            // Apply font (Helvetica with fallback)
             Font font;
             try { font = new Font("Helvetica", 10); }
             catch { font = new Font("Segoe UI", 10); }
 
-            LoadData();
+            buttonViewLines.Click += ButtonViewPOLines_Click;
+
+            this.Load += PurchaseOrderForm_Load;
         }
 
         private void LoadData()
         {
             string filter = textBox1.Text.Trim();
             MySqlCommand cmd;
-
-            string baseQuery = @"
-        SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus 
-        FROM PurchaseOrder";
+            string baseQuery = @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus FROM PurchaseOrder";
 
             if (string.IsNullOrEmpty(filter))
             {
@@ -45,14 +40,7 @@ namespace Client
             }
             else
             {
-                baseQuery += @"
-            WHERE PurchaseOrderID LIKE @f
-               OR SupplierID LIKE @f
-               OR CAST(OrderDate AS CHAR) LIKE @f
-               OR CAST(ExpectedDeliveryDate AS CHAR) LIKE @f
-               OR Status LIKE @f
-               OR POStatus LIKE @f";
-
+                baseQuery += @" WHERE PurchaseOrderID LIKE @f OR SupplierID LIKE @f OR CAST(OrderDate AS CHAR) LIKE @f OR CAST(ExpectedDeliveryDate AS CHAR) LIKE @f OR Status LIKE @f OR POStatus LIKE @f";
                 cmd = new MySqlCommand(baseQuery, Program.Connection);
                 cmd.Parameters.AddWithValue("@f", $"%{filter}%");
             }
@@ -92,15 +80,9 @@ namespace Client
                     var lastIdCommand = new MySqlCommand("SELECT PurchaseOrderID FROM PurchaseOrder ORDER BY PurchaseOrderID DESC LIMIT 1", Program.Connection);
                     var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "PUR000";
                     var nextId = int.Parse(lastIdString.Substring(3)) + 1;
-
-                    var cmd = new MySqlCommand(
-                        @"INSERT INTO PurchaseOrder 
-                            (PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus) 
-                          VALUES 
-                            (@id, @sid, @odate, @ddate, @status, @postatus)",
-                        Program.Connection
-                    );
                     string newId = $"PUR{nextId.ToString().PadLeft(3, '0')}";
+
+                    var cmd = new MySqlCommand("INSERT INTO PurchaseOrder (PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus) VALUES (@id, @sid, @odate, @ddate, @status, @postatus)", Program.Connection);
                     cmd.Parameters.AddWithValue("@id", newId);
                     cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
                     cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
@@ -114,9 +96,7 @@ namespace Client
 
                         foreach (var line in detail.GetLineItems())
                         {
-                            var lineCmd = new MySqlCommand(
-                                "INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
-                                Program.Connection);
+                            var lineCmd = new MySqlCommand("INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)", Program.Connection);
                             lineCmd.Parameters.AddWithValue("@poid", newId);
                             lineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
                             lineCmd.Parameters.AddWithValue("@qty", line.Quantity);
@@ -174,12 +154,7 @@ namespace Client
                 detail.SetFields(id, sid, odate, ddate, status, postatus, lines);
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    var cmd = new MySqlCommand(
-                        @"UPDATE PurchaseOrder 
-                          SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus 
-                          WHERE PurchaseOrderID=@id",
-                        Program.Connection
-                    );
+                    var cmd = new MySqlCommand("UPDATE PurchaseOrder SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus WHERE PurchaseOrderID=@id", Program.Connection);
                     cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
                     cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
                     cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
@@ -197,9 +172,7 @@ namespace Client
 
                         foreach (var line in detail.GetLineItems())
                         {
-                            var insertLine = new MySqlCommand(
-                                "INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
-                                Program.Connection);
+                            var insertLine = new MySqlCommand("INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)", Program.Connection);
                             insertLine.Parameters.AddWithValue("@poid", id);
                             insertLine.Parameters.AddWithValue("@mid", line.MaterialID);
                             insertLine.Parameters.AddWithValue("@qty", line.Quantity);
