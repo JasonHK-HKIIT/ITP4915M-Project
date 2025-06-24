@@ -28,9 +28,9 @@ namespace Client
             dateTimePickerOrderDate.Value = orderDate;
             dateTimePickerDeadline.Value = deadline;
             comboBoxStatus.SelectedItem = status;
-            textBoxDeposit.Text = deposit.ToString("0.##");
-            textBoxBalance.Text = balance.ToString("0.##");
-            textBoxTotalAmount.Text = total.ToString("0.##");
+            textBoxDeposit.Value = deposit;
+            textBoxBalance.Value = balance;
+            textBoxTotalAmount.Value = total;
             comboBoxPaymentStatus.SelectedItem = paymentStatus;
             comboBoxOrderType.SelectedItem = orderType;
         }
@@ -92,9 +92,9 @@ namespace Client
         public DateTime OrderDate => dateTimePickerOrderDate.Value;
         public DateTime Deadline => dateTimePickerDeadline.Value;
         public string Status => (string)comboBoxStatus.SelectedItem;
-        public decimal DepositPaid => decimal.TryParse(textBoxDeposit.Text, out var v) ? v : 0;
-        public decimal BalanceDue => decimal.TryParse(textBoxBalance.Text, out var v) ? v : 0;
-        public decimal TotalAmount => decimal.TryParse(textBoxTotalAmount.Text, out var v) ? v : 0;
+        public decimal DepositPaid => textBoxDeposit.Value;
+        public decimal BalanceDue => textBoxBalance.Value;
+        public decimal TotalAmount => textBoxTotalAmount.Value;
         public string PaymentStatus => (string)comboBoxPaymentStatus.SelectedItem;
         public string OrderType => (string)comboBoxOrderType.SelectedItem;
     }
