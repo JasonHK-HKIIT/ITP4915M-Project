@@ -23,7 +23,7 @@ namespace Client
             try { font = new Font("Helvetica", 10); }
             catch { font = new Font("Segoe UI", 10); }
 
-            buttonViewLines.Click += ButtonViewPOLines_Click;
+          
 
             this.Load += PurchaseOrderForm_Load;
         }
