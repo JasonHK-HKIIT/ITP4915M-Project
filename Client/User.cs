@@ -15,5 +15,18 @@ namespace Client
         public string Role { get; set; } = string.Empty;
 
         public User() { }
+
+        public bool IsRole(params string[] roles)
+        {
+            foreach (var role in roles)
+            {
+                if (role.Equals(Role, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

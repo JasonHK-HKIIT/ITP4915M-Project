@@ -65,7 +65,7 @@ namespace Client
 
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Sales & Marketing Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -88,7 +88,7 @@ namespace Client
 
         private void customerOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Sales & Marketing Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -111,7 +111,7 @@ namespace Client
 
         private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Production Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Production Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -134,7 +134,7 @@ namespace Client
 
         private void customerOrdersToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Sales & Marketing Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -157,7 +157,7 @@ namespace Client
 
         private void serviceCasesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Customer Service Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Customer Service Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -180,7 +180,7 @@ namespace Client
 
         private void productDesignRequestsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "R&D Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("R&D Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -203,7 +203,7 @@ namespace Client
 
         private void productsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "R&D Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("R&D Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -226,7 +226,7 @@ namespace Client
 
         private void quotationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Sales & Marketing Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Sales & Marketing Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -249,7 +249,7 @@ namespace Client
 
         private void productionOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Production Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Production Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -272,7 +272,7 @@ namespace Client
 
         private void shipmentsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Production Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Production Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -295,7 +295,7 @@ namespace Client
 
         private void inventoryControlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Supply Chain Management Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Supply Chain Management Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -319,7 +319,7 @@ namespace Client
         private void materialInventoryControlToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if ((Program.User.Role != "Supply Chain Management Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Supply Chain Management Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -342,7 +342,7 @@ namespace Client
 
         private void adminUserManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Program.User.Role != "Admin")
+            if (!Program.User.IsRole("Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -365,7 +365,7 @@ namespace Client
 
         private void purchaseOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if ((Program.User.Role != "Supply Chain Management Department") && (Program.User.Role != "Admin"))
+            if (!Program.User.IsRole("Supply Chain Management Department", "Admin"))
             {
                 MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
