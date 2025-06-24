@@ -20,35 +20,60 @@ namespace Client
             this.Load += PurchaseOrderDetailForm_Load;
         }
 
-        public void SetFields(string poId, string supplierId, DateTime orderDate, DateTime deliveryDate,
-            string status, string poStatus, List<PurchaseOrderLine> lines = null)
+        private void InitStatusDropdowns()
         {
+            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxStatus.Items.Clear();
+            comboBoxStatus.Items.AddRange(new object[] { "Pending", "Approved", "Shipped", "Delivered", "Cancelled", "Ordered" });
+
+            comboBoxPOStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxPOStatus.Items.Clear();
+            comboBoxPOStatus.Items.AddRange(new object[] { "In Transit", "Processing" });
+        }
+
+        public void SetFields(string poId, string supplierId, DateTime orderDate, DateTime deliveryDate,
+       string status, string poStatus, List<PurchaseOrderLine> lines = null)
+        {
+            // Ensure dropdowns are filled before setting values
+            if (comboBoxStatus.Items.Count == 0 || comboBoxPOStatus.Items.Count == 0)
+            {
+                InitStatusDropdowns();
+            }
+
             maskedTextBox1.Text = poId;
             comboBoxSupplier.SelectedValue = supplierId;
             dateTimePickerOrder.Value = orderDate;
             dateTimePickerDelivery.Value = deliveryDate;
 
-            comboBoxStatus.SelectedItem = status;
-            comboBoxPOStatus.SelectedItem = poStatus;
+            if (comboBoxStatus.Items.Contains(status))
+                comboBoxStatus.SelectedItem = status;
+
+            if (comboBoxPOStatus.Items.Contains(poStatus))
+                comboBoxPOStatus.SelectedItem = poStatus;
 
             if (lines != null)
             {
                 var dt = (DataTable)dataGridViewLineItems.DataSource;
                 if (dt == null) return;
+
                 dt.Rows.Clear();
                 foreach (var line in lines)
                 {
-                    dt.Rows.Add(line.MaterialID, line.MaterialName, line.Description, line.Quantity, line.ReceivedQuantity);
+                    string name = materialDict.TryGetValue(line.MaterialID, out var val) ? val.Name : "";
+                    string desc = materialDict.TryGetValue(line.MaterialID, out val) ? val.Description : "";
+                    dt.Rows.Add(line.MaterialID, name, desc, line.Quantity, line.ReceivedQuantity);
                 }
             }
         }
+
+
 
         public string PurchaseOrderID => maskedTextBox1.Text;
         public string SupplierID => comboBoxSupplier.SelectedValue?.ToString() ?? "";
         public DateTime OrderDate => dateTimePickerOrder.Value;
         public DateTime DeliveryDate => dateTimePickerDelivery.Value;
-        public string Status => comboBoxStatus.SelectedItem?.ToString() ?? "";
-        public string POStatus => comboBoxPOStatus.SelectedItem?.ToString() ?? "";
+        public string Status => (string)comboBoxStatus.SelectedItem;
+        public string POStatus => (string)comboBoxPOStatus.SelectedItem;
 
         public List<PurchaseOrderLine> GetLineItems()
         {
@@ -81,20 +106,9 @@ namespace Client
                 comboBoxSupplier.ValueMember = "SupplierID";
             }
 
-            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxStatus.Items.Clear();
-            comboBoxStatus.Items.AddRange(new object[] { "Pending", "Approved", "Shipped", "Delivered", "Cancelled", "Ordered" });
+            InitStatusDropdowns();
 
-            comboBoxPOStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxPOStatus.Items.Clear();
-            comboBoxPOStatus.Items.AddRange(new object[] { "In Transit", "Processing" });
-
-            // Load materials
             materialDict.Clear();
-            var materialTable = new DataTable();
-            materialTable.Columns.Add("MaterialID");
-            materialTable.Columns.Add("MaterialName");
-
             using (var cmd = new MySqlCommand("SELECT MaterialID, MaterialName, Description FROM Material", Program.Connection))
             using (var reader = cmd.ExecuteReader())
             {
@@ -104,66 +118,18 @@ namespace Client
                     string name = reader.GetString("MaterialName");
                     string desc = reader.GetString("Description");
                     materialDict[id] = (name, desc);
-                    materialTable.Rows.Add(id, name);
                 }
             }
 
-            // Setup DataGridView columns
             var dtLines = new DataTable();
             dtLines.Columns.Add("MaterialID", typeof(string));
             dtLines.Columns.Add("MaterialName", typeof(string));
             dtLines.Columns.Add("Description", typeof(string));
             dtLines.Columns.Add("Quantity", typeof(int));
             dtLines.Columns.Add("ReceivedQuantity", typeof(int));
-
             dataGridViewLineItems.DataSource = dtLines;
-            dataGridViewLineItems.Columns.Clear();
-
-            var materialIDCol = new DataGridViewComboBoxColumn
-            {
-                Name = "MaterialID",
-                DataPropertyName = "MaterialID",
-                HeaderText = "Material ID",
-                DataSource = materialTable,
-                DisplayMember = "MaterialID",
-                ValueMember = "MaterialID",
-                FlatStyle = FlatStyle.Flat
-            };
-            dataGridViewLineItems.Columns.Add(materialIDCol);
-
-            dataGridViewLineItems.Columns.Add("MaterialName", "Material Name");
-            dataGridViewLineItems.Columns.Add("Description", "Description");
-            dataGridViewLineItems.Columns.Add("Quantity", "Quantity");
-            dataGridViewLineItems.Columns.Add("ReceivedQuantity", "Received");
 
             dataGridViewLineItems.CellValueChanged += dataGridViewLineItems_CellValueChanged;
-            dataGridViewLineItems.EditingControlShowing += DataGridViewLineItems_EditingControlShowing;
-        }
-
-        private void DataGridViewLineItems_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            if (dataGridViewLineItems.CurrentCell.ColumnIndex == dataGridViewLineItems.Columns["MaterialID"].Index &&
-                e.Control is ComboBox cb)
-            {
-                cb.SelectedIndexChanged -= MaterialID_SelectedIndexChanged;
-                cb.SelectedIndexChanged += MaterialID_SelectedIndexChanged;
-            }
-        }
-
-        private void MaterialID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var cb = sender as ComboBox;
-            if (cb == null || dataGridViewLineItems.CurrentRow == null) return;
-
-            var selectedId = cb.SelectedItem?.ToString();
-            if (selectedId == null) return;
-
-            var matId = cb.Text;
-            if (materialDict.TryGetValue(matId, out var mat))
-            {
-                dataGridViewLineItems.CurrentRow.Cells["MaterialName"].Value = mat.Name;
-                dataGridViewLineItems.CurrentRow.Cells["Description"].Value = mat.Description;
-            }
         }
 
         private void ButtonAddLine_Click(object sender, EventArgs e)
@@ -184,11 +150,16 @@ namespace Client
         {
             if (e.RowIndex >= 0 && dataGridViewLineItems.Columns[e.ColumnIndex].Name == "MaterialID")
             {
-                string matId = dataGridViewLineItems.Rows[e.RowIndex].Cells["MaterialID"].Value?.ToString();
+                var matId = dataGridViewLineItems.Rows[e.RowIndex].Cells["MaterialID"].Value?.ToString();
                 if (materialDict.TryGetValue(matId, out var mat))
                 {
                     dataGridViewLineItems.Rows[e.RowIndex].Cells["MaterialName"].Value = mat.Name;
                     dataGridViewLineItems.Rows[e.RowIndex].Cells["Description"].Value = mat.Description;
+                }
+                else
+                {
+                    dataGridViewLineItems.Rows[e.RowIndex].Cells["MaterialName"].Value = "";
+                    dataGridViewLineItems.Rows[e.RowIndex].Cells["Description"].Value = "";
                 }
             }
         }

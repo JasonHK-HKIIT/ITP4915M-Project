@@ -316,6 +316,30 @@ namespace Client
             inventoryForm.Show();
         }
 
+        private void materialInventoryControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if ((Program.User.Role != "Supply Chain Management Department") && (Program.User.Role != "Admin"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            foreach (var child in this.MdiChildren)
+            {
+                if (child is MaterialInventoryForm)
+                {
+                    child.MdiParent = this;
+                    child.Focus();
+                    return;
+                }
+            }
+
+            var materialinventoryForm = new MaterialInventoryForm();
+            materialinventoryForm.MdiParent = this;
+            materialinventoryForm.Show();
+        }
+
         private void adminUserManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Program.User.Role != "Admin")
@@ -399,7 +423,7 @@ namespace Client
         {
             this.LayoutMdi(MdiLayout.ArrangeIcons);
         }
-            private void windowsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        private void windowsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             // Remove old items except for layout-related ones
             for (int i = windowsToolStripMenuItem.DropDownItems.Count - 1; i >= 3; i--)
@@ -418,5 +442,8 @@ namespace Client
                 windowsToolStripMenuItem.DropDownItems.Add(item);
             }
         }
+
+
     }
-}
+    }
+

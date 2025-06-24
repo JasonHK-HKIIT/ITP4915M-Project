@@ -47,6 +47,7 @@
             productionOrdersToolStripMenuItem = new ToolStripMenuItem();
             shipmentsToolStripMenuItem1 = new ToolStripMenuItem();
             inventoryControlToolStripMenuItem = new ToolStripMenuItem();
+            materialInventoryControlToolStripMenuItem = new ToolStripMenuItem();
             shipmentsToolStripMenuItem = new ToolStripMenuItem();
             adminUserManagementToolStripMenuItem = new ToolStripMenuItem();
             windowsToolStripMenuItem = new ToolStripMenuItem();
@@ -57,7 +58,6 @@
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
             toolStripStatusLabel3 = new ToolStripStatusLabel();
-            materialInventoryControlToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -198,6 +198,13 @@
             inventoryControlToolStripMenuItem.Text = "Product Inventory Control";
             inventoryControlToolStripMenuItem.Click += inventoryControlToolStripMenuItem_Click;
             // 
+            // materialInventoryControlToolStripMenuItem
+            // 
+            materialInventoryControlToolStripMenuItem.Name = "materialInventoryControlToolStripMenuItem";
+            materialInventoryControlToolStripMenuItem.Size = new Size(213, 22);
+            materialInventoryControlToolStripMenuItem.Text = "Material Inventory Control";
+            materialInventoryControlToolStripMenuItem.Click += materialInventoryControlToolStripMenuItem_Click;
+            // 
             // shipmentsToolStripMenuItem
             // 
             shipmentsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { adminUserManagementToolStripMenuItem });
@@ -264,12 +271,6 @@
             toolStripStatusLabel3.Name = "toolStripStatusLabel3";
             toolStripStatusLabel3.Size = new Size(80, 17);
             toolStripStatusLabel3.Text = "System Status";
-            // 
-            // materialInventoryControlToolStripMenuItem
-            // 
-            materialInventoryControlToolStripMenuItem.Name = "materialInventoryControlToolStripMenuItem";
-            materialInventoryControlToolStripMenuItem.Size = new Size(213, 22);
-            materialInventoryControlToolStripMenuItem.Text = "Material Inventory Control";
             // 
             // MF1
             // 
