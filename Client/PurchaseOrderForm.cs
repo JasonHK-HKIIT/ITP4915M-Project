@@ -26,16 +26,6 @@ namespace Client
             Font font;
             try { font = new Font("Helvetica", 10); }
             catch { font = new Font("Segoe UI", 10); }
-            ApplyFont(this, font);
-
-            // Apply button styles
-            StyleButtons();
-            StyleGrid();
-
-            // Hook events
-            button1.Click += ButtonAdd_Click;
-            button2.Click += ButtonEdit_Click;
-            textBox1.KeyUp += textBox1_KeyUp;
 
             LoadData();
         }

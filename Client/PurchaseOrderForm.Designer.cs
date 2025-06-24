@@ -45,6 +45,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new Size(229, 27);
             this.textBox1.TabIndex = 1;
+            this.textBox1.KeyUp += this.textBox1_KeyUp;
             // 
             // buttonAdd
             // 
@@ -55,6 +56,7 @@
             this.buttonAdd.TabIndex = 2;
             this.buttonAdd.Text = "Add Purchase Order";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += this.ButtonAdd_Click;
             // 
             // buttonEdit
             // 
@@ -65,6 +67,7 @@
             this.buttonEdit.TabIndex = 3;
             this.buttonEdit.Text = "Edit Selected";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += this.ButtonEdit_Click;
             // 
             // buttonViewLines
             // 
