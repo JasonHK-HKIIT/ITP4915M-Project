@@ -13,142 +13,161 @@
 
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            label5 = new Label();
-            textBox3 = new TextBox();
-            SuspendLayout();
+            this.label1 = new Label();
+            this.label2 = new Label();
+            this.label3 = new Label();
+            this.label4 = new Label();
+            this.comboBox1 = new ComboBox();
+            this.comboBox2 = new ComboBox();
+            this.button1 = new Button();
+            this.button2 = new Button();
+            this.label5 = new Label();
+            this.textBox1 = new NumericUpDown();
+            this.textBox2 = new NumericUpDown();
+            this.textBox3 = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)this.textBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBox3).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(60, 31);
-            label1.Name = "label1";
-            label1.Size = new Size(66, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Warehouse";
+            this.label1.AutoSize = true;
+            this.label1.Location = new Point(77, 39);
+            this.label1.Margin = new Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new Size(88, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Warehouse";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(75, 63);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Product";
+            this.label2.AutoSize = true;
+            this.label2.Location = new Point(96, 80);
+            this.label2.Margin = new Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new Size(64, 19);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Product";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(70, 92);
-            label3.Name = "label3";
-            label3.Size = new Size(53, 15);
-            label3.TabIndex = 2;
-            label3.Text = "Quantity";
+            this.label3.AutoSize = true;
+            this.label3.Location = new Point(90, 117);
+            this.label3.Margin = new Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new Size(69, 19);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Quantity";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(43, 125);
-            label4.Name = "label4";
-            label4.Size = new Size(79, 15);
-            label4.TabIndex = 3;
-            label4.Text = "Reorder Point";
+            this.label4.AutoSize = true;
+            this.label4.Location = new Point(55, 158);
+            this.label4.Margin = new Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new Size(106, 19);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Reorder Point";
             // 
             // comboBox1
             // 
-            comboBox1.Location = new Point(167, 26);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(251, 23);
-            comboBox1.TabIndex = 4;
+            this.comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBox1.Items.AddRange(new object[] { "WH001", "WH002", "WH003" });
+            this.comboBox1.Location = new Point(215, 33);
+            this.comboBox1.Margin = new Padding(4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new Size(322, 27);
+            this.comboBox1.TabIndex = 4;
             // 
             // comboBox2
             // 
-            comboBox2.Location = new Point(167, 58);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(251, 23);
-            comboBox2.TabIndex = 5;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(167, 92);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(251, 23);
-            textBox1.TabIndex = 6;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(167, 123);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(251, 23);
-            textBox2.TabIndex = 7;
+            this.comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBox2.Location = new Point(215, 73);
+            this.comboBox2.Margin = new Padding(4);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new Size(322, 27);
+            this.comboBox2.TabIndex = 5;
             // 
             // button1
             // 
-            button1.Location = new Point(347, 205);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 8;
-            button1.Text = "Save";
-            button1.UseVisualStyleBackColor = true;
+            this.button1.Location = new Point(446, 260);
+            this.button1.Margin = new Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new Size(96, 29);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            button2.Location = new Point(436, 205);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 9;
-            button2.Text = "Cancel";
-            button2.UseVisualStyleBackColor = true;
+            this.button2.Location = new Point(561, 260);
+            this.button2.Margin = new Padding(4);
+            this.button2.Name = "button2";
+            this.button2.Size = new Size(96, 29);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(8, 161);
-            label5.Margin = new Padding(2, 0, 2, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(116, 15);
-            label5.TabIndex = 10;
-            label5.Text = "MinimumStockLevel";
+            this.label5.AutoSize = true;
+            this.label5.Location = new Point(10, 204);
+            this.label5.Name = "label5";
+            this.label5.Size = new Size(151, 19);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "MinimumStockLevel";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new Point(215, 115);
+            this.textBox1.Maximum = new decimal(new int[] { 1410065408, 2, 0, 0 });
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new Size(322, 27);
+            this.textBox1.TabIndex = 12;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new Point(215, 156);
+            this.textBox2.Maximum = new decimal(new int[] { 1215752192, 23, 0, 0 });
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new Size(322, 27);
+            this.textBox2.TabIndex = 13;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(167, 157);
-            textBox3.Margin = new Padding(2, 2, 2, 2);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(251, 23);
-            textBox3.TabIndex = 11;
+            this.textBox3.Location = new Point(215, 202);
+            this.textBox3.Maximum = new decimal(new int[] { -727379968, 232, 0, 0 });
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new Size(322, 27);
+            this.textBox3.TabIndex = 14;
             // 
             // InventoryDetailForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(526, 252);
-            Controls.Add(textBox3);
-            Controls.Add(label5);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "InventoryDetailForm";
-            Text = "InventoryDetailForm";
-            Load += InventoryDetailForm_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new SizeF(9F, 19F);
+            this.AutoScaleMode = AutoScaleMode.Font;
+            this.ClientSize = new Size(676, 319);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Margin = new Padding(4);
+            this.Name = "InventoryDetailForm";
+            this.Text = "InventoryDetailForm";
+            this.Load += this.InventoryDetailForm_Load;
+            ((System.ComponentModel.ISupportInitialize)this.textBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.textBox3).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         private Label label1;
@@ -157,11 +176,11 @@
         private Label label4;
         private ComboBox comboBox1;
         private ComboBox comboBox2;
-        private TextBox textBox1;
-        private TextBox textBox2;
         private Button button1;
         private Button button2;
         private Label label5;
-        private TextBox textBox3;
+        private NumericUpDown textBox1;
+        private NumericUpDown textBox2;
+        private NumericUpDown textBox3;
     }
 }

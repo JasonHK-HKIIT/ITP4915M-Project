@@ -44,15 +44,15 @@ namespace Client
         {
             comboBox1.SelectedValue = warehouse;
             comboBox2.SelectedValue = product;
-            textBox1.Text = qty.ToString();
-            textBox2.Text = reorder.ToString();
-            textBox3.Text = min.ToString();
+            textBox1.Value = qty;
+            textBox2.Value = reorder;
+            textBox3.Value = min;
         }
 
         public string Warehouse => comboBox1.SelectedValue?.ToString() ?? "";
         public string Product => comboBox2.SelectedValue?.ToString() ?? "";
-        public int Quantity => int.TryParse(textBox1.Text, out int q) ? q : 0;
-        public int ReorderPoint => int.TryParse(textBox2.Text, out int r) ? r : 0;
-        public int MinimumStock => int.TryParse(textBox3.Text, out int min) ? min : 0;
+        public int Quantity => ((int)textBox1.Value);
+        public int ReorderPoint => ((int)textBox2.Value);
+        public int MinimumStock => ((int)textBox3.Value);
     }
 }
