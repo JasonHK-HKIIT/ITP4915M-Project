@@ -13,6 +13,8 @@ namespace Client
             this.tileToolStripMenuItem.Click += new System.EventHandler(this.tileHorizontalToolStripMenuItem_Click);
             this.arrangeIconsToolStripMenuItem.Click += new System.EventHandler(this.arrangeIconsToolStripMenuItem_Click);
             this.windowsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.windowsToolStripMenuItem_DropDownOpening);
+          
+
 
         }
 
@@ -36,6 +38,18 @@ namespace Client
                 try { font = new Font("Helvetica", 10); }
                 catch { font = new Font("Segoe UI", 10); }
                 ApplyFont(this, font);
+
+                toolStripStatusLabel1.Text = $"User: {Program.User.UserId}";
+                toolStripStatusLabel3.Text = "System Ready";
+
+                System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+                timer.Interval = 1000;
+                timer.Tick += (s, eArgs) =>
+                {
+                    toolStripStatusLabel2.Text = DateTime.Now.ToString("HH:mm:ss");
+                };
+                timer.Start();
+
 
                 // Set background image
                 foreach (Control ctrl in this.Controls)
@@ -390,7 +404,7 @@ namespace Client
         {
             if (Program.User == null) return;
 
-            if (MessageBox.Show("Are you sure to logout?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            if (MessageBox.Show("Are you certain you want to end your current session?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
             {
                 Program.User = null;
             }
@@ -414,24 +428,32 @@ namespace Client
             this.LayoutMdi(MdiLayout.TileHorizontal);
         }
 
-        private void tileVerticalToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.LayoutMdi(MdiLayout.TileVertical);
-        }
 
         private void arrangeIconsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.LayoutMdi(MdiLayout.ArrangeIcons);
         }
+        private void closeAllWindowsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (Form child in this.MdiChildren)
+            {
+                child.Close();
+            }
+
+            MessageBox.Show("All windows have been closed.", "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            toolStripStatusLabel3.Text = "All child windows closed.";
+        }
+
+
+
         private void windowsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            // Remove old items except for layout-related ones
-            for (int i = windowsToolStripMenuItem.DropDownItems.Count - 1; i >= 3; i--)
+
+            for (int i = windowsToolStripMenuItem.DropDownItems.Count - 1; i >= 4; i--)
             {
                 windowsToolStripMenuItem.DropDownItems.RemoveAt(i);
             }
 
-            // Add active child forms
             foreach (Form child in this.MdiChildren)
             {
                 var item = new ToolStripMenuItem(child.Text)
@@ -442,6 +464,7 @@ namespace Client
                 windowsToolStripMenuItem.DropDownItems.Add(item);
             }
         }
+
 
         private void materialsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -465,6 +488,8 @@ namespace Client
             materialsForm.MdiParent = this;
             materialsForm.Show();
         }
+
+ 
     }
 }
 
