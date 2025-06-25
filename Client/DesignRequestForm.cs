@@ -1,9 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 using System.Data;
+using System.Windows.Forms;
 
 namespace Client
 {
@@ -16,8 +14,7 @@ namespace Client
 
         private void LoadData()
         {
-            var query = SearchField.Text.Trim();
-
+            string query = SearchField.Text.Trim();
             string baseQuery = @"
                 SELECT 
                     dr.DesignRequestID,
@@ -34,24 +31,23 @@ namespace Client
                 LEFT JOIN User u1 ON dr.UserID = u1.UserID
                 LEFT JOIN User u2 ON dr.ApprovedBy = u2.UserID";
 
-            string filteredQuery = baseQuery + " WHERE dr.DesignRequestID LIKE ?id";
-
-            var command = new MySqlCommand(string.IsNullOrEmpty(query) ? baseQuery : filteredQuery, Program.Connection);
+            string filteredQuery = baseQuery + " WHERE dr.DesignRequestID LIKE @id OR c.CustomerName LIKE @id";
+            var cmd = new MySqlCommand(string.IsNullOrEmpty(query) ? baseQuery : filteredQuery, Program.Connection);
 
             if (!string.IsNullOrEmpty(query))
-                command.Parameters.AddWithValue("?id", $"%{query}%");
+                cmd.Parameters.AddWithValue("@id", $"%{query}%");
 
-            var adapter = new MySqlDataAdapter(command);
-            var dataTable = new DataTable();
+            var adapter = new MySqlDataAdapter(cmd);
+            var dt = new DataTable();
 
             try
             {
-                adapter.Fill(dataTable);
-                dataGridView1.DataSource = dataTable;
+                adapter.Fill(dt);
+                dataGridView1.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading design requests: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error loading data: " + ex.Message);
             }
         }
 
@@ -64,8 +60,6 @@ namespace Client
         {
             if (e.KeyCode == Keys.Enter)
             {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
                 LoadData();
             }
         }
@@ -85,11 +79,11 @@ namespace Client
         {
             if (dataGridView1.SelectedRows.Count != 1)
             {
-                MessageBox.Show("Please select a design request to edit.");
+                MessageBox.Show("Please select a request to edit.");
                 return;
             }
 
-            var id = (string)dataGridView1.SelectedRows[0].Cells["DesignRequestID"].Value;
+            var id = dataGridView1.SelectedRows[0].Cells["DesignRequestID"].Value.ToString();
             using (var detail = new DesignRequestDetailForm(id))
             {
                 if (detail.ShowDialog() == DialogResult.OK)
@@ -99,9 +93,40 @@ namespace Client
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void BtnCancelSelected_Click(object sender, EventArgs e)
         {
-            // Optional: handle cell click events here
+            if (dataGridView1.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Please select a request to cancel.");
+                return;
+            }
+
+            var id = dataGridView1.SelectedRows[0].Cells["DesignRequestID"].Value.ToString();
+            var currentStatus = dataGridView1.SelectedRows[0].Cells["Status"].Value.ToString();
+
+            if (currentStatus == "Cancelled")
+            {
+                MessageBox.Show("This request is already cancelled.");
+                return;
+            }
+
+            var confirm = MessageBox.Show($"Are you sure you want to cancel DesignRequest {id}?", "Confirm", MessageBoxButtons.YesNo);
+            if (confirm != DialogResult.Yes)
+                return;
+
+            var cmd = new MySqlCommand("UPDATE ProductDesignRequest SET Status='Cancelled' WHERE DesignRequestID=@id", Program.Connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Design request cancelled.");
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error cancelling request: " + ex.Message);
+            }
         }
     }
 }
