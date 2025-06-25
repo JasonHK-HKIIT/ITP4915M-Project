@@ -26,7 +26,6 @@ namespace Client
             this.ActivatedField = new CheckBox();
             this.SaveButton = new Button();
             this.CancelButton = new Button();
-            this.PositionField = new TextBox();
             this.label5 = new Label();
             this.TeamField = new ComboBox();
             this.label6 = new Label();
@@ -35,6 +34,7 @@ namespace Client
             this.ManagerField = new ComboBox();
             this.label8 = new Label();
             this.UserIdField = new TextBox();
+            this.PositionField = new ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +60,7 @@ namespace Client
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new Point(53, 184);
+            this.label3.Location = new Point(54, 184);
             this.label3.Margin = new Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new Size(40, 19);
@@ -129,13 +129,6 @@ namespace Client
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += this.CancelButton_Click;
-            // 
-            // PositionField
-            // 
-            this.PositionField.Location = new Point(101, 147);
-            this.PositionField.Name = "PositionField";
-            this.PositionField.Size = new Size(321, 27);
-            this.PositionField.TabIndex = 11;
             // 
             // label5
             // 
@@ -206,11 +199,22 @@ namespace Client
             this.UserIdField.Size = new Size(321, 27);
             this.UserIdField.TabIndex = 19;
             // 
+            // PositionField
+            // 
+            this.PositionField.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.PositionField.FormattingEnabled = true;
+            this.PositionField.Items.AddRange(new object[] { "Sales & Marketing Department", "R&D Department", "Supply Chain Management Department", "Production Department", "Customer Service Department", "IT Department" });
+            this.PositionField.Location = new Point(101, 147);
+            this.PositionField.Name = "PositionField";
+            this.PositionField.Size = new Size(321, 27);
+            this.PositionField.TabIndex = 20;
+            // 
             // UserDetailForm
             // 
             this.AutoScaleDimensions = new SizeF(9F, 19F);
             this.AutoScaleMode = AutoScaleMode.Font;
             this.ClientSize = new Size(438, 327);
+            this.Controls.Add(this.PositionField);
             this.Controls.Add(this.UserIdField);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.ManagerField);
@@ -219,7 +223,6 @@ namespace Client
             this.Controls.Add(this.label6);
             this.Controls.Add(this.TeamField);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.PositionField);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.ActivatedField);
@@ -249,7 +252,6 @@ namespace Client
         private CheckBox ActivatedField;
         private Button SaveButton;
         private Button CancelButton;
-        private TextBox PositionField;
         private Label label5;
         private ComboBox TeamField;
         private Label label6;
@@ -258,5 +260,6 @@ namespace Client
         private ComboBox ManagerField;
         private Label label8;
         private TextBox UserIdField;
+        private ComboBox PositionField;
     }
 }

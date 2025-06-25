@@ -64,7 +64,7 @@ namespace Client
         {
             if (this.IsValidLogin(this.inputUsername.Text, this.inputPassword.Text))
             {
-                var command = new MySqlCommand("SELECT UserID, TeamID, Role FROM User WHERE UserID = ?uid", Program.Connection);
+                var command = new MySqlCommand("SELECT UserID, TeamID, Role, PositionTitle FROM User WHERE UserID = ?uid", Program.Connection);
                 command.Parameters.AddWithValue("uid", this.inputUsername.Text);
                 var reader = command.ExecuteReader();
 
@@ -80,7 +80,8 @@ namespace Client
                 {
                     UserId = reader.GetString("UserID"),
                     TeamId = reader.GetString("TeamID"),
-                    Role = reader.GetString("Role")
+                    Role = reader.GetString("Role"),
+                    PositionTitle = reader.GetString("PositionTitle")
                 };
 
                 reader.Close();

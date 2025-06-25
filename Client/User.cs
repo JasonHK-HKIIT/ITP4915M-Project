@@ -12,15 +12,17 @@ namespace Client
 
         public string TeamId { get; set; } = string.Empty;
 
+        public string PositionTitle { get; set; } = string.Empty;
+
         public string Role { get; set; } = string.Empty;
 
         public User() { }
 
-        public bool IsRole(params string[] roles)
+        public bool IsDepartment(params string[] titles)
         {
-            foreach (var role in roles)
+            foreach (var title in titles)
             {
-                if (role.Equals(Role, StringComparison.OrdinalIgnoreCase))
+                if (title.Equals(PositionTitle, StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }

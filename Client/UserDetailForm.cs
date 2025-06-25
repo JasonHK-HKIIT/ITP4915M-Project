@@ -59,7 +59,7 @@ namespace Client
                     UserIdField.Text = (string)reader["UserID"];
                     NameField.Text = (string)reader["Name"];
                     TeamField.SelectedValue = reader["TeamID"];
-                    PositionField.Text = (string)reader["PositionTitle"];
+                    PositionField.SelectedItem = (string)reader["PositionTitle"];
                     RoleField.SelectedItem = reader["Role"];
                     ManagerField.SelectedValue = reader["ManagerID"];
                     ActivatedField.Checked = (bool)reader["IsActive"];
@@ -82,7 +82,7 @@ namespace Client
                     command.Parameters.AddWithValue("?id", UserIdField.Text);
                     command.Parameters.AddWithValue("?name", NameField.Text);
                     command.Parameters.AddWithValue("?teamId", TeamField.SelectedValue ?? DBNull.Value);
-                    command.Parameters.AddWithValue("?position", PositionField.Text);
+                    command.Parameters.AddWithValue("?position", PositionField.SelectedItem);
                     command.Parameters.AddWithValue("?role", RoleField.SelectedItem);
                     command.Parameters.AddWithValue("?managerId", ManagerField.SelectedValue ?? DBNull.Value);
                     command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
@@ -115,7 +115,7 @@ namespace Client
                     command.Parameters.AddWithValue("?name", NameField.Text);
                     command.Parameters.AddWithValue("?password", Program.HashPassword(password));
                     command.Parameters.AddWithValue("?teamId", TeamField.SelectedValue ?? DBNull.Value);
-                    command.Parameters.AddWithValue("?position", PositionField.Text);
+                    command.Parameters.AddWithValue("?position", PositionField.SelectedItem);
                     command.Parameters.AddWithValue("?role", RoleField.SelectedItem);
                     command.Parameters.AddWithValue("?managerId", ManagerField.SelectedValue ?? DBNull.Value);
                     command.Parameters.AddWithValue("?isActive", ActivatedField.Checked);
