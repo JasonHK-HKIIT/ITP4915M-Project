@@ -13,7 +13,7 @@ namespace Client
             this.tileToolStripMenuItem.Click += new System.EventHandler(this.tileHorizontalToolStripMenuItem_Click);
             this.arrangeIconsToolStripMenuItem.Click += new System.EventHandler(this.arrangeIconsToolStripMenuItem_Click);
             this.windowsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.windowsToolStripMenuItem_DropDownOpening);
-          
+
 
 
         }
@@ -441,7 +441,7 @@ namespace Client
             }
 
             MessageBox.Show("All windows have been closed.", "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            toolStripStatusLabel3.Text = "All child windows closed.";
+       
         }
 
 
@@ -489,7 +489,7 @@ namespace Client
             materialsForm.Show();
         }
 
- 
+        
     }
 }
 
