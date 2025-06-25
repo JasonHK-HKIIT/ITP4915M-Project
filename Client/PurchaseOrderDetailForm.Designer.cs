@@ -262,7 +262,7 @@
             this.Margin = new Padding(4);
             this.Name = "PurchaseOrderDetailForm";
             this.Text = "PurchaseOrderDetailForm";
-            this.Load += this.PurchaseOrderDetailForm_Load;
+      
             ((System.ComponentModel.ISupportInitialize)this.dataGridViewLineItems).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

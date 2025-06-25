@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using static Client.PurchaseOrderDetailForm;
 
 namespace Client
 {
@@ -18,12 +19,6 @@ namespace Client
             this.MinimizeBox = true;
             this.Text = "PurchaseOrderForm";
             this.Icon = Properties.Resources.Icon_Form;
-
-            Font font;
-            try { font = new Font("Helvetica", 10); }
-            catch { font = new Font("Segoe UI", 10); }
-
-          
 
             this.Load += PurchaseOrderForm_Load;
         }
@@ -77,6 +72,7 @@ namespace Client
                 detail.Text = "Add Purchase Order";
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
+                    // Generate new PurchaseOrderID
                     var lastIdCommand = new MySqlCommand("SELECT PurchaseOrderID FROM PurchaseOrder ORDER BY PurchaseOrderID DESC LIMIT 1", Program.Connection);
                     var lastIdString = lastIdCommand.ExecuteScalar() as string ?? "PUR000";
                     var nextId = int.Parse(lastIdString.Substring(3)) + 1;
@@ -116,79 +112,83 @@ namespace Client
 
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count != 1)
-            {
-                MessageBox.Show("Please select one purchase order to edit.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+            if (dataGridView1.CurrentRow == null) return;
 
-            var row = dataGridView1.SelectedRows[0];
-            string id = row.Cells["PurchaseOrderID"].Value.ToString();
-            string sid = row.Cells["SupplierID"].Value.ToString();
-            DateTime odate = Convert.ToDateTime(row.Cells["OrderDate"].Value);
-            DateTime ddate = Convert.ToDateTime(row.Cells["ExpectedDeliveryDate"].Value);
-            string status = row.Cells["Status"].Value.ToString();
-            string postatus = row.Cells["POStatus"].Value.ToString();
+            // Get header values
+            string poId = dataGridView1.CurrentRow.Cells["PurchaseOrderID"].Value.ToString();
+            string supplierId = dataGridView1.CurrentRow.Cells["SupplierID"].Value.ToString();
+            DateTime orderDate = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["OrderDate"].Value);
+            DateTime deliveryDate = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["ExpectedDeliveryDate"].Value);
+            string status = dataGridView1.CurrentRow.Cells["Status"].Value.ToString();
+            string poStatus = dataGridView1.CurrentRow.Cells["POStatus"].Value.ToString();
 
-            var lines = new List<PurchaseOrderDetailForm.PurchaseOrderLine>();
-            using (var lineCmd = new MySqlCommand("SELECT * FROM PurchaseOrderLine WHERE PurchaseOrderID=@id", Program.Connection))
+            // Load lines
+            List<PurchaseOrderDetailForm.PurchaseOrderLine> poLines = new();
+            var cmd = new MySqlCommand(@"
+        SELECT pol.MaterialID, m.MaterialName, m.Description, pol.Quantity, pol.ReceivedQuantity
+        FROM PurchaseOrderLine pol
+        JOIN Material m ON pol.MaterialID = m.MaterialID
+        WHERE pol.PurchaseOrderID = @poid", Program.Connection);
+            cmd.Parameters.AddWithValue("@poid", poId);
+
+            using (var reader = cmd.ExecuteReader())
             {
-                lineCmd.Parameters.AddWithValue("@id", id);
-                using (var reader = lineCmd.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
+                    poLines.Add(new PurchaseOrderDetailForm.PurchaseOrderLine
                     {
-                        lines.Add(new PurchaseOrderDetailForm.PurchaseOrderLine
-                        {
-                            MaterialID = reader["MaterialID"].ToString(),
-                            Quantity = Convert.ToInt32(reader["Quantity"]),
-                            ReceivedQuantity = Convert.ToInt32(reader["ReceivedQuantity"] ?? 0)
-                        });
-                    }
+                        MaterialID = reader["MaterialID"]?.ToString(),
+                        MaterialName = reader["MaterialName"]?.ToString(),
+                        Description = reader["Description"]?.ToString(),
+                        Quantity = reader["Quantity"] != DBNull.Value ? Convert.ToInt32(reader["Quantity"]) : 0,
+                        ReceivedQuantity = reader["ReceivedQuantity"] != DBNull.Value ? Convert.ToInt32(reader["ReceivedQuantity"]) : 0
+                    });
                 }
             }
 
+           
             using (var detail = new PurchaseOrderDetailForm())
             {
                 detail.Text = "Edit Purchase Order";
-                detail.SetFields(id, sid, odate, ddate, status, postatus, lines);
+                detail.SetFields(poId, supplierId, orderDate, deliveryDate, status, poStatus, poLines);
+
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
-                    var cmd = new MySqlCommand("UPDATE PurchaseOrder SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus WHERE PurchaseOrderID=@id", Program.Connection);
-                    cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
-                    cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
-                    cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
-                    cmd.Parameters.AddWithValue("@status", detail.Status);
-                    cmd.Parameters.AddWithValue("@postatus", detail.POStatus);
-                    cmd.Parameters.AddWithValue("@id", id);
+                    // Update header (if needed)
+                    var updateCmd = new MySqlCommand(
+                        "UPDATE PurchaseOrder SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus WHERE PurchaseOrderID=@id",
+                        Program.Connection);
+                    updateCmd.Parameters.AddWithValue("@id", poId);
+                    updateCmd.Parameters.AddWithValue("@sid", detail.SupplierID);
+                    updateCmd.Parameters.AddWithValue("@odate", detail.OrderDate);
+                    updateCmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
+                    updateCmd.Parameters.AddWithValue("@status", detail.Status);
+                    updateCmd.Parameters.AddWithValue("@postatus", detail.POStatus);
+                    updateCmd.ExecuteNonQuery();
 
-                    try
+                    // Delete old lines
+                    var deleteCmd = new MySqlCommand("DELETE FROM PurchaseOrderLine WHERE PurchaseOrderID=@id", Program.Connection);
+                    deleteCmd.Parameters.AddWithValue("@id", poId);
+                    deleteCmd.ExecuteNonQuery();
+
+                    // Insert new/edited lines
+                    foreach (var line in detail.GetLineItems())
                     {
-                        cmd.ExecuteNonQuery();
-
-                        var deleteCmd = new MySqlCommand("DELETE FROM PurchaseOrderLine WHERE PurchaseOrderID=@id", Program.Connection);
-                        deleteCmd.Parameters.AddWithValue("@id", id);
-                        deleteCmd.ExecuteNonQuery();
-
-                        foreach (var line in detail.GetLineItems())
-                        {
-                            var insertLine = new MySqlCommand("INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)", Program.Connection);
-                            insertLine.Parameters.AddWithValue("@poid", id);
-                            insertLine.Parameters.AddWithValue("@mid", line.MaterialID);
-                            insertLine.Parameters.AddWithValue("@qty", line.Quantity);
-                            insertLine.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
-                            insertLine.ExecuteNonQuery();
-                        }
-
-                        LoadData();
+                        var lineCmd = new MySqlCommand(
+                            "INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
+                            Program.Connection);
+                        lineCmd.Parameters.AddWithValue("@poid", poId);
+                        lineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                        lineCmd.Parameters.AddWithValue("@qty", line.Quantity);
+                        lineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
+                        lineCmd.ExecuteNonQuery();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Update failed: " + ex.Message, "Error");
-                    }
+
+                    LoadData();
                 }
             }
         }
+
 
         private void ButtonViewPOLines_Click(object sender, EventArgs e)
         {
