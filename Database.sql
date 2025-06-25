@@ -141,6 +141,18 @@ INSERT INTO `Inventory_Product` (`WarehouseID`, `ProductID`, `ProductQuantityInW
 
 -- --------------------------------------------------------
 
+CREATE TABLE `Inventory_Material` (
+  `WarehouseID` varchar(50) NOT NULL,
+  `MaterialID` varchar(50) NOT NULL,
+  `MaterialQuantityInWarehouse` int(11) NOT NULL,
+  `MinimumStockLevel` int(11) DEFAULT NULL,
+  `ReorderPoint` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `Inventory_Material` (`WarehouseID`, `MaterialID`, `MaterialQuantityInWarehouse`, `MinimumStockLevel`, `ReorderPoint`) VALUES
+('WH001', 'MAT001', 120, 30, 50),
+('WH002', 'MAT002', 80, 20, 40);
+
 --
 -- Table structure for table `Material`
 --
@@ -556,6 +568,11 @@ ALTER TABLE `Inventory_Product`
   ADD PRIMARY KEY (`WarehouseID`,`ProductID`),
   ADD KEY `Inventory_Product_ProductID_fk` (`ProductID`);
 
+ALTER TABLE `Inventory_Material`
+  ADD PRIMARY KEY (`WarehouseID`, `MaterialID`),
+  ADD KEY `Inventory_Material_MaterialID_fk` (`MaterialID`);
+
+
 --
 -- Indexes for table `Material`
 --
@@ -714,6 +731,11 @@ ALTER TABLE `CustomerServiceCase`
 ALTER TABLE `Inventory_Product`
   ADD CONSTRAINT `Inventory_Product_ProductID_fk` FOREIGN KEY (`ProductID`) REFERENCES `Product` (`ProductID`),
   ADD CONSTRAINT `Inventory_Product_WarehouseID_fk` FOREIGN KEY (`WarehouseID`) REFERENCES `Warehouse` (`WarehouseID`);
+
+ALTER TABLE `Inventory_Material`
+  ADD CONSTRAINT `Inventory_Material_WarehouseID_fk` FOREIGN KEY (`WarehouseID`) REFERENCES `Warehouse` (`WarehouseID`),
+  ADD CONSTRAINT `Inventory_Material_MaterialID_fk` FOREIGN KEY (`MaterialID`) REFERENCES `Material` (`MaterialID`);
+
 
 --
 -- Constraints for table `MaterialRequirement`
