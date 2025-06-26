@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Formats.Tar;
 using System.Linq;
-using System.Transactions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -20,7 +17,6 @@ namespace Client
         public DateTime OrderDate => dateTimePickerOrder.Value;
         public DateTime DeliveryDate => dateTimePickerDelivery.Value;
         public string Status => (string)comboBoxStatus.SelectedItem;
-        public string POStatus => (string)comboBoxPOStatus.SelectedItem;
 
         public PurchaseOrderDetailForm()
         {
@@ -29,7 +25,6 @@ namespace Client
             LoadSuppliers();
 
             comboBoxStatus.SelectedIndex = 0;
-            comboBoxPOStatus.SelectedIndex = 0;
 
             buttonSave.Click += (s, e) => { DialogResult = DialogResult.OK; Close(); };
             buttonCancel.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
@@ -114,8 +109,7 @@ namespace Client
             {
                 Name = "ReceivedQuantity",
                 HeaderText = "Received Quantity",
-                DataPropertyName = "ReceivedQuantity",
-                //ReadOnly = false
+                DataPropertyName = "ReceivedQuantity"
             };
 
             dataGridViewLineItems.Columns.Add(nameCol);
@@ -134,7 +128,8 @@ namespace Client
             };
         }
 
-        public void SetFields(string poId, string supplierId, DateTime orderDate, DateTime deliveryDate, string status, string poStatus, List<PurchaseOrderLine> lines = null)
+        // ✅ SetFields with NO poStatus, matches PurchaseOrderForm call
+        public void SetFields(string poId, string supplierId, DateTime orderDate, DateTime deliveryDate, string status, List<PurchaseOrderLine> lines = null)
         {
             maskedTextBox1.Text = poId;
             comboBoxSupplier.SelectedValue = supplierId;
@@ -143,8 +138,6 @@ namespace Client
 
             if (comboBoxStatus.Items.Contains(status))
                 comboBoxStatus.SelectedItem = status;
-            if (comboBoxPOStatus.Items.Contains(poStatus))
-                comboBoxPOStatus.SelectedItem = poStatus;
 
             if (lines != null)
             {
@@ -229,23 +222,9 @@ namespace Client
             public int ReceivedQuantity { get; set; }
         }
 
-        private void PurchaseOrderDetailForm_Load(object sender, EventArgs e)
-        {
+        // All POStatus-related code has been REMOVED below this point
 
-        }
-
-        private void dataGridViewLineItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //bool isDelivered = POStatus == "Delivered";
-            //dataGridViewLineItems.Columns["ReceivedQuantity"].ReadOnly = !isDelivered;
-        }
-
-
+        // If you have Status auto-updating logic, keep it:
         private void UpdatePOStatus()
         {
             bool allComplete = true;
@@ -264,7 +243,6 @@ namespace Client
                 }
             }
 
-            // 更新 UI 的 Status
             if (anyPartial)
             {
                 comboBoxStatus.SelectedItem = "Partial Completed";
@@ -284,7 +262,6 @@ namespace Client
             command.Parameters.AddWithValue("@status", Status);
             command.Parameters.AddWithValue("@poid", PurchaseOrderID);
             command.ExecuteNonQuery();
-
         }
 
         private List<int> UpdatePOLine()
@@ -292,19 +269,15 @@ namespace Client
             var deltaQuantities = new List<int>();
             foreach (var line in GetLineItems())
             {
-                // 驗證 ReceivedQuantity 不超過 Quantity
                 if (line.ReceivedQuantity > line.Quantity)
                 {
                     MessageBox.Show($"Received quantity ({line.ReceivedQuantity}) cannot exceed order quantity ({line.Quantity}) for material {line.MaterialID}.",
                      "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     line.ReceivedQuantity = 0;
                     return new List<int>();
-
-
                 }
                 else
                 {
-                    // 獲取舊的 ReceivedQuantity
                     var selectCmd = new MySqlCommand(
                         "SELECT ReceivedQuantity FROM purchaseorderline WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
                         Program.Connection);
@@ -314,11 +287,9 @@ namespace Client
                     int oldReceivedQty = reader.Read() ? reader.GetInt32("ReceivedQuantity") : 0;
                     reader.Close();
 
-                    // 計算增量
                     int deltaQty = line.ReceivedQuantity - oldReceivedQty;
                     deltaQuantities.Add(deltaQty);
 
-                    // 更新 PurchaseOrderLine
                     var updateLineCmd = new MySqlCommand(
                         "UPDATE purchaseorderline SET ReceivedQuantity=@rcvqty WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
                         Program.Connection);
@@ -327,7 +298,6 @@ namespace Client
                     updateLineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
                     int rowsAffected = updateLineCmd.ExecuteNonQuery();
 
-                    // 如果沒有更新到記錄（可能是新行），則插入
                     if (rowsAffected == 0)
                     {
                         var insertLineCmd = new MySqlCommand(
@@ -346,10 +316,7 @@ namespace Client
 
         private void UpdateInventory(List<int> deltaQuantities)
         {
-            //********************* change to combox.Text
             var wid = "WH002";
-            //*********************
-
             var lines = GetLineItems();
             for (int i = 0; i < lines.Count && i < deltaQuantities.Count; i++)
             {
@@ -358,7 +325,6 @@ namespace Client
                 if (deltaQty == 0)
                     continue;
 
-                // 檢查 Inventory_Material 是否有記錄
                 var checkInventoryCmd = new MySqlCommand(
                     "SELECT MaterialQuantityInWarehouse FROM inventory_material WHERE WarehouseID=@wid AND MaterialID=@mid",
                     Program.Connection);
@@ -369,7 +335,6 @@ namespace Client
                 int currentQty = hasRecord ? reader.GetInt32("MaterialQuantityInWarehouse") : 0;
                 reader.Close();
 
-                // 更新 inventory_material 表
                 var updateInventoryCmd = new MySqlCommand(
                         "UPDATE inventory_material SET MaterialQuantityInWarehouse=@newqty WHERE WarehouseID=@wid AND MaterialID=@mid",
                         Program.Connection);
@@ -391,29 +356,15 @@ namespace Client
             var lines = GetLineItems();
             if (!lines.Any())
             {
-                MessageBox.Show("Please import at least 1 order line", "Valid Inpu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please import at least 1 order line", "Valid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var deltaQuantities = UpdatePOLine();
             UpdatePOStatus();
             UpdateInventory(deltaQuantities);
-
         }
 
-        private void dateTimePickerDelivery_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePickerOrder_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelPOStatus_Click(object sender, EventArgs e)
-        {
-
-        }
+        // Other event handlers and empty stubs as needed...
     }
 }

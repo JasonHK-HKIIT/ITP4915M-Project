@@ -161,14 +161,14 @@ CREATE TABLE `Material` (
   `MaterialID` varchar(50) NOT NULL,
   `MaterialName` varchar(100) NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `QuantityPerUnit` decimal(12,2) NOT NULL
+  `PricePerUnit` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Material`
 --
 
-INSERT INTO `Material` (`MaterialID`, `MaterialName`, `Description`, `QuantityPerUnit`) VALUES
+INSERT INTO `Material` (`MaterialID`, `MaterialName`, `Description`, `PricePerUnit`) VALUES
 ('MAT001', 'Plastic', 'High-grade plastic', 1.00),
 ('MAT002', 'Metal', 'Durable alloy', 2.50);
 
@@ -327,17 +327,16 @@ CREATE TABLE `PurchaseOrder` (
   `SupplierID` varchar(50) NOT NULL,
   `OrderDate` date NOT NULL,
   `ExpectedDeliveryDate` date NOT NULL,
-  `Status` varchar(50) NOT NULL,
-  `POStatus` varchar(50) NOT NULL
+  `Status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `PurchaseOrder`
 --
 
-INSERT INTO `PurchaseOrder` (`PurchaseOrderID`, `SupplierID`, `OrderDate`, `ExpectedDeliveryDate`, `Status`, `POStatus`) VALUES
-('PUR001', 'SUP001', '2025-05-30', '2025-06-07', 'Ordered', 'In Transit'),
-('PUR002', 'SUP002', '2025-05-31', '2025-06-10', 'Ordered', 'Processing');
+INSERT INTO `PurchaseOrder` (`PurchaseOrderID`, `SupplierID`, `OrderDate`, `ExpectedDeliveryDate`, `Status`) VALUES
+('PUR001', 'SUP001', '2025-05-30', '2025-06-07', 'Ordered'),
+('PUR002', 'SUP002', '2025-05-31', '2025-06-10', 'Ordered');
 
 -- --------------------------------------------------------
 

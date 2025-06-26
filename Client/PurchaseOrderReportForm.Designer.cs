@@ -125,7 +125,7 @@
             pnlSummary.BorderStyle = BorderStyle.FixedSingle;
             pnlSummary.Location = new Point(30, 170);
             pnlSummary.Name = "pnlSummary";
-            pnlSummary.Size = new Size(680, 50);
+            pnlSummary.Size = new Size(680, 67);
             pnlSummary.TabIndex = 9;
             // 
             // dgvResults
@@ -133,7 +133,7 @@
             dgvResults.AllowUserToAddRows = false;
             dgvResults.AllowUserToDeleteRows = false;
             dgvResults.BackgroundColor = Color.White;
-            dgvResults.Location = new Point(30, 230);
+            dgvResults.Location = new Point(30, 243);
             dgvResults.Name = "dgvResults";
             dgvResults.ReadOnly = true;
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
