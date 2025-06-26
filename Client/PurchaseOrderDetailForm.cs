@@ -297,8 +297,10 @@ namespace Client
                 {
                     MessageBox.Show($"Received quantity ({line.ReceivedQuantity}) cannot exceed order quantity ({line.Quantity}) for material {line.MaterialID}.",
                      "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    deltaQuantities.Add(0);
                     line.ReceivedQuantity = 0;
+                    return new List<int>();
+
+
                 }
                 else
                 {
