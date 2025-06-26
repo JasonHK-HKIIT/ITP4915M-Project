@@ -20,7 +20,10 @@ namespace Client
 
         private void LoadData()
         {
-            var command = new MySqlCommand("SELECT * FROM Material WHERE MaterialID LIKE ?query OR MaterialName LIKE ?query OR Description LIKE ?query", Program.Connection);
+            var command = new MySqlCommand(
+                "SELECT * FROM Material WHERE MaterialID LIKE ?query OR MaterialName LIKE ?query",
+                Program.Connection
+            );
             command.Parameters.AddWithValue("?query", $"%{SearchField.Text}%");
             var adapter = new MySqlDataAdapter(command);
             var table = new DataTable();

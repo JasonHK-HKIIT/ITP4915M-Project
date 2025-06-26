@@ -28,79 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SearchField = new TextBox();
-            this.NewButton = new Button();
-            this.EditButton = new Button();
-            this.MaterialsView = new DataGridView();
-            this.label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)this.MaterialsView).BeginInit();
-            this.SuspendLayout();
+            SearchField = new TextBox();
+            NewButton = new Button();
+            EditButton = new Button();
+            MaterialsView = new DataGridView();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)MaterialsView).BeginInit();
+            SuspendLayout();
             // 
             // SearchField
             // 
-            this.SearchField.Location = new Point(74, 14);
-            this.SearchField.Name = "SearchField";
-            this.SearchField.Size = new Size(244, 27);
-            this.SearchField.TabIndex = 0;
-            this.SearchField.KeyDown += this.SearchField_KeyDown;
+            SearchField.Location = new Point(11, 10);
+            SearchField.Margin = new Padding(2, 2, 2, 2);
+            SearchField.Name = "SearchField";
+            SearchField.Size = new Size(191, 23);
+            SearchField.TabIndex = 0;
+            SearchField.KeyDown += SearchField_KeyDown;
             // 
             // NewButton
             // 
-            this.NewButton.Location = new Point(833, 12);
-            this.NewButton.Name = "NewButton";
-            this.NewButton.Size = new Size(94, 29);
-            this.NewButton.TabIndex = 1;
-            this.NewButton.Text = "New";
-            this.NewButton.UseVisualStyleBackColor = true;
-            this.NewButton.Click += this.NewButton_Click;
+            NewButton.Location = new Point(648, 9);
+            NewButton.Margin = new Padding(2, 2, 2, 2);
+            NewButton.Name = "NewButton";
+            NewButton.Size = new Size(73, 23);
+            NewButton.TabIndex = 1;
+            NewButton.Text = "New";
+            NewButton.UseVisualStyleBackColor = true;
+            NewButton.Click += NewButton_Click;
             // 
             // EditButton
             // 
-            this.EditButton.Location = new Point(933, 12);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new Size(94, 29);
-            this.EditButton.TabIndex = 2;
-            this.EditButton.Text = "Edit";
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += this.EditButton_Click;
+            EditButton.Location = new Point(726, 9);
+            EditButton.Margin = new Padding(2, 2, 2, 2);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(73, 23);
+            EditButton.TabIndex = 2;
+            EditButton.Text = "Edit";
+            EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
             // 
             // MaterialsView
             // 
-            this.MaterialsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MaterialsView.Location = new Point(12, 47);
-            this.MaterialsView.MultiSelect = false;
-            this.MaterialsView.Name = "MaterialsView";
-            this.MaterialsView.ReadOnly = true;
-            this.MaterialsView.RowHeadersWidth = 51;
-            this.MaterialsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.MaterialsView.Size = new Size(1015, 534);
-            this.MaterialsView.TabIndex = 3;
+            MaterialsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            MaterialsView.Location = new Point(9, 37);
+            MaterialsView.Margin = new Padding(2, 2, 2, 2);
+            MaterialsView.MultiSelect = false;
+            MaterialsView.Name = "MaterialsView";
+            MaterialsView.ReadOnly = true;
+            MaterialsView.RowHeadersWidth = 51;
+            MaterialsView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            MaterialsView.Size = new Size(789, 422);
+            MaterialsView.TabIndex = 3;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(12, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(56, 19);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Search";
+            label1.AutoSize = true;
+            label1.Location = new Point(218, 13);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(217, 15);
+            label1.TabIndex = 4;
+            label1.Text = "Search by (MaterialID) / (MaterialName)";
             // 
             // MaterialsForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1039, 593);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.MaterialsView);
-            this.Controls.Add(this.EditButton);
-            this.Controls.Add(this.NewButton);
-            this.Controls.Add(this.SearchField);
-            this.Name = "MaterialsForm";
-            this.Text = "MaterialsForm";
-            this.Load += this.MaterialsForm_Load;
-            ((System.ComponentModel.ISupportInitialize)this.MaterialsView).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(808, 468);
+            Controls.Add(label1);
+            Controls.Add(MaterialsView);
+            Controls.Add(EditButton);
+            Controls.Add(NewButton);
+            Controls.Add(SearchField);
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "MaterialsForm";
+            Text = "MaterialsForm";
+            Load += MaterialsForm_Load;
+            ((System.ComponentModel.ISupportInitialize)MaterialsView).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
