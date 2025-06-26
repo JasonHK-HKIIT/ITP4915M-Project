@@ -33,7 +33,7 @@
             this.maintenanceToolStripMenuItem = new ToolStripMenuItem();
             this.suppliersManagementToolStripMenuItem = new ToolStripMenuItem();
             this.dispatchToolStripMenuItem = new ToolStripMenuItem();
-            this.MenuItemGoodRecieved = new ToolStripMenuItem();
+        
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,17 +70,13 @@
             // 
             // dispatchToolStripMenuItem
             // 
-            this.dispatchToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { this.MenuItemGoodRecieved });
             this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
             this.dispatchToolStripMenuItem.Size = new Size(83, 24);
             this.dispatchToolStripMenuItem.Text = "Dispatch";
             // 
             // MenuItemGoodRecieved
             // 
-            this.MenuItemGoodRecieved.Name = "MenuItemGoodRecieved";
-            this.MenuItemGoodRecieved.Size = new Size(224, 26);
-            this.MenuItemGoodRecieved.Text = "Good Recieved";
-            this.MenuItemGoodRecieved.Click += this.MenuItemGoodRecieved_Click;
+           
             // 
             // MainForm
             // 
@@ -107,6 +103,6 @@
         private ToolStripMenuItem suppliersManagementToolStripMenuItem;
         private ToolStripMenuItem menuItemProduct;
         private ToolStripMenuItem dispatchToolStripMenuItem;
-        private ToolStripMenuItem MenuItemGoodRecieved;
+       
     }
 }
