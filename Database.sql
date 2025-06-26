@@ -327,17 +327,16 @@ CREATE TABLE `PurchaseOrder` (
   `SupplierID` varchar(50) NOT NULL,
   `OrderDate` date NOT NULL,
   `ExpectedDeliveryDate` date NOT NULL,
-  `Status` varchar(50) NOT NULL,
-  `POStatus` varchar(50) NOT NULL
+  `Status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `PurchaseOrder`
 --
 
-INSERT INTO `PurchaseOrder` (`PurchaseOrderID`, `SupplierID`, `OrderDate`, `ExpectedDeliveryDate`, `Status`, `POStatus`) VALUES
-('PUR001', 'SUP001', '2025-05-30', '2025-06-07', 'Ordered', 'In Transit'),
-('PUR002', 'SUP002', '2025-05-31', '2025-06-10', 'Ordered', 'Processing');
+INSERT INTO `PurchaseOrder` (`PurchaseOrderID`, `SupplierID`, `OrderDate`, `ExpectedDeliveryDate`, `Status`) VALUES
+('PUR001', 'SUP001', '2025-05-30', '2025-06-07', 'Ordered'),
+('PUR002', 'SUP002', '2025-05-31', '2025-06-10', 'Ordered');
 
 -- --------------------------------------------------------
 
