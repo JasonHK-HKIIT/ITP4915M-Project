@@ -80,20 +80,33 @@ namespace Client
             pnlSummary.Controls.Clear();
             int count = dt.Rows.Count;
             decimal totalAmount = 0;
+            decimal totalDeposit = 0;
+            decimal totalBalanceDue = 0;
+
             foreach (DataRow row in dt.Rows)
             {
                 if (row["TotalAmount"] != DBNull.Value)
                     totalAmount += Convert.ToDecimal(row["TotalAmount"]);
+                if (row["DepositPaid"] != DBNull.Value)
+                    totalDeposit += Convert.ToDecimal(row["DepositPaid"]);
+                if (row["BalanceDue"] != DBNull.Value)
+                    totalBalanceDue += Convert.ToDecimal(row["BalanceDue"]);
             }
+
             var lbl = new Label
             {
                 AutoSize = false,
                 TextAlign = ContentAlignment.MiddleLeft,
                 Font = new Font("Segoe UI", 10, FontStyle.Bold),
                 Dock = DockStyle.Fill,
-                Text = $"Total Orders: {count}, Total Amount: {totalAmount:C}"
+                Text =
+                    $"Total Orders: {count}, " +
+                    $"Total Amount: {totalAmount:C}\n" +
+                    $"Total Deposit Paid: {totalDeposit:C}, " +
+                    $"Total Balance Due: {totalBalanceDue:C}"
             };
             pnlSummary.Controls.Add(lbl);
         }
+
     }
 }
