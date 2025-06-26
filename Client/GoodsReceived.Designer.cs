@@ -1,135 +1,172 @@
-﻿using System.Windows.Forms;
-using System;
-
-namespace Client
+﻿namespace Client
 {
     partial class GoodsReceivedForm
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private Label lblGoodsReceivedID, lblPurchaseOrderID, lblReceivedDate, lblWarehouseID, lblMaterialList;
-        private TextBox txtGoodsReceivedID, txtPurchaseOrderID, txtWarehouseID;
-        private DateTimePicker dtpReceivedDate;
-        private Button btnSave, btnSearchPO, btnClose;
-        private DataGridView dgvMaterialList;
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxPurchaseOrderID;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePickerReceived;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxWarehouse;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dataGridViewMaterials;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonClose;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
 
         private void InitializeComponent()
         {
-            this.lblGoodsReceivedID = new System.Windows.Forms.Label();
-            this.lblPurchaseOrderID = new System.Windows.Forms.Label();
-            this.lblReceivedDate = new System.Windows.Forms.Label();
-            this.lblWarehouseID = new System.Windows.Forms.Label();
-            this.lblMaterialList = new System.Windows.Forms.Label();
-            this.txtGoodsReceivedID = new System.Windows.Forms.TextBox();
-            this.txtPurchaseOrderID = new System.Windows.Forms.TextBox();
-            this.txtWarehouseID = new System.Windows.Forms.TextBox();
-            this.dtpReceivedDate = new System.Windows.Forms.DateTimePicker();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnSearchPO = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.dgvMaterialList = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialList)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxPurchaseOrderID = new System.Windows.Forms.TextBox();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePickerReceived = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxWarehouse = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dataGridViewMaterials = new System.Windows.Forms.DataGridView();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonClose = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaterials)).BeginInit();
             this.SuspendLayout();
-
-            this.lblGoodsReceivedID.Location = new System.Drawing.Point(30, 30);
-            this.lblGoodsReceivedID.Name = "lblGoodsReceivedID";
-            this.lblGoodsReceivedID.Size = new System.Drawing.Size(100, 23);
-            this.lblGoodsReceivedID.TabIndex = 0;
-            this.lblGoodsReceivedID.Text = "Goods Received ID:";
- 
-            this.lblPurchaseOrderID.Location = new System.Drawing.Point(30, 60);
-            this.lblPurchaseOrderID.Name = "lblPurchaseOrderID";
-            this.lblPurchaseOrderID.Size = new System.Drawing.Size(100, 23);
-            this.lblPurchaseOrderID.TabIndex = 2;
-            this.lblPurchaseOrderID.Text = "Purchase Order ID:";
- 
-            this.lblReceivedDate.Location = new System.Drawing.Point(30, 90);
-            this.lblReceivedDate.Name = "lblReceivedDate";
-            this.lblReceivedDate.Size = new System.Drawing.Size(100, 23);
-            this.lblReceivedDate.TabIndex = 4;
-            this.lblReceivedDate.Text = "Received Date:";
- 
-            this.lblWarehouseID.Location = new System.Drawing.Point(30, 120);
-            this.lblWarehouseID.Name = "lblWarehouseID";
-            this.lblWarehouseID.Size = new System.Drawing.Size(100, 23);
-            this.lblWarehouseID.TabIndex = 6;
-            this.lblWarehouseID.Text = "Warehouse ID:";
-
-            this.lblMaterialList.Location = new System.Drawing.Point(30, 160);
-            this.lblMaterialList.Name = "lblMaterialList";
-            this.lblMaterialList.Size = new System.Drawing.Size(100, 23);
-            this.lblMaterialList.TabIndex = 8;
-            this.lblMaterialList.Text = "Materials Received:";
-    
-            this.txtGoodsReceivedID.Location = new System.Drawing.Point(170, 27);
-            this.txtGoodsReceivedID.Name = "txtGoodsReceivedID";
-            this.txtGoodsReceivedID.Size = new System.Drawing.Size(100, 29);
-            this.txtGoodsReceivedID.TabIndex = 1;
-         
-            this.txtPurchaseOrderID.Location = new System.Drawing.Point(170, 57);
-            this.txtPurchaseOrderID.Name = "txtPurchaseOrderID";
-            this.txtPurchaseOrderID.Size = new System.Drawing.Size(100, 29);
-            this.txtPurchaseOrderID.TabIndex = 3;
-           
-            this.txtWarehouseID.Location = new System.Drawing.Point(170, 117);
-            this.txtWarehouseID.Name = "txtWarehouseID";
-            this.txtWarehouseID.Size = new System.Drawing.Size(100, 29);
-            this.txtWarehouseID.TabIndex = 7;
-           
-            this.dtpReceivedDate.Location = new System.Drawing.Point(170, 87);
-            this.dtpReceivedDate.Name = "dtpReceivedDate";
-            this.dtpReceivedDate.Size = new System.Drawing.Size(200, 29);
-            this.dtpReceivedDate.TabIndex = 5;
-            
-            this.btnSave.Location = new System.Drawing.Point(30, 330);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 11;
-            this.btnSave.Text = "Save";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-           
-            this.btnSearchPO.Location = new System.Drawing.Point(350, 55);
-            this.btnSearchPO.Name = "btnSearchPO";
-            this.btnSearchPO.Size = new System.Drawing.Size(75, 23);
-            this.btnSearchPO.TabIndex = 10;
-            this.btnSearchPO.Text = "Search PO";
-            this.btnSearchPO.Click += new System.EventHandler(this.btnSearchPO_Click);
-            
-            this.btnClose.Location = new System.Drawing.Point(120, 330);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 12;
-            this.btnClose.Text = "Close";
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            
-            this.dgvMaterialList.ColumnHeadersHeight = 34;
-            this.dgvMaterialList.Location = new System.Drawing.Point(30, 190);
-            this.dgvMaterialList.Name = "dgvMaterialList";
-            this.dgvMaterialList.ReadOnly = true;
-            this.dgvMaterialList.RowHeadersWidth = 62;
-            this.dgvMaterialList.Size = new System.Drawing.Size(420, 120);
-            this.dgvMaterialList.TabIndex = 9;
-            
-            this.ClientSize = new System.Drawing.Size(500, 380);
-            this.Controls.Add(this.lblGoodsReceivedID);
-            this.Controls.Add(this.txtGoodsReceivedID);
-            this.Controls.Add(this.lblPurchaseOrderID);
-            this.Controls.Add(this.txtPurchaseOrderID);
-            this.Controls.Add(this.lblReceivedDate);
-            this.Controls.Add(this.dtpReceivedDate);
-            this.Controls.Add(this.lblWarehouseID);
-            this.Controls.Add(this.txtWarehouseID);
-            this.Controls.Add(this.lblMaterialList);
-            this.Controls.Add(this.dgvMaterialList);
-            this.Controls.Add(this.btnSearchPO);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnClose);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Purchase Order";
+            // 
+            // textBoxPurchaseOrderID
+            // 
+            this.textBoxPurchaseOrderID.Location = new System.Drawing.Point(140, 17);
+            this.textBoxPurchaseOrderID.Name = "textBoxPurchaseOrderID";
+            this.textBoxPurchaseOrderID.Size = new System.Drawing.Size(130, 23);
+            this.textBoxPurchaseOrderID.TabIndex = 1;
+            // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(280, 16);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(70, 25);
+            this.buttonSearch.TabIndex = 2;
+            this.buttonSearch.Text = "Search";
+            this.buttonSearch.UseVisualStyleBackColor = true;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(30, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 15);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Received Date";
+            // 
+            // dateTimePickerReceived
+            // 
+            this.dateTimePickerReceived.Location = new System.Drawing.Point(140, 52);
+            this.dateTimePickerReceived.Name = "dateTimePickerReceived";
+            this.dateTimePickerReceived.Size = new System.Drawing.Size(210, 23);
+            this.dateTimePickerReceived.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(30, 92);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(62, 15);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Warehouse";
+            // 
+            // textBoxWarehouse
+            // 
+            this.textBoxWarehouse.Location = new System.Drawing.Point(140, 88);
+            this.textBoxWarehouse.Name = "textBoxWarehouse";
+            this.textBoxWarehouse.Size = new System.Drawing.Size(210, 23);
+            this.textBoxWarehouse.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(30, 128);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 15);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Materials";
+            // 
+            // dataGridViewMaterials
+            // 
+            this.dataGridViewMaterials.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMaterials.Location = new System.Drawing.Point(30, 150);
+            this.dataGridViewMaterials.Name = "dataGridViewMaterials";
+            this.dataGridViewMaterials.Size = new System.Drawing.Size(540, 200);
+            this.dataGridViewMaterials.TabIndex = 8;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Location = new System.Drawing.Point(380, 370);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(90, 30);
+            this.buttonSave.TabIndex = 9;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Location = new System.Drawing.Point(480, 370);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(90, 30);
+            this.buttonClose.TabIndex = 10;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            // 
+            // GoodsReceivedForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(600, 420);
+            this.Controls.Add(this.buttonClose);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.dataGridViewMaterials);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBoxWarehouse);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dateTimePickerReceived);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.buttonSearch);
+            this.Controls.Add(this.textBoxPurchaseOrderID);
+            this.Controls.Add(this.label1);
             this.Name = "GoodsReceivedForm";
             this.Text = "Goods Received";
-            this.Load += new System.EventHandler(this.GoodsReceivedForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterialList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMaterials)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
+        #endregion
     }
 }
