@@ -27,7 +27,7 @@ namespace Client
         {
             string filter = textBox1.Text.Trim();
             MySqlCommand cmd;
-            string baseQuery = @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus FROM PurchaseOrder";
+            string baseQuery = @"SELECT PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status FROM PurchaseOrder";
 
             if (string.IsNullOrEmpty(filter))
             {
@@ -84,7 +84,7 @@ namespace Client
                     cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
                     cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
                     cmd.Parameters.AddWithValue("@status", detail.Status);
-                    cmd.Parameters.AddWithValue("@postatus", detail.POStatus);
+            
 
                     try
                     {
@@ -120,7 +120,7 @@ namespace Client
             DateTime orderDate = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["OrderDate"].Value);
             DateTime deliveryDate = Convert.ToDateTime(dataGridView1.CurrentRow.Cells["ExpectedDeliveryDate"].Value);
             string status = dataGridView1.CurrentRow.Cells["Status"].Value.ToString();
-            string poStatus = dataGridView1.CurrentRow.Cells["POStatus"].Value.ToString();
+
 
             // Load lines
             List<PurchaseOrderDetailForm.PurchaseOrderLine> poLines = new();
@@ -150,7 +150,7 @@ namespace Client
             using (var detail = new PurchaseOrderDetailForm())
             {
                 detail.Text = "Edit Purchase Order";
-                detail.SetFields(poId, supplierId, orderDate, deliveryDate, status, poStatus, poLines);
+                detail.SetFields(poId, supplierId, orderDate, deliveryDate, status, poLines);
 
                 if (detail.ShowDialog() == DialogResult.OK)
                 {
@@ -163,7 +163,6 @@ namespace Client
                     updateCmd.Parameters.AddWithValue("@odate", detail.OrderDate);
                     updateCmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
                     updateCmd.Parameters.AddWithValue("@status", detail.Status);
-                    updateCmd.Parameters.AddWithValue("@postatus", detail.POStatus);
                     updateCmd.ExecuteNonQuery();
 
                     // Delete old lines
