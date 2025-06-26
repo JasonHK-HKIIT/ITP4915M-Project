@@ -19,97 +19,98 @@
 
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.textBox1 = new TextBox();
-            this.buttonAdd = new Button();
-            this.buttonEdit = new Button();
-            this.buttonViewLines = new Button();
-            this.dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            buttonAdd = new Button();
+            buttonEdit = new Button();
+            buttonViewLines = new Button();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(15, 24);
-            this.label1.Margin = new Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(304, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Filter purchase order by any column value:";
+            label1.AutoSize = true;
+            label1.Location = new Point(18, 29);
+            label1.Margin = new Padding(5, 0, 5, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(369, 23);
+            label1.TabIndex = 0;
+            label1.Text = "Filter purchase order by any column value:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new Point(15, 61);
-            this.textBox1.Margin = new Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Size(229, 27);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.KeyUp += this.textBox1_KeyUp;
+            textBox1.Location = new Point(18, 74);
+            textBox1.Margin = new Padding(5, 5, 5, 5);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(279, 30);
+            textBox1.TabIndex = 1;
+            textBox1.KeyUp += textBox1_KeyUp;
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new Point(352, 60);
-            this.buttonAdd.Margin = new Padding(4);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new Size(156, 29);
-            this.buttonAdd.TabIndex = 2;
-            this.buttonAdd.Text = "Add Purchase Order";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += this.ButtonAdd_Click;
+            buttonAdd.Location = new Point(430, 73);
+            buttonAdd.Margin = new Padding(5, 5, 5, 5);
+            buttonAdd.Name = "buttonAdd";
+            buttonAdd.Size = new Size(191, 35);
+            buttonAdd.TabIndex = 2;
+            buttonAdd.Text = "Add Purchase Order";
+            buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.Click += ButtonAdd_Click;
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new Point(543, 60);
-            this.buttonEdit.Margin = new Padding(4);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new Size(156, 29);
-            this.buttonEdit.TabIndex = 3;
-            this.buttonEdit.Text = "Edit Selected";
-            this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.Click += this.ButtonEdit_Click;
+            buttonEdit.Location = new Point(664, 73);
+            buttonEdit.Margin = new Padding(5, 5, 5, 5);
+            buttonEdit.Name = "buttonEdit";
+            buttonEdit.Size = new Size(191, 35);
+            buttonEdit.TabIndex = 3;
+            buttonEdit.Text = "Edit Selected";
+            buttonEdit.UseVisualStyleBackColor = true;
+            buttonEdit.Click += ButtonEdit_Click;
             // 
             // buttonViewLines
             // 
-            this.buttonViewLines.Location = new Point(734, 60);
-            this.buttonViewLines.Margin = new Padding(4);
-            this.buttonViewLines.Name = "buttonViewLines";
-            this.buttonViewLines.Size = new Size(156, 29);
-            this.buttonViewLines.TabIndex = 4;
-            this.buttonViewLines.Text = "View PO Lines";
-            this.buttonViewLines.UseVisualStyleBackColor = true;
-            this.buttonViewLines.Click += this.ButtonViewPOLines_Click;
+            buttonViewLines.Location = new Point(897, 73);
+            buttonViewLines.Margin = new Padding(5, 5, 5, 5);
+            buttonViewLines.Name = "buttonViewLines";
+            buttonViewLines.Size = new Size(191, 35);
+            buttonViewLines.TabIndex = 4;
+            buttonViewLines.Text = "View PO Lines";
+            buttonViewLines.UseVisualStyleBackColor = true;
+            buttonViewLines.Click += ButtonViewPOLines_Click;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new Point(9, 120);
-            this.dataGridView1.Margin = new Padding(4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new Size(1566, 541);
-            this.dataGridView1.TabIndex = 5;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(11, 145);
+            dataGridView1.Margin = new Padding(5, 5, 5, 5);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1914, 655);
+            dataGridView1.TabIndex = 5;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // PurchaseOrderForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1574, 676);
-            this.Controls.Add(this.buttonViewLines);
-            this.Controls.Add(this.buttonEdit);
-            this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Margin = new Padding(4);
-            this.Name = "PurchaseOrderForm";
-            this.Text = "PurchaseOrderForm";
-            this.Load += this.PurchaseOrderForm_Load;
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(11F, 23F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1924, 818);
+            Controls.Add(buttonViewLines);
+            Controls.Add(buttonEdit);
+            Controls.Add(buttonAdd);
+            Controls.Add(dataGridView1);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
+            Margin = new Padding(5, 5, 5, 5);
+            Name = "PurchaseOrderForm";
+            Text = "PurchaseOrderForm";
+            Load += PurchaseOrderForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

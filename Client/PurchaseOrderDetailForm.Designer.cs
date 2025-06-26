@@ -12,8 +12,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDelivery;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.ComboBox comboBoxStatus;
-        private System.Windows.Forms.Label labelPOStatus;
-        private System.Windows.Forms.ComboBox comboBoxPOStatus;
         private System.Windows.Forms.Label labelLineItems;
         private System.Windows.Forms.DataGridView dataGridViewLineItems;
         private System.Windows.Forms.Button buttonAddLine;
@@ -38,238 +36,247 @@
 
         private void InitializeComponent()
         {
-            this.labelPOID = new Label();
-            this.labelSupplier = new Label();
-            this.comboBoxSupplier = new ComboBox();
-            this.labelOrderDate = new Label();
-            this.dateTimePickerOrder = new DateTimePicker();
-            this.labelDeliveryDate = new Label();
-            this.dateTimePickerDelivery = new DateTimePicker();
-            this.labelStatus = new Label();
-            this.comboBoxStatus = new ComboBox();
-            this.labelPOStatus = new Label();
-            this.comboBoxPOStatus = new ComboBox();
-            this.labelLineItems = new Label();
-            this.dataGridViewLineItems = new DataGridView();
-            this.buttonAddLine = new Button();
-            this.buttonDeleteLine = new Button();
-            this.buttonSave = new Button();
-            this.buttonCancel = new Button();
-            this.maskedTextBox1 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)this.dataGridViewLineItems).BeginInit();
-            this.SuspendLayout();
+            labelPOID = new Label();
+            labelSupplier = new Label();
+            comboBoxSupplier = new ComboBox();
+            labelOrderDate = new Label();
+            dateTimePickerOrder = new DateTimePicker();
+            labelDeliveryDate = new Label();
+            dateTimePickerDelivery = new DateTimePicker();
+            labelStatus = new Label();
+            comboBoxStatus = new ComboBox();
+            labelLineItems = new Label();
+            dataGridViewLineItems = new DataGridView();
+            buttonAddLine = new Button();
+            buttonDeleteLine = new Button();
+            buttonSave = new Button();
+            buttonCancel = new Button();
+            maskedTextBox1 = new TextBox();
+            comboBoxPOStatus = new ComboBox();
+            labelPOStatus = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewLineItems).BeginInit();
+            SuspendLayout();
             // 
             // labelPOID
             // 
-            this.labelPOID.AutoSize = true;
-            this.labelPOID.Location = new Point(40, 28);
-            this.labelPOID.Margin = new Padding(4, 0, 4, 0);
-            this.labelPOID.Name = "labelPOID";
-            this.labelPOID.Size = new Size(52, 19);
-            this.labelPOID.TabIndex = 0;
-            this.labelPOID.Text = "PO ID:";
+            labelPOID.AutoSize = true;
+            labelPOID.Location = new Point(49, 34);
+            labelPOID.Margin = new Padding(5, 0, 5, 0);
+            labelPOID.Name = "labelPOID";
+            labelPOID.Size = new Size(64, 23);
+            labelPOID.TabIndex = 0;
+            labelPOID.Text = "PO ID:";
             // 
             // labelSupplier
             // 
-            this.labelSupplier.AutoSize = true;
-            this.labelSupplier.Location = new Point(40, 74);
-            this.labelSupplier.Margin = new Padding(4, 0, 4, 0);
-            this.labelSupplier.Name = "labelSupplier";
-            this.labelSupplier.Size = new Size(70, 19);
-            this.labelSupplier.TabIndex = 2;
-            this.labelSupplier.Text = "Supplier:";
+            labelSupplier.AutoSize = true;
+            labelSupplier.Location = new Point(49, 90);
+            labelSupplier.Margin = new Padding(5, 0, 5, 0);
+            labelSupplier.Name = "labelSupplier";
+            labelSupplier.Size = new Size(84, 23);
+            labelSupplier.TabIndex = 2;
+            labelSupplier.Text = "Supplier:";
             // 
             // comboBoxSupplier
             // 
-            this.comboBoxSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.comboBoxSupplier.FormattingEnabled = true;
-            this.comboBoxSupplier.Location = new Point(169, 69);
-            this.comboBoxSupplier.Margin = new Padding(4);
-            this.comboBoxSupplier.Name = "comboBoxSupplier";
-            this.comboBoxSupplier.Size = new Size(281, 27);
-            this.comboBoxSupplier.TabIndex = 3;
+            comboBoxSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxSupplier.FormattingEnabled = true;
+            comboBoxSupplier.Location = new Point(207, 84);
+            comboBoxSupplier.Margin = new Padding(5);
+            comboBoxSupplier.Name = "comboBoxSupplier";
+            comboBoxSupplier.Size = new Size(343, 31);
+            comboBoxSupplier.TabIndex = 3;
             // 
             // labelOrderDate
             // 
-            this.labelOrderDate.AutoSize = true;
-            this.labelOrderDate.Location = new Point(40, 121);
-            this.labelOrderDate.Margin = new Padding(4, 0, 4, 0);
-            this.labelOrderDate.Name = "labelOrderDate";
-            this.labelOrderDate.Size = new Size(90, 19);
-            this.labelOrderDate.TabIndex = 4;
-            this.labelOrderDate.Text = "Order Date:";
+            labelOrderDate.AutoSize = true;
+            labelOrderDate.Location = new Point(49, 146);
+            labelOrderDate.Margin = new Padding(5, 0, 5, 0);
+            labelOrderDate.Name = "labelOrderDate";
+            labelOrderDate.Size = new Size(110, 23);
+            labelOrderDate.TabIndex = 4;
+            labelOrderDate.Text = "Order Date:";
             // 
             // dateTimePickerOrder
             // 
-            this.dateTimePickerOrder.Location = new Point(169, 118);
-            this.dateTimePickerOrder.Margin = new Padding(4);
-            this.dateTimePickerOrder.Name = "dateTimePickerOrder";
-            this.dateTimePickerOrder.Size = new Size(281, 27);
-            this.dateTimePickerOrder.TabIndex = 5;
+            dateTimePickerOrder.Location = new Point(207, 143);
+            dateTimePickerOrder.Margin = new Padding(5);
+            dateTimePickerOrder.Name = "dateTimePickerOrder";
+            dateTimePickerOrder.Size = new Size(343, 30);
+            dateTimePickerOrder.TabIndex = 5;
+            dateTimePickerOrder.ValueChanged += dateTimePickerOrder_ValueChanged;
             // 
             // labelDeliveryDate
             // 
-            this.labelDeliveryDate.AutoSize = true;
-            this.labelDeliveryDate.Location = new Point(40, 166);
-            this.labelDeliveryDate.Margin = new Padding(4, 0, 4, 0);
-            this.labelDeliveryDate.Name = "labelDeliveryDate";
-            this.labelDeliveryDate.Size = new Size(105, 19);
-            this.labelDeliveryDate.TabIndex = 6;
-            this.labelDeliveryDate.Text = "Delivery Date:";
+            labelDeliveryDate.AutoSize = true;
+            labelDeliveryDate.Location = new Point(49, 201);
+            labelDeliveryDate.Margin = new Padding(5, 0, 5, 0);
+            labelDeliveryDate.Name = "labelDeliveryDate";
+            labelDeliveryDate.Size = new Size(129, 23);
+            labelDeliveryDate.TabIndex = 6;
+            labelDeliveryDate.Text = "Delivery Date:";
             // 
             // dateTimePickerDelivery
             // 
-            this.dateTimePickerDelivery.Location = new Point(169, 162);
-            this.dateTimePickerDelivery.Margin = new Padding(4);
-            this.dateTimePickerDelivery.Name = "dateTimePickerDelivery";
-            this.dateTimePickerDelivery.Size = new Size(281, 27);
-            this.dateTimePickerDelivery.TabIndex = 7;
+            dateTimePickerDelivery.Location = new Point(207, 196);
+            dateTimePickerDelivery.Margin = new Padding(5);
+            dateTimePickerDelivery.Name = "dateTimePickerDelivery";
+            dateTimePickerDelivery.Size = new Size(343, 30);
+            dateTimePickerDelivery.TabIndex = 7;
+            dateTimePickerDelivery.ValueChanged += dateTimePickerDelivery_ValueChanged;
             // 
             // labelStatus
             // 
-            this.labelStatus.AutoSize = true;
-            this.labelStatus.Location = new Point(40, 211);
-            this.labelStatus.Margin = new Padding(4, 0, 4, 0);
-            this.labelStatus.Name = "labelStatus";
-            this.labelStatus.Size = new Size(55, 19);
-            this.labelStatus.TabIndex = 8;
-            this.labelStatus.Text = "Status:";
+            labelStatus.AutoSize = true;
+            labelStatus.Location = new Point(49, 255);
+            labelStatus.Margin = new Padding(5, 0, 5, 0);
+            labelStatus.Name = "labelStatus";
+            labelStatus.Size = new Size(67, 23);
+            labelStatus.TabIndex = 8;
+            labelStatus.Text = "Status:";
             // 
             // comboBoxStatus
             // 
-            this.comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.comboBoxStatus.FormattingEnabled = true;
-            this.comboBoxStatus.Items.AddRange(new object[] { "Pending", "Approved", "Shipped", "Delivered", "Cancelled", "Ordered" });
-            this.comboBoxStatus.Location = new Point(169, 207);
-            this.comboBoxStatus.Margin = new Padding(4);
-            this.comboBoxStatus.Name = "comboBoxStatus";
-            this.comboBoxStatus.Size = new Size(281, 27);
-            this.comboBoxStatus.TabIndex = 9;
-            // 
-            // labelPOStatus
-            // 
-            this.labelPOStatus.AutoSize = true;
-            this.labelPOStatus.Location = new Point(40, 256);
-            this.labelPOStatus.Margin = new Padding(4, 0, 4, 0);
-            this.labelPOStatus.Name = "labelPOStatus";
-            this.labelPOStatus.Size = new Size(80, 19);
-            this.labelPOStatus.TabIndex = 10;
-            this.labelPOStatus.Text = "PO Status:";
-            // 
-            // comboBoxPOStatus
-            // 
-            this.comboBoxPOStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.comboBoxPOStatus.FormattingEnabled = true;
-            this.comboBoxPOStatus.Items.AddRange(new object[] { "Processing", "In Transit" });
-            this.comboBoxPOStatus.Location = new Point(169, 254);
-            this.comboBoxPOStatus.Margin = new Padding(4);
-            this.comboBoxPOStatus.Name = "comboBoxPOStatus";
-            this.comboBoxPOStatus.Size = new Size(281, 27);
-            this.comboBoxPOStatus.TabIndex = 11;
+            comboBoxStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxStatus.FormattingEnabled = true;
+            comboBoxStatus.Items.AddRange(new object[] { "Pending", "Approved", "Processing", "Partial Completed", "Completed", "Cancelled" });
+            comboBoxStatus.Location = new Point(207, 251);
+            comboBoxStatus.Margin = new Padding(5);
+            comboBoxStatus.Name = "comboBoxStatus";
+            comboBoxStatus.Size = new Size(343, 31);
+            comboBoxStatus.TabIndex = 9;
+            comboBoxStatus.SelectedIndexChanged += comboBoxStatus_SelectedIndexChanged;
             // 
             // labelLineItems
             // 
-            this.labelLineItems.AutoSize = true;
-            this.labelLineItems.Location = new Point(40, 302);
-            this.labelLineItems.Margin = new Padding(4, 0, 4, 0);
-            this.labelLineItems.Name = "labelLineItems";
-            this.labelLineItems.Size = new Size(158, 19);
-            this.labelLineItems.TabIndex = 12;
-            this.labelLineItems.Text = "Line Items (Materials)";
+            labelLineItems.AutoSize = true;
+            labelLineItems.Location = new Point(49, 366);
+            labelLineItems.Margin = new Padding(5, 0, 5, 0);
+            labelLineItems.Name = "labelLineItems";
+            labelLineItems.Size = new Size(193, 23);
+            labelLineItems.TabIndex = 12;
+            labelLineItems.Text = "Line Items (Materials)";
             // 
             // dataGridViewLineItems
             // 
-            this.dataGridViewLineItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLineItems.Location = new Point(43, 325);
-            this.dataGridViewLineItems.Margin = new Padding(4);
-            this.dataGridViewLineItems.Name = "dataGridViewLineItems";
-            this.dataGridViewLineItems.RowHeadersWidth = 51;
-            this.dataGridViewLineItems.RowTemplate.Height = 24;
-            this.dataGridViewLineItems.Size = new Size(619, 178);
-            this.dataGridViewLineItems.TabIndex = 13;
+            dataGridViewLineItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewLineItems.Location = new Point(53, 393);
+            dataGridViewLineItems.Margin = new Padding(5);
+            dataGridViewLineItems.Name = "dataGridViewLineItems";
+            dataGridViewLineItems.RowHeadersWidth = 51;
+            dataGridViewLineItems.RowTemplate.Height = 24;
+            dataGridViewLineItems.Size = new Size(757, 215);
+            dataGridViewLineItems.TabIndex = 13;
+            dataGridViewLineItems.CellContentClick += dataGridViewLineItems_CellContentClick;
             // 
             // buttonAddLine
             // 
-            this.buttonAddLine.Location = new Point(43, 511);
-            this.buttonAddLine.Margin = new Padding(4);
-            this.buttonAddLine.Name = "buttonAddLine";
-            this.buttonAddLine.Size = new Size(113, 33);
-            this.buttonAddLine.TabIndex = 14;
-            this.buttonAddLine.Text = "Add Line";
-            this.buttonAddLine.UseVisualStyleBackColor = true;
+            buttonAddLine.Location = new Point(53, 619);
+            buttonAddLine.Margin = new Padding(5);
+            buttonAddLine.Name = "buttonAddLine";
+            buttonAddLine.Size = new Size(138, 40);
+            buttonAddLine.TabIndex = 14;
+            buttonAddLine.Text = "Add Line";
+            buttonAddLine.UseVisualStyleBackColor = true;
             // 
             // buttonDeleteLine
             // 
-            this.buttonDeleteLine.Location = new Point(162, 511);
-            this.buttonDeleteLine.Margin = new Padding(4);
-            this.buttonDeleteLine.Name = "buttonDeleteLine";
-            this.buttonDeleteLine.Size = new Size(113, 33);
-            this.buttonDeleteLine.TabIndex = 15;
-            this.buttonDeleteLine.Text = "Delete Line";
-            this.buttonDeleteLine.UseVisualStyleBackColor = true;
+            buttonDeleteLine.Location = new Point(198, 619);
+            buttonDeleteLine.Margin = new Padding(5);
+            buttonDeleteLine.Name = "buttonDeleteLine";
+            buttonDeleteLine.Size = new Size(138, 40);
+            buttonDeleteLine.TabIndex = 15;
+            buttonDeleteLine.Text = "Delete Line";
+            buttonDeleteLine.UseVisualStyleBackColor = true;
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new Point(437, 570);
-            this.buttonSave.Margin = new Padding(4);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new Size(101, 38);
-            this.buttonSave.TabIndex = 16;
-            this.buttonSave.Text = "Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Location = new Point(534, 690);
+            buttonSave.Margin = new Padding(5);
+            buttonSave.Name = "buttonSave";
+            buttonSave.Size = new Size(123, 46);
+            buttonSave.TabIndex = 16;
+            buttonSave.Text = "Save";
+            buttonSave.UseVisualStyleBackColor = true;
+            buttonSave.Click += buttonSave_Click;
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new Point(560, 570);
-            this.buttonCancel.Margin = new Padding(4);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new Size(101, 38);
-            this.buttonCancel.TabIndex = 17;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
+            buttonCancel.Location = new Point(684, 690);
+            buttonCancel.Margin = new Padding(5);
+            buttonCancel.Name = "buttonCancel";
+            buttonCancel.Size = new Size(123, 46);
+            buttonCancel.TabIndex = 17;
+            buttonCancel.Text = "Cancel";
+            buttonCancel.UseVisualStyleBackColor = true;
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new Point(169, 25);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.ReadOnly = true;
-            this.maskedTextBox1.Size = new Size(281, 27);
-            this.maskedTextBox1.TabIndex = 18;
+            maskedTextBox1.Location = new Point(207, 30);
+            maskedTextBox1.Margin = new Padding(4);
+            maskedTextBox1.Name = "maskedTextBox1";
+            maskedTextBox1.ReadOnly = true;
+            maskedTextBox1.Size = new Size(343, 30);
+            maskedTextBox1.TabIndex = 18;
+            // 
+            // comboBoxPOStatus
+            // 
+            comboBoxPOStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxPOStatus.FormattingEnabled = true;
+            comboBoxPOStatus.Items.AddRange(new object[] { "Processing", "In Transit" });
+            comboBoxPOStatus.Location = new Point(207, 307);
+            comboBoxPOStatus.Margin = new Padding(5);
+            comboBoxPOStatus.Name = "comboBoxPOStatus";
+            comboBoxPOStatus.Size = new Size(343, 31);
+            comboBoxPOStatus.TabIndex = 11;
+            // 
+            // labelPOStatus
+            // 
+            labelPOStatus.AutoSize = true;
+            labelPOStatus.Location = new Point(49, 310);
+            labelPOStatus.Margin = new Padding(5, 0, 5, 0);
+            labelPOStatus.Name = "labelPOStatus";
+            labelPOStatus.Size = new Size(98, 23);
+            labelPOStatus.TabIndex = 10;
+            labelPOStatus.Text = "PO Status:";
+            labelPOStatus.Click += labelPOStatus_Click;
             // 
             // PurchaseOrderDetailForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(713, 634);
-            this.Controls.Add(this.maskedTextBox1);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonSave);
-            this.Controls.Add(this.buttonDeleteLine);
-            this.Controls.Add(this.buttonAddLine);
-            this.Controls.Add(this.dataGridViewLineItems);
-            this.Controls.Add(this.labelLineItems);
-            this.Controls.Add(this.comboBoxPOStatus);
-            this.Controls.Add(this.labelPOStatus);
-            this.Controls.Add(this.comboBoxStatus);
-            this.Controls.Add(this.labelStatus);
-            this.Controls.Add(this.dateTimePickerDelivery);
-            this.Controls.Add(this.labelDeliveryDate);
-            this.Controls.Add(this.dateTimePickerOrder);
-            this.Controls.Add(this.labelOrderDate);
-            this.Controls.Add(this.comboBoxSupplier);
-            this.Controls.Add(this.labelSupplier);
-            this.Controls.Add(this.labelPOID);
-            this.Margin = new Padding(4);
-            this.Name = "PurchaseOrderDetailForm";
-            this.Text = "PurchaseOrderDetailForm";
-      
-            ((System.ComponentModel.ISupportInitialize)this.dataGridViewLineItems).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(11F, 23F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(871, 767);
+            Controls.Add(maskedTextBox1);
+            Controls.Add(buttonCancel);
+            Controls.Add(buttonSave);
+            Controls.Add(buttonDeleteLine);
+            Controls.Add(buttonAddLine);
+            Controls.Add(dataGridViewLineItems);
+            Controls.Add(labelLineItems);
+            Controls.Add(comboBoxPOStatus);
+            Controls.Add(labelPOStatus);
+            Controls.Add(comboBoxStatus);
+            Controls.Add(labelStatus);
+            Controls.Add(dateTimePickerDelivery);
+            Controls.Add(labelDeliveryDate);
+            Controls.Add(dateTimePickerOrder);
+            Controls.Add(labelOrderDate);
+            Controls.Add(comboBoxSupplier);
+            Controls.Add(labelSupplier);
+            Controls.Add(labelPOID);
+            Margin = new Padding(5);
+            Name = "PurchaseOrderDetailForm";
+            Text = "PurchaseOrderDetailForm";
+            Load += PurchaseOrderDetailForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridViewLineItems).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private TextBox maskedTextBox1;
+        private ComboBox comboBoxPOStatus;
+        private Label labelPOStatus;
     }
 }

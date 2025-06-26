@@ -146,7 +146,7 @@ namespace Client
                 }
             }
 
-           
+
             using (var detail = new PurchaseOrderDetailForm())
             {
                 detail.Text = "Edit Purchase Order";
@@ -206,6 +206,11 @@ namespace Client
         private void PurchaseOrderForm_Load(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
