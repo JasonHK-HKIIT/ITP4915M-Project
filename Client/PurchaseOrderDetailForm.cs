@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Formats.Tar;
 using System.Linq;
+using System.Transactions;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -111,7 +114,8 @@ namespace Client
             {
                 Name = "ReceivedQuantity",
                 HeaderText = "Received Quantity",
-                DataPropertyName = "ReceivedQuantity"
+                DataPropertyName = "ReceivedQuantity",
+                //ReadOnly = false
             };
 
             dataGridViewLineItems.Columns.Add(nameCol);
@@ -223,6 +227,193 @@ namespace Client
             public string Description { get; set; }
             public int Quantity { get; set; }
             public int ReceivedQuantity { get; set; }
+        }
+
+        private void PurchaseOrderDetailForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewLineItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void comboBoxStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //bool isDelivered = POStatus == "Delivered";
+            //dataGridViewLineItems.Columns["ReceivedQuantity"].ReadOnly = !isDelivered;
+        }
+
+
+        private void UpdatePOStatus()
+        {
+            bool allComplete = true;
+            bool anyPartial = false;
+
+            foreach (var line in GetLineItems())
+            {
+                if (line.ReceivedQuantity > 0 && line.ReceivedQuantity < line.Quantity)
+                {
+                    anyPartial = true;
+                    break;
+                }
+                if (line.ReceivedQuantity != line.Quantity || line.Quantity == 0)
+                {
+                    allComplete = false;
+                }
+            }
+
+            // 更新 UI 的 Status
+            if (anyPartial)
+            {
+                comboBoxStatus.SelectedItem = "Partial Completed";
+            }
+            else if (allComplete)
+            {
+                comboBoxStatus.SelectedItem = "Completed";
+            }
+            else
+            {
+                comboBoxStatus.SelectedItem = "Processing";
+            }
+
+            // Update Database
+            var command = new MySqlCommand(
+                "UPDATE `purchaseorder` SET `Status` = @status  WHERE PurchaseOrderID=@poid", Program.Connection);
+            command.Parameters.AddWithValue("@status", Status);
+            command.Parameters.AddWithValue("@poid", PurchaseOrderID);
+            command.ExecuteNonQuery();
+
+        }
+
+        private List<int> UpdatePOLine()
+        {
+            var deltaQuantities = new List<int>();
+            foreach (var line in GetLineItems())
+            {
+                // 驗證 ReceivedQuantity 不超過 Quantity
+                if (line.ReceivedQuantity > line.Quantity)
+                {
+                    MessageBox.Show($"Received quantity ({line.ReceivedQuantity}) cannot exceed order quantity ({line.Quantity}) for material {line.MaterialID}.",
+                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    line.ReceivedQuantity = 0;
+                    return new List<int>();
+
+
+                }
+                else
+                {
+                    // 獲取舊的 ReceivedQuantity
+                    var selectCmd = new MySqlCommand(
+                        "SELECT ReceivedQuantity FROM purchaseorderline WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
+                        Program.Connection);
+                    selectCmd.Parameters.AddWithValue("@poid", PurchaseOrderID);
+                    selectCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                    var reader = selectCmd.ExecuteReader();
+                    int oldReceivedQty = reader.Read() ? reader.GetInt32("ReceivedQuantity") : 0;
+                    reader.Close();
+
+                    // 計算增量
+                    int deltaQty = line.ReceivedQuantity - oldReceivedQty;
+                    deltaQuantities.Add(deltaQty);
+
+                    // 更新 PurchaseOrderLine
+                    var updateLineCmd = new MySqlCommand(
+                        "UPDATE purchaseorderline SET ReceivedQuantity=@rcvqty WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
+                        Program.Connection);
+                    updateLineCmd.Parameters.AddWithValue("@poid", PurchaseOrderID);
+                    updateLineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                    updateLineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
+                    int rowsAffected = updateLineCmd.ExecuteNonQuery();
+
+                    // 如果沒有更新到記錄（可能是新行），則插入
+                    if (rowsAffected == 0)
+                    {
+                        var insertLineCmd = new MySqlCommand(
+                            "INSERT INTO purchaseorderline (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
+                            Program.Connection);
+                        insertLineCmd.Parameters.AddWithValue("@poid", PurchaseOrderID);
+                        insertLineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                        insertLineCmd.Parameters.AddWithValue("@qty", line.Quantity);
+                        insertLineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
+                        insertLineCmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            return deltaQuantities;
+        }
+
+        private void UpdateInventory(List<int> deltaQuantities)
+        {
+            //********************* change to combox.Text
+            var wid = "WH002";
+            //*********************
+
+            var lines = GetLineItems();
+            for (int i = 0; i < lines.Count && i < deltaQuantities.Count; i++)
+            {
+                var line = lines[i];
+                int deltaQty = deltaQuantities[i];
+                if (deltaQty == 0)
+                    continue;
+
+                // 檢查 Inventory_Material 是否有記錄
+                var checkInventoryCmd = new MySqlCommand(
+                    "SELECT MaterialQuantityInWarehouse FROM inventory_material WHERE WarehouseID=@wid AND MaterialID=@mid",
+                    Program.Connection);
+                checkInventoryCmd.Parameters.AddWithValue("@wid", wid);
+                checkInventoryCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                var reader = checkInventoryCmd.ExecuteReader();
+                bool hasRecord = reader.Read();
+                int currentQty = hasRecord ? reader.GetInt32("MaterialQuantityInWarehouse") : 0;
+                reader.Close();
+
+                // 更新 inventory_material 表
+                var updateInventoryCmd = new MySqlCommand(
+                        "UPDATE inventory_material SET MaterialQuantityInWarehouse=@newqty WHERE WarehouseID=@wid AND MaterialID=@mid",
+                        Program.Connection);
+                updateInventoryCmd.Parameters.AddWithValue("@wid", wid);
+                updateInventoryCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                updateInventoryCmd.Parameters.AddWithValue("@newqty", currentQty + deltaQty);
+                updateInventoryCmd.ExecuteNonQuery();
+            }
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(SupplierID))
+            {
+                MessageBox.Show("Please Choose Supplier", "Valid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var lines = GetLineItems();
+            if (!lines.Any())
+            {
+                MessageBox.Show("Please import at least 1 order line", "Valid Inpu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var deltaQuantities = UpdatePOLine();
+            UpdatePOStatus();
+            UpdateInventory(deltaQuantities);
+
+        }
+
+        private void dateTimePickerDelivery_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePickerOrder_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelPOStatus_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

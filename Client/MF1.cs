@@ -9,13 +9,16 @@ namespace Client
         public MF1()
         {
             InitializeComponent();
+
+            // Set keyboard shortcuts
+            this.cascadeToolStripMenuItem.ShortcutKeys = Keys.F5;
+            this.tileToolStripMenuItem.ShortcutKeys = Keys.F6;
+
+            // Existing event bindings
             this.cascadeToolStripMenuItem.Click += new System.EventHandler(this.cascadeToolStripMenuItem_Click);
             this.tileToolStripMenuItem.Click += new System.EventHandler(this.tileHorizontalToolStripMenuItem_Click);
             this.arrangeIconsToolStripMenuItem.Click += new System.EventHandler(this.arrangeIconsToolStripMenuItem_Click);
             this.windowsToolStripMenuItem.DropDownOpening += new System.EventHandler(this.windowsToolStripMenuItem_DropDownOpening);
-
-
-
         }
 
         private void MF1_Load(object sender, EventArgs e)
@@ -435,17 +438,24 @@ namespace Client
         }
         private void closeAllWindowsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (Form child in this.MdiChildren)
+            var result = MessageBox.Show(
+                "Are you sure you want to close all open windows?",
+                "Confirm Close All",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+            );
+
+            if (result == DialogResult.Yes)
             {
-                child.Close();
+                foreach (Form child in this.MdiChildren)
+                {
+                    child.Close();
+                }
+
+                MessageBox.Show("All windows have been closed.", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-            MessageBox.Show("All windows have been closed.", "Alarm", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
         }
-
-
-
         private void windowsToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
 
@@ -566,4 +576,3 @@ namespace Client
         }
     }
 }
-
