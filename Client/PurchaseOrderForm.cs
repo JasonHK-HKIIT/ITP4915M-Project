@@ -78,34 +78,26 @@ namespace Client
                     var nextId = int.Parse(lastIdString.Substring(3)) + 1;
                     string newId = $"PUR{nextId.ToString().PadLeft(3, '0')}";
 
-                    var cmd = new MySqlCommand("INSERT INTO PurchaseOrder (PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus) VALUES (@id, @sid, @odate, @ddate, @status, @postatus)", Program.Connection);
+                    var cmd = new MySqlCommand("INSERT INTO PurchaseOrder (PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status) VALUES (@id, @sid, @odate, @ddate, @status)", Program.Connection);
                     cmd.Parameters.AddWithValue("@id", newId);
                     cmd.Parameters.AddWithValue("@sid", detail.SupplierID);
                     cmd.Parameters.AddWithValue("@odate", detail.OrderDate);
                     cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
                     cmd.Parameters.AddWithValue("@status", detail.Status);
-            
 
-                    try
+                    cmd.ExecuteNonQuery();
+
+                    foreach (var line in detail.GetLineItems())
                     {
-                        cmd.ExecuteNonQuery();
-
-                        foreach (var line in detail.GetLineItems())
-                        {
-                            var lineCmd = new MySqlCommand("INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)", Program.Connection);
-                            lineCmd.Parameters.AddWithValue("@poid", newId);
-                            lineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
-                            lineCmd.Parameters.AddWithValue("@qty", line.Quantity);
-                            lineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
-                            lineCmd.ExecuteNonQuery();
-                        }
-
-                        LoadData();
+                        var lineCmd = new MySqlCommand("INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)", Program.Connection);
+                        lineCmd.Parameters.AddWithValue("@poid", newId);
+                        lineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                        lineCmd.Parameters.AddWithValue("@qty", line.Quantity);
+                        lineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
+                        lineCmd.ExecuteNonQuery();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Insert failed: " + ex.Message, "Error");
-                    }
+
+                    LoadData();
                 }
             }
         }
@@ -156,7 +148,7 @@ namespace Client
                 {
                     // Update header (if needed)
                     var updateCmd = new MySqlCommand(
-                        "UPDATE PurchaseOrder SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status, POStatus=@postatus WHERE PurchaseOrderID=@id",
+                        "UPDATE PurchaseOrder SET SupplierID=@sid, OrderDate=@odate, ExpectedDeliveryDate=@ddate, Status=@status WHERE PurchaseOrderID=@id",
                         Program.Connection);
                     updateCmd.Parameters.AddWithValue("@id", poId);
                     updateCmd.Parameters.AddWithValue("@sid", detail.SupplierID);

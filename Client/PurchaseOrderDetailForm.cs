@@ -12,7 +12,7 @@ namespace Client
         private Dictionary<string, (string Name, string Description)> materialDict = new();
 
         // ✅ Public properties for use in Add/Edit logic
-        public string PurchaseOrderID => maskedTextBox1.Text;
+        public string PurchaseOrderID { get => maskedTextBox1.Text; set => maskedTextBox1.Text = PurchaseOrderID; }
         public string SupplierID => comboBoxSupplier.SelectedValue?.ToString() ?? "";
         public DateTime OrderDate => dateTimePickerOrder.Value;
         public DateTime DeliveryDate => dateTimePickerDelivery.Value;
@@ -225,7 +225,7 @@ namespace Client
         // All POStatus-related code has been REMOVED below this point
 
         // If you have Status auto-updating logic, keep it:
-        private void UpdatePOStatus()
+        internal void UpdatePOStatus()
         {
             bool allComplete = true;
             bool anyPartial = false;
@@ -258,13 +258,13 @@ namespace Client
 
             // Update Database
             var command = new MySqlCommand(
-                "UPDATE `purchaseorder` SET `Status` = @status  WHERE PurchaseOrderID=@poid", Program.Connection);
+                "UPDATE `PurchaseOrder` SET `Status` = @status  WHERE PurchaseOrderID=@poid", Program.Connection);
             command.Parameters.AddWithValue("@status", Status);
             command.Parameters.AddWithValue("@poid", PurchaseOrderID);
             command.ExecuteNonQuery();
         }
 
-        private List<int> UpdatePOLine()
+        internal List<int> UpdatePOLine()
         {
             var deltaQuantities = new List<int>();
             foreach (var line in GetLineItems())
@@ -279,7 +279,7 @@ namespace Client
                 else
                 {
                     var selectCmd = new MySqlCommand(
-                        "SELECT ReceivedQuantity FROM purchaseorderline WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
+                        "SELECT ReceivedQuantity FROM PurchaseOrderLine WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
                         Program.Connection);
                     selectCmd.Parameters.AddWithValue("@poid", PurchaseOrderID);
                     selectCmd.Parameters.AddWithValue("@mid", line.MaterialID);
@@ -291,7 +291,7 @@ namespace Client
                     deltaQuantities.Add(deltaQty);
 
                     var updateLineCmd = new MySqlCommand(
-                        "UPDATE purchaseorderline SET ReceivedQuantity=@rcvqty WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
+                        "UPDATE PurchaseOrderLine SET ReceivedQuantity=@rcvqty WHERE PurchaseOrderID=@poid AND MaterialID=@mid",
                         Program.Connection);
                     updateLineCmd.Parameters.AddWithValue("@poid", PurchaseOrderID);
                     updateLineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
@@ -301,7 +301,7 @@ namespace Client
                     if (rowsAffected == 0)
                     {
                         var insertLineCmd = new MySqlCommand(
-                            "INSERT INTO purchaseorderline (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
+                            "INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)",
                             Program.Connection);
                         insertLineCmd.Parameters.AddWithValue("@poid", PurchaseOrderID);
                         insertLineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
@@ -314,7 +314,7 @@ namespace Client
             return deltaQuantities;
         }
 
-        private void UpdateInventory(List<int> deltaQuantities)
+        internal void UpdateInventory(List<int> deltaQuantities)
         {
             var wid = "WH002";
             var lines = GetLineItems();
@@ -360,9 +360,12 @@ namespace Client
                 return;
             }
 
-            var deltaQuantities = UpdatePOLine();
-            UpdatePOStatus();
-            UpdateInventory(deltaQuantities);
+            if (Text != "Add Purchase Order")
+            {
+                var deltaQuantities = UpdatePOLine();
+                UpdatePOStatus();
+                UpdateInventory(deltaQuantities);
+            }
         }
 
         // Other event handlers and empty stubs as needed...
