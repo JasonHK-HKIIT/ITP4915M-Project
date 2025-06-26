@@ -85,16 +85,24 @@ namespace Client
                     cmd.Parameters.AddWithValue("@ddate", detail.DeliveryDate);
                     cmd.Parameters.AddWithValue("@status", detail.Status);
 
-                    cmd.ExecuteNonQuery();
-
-                    foreach (var line in detail.GetLineItems())
+                    try
                     {
-                        var lineCmd = new MySqlCommand("INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)", Program.Connection);
-                        lineCmd.Parameters.AddWithValue("@poid", newId);
-                        lineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
-                        lineCmd.Parameters.AddWithValue("@qty", line.Quantity);
-                        lineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
-                        lineCmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
+
+                        foreach (var line in detail.GetLineItems())
+                        {
+                            var lineCmd = new MySqlCommand("INSERT INTO PurchaseOrderLine (PurchaseOrderID, MaterialID, Quantity, ReceivedQuantity) VALUES (@poid, @mid, @qty, @rcvqty)", Program.Connection);
+                            lineCmd.Parameters.AddWithValue("@poid", newId);
+                            lineCmd.Parameters.AddWithValue("@mid", line.MaterialID);
+                            lineCmd.Parameters.AddWithValue("@qty", line.Quantity);
+                            lineCmd.Parameters.AddWithValue("@rcvqty", line.ReceivedQuantity);
+                            lineCmd.ExecuteNonQuery();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error adding purchase order: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
 
                     LoadData();

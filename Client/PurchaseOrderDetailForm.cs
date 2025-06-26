@@ -326,7 +326,7 @@ namespace Client
                     continue;
 
                 var checkInventoryCmd = new MySqlCommand(
-                    "SELECT MaterialQuantityInWarehouse FROM inventory_material WHERE WarehouseID=@wid AND MaterialID=@mid",
+                    "SELECT MaterialQuantityInWarehouse FROM Inventory_Material WHERE WarehouseID=@wid AND MaterialID=@mid",
                     Program.Connection);
                 checkInventoryCmd.Parameters.AddWithValue("@wid", wid);
                 checkInventoryCmd.Parameters.AddWithValue("@mid", line.MaterialID);
