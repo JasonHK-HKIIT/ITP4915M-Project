@@ -161,14 +161,14 @@ CREATE TABLE `Material` (
   `MaterialID` varchar(50) NOT NULL,
   `MaterialName` varchar(100) NOT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `QuantityPerUnit` decimal(12,2) NOT NULL
+  `PricePerUnit` decimal(12,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `Material`
 --
 
-INSERT INTO `Material` (`MaterialID`, `MaterialName`, `Description`, `QuantityPerUnit`) VALUES
+INSERT INTO `Material` (`MaterialID`, `MaterialName`, `Description`, `PricePerUnit`) VALUES
 ('MAT001', 'Plastic', 'High-grade plastic', 1.00),
 ('MAT002', 'Metal', 'Durable alloy', 2.50);
 
