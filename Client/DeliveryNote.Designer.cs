@@ -76,7 +76,7 @@ namespace Client
             txtDeliveryID.Location = new Point(150, 44);
             txtDeliveryID.Name = "txtDeliveryID";
             txtDeliveryID.ReadOnly = true;
-            txtDeliveryID.Size = new Size(147, 23);
+            txtDeliveryID.Size = new Size(147, 30);
             txtDeliveryID.TabIndex = 9;
             // 
             // txtIssueDate
@@ -84,7 +84,7 @@ namespace Client
             txtIssueDate.Location = new Point(150, 78);
             txtIssueDate.Name = "txtIssueDate";
             txtIssueDate.ReadOnly = true;
-            txtIssueDate.Size = new Size(147, 23);
+            txtIssueDate.Size = new Size(147, 30);
             txtIssueDate.TabIndex = 10;
             // 
             // txtShipDate
@@ -92,7 +92,7 @@ namespace Client
             txtShipDate.Location = new Point(150, 112);
             txtShipDate.Name = "txtShipDate";
             txtShipDate.ReadOnly = true;
-            txtShipDate.Size = new Size(147, 23);
+            txtShipDate.Size = new Size(147, 30);
             txtShipDate.TabIndex = 11;
             // 
             // txtCarrier
@@ -100,7 +100,7 @@ namespace Client
             txtCarrier.Location = new Point(150, 153);
             txtCarrier.Name = "txtCarrier";
             txtCarrier.ReadOnly = true;
-            txtCarrier.Size = new Size(147, 23);
+            txtCarrier.Size = new Size(147, 30);
             txtCarrier.TabIndex = 12;
             // 
             // txtTracking
@@ -108,7 +108,7 @@ namespace Client
             txtTracking.Location = new Point(150, 193);
             txtTracking.Name = "txtTracking";
             txtTracking.ReadOnly = true;
-            txtTracking.Size = new Size(147, 23);
+            txtTracking.Size = new Size(147, 30);
             txtTracking.TabIndex = 13;
             // 
             // txtStatus
@@ -116,7 +116,7 @@ namespace Client
             txtStatus.Location = new Point(450, 47);
             txtStatus.Name = "txtStatus";
             txtStatus.ReadOnly = true;
-            txtStatus.Size = new Size(171, 23);
+            txtStatus.Size = new Size(171, 30);
             txtStatus.TabIndex = 14;
             // 
             // txtCustomerName
@@ -124,7 +124,7 @@ namespace Client
             txtCustomerName.Location = new Point(450, 81);
             txtCustomerName.Name = "txtCustomerName";
             txtCustomerName.ReadOnly = true;
-            txtCustomerName.Size = new Size(171, 23);
+            txtCustomerName.Size = new Size(171, 30);
             txtCustomerName.TabIndex = 15;
             // 
             // txtPhone
@@ -132,7 +132,7 @@ namespace Client
             txtPhone.Location = new Point(450, 115);
             txtPhone.Name = "txtPhone";
             txtPhone.ReadOnly = true;
-            txtPhone.Size = new Size(171, 23);
+            txtPhone.Size = new Size(171, 30);
             txtPhone.TabIndex = 16;
             // 
             // txtAddress
@@ -148,9 +148,11 @@ namespace Client
             // 
             dgvDeliveredItems.AllowUserToAddRows = false;
             dgvDeliveredItems.AllowUserToDeleteRows = false;
-            dgvDeliveredItems.Location = new Point(20, 245);
+            dgvDeliveredItems.ColumnHeadersHeight = 34;
+            dgvDeliveredItems.Location = new Point(20, 253);
             dgvDeliveredItems.Name = "dgvDeliveredItems";
             dgvDeliveredItems.ReadOnly = true;
+            dgvDeliveredItems.RowHeadersWidth = 62;
             dgvDeliveredItems.Size = new Size(740, 180);
             dgvDeliveredItems.TabIndex = 18;
             // 
@@ -240,7 +242,7 @@ namespace Client
             label1.AutoSize = true;
             label1.Location = new Point(48, 536);
             label1.Name = "label1";
-            label1.Size = new Size(249, 15);
+            label1.Size = new Size(399, 23);
             label1.TabIndex = 19;
             label1.Text = "Customer Signature:   _________________________";
             // 
@@ -249,7 +251,7 @@ namespace Client
             label2.AutoSize = true;
             label2.Location = new Point(522, 536);
             label2.Name = "label2";
-            label2.Size = new Size(185, 15);
+            label2.Size = new Size(297, 23);
             label2.TabIndex = 20;
             label2.Text = "Date:  _____________________________";
             // 
@@ -258,7 +260,7 @@ namespace Client
             label3.AutoSize = true;
             label3.Location = new Point(69, 565);
             label3.Name = "label3";
-            label3.Size = new Size(228, 15);
+            label3.Size = new Size(368, 23);
             label3.TabIndex = 21;
             label3.Text = "Driver Signature:   _________________________";
             // 
@@ -267,7 +269,7 @@ namespace Client
             label4.AutoSize = true;
             label4.Location = new Point(522, 565);
             label4.Name = "label4";
-            label4.Size = new Size(185, 15);
+            label4.Size = new Size(297, 23);
             label4.TabIndex = 22;
             label4.Text = "Date:  _____________________________";
             // 
@@ -276,7 +278,7 @@ namespace Client
             label5.AutoSize = true;
             label5.Location = new Point(20, 227);
             label5.Name = "label5";
-            label5.Size = new Size(86, 15);
+            label5.Size = new Size(139, 23);
             label5.TabIndex = 23;
             label5.Text = "Delivered Item:";
             // 
@@ -284,9 +286,9 @@ namespace Client
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(312, 9);
+            label6.Location = new Point(329, -1);
             label6.Name = "label6";
-            label6.Size = new Size(134, 25);
+            label6.Size = new Size(207, 40);
             label6.TabIndex = 24;
             label6.Text = "Delivery Note";
             label6.TextAlign = ContentAlignment.TopCenter;
@@ -296,13 +298,13 @@ namespace Client
             label7.AutoSize = true;
             label7.Location = new Point(20, 440);
             label7.Name = "label7";
-            label7.Size = new Size(55, 15);
+            label7.Size = new Size(88, 23);
             label7.TabIndex = 25;
             label7.Text = "Remarks:";
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(20, 458);
+            richTextBox1.Location = new Point(20, 471);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.Size = new Size(740, 62);
             richTextBox1.TabIndex = 26;
@@ -312,7 +314,7 @@ namespace Client
             // 
             button1.Location = new Point(48, 616);
             button1.Name = "button1";
-            button1.Size = new Size(84, 23);
+            button1.Size = new Size(84, 30);
             button1.TabIndex = 27;
             button1.Text = "Print";
             button1.UseVisualStyleBackColor = true;
@@ -321,7 +323,7 @@ namespace Client
             // 
             button2.Location = new Point(189, 616);
             button2.Name = "button2";
-            button2.Size = new Size(84, 23);
+            button2.Size = new Size(84, 30);
             button2.TabIndex = 28;
             button2.Text = "Export PDF";
             button2.UseVisualStyleBackColor = true;
@@ -330,7 +332,7 @@ namespace Client
             // 
             button3.Location = new Point(329, 616);
             button3.Name = "button3";
-            button3.Size = new Size(84, 23);
+            button3.Size = new Size(84, 30);
             button3.TabIndex = 29;
             button3.Text = "Close";
             button3.UseVisualStyleBackColor = true;
@@ -338,23 +340,23 @@ namespace Client
             // lblShipmentID
             // 
             lblShipmentID.AutoSize = true;
-            lblShipmentID.Location = new Point(470, 16);
+            lblShipmentID.Location = new Point(559, 16);
             lblShipmentID.Name = "lblShipmentID";
-            lblShipmentID.Size = new Size(75, 15);
+            lblShipmentID.Size = new Size(120, 23);
             lblShipmentID.TabIndex = 30;
             lblShipmentID.Text = "Shipment ID:";
             // 
             // txtShipmentID
             // 
-            txtShipmentID.Location = new Point(551, 11);
+            txtShipmentID.Location = new Point(705, 9);
             txtShipmentID.Name = "txtShipmentID";
             txtShipmentID.ReadOnly = true;
-            txtShipmentID.Size = new Size(100, 23);
+            txtShipmentID.Size = new Size(100, 30);
             txtShipmentID.TabIndex = 31;
             // 
             // DeliveryNoteForm
             // 
-            ClientSize = new Size(800, 664);
+            ClientSize = new Size(851, 698);
             Controls.Add(txtShipmentID);
             Controls.Add(lblShipmentID);
             Controls.Add(button3);
