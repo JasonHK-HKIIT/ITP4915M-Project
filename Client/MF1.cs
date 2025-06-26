@@ -511,6 +511,59 @@ namespace Client
             goodsreceivedForm.MdiParent = this;
             goodsreceivedForm.Show();
         }
+
+        private void purchaseOrderReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (!Program.User.IsDepartment("Supply Chain Management Department", "IT Department"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            foreach (var child in this.MdiChildren)
+            {
+                if (child is PurchaseOrderReportForm)
+                {
+                    child.MdiParent = this;
+                    child.Focus();
+                    return;
+                }
+            }
+
+            var purchaseorderReportForm = new PurchaseOrderReportForm();
+            purchaseorderReportForm.MdiParent = this;
+            purchaseorderReportForm.Show();
+        }
+
+        private void customerOrderReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (!Program.User.IsDepartment("Supply Chain Management Department", "IT Department"))
+            {
+                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            foreach (var child in this.MdiChildren)
+            {
+                if (child is CustomerOrderReportForm)
+                {
+                    child.MdiParent = this;
+                    child.Focus();
+                    return;
+                }
+            }
+
+            var customerorderReportForm = new CustomerOrderReportForm();
+            customerorderReportForm.MdiParent = this;
+            customerorderReportForm.Show();
+        }
+
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
