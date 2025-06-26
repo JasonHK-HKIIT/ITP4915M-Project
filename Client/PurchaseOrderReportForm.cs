@@ -48,7 +48,7 @@ namespace Client
             if (to < from) to = from; // Avoid invalid range
 
             string sql = @"SELECT 
-                PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus, ProductionOrderID
+                PurchaseOrderID, SupplierID, OrderDate, ExpectedDeliveryDate, Status, POStatus
                 FROM PurchaseOrder
                 WHERE OrderDate BETWEEN @from AND @to";
             if (!string.IsNullOrEmpty(statusFilter) && statusFilter != "All")

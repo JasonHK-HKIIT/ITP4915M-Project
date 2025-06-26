@@ -499,28 +499,6 @@ namespace Client
             materialsForm.Show();
         }
 
-        private void goodsReceiptToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!Program.User.IsDepartment("Supply Chain Management Department", "IT Department"))
-            {
-                MessageBox.Show("You do not have permission to access this feature.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            foreach (var child in this.MdiChildren)
-            {
-                if (child is GoodsReceivedForm)
-                {
-                    child.MdiParent = this;
-                    child.Focus();
-                    return;
-                }
-            }
-
-            var goodsreceivedForm = new GoodsReceivedForm();
-            goodsreceivedForm.MdiParent = this;
-            goodsreceivedForm.Show();
-        }
 
         private void purchaseOrderReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
