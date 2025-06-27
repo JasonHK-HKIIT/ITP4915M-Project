@@ -13,6 +13,8 @@ namespace Client
         public ProductDetailForm()
         {
             InitializeComponent();
+
+            this.Text = "Product Detail Form";
         }
 
         public ProductDetailForm(string productId) : this()

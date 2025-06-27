@@ -14,6 +14,8 @@ namespace Client
             button1.Click += ButtonSave_Click;   // Save
             button2.Click += ButtonCancel_Click; // Cancel
 
+            this.Text = "Production Detail Form";
+
             var ordersCommand = new MySqlCommand("SELECT CustomerOrderID, CustomerName, Quotation.ProductID, ProductName FROM CustomerOrder LEFT JOIN Customer ON CustomerOrder.CustomerID = Customer.CustomerID LEFT JOIN Quotation ON CustomerOrder.QuotationID = Quotation.QuotationID LEFT JOIN Product ON Quotation.ProductID = Product.ProductID", Program.Connection);
             var ordersReader = ordersCommand.ExecuteReader();
             var ordersDict = new Dictionary<string, string>();

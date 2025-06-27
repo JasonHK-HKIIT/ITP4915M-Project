@@ -13,6 +13,8 @@ namespace Client
         public QuotationDetailForm()
         {
             InitializeComponent();
+
+            this.Text = "Quotation Detail Form";
         }
 
         public QuotationDetailForm(string quotationId) : this()

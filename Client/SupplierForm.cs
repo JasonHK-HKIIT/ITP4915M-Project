@@ -16,7 +16,7 @@ namespace Client
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = true;
             this.MinimizeBox = true;
-            this.Text = "SupplierForm";
+            this.Text = "Supplier Form";
             this.Icon = Properties.Resources.Icon_Form;
 
             // ─── Font styling ───

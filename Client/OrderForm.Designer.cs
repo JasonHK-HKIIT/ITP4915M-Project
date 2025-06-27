@@ -91,7 +91,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Name = "OrderForm";
-            Text = "OrderForm";
+            Text = "Order Form";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

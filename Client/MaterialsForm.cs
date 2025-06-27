@@ -23,7 +23,7 @@ namespace Client
             this.MinimizeBox = true;
 
             // Set form title (will appear in top-left)
-            this.Text = "MaterialsForm";
+            this.Text = "Materials Form";
             this.Icon = Properties.Resources.Icon_Form;
 
             // Set UI font

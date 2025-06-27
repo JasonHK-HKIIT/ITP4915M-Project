@@ -39,7 +39,7 @@
             // SearchField
             // 
             SearchField.Location = new Point(11, 10);
-            SearchField.Margin = new Padding(2, 2, 2, 2);
+            SearchField.Margin = new Padding(2);
             SearchField.Name = "SearchField";
             SearchField.Size = new Size(191, 23);
             SearchField.TabIndex = 0;
@@ -48,7 +48,7 @@
             // NewButton
             // 
             NewButton.Location = new Point(648, 9);
-            NewButton.Margin = new Padding(2, 2, 2, 2);
+            NewButton.Margin = new Padding(2);
             NewButton.Name = "NewButton";
             NewButton.Size = new Size(73, 23);
             NewButton.TabIndex = 1;
@@ -59,7 +59,7 @@
             // EditButton
             // 
             EditButton.Location = new Point(726, 9);
-            EditButton.Margin = new Padding(2, 2, 2, 2);
+            EditButton.Margin = new Padding(2);
             EditButton.Name = "EditButton";
             EditButton.Size = new Size(73, 23);
             EditButton.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             MaterialsView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             MaterialsView.Location = new Point(9, 37);
-            MaterialsView.Margin = new Padding(2, 2, 2, 2);
+            MaterialsView.Margin = new Padding(2);
             MaterialsView.MultiSelect = false;
             MaterialsView.Name = "MaterialsView";
             MaterialsView.ReadOnly = true;
@@ -100,9 +100,9 @@
             Controls.Add(EditButton);
             Controls.Add(NewButton);
             Controls.Add(SearchField);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "MaterialsForm";
-            Text = "MaterialsForm";
+            Text = "Materials Form";
             Load += MaterialsForm_Load;
             ((System.ComponentModel.ISupportInitialize)MaterialsView).EndInit();
             ResumeLayout(false);

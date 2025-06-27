@@ -13,6 +13,8 @@ namespace Client
         public DesignRequestDetailForm()
         {
             InitializeComponent();
+
+            this.Text = "Design Request Detail Form";
         }
 
         public DesignRequestDetailForm(string requestId) : this()

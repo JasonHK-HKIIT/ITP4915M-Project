@@ -22,7 +22,7 @@ namespace Client
             this.MinimizeBox = true;
 
             // Set form title (will appear in top-left)
-            this.Text = "AdminForm";
+            this.Text = "Admin Form";
             this.Icon = Properties.Resources.Icon_Form;
 
             // Set UI font

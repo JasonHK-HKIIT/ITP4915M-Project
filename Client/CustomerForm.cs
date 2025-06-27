@@ -18,7 +18,7 @@ namespace Client
             this.MinimizeBox = true;
 
             // Set form title (will appear in top-left)
-            this.Text = "CustomerForm";
+            this.Text = "Customer Form";
             this.Icon = Properties.Resources.Icon_Form;
 
             // Set UI font
