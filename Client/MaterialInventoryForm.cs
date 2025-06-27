@@ -10,11 +10,67 @@ namespace Client
         public MaterialInventoryForm()
         {
             InitializeComponent();
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;  // enable maximize if needed
+            this.MinimizeBox = true;
+
+            // Set form title (will appear in top-left)
+            this.Text = "Material Inventory Form";
+            this.Icon = Properties.Resources.Icon_Form;
+
+            // Set UI font
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply UI styles
+            StyleButtons();
+            StyleGrid();
+
             button1.Click += ButtonUpdate_Click;
             button2.Click += ButtonAdd_Click;
             button3.Click += ButtonDelete_Click;
             textBox1.KeyUp += TextBox1_KeyUp;
             LoadData();
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            ButtonStyle(button1, "Update Inventory", Color.MediumSeaGreen);
+            ButtonStyle(button2, "Add Material", Color.CornflowerBlue);
+            ButtonStyle(button3, "Delete Material", Color.IndianRed);
+            
+        }
+
+        private void ButtonStyle(Button button, string text, Color backColor)
+        {
+            button.Text = text;
+            button.BackColor = backColor;
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
         }
 
         private void LoadData()

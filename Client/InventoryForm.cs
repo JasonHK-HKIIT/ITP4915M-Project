@@ -10,11 +10,67 @@ namespace Client
         public InventoryForm()
         {
             InitializeComponent();
+
+            // Restore default Windows form border
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;  // enable maximize if needed
+            this.MinimizeBox = true;
+
+            // Set form title (will appear in top-left)
+            this.Text = "Product Inventory Form";
+            this.Icon = Properties.Resources.Icon_Form;
+
+            // Set UI font
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply UI styles
+            StyleButtons();
+            StyleGrid();
+
             button1.Click += ButtonUpdate_Click;   // "Update Inventory"
             button2.Click += ButtonAdd_Click;      // "Add Product"
             button3.Click += ButtonDelete_Click;   // "Delete Selected"
             textBox1.KeyUp += textBox1_KeyUp;      // Search on Enter
             LoadData();
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            ButtonStyle(button1, "Update Inventory", Color.MediumSeaGreen);
+            ButtonStyle(button2, "Add Product", Color.CornflowerBlue);
+            ButtonStyle(button3, "Delete Selected", Color.IndianRed);
+        }
+
+        private void ButtonStyle(Button button, string text, Color backColor)
+        {
+            button.Text = text;
+            button.BackColor = backColor;
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
         }
 
         /// <summary>

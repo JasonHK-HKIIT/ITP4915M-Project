@@ -11,6 +11,61 @@ namespace Client
         public QuotationForm()
         {
             InitializeComponent();
+
+            // Restore default Windows form border
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;  // enable maximize if needed
+            this.MinimizeBox = true;
+
+            // Set form title (will appear in top-left)
+            this.Text = "QuotationForm";
+            this.Icon = Properties.Resources.Icon_Form;
+
+            // Set UI font
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply UI styles
+            StyleButtons();
+            StyleGrid();
+
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            ButtonStyle(NewButton, "Add Quotation", Color.MediumSeaGreen);
+            ButtonStyle(EditButton, "Edit Selected", Color.CornflowerBlue);
+        }
+
+        private void ButtonStyle(Button button, string text, Color backColor)
+        {
+            button.Text = text;
+            button.BackColor = backColor;
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
         }
 
         private void LoadData()

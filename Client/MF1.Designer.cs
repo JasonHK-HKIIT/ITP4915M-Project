@@ -264,27 +264,27 @@
             // cascadeToolStripMenuItem
             // 
             cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            cascadeToolStripMenuItem.Size = new Size(271, 22);
+            cascadeToolStripMenuItem.Size = new Size(291, 22);
             cascadeToolStripMenuItem.Text = "Cascade";
             // 
             // tileToolStripMenuItem
             // 
             tileToolStripMenuItem.Name = "tileToolStripMenuItem";
-            tileToolStripMenuItem.Size = new Size(271, 22);
+            tileToolStripMenuItem.Size = new Size(291, 22);
             tileToolStripMenuItem.Text = "Tile";
             // 
             // closeAllWindowsToolStripMenuItem
             // 
             closeAllWindowsToolStripMenuItem.Name = "closeAllWindowsToolStripMenuItem";
-            closeAllWindowsToolStripMenuItem.Size = new Size(271, 22);
+            closeAllWindowsToolStripMenuItem.Size = new Size(291, 22);
             closeAllWindowsToolStripMenuItem.Text = "Close All Windows";
             closeAllWindowsToolStripMenuItem.Click += closeAllWindowsToolStripMenuItem_Click;
             // 
             // arrangeIconsToolStripMenuItem
             // 
             arrangeIconsToolStripMenuItem.Name = "arrangeIconsToolStripMenuItem";
-            arrangeIconsToolStripMenuItem.Size = new Size(271, 22);
-            arrangeIconsToolStripMenuItem.Text = "Select a Form Below to Bring Forward";
+            arrangeIconsToolStripMenuItem.Size = new Size(291, 22);
+            arrangeIconsToolStripMenuItem.Text = "**Select a Form Below to Bring Forward**";
             // 
             // statusStrip1
             // 

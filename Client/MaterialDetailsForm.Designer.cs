@@ -34,11 +34,11 @@
             this.NameField = new TextBox();
             this.DescriptionField = new TextBox();
             this.label3 = new Label();
-            this.QuantityPerUnitField = new NumericUpDown();
+            this.PricePerUnitField = new NumericUpDown();
             this.label4 = new Label();
             this.SaveButton = new Button();
             this.CancelButton = new Button();
-            ((System.ComponentModel.ISupportInitialize)this.QuantityPerUnitField).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)this.PricePerUnitField).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -90,15 +90,15 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Description";
             // 
-            // QuantityPerUnitField
+            // PricePerUnitField
             // 
-            this.QuantityPerUnitField.DecimalPlaces = 2;
-            this.QuantityPerUnitField.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            this.QuantityPerUnitField.Location = new Point(115, 111);
-            this.QuantityPerUnitField.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
-            this.QuantityPerUnitField.Name = "QuantityPerUnitField";
-            this.QuantityPerUnitField.Size = new Size(268, 27);
-            this.QuantityPerUnitField.TabIndex = 6;
+            this.PricePerUnitField.DecimalPlaces = 2;
+            this.PricePerUnitField.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            this.PricePerUnitField.Location = new Point(115, 111);
+            this.PricePerUnitField.Maximum = new decimal(new int[] { -727379969, 232, 0, 0 });
+            this.PricePerUnitField.Name = "PricePerUnitField";
+            this.PricePerUnitField.Size = new Size(268, 27);
+            this.PricePerUnitField.TabIndex = 6;
             // 
             // label4
             // 
@@ -107,7 +107,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new Size(97, 19);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Qty. per Unit";
+            this.label4.Text = "Price. per Unit";
             // 
             // SaveButton
             // 
@@ -137,7 +137,7 @@
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.QuantityPerUnitField);
+            this.Controls.Add(this.PricePerUnitField);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.DescriptionField);
             this.Controls.Add(this.NameField);
@@ -147,7 +147,7 @@
             this.Name = "MaterialDetailsForm";
             this.Text = "MaterialDetailsForm";
             this.Load += this.MaterialDetailsForm_Load;
-            ((System.ComponentModel.ISupportInitialize)this.QuantityPerUnitField).EndInit();
+            ((System.ComponentModel.ISupportInitialize)this.PricePerUnitField).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -160,7 +160,7 @@
         private TextBox NameField;
         private TextBox DescriptionField;
         private Label label3;
-        private NumericUpDown QuantityPerUnitField;
+        private NumericUpDown PricePerUnitField;
         private Label label4;
         private Button SaveButton;
         private Button CancelButton;

@@ -10,6 +10,61 @@ namespace Client
         public DesignRequestForm()
         {
             InitializeComponent();
+
+            // Restore default Windows form border
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;  // enable maximize if needed
+            this.MinimizeBox = true;
+
+            // Set form title (will appear in top-left)
+            this.Text = "Design Request Form";
+            this.Icon = Properties.Resources.Icon_Form;
+
+            // Set UI font
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply UI styles
+            StyleButtons();
+            StyleGrid();
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            ButtonStyle(AddButton, "Add Request", Color.MediumSeaGreen);
+            ButtonStyle(EditButton, "Edit Selected", Color.CornflowerBlue);
+            ButtonStyle(BtnCancelSelected, "Delete Selected", Color.IndianRed);
+        }
+
+        private void ButtonStyle(Button button, string text, Color backColor)
+        {
+            button.Text = text;
+            button.BackColor = backColor;
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
         }
 
         private void LoadData()

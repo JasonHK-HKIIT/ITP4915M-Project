@@ -31,7 +31,7 @@ namespace Client
         {
             if (IsEditMode)
             {
-                var command = new MySqlCommand("SELECT MaterialID, MaterialName, Description, QuantityPerUnit FROM Material WHERE MaterialID = ?id", Program.Connection);
+                var command = new MySqlCommand("SELECT MaterialID, MaterialName, Description, PricePerUnit FROM Material WHERE MaterialID = ?id", Program.Connection);
                 command.Parameters.AddWithValue("?id", MaterialId);
                 var reader = command.ExecuteReader();
                 if (reader.Read())
@@ -39,7 +39,7 @@ namespace Client
                     MaterialIdField.Text = reader.GetString("MaterialID");
                     NameField.Text = reader.GetString("MaterialName");
                     DescriptionField.Text = reader.IsDBNull("Description") ? "" : reader.GetString("Description");
-                    QuantityPerUnitField.Value = reader.GetDecimal("QuantityPerUnit");
+                    PricePerUnitField.Value = reader.GetDecimal("PricePerUnit");
                 }
                 reader.Close();
             }
@@ -52,7 +52,7 @@ namespace Client
             if (IsEditMode)
             {
                 materialId = MaterialId;
-                command = new MySqlCommand("UPDATE Material SET MaterialName = ?name, Description = ?description, QuantityPerUnit = ?quantity WHERE MaterialID = ?id", Program.Connection);
+                command = new MySqlCommand("UPDATE Material SET MaterialName = ?name, Description = ?description, PricePerUnit = ?price WHERE MaterialID = ?id", Program.Connection);
             }
             else
             {
@@ -61,13 +61,13 @@ namespace Client
                 var nextId = int.Parse(lastIdString.Substring(3)) + 1;
                 materialId = $"MAT{nextId:D3}";
 
-                command = new MySqlCommand("INSERT INTO Material (MaterialID, MaterialName, Description, QuantityPerUnit) VALUES (?id, ?name, ?description, ?quantity)", Program.Connection);
+                command = new MySqlCommand("INSERT INTO Material (MaterialID, MaterialName, Description, PricePerUnit) VALUES (?id, ?name, ?description, ?price)", Program.Connection);
             }
 
             command.Parameters.AddWithValue("?id", materialId);
             command.Parameters.AddWithValue("?name", NameField.Text);
             command.Parameters.AddWithValue("?description", DescriptionField.Text);
-            command.Parameters.AddWithValue("?quantity", QuantityPerUnitField.Value);
+            command.Parameters.AddWithValue("?price", PricePerUnitField.Value);
             
             try
             {

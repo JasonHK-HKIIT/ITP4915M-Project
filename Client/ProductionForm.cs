@@ -2,7 +2,6 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Client
 {
@@ -11,11 +10,67 @@ namespace Client
         public ProductionForm()
         {
             InitializeComponent();
+
+            // Restore default Windows form border
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = true;  // enable maximize if needed
+            this.MinimizeBox = true;
+
+            // Set form title (will appear in top-left)
+            this.Text = "ProductionForm";
+            this.Icon = Properties.Resources.Icon_Form;
+
+            // Set UI font
+            Font font;
+            try { font = new Font("Helvetica", 10); }
+            catch { font = new Font("Segoe UI", 10); }
+            ApplyFont(this, font);
+
+            // Apply UI styles
+            StyleButtons();
+            StyleGrid();
+
             button1.Click += ButtonAdd_Click;      // Add Production Order
             button2.Click += ButtonEdit_Click;     // Edit Selected
             button3.Click += ButtonDelete_Click;   // Delete Selected
             textBox1.KeyUp += textBox1_KeyUp;      // Search on Enter
             LoadData();
+        }
+
+        private void ApplyFont(Control parent, Font font)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.Font = font;
+                if (ctrl.HasChildren)
+                    ApplyFont(ctrl, font);
+            }
+        }
+
+        private void StyleButtons()
+        {
+            ButtonStyle(button1, "Add Production", Color.MediumSeaGreen);
+            ButtonStyle(button2, "Edit Selected", Color.CornflowerBlue);
+            ButtonStyle(button3, "Delete Selected", Color.IndianRed);
+        }
+
+        private void ButtonStyle(Button button, string text, Color backColor)
+        {
+            button.Text = text;
+            button.BackColor = backColor;
+            button.ForeColor = Color.White;
+            button.FlatStyle = FlatStyle.Flat;
+            button.FlatAppearance.BorderSize = 0;
+            button.Cursor = Cursors.Hand;
+        }
+
+        private void StyleGrid()
+        {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
+
         }
 
         /// <summary>
@@ -178,10 +233,7 @@ namespace Client
             }
         }
 
-        private void ProductionOrderForm_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
+
 
     }
 }
