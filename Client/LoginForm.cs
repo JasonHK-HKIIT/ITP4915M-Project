@@ -10,19 +10,30 @@ namespace Client
         public bool LoggedIn { get; private set; } = false;
         public User User { get; private set; }
 
+        private bool passwordVisible = false;
+
         public LoginForm()
         {
             InitializeComponent();
 
-            // Set PictureBox image and window icon
+            // Set form icon and logo
             pictureBox1.Image = Properties.Resources.Logo_Sun;
             this.Icon = Properties.Resources.Icon_Sun;
 
-            // Apply UI font
+            // Set eye icon initial state
+            pictureBox2.Image = Properties.Resources.eye_closed;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.Cursor = Cursors.Hand;
+            pictureBox2.Click += PictureBoxToggle_Click;
+
+            buttonLogin.Click += buttonLogin_Click;
+
             Font font;
             try { font = new Font("Helvetica", 10); }
             catch { font = new Font("Segoe UI", 10); }
             ApplyFont(this, font);
+
+            inputPassword.UseSystemPasswordChar = true;
         }
 
         private void ApplyFont(Control parent, Font font)
@@ -35,37 +46,53 @@ namespace Client
             }
         }
 
-        private bool IsValidLogin(string username, string password)
+        private void PictureBoxToggle_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            passwordVisible = !passwordVisible;
+            inputPassword.UseSystemPasswordChar = !passwordVisible;
+            pictureBox2.Image = passwordVisible ? Properties.Resources.eye_open : Properties.Resources.eye_closed;
+        }
+
+       
+        private bool IsValidLogin(string username, string password, out string errorMessage)
+        {
+            errorMessage = "";
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("User ID and password cannot be empty.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorMessage = "User ID and password cannot be empty.";
                 return false;
             }
 
-            var command = new MySqlCommand("SELECT PasswordHash FROM User WHERE UserID = ?uid", Program.Connection);
-            command.Parameters.AddWithValue("uid", username);
-            command.Parameters.AddWithValue("password", password);  // NOTE: You probably don't need this unless the query uses it
+            var command = new MySqlCommand("SELECT PasswordHash FROM User WHERE UserID = @uid", Program.Connection);
+            command.Parameters.AddWithValue("@uid", username);
 
-            var reader = command.ExecuteReader();
+            using var reader = command.ExecuteReader();
             if (!reader.Read())
             {
-                MessageBox.Show("Invalid User ID or password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                reader.Close();
+                errorMessage = "Invalid User ID or password.";
                 return false;
             }
 
-            var hash = reader.GetString("PasswordHash");
-            reader.Close();
-            return Program.VerifyPassword(password, hash);
+            string hash = reader.GetString("PasswordHash");
+            if (!Program.VerifyPassword(password, hash))
+            {
+                errorMessage = "Invalid User ID or password.";
+                return false;
+            }
+
+            return true;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
-            if (this.IsValidLogin(this.inputUsername.Text, this.inputPassword.Text))
+            string username = inputUsername.Text.Trim();
+            string password = inputPassword.Text;
+
+            if (IsValidLogin(username, password, out string error))
             {
-                var command = new MySqlCommand("SELECT UserID, TeamID, Role, PositionTitle FROM User WHERE UserID = ?uid", Program.Connection);
-                command.Parameters.AddWithValue("uid", this.inputUsername.Text);
+                var command = new MySqlCommand("SELECT UserID, TeamID, Role, PositionTitle FROM User WHERE UserID = @uid", Program.Connection);
+                command.Parameters.AddWithValue("@uid", username);
                 var reader = command.ExecuteReader();
 
                 if (!reader.Read())
@@ -88,11 +115,15 @@ namespace Client
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+            else
+            {
+                MessageBox.Show(error, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                inputUsername.Clear();
+                inputPassword.Clear();
+                inputUsername.Focus();
+            }
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void LoginForm_Load(object sender, EventArgs e) { }
     }
 }
