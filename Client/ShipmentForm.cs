@@ -88,7 +88,12 @@ namespace Client
             else
             {
                 command = new MySqlCommand(
-                    "SELECT ShipmentID, CustomerOrderID, Carrier, TrackingNumber, ShipmentDate, Status, IssueDate FROM Shipment WHERE ShipmentID LIKE @q OR CustomerOrderID LIKE @q",
+                    @"SELECT ShipmentID, CustomerOrderID, Carrier, TrackingNumber, ShipmentDate, Status, IssueDate 
+              FROM Shipment 
+              WHERE ShipmentID LIKE @q 
+                 OR CustomerOrderID LIKE @q 
+                 OR Carrier LIKE @q 
+                 OR TrackingNumber LIKE @q",
                     Program.Connection);
                 command.Parameters.AddWithValue("@q", "%" + query + "%");
             }
@@ -106,6 +111,7 @@ namespace Client
                 MessageBox.Show("Error loading shipments: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         // Search by ShipmentID/CustomerOrderID

@@ -20,91 +20,106 @@
 
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.textBox1 = new TextBox();
-            this.button1 = new Button();
-            this.dataGridView1 = new DataGridView();
-            this.button2 = new Button();
-            this.button3 = new Button();
-            this.buttonGenerateNote = new Button(); 
-
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
-            this.SuspendLayout();
-
+            label1 = new Label();
+            textBox1 = new TextBox();
+            button1 = new Button();
+            dataGridView1 = new DataGridView();
+            button2 = new Button();
+            button3 = new Button();
+            buttonGenerateNote = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            // 
             // label1
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(16, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(205, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Input Shipment ID to search:";
-
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 19);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(436, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Input (ShipmentID) / (CustomerOrderID) / (Carrier) / (TrackingNumber) to search:";
+            // 
             // textBox1
-            this.textBox1.Location = new Point(16, 61);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Size(229, 27);
-            this.textBox1.TabIndex = 1;
-
-            // button1 - Add
-            this.button1.Location = new Point(353, 59);
-            this.button1.Name = "button1";
-            this.button1.Size = new Size(155, 29);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Add Shipment";
-            this.button1.UseVisualStyleBackColor = true;
-
-            // button2 - Edit
-            this.button2.Location = new Point(542, 59);
-            this.button2.Name = "button2";
-            this.button2.Size = new Size(155, 29);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Edit Selected";
-            this.button2.UseVisualStyleBackColor = true;
-
-            // button3 - Delete
-            this.button3.Location = new Point(731, 59);
-            this.button3.Name = "button3";
-            this.button3.Size = new Size(155, 29);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Delete Selected";
-            this.button3.UseVisualStyleBackColor = true;
-
-            // buttonGenerateNote
-            this.buttonGenerateNote.Location = new Point(920, 59);
-            this.buttonGenerateNote.Name = "buttonGenerateNote";
-            this.buttonGenerateNote.Size = new Size(190, 29);
-            this.buttonGenerateNote.TabIndex = 6;
-            this.buttonGenerateNote.Text = "Generate Delivery Note";
-            this.buttonGenerateNote.UseVisualStyleBackColor = true;
-            this.buttonGenerateNote.Click += this.buttonGenerateNote_Click;
-
+            // 
+            textBox1.Location = new Point(12, 48);
+            textBox1.Margin = new Padding(2, 2, 2, 2);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(179, 23);
+            textBox1.TabIndex = 1;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(275, 47);
+            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 23);
+            button1.TabIndex = 2;
+            button1.Text = "Add Shipment";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // dataGridView1
-            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new Point(9, 121);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new Size(1566, 541);
-            this.dataGridView1.TabIndex = 3;
-
+            // 
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(7, 96);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1218, 427);
+            dataGridView1.TabIndex = 3;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(422, 47);
+            button2.Margin = new Padding(2, 2, 2, 2);
+            button2.Name = "button2";
+            button2.Size = new Size(121, 23);
+            button2.TabIndex = 4;
+            button2.Text = "Edit Selected";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(569, 47);
+            button3.Margin = new Padding(2, 2, 2, 2);
+            button3.Name = "button3";
+            button3.Size = new Size(121, 23);
+            button3.TabIndex = 5;
+            button3.Text = "Delete Selected";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // buttonGenerateNote
+            // 
+            buttonGenerateNote.Location = new Point(716, 47);
+            buttonGenerateNote.Margin = new Padding(2, 2, 2, 2);
+            buttonGenerateNote.Name = "buttonGenerateNote";
+            buttonGenerateNote.Size = new Size(148, 23);
+            buttonGenerateNote.TabIndex = 6;
+            buttonGenerateNote.Text = "Generate Delivery Note";
+            buttonGenerateNote.UseVisualStyleBackColor = true;
+            buttonGenerateNote.Click += buttonGenerateNote_Click;
+            // 
             // ShipmentForm
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1573, 677);
-            this.Controls.Add(this.buttonGenerateNote);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Name = "ShipmentForm";
-            this.Text = "ShipmentForm";
-            this.Load += this.ShipmentForm_Load;
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1223, 534);
+            Controls.Add(buttonGenerateNote);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(dataGridView1);
+            Controls.Add(button1);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "ShipmentForm";
+            Text = "ShipmentForm";
+            Load += ShipmentForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

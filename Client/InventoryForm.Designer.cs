@@ -32,9 +32,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 19);
             label1.Name = "label1";
-            label1.Size = new Size(149, 15);
+            label1.Size = new Size(220, 15);
             label1.TabIndex = 0;
-            label1.Text = "Input warehouse to search:";
+            label1.Text = "Input (Warehouse) / (Product) to search:";
             // 
             // textBox1
             // 

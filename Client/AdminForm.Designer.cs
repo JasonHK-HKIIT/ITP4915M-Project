@@ -19,96 +19,89 @@
 
         private void InitializeComponent()
         {
-            this.label1 = new Label();
-            this.SearchField = new TextBox();
-            this.NewButton = new Button();
-            this.dataGridView1 = new DataGridView();
-            this.EditButton = new Button();
-            this.button3 = new Button();
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            SearchField = new TextBox();
+            NewButton = new Button();
+            dataGridView1 = new DataGridView();
+            EditButton = new Button();
+            button3 = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(16, 24);
-            this.label1.Margin = new Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(188, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Input username to search:";
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(307, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Input (UserID) / (Name) / (TeamName) / (Role) to search:";
             // 
             // SearchField
             // 
-            this.SearchField.Location = new Point(16, 61);
-            this.SearchField.Margin = new Padding(4);
-            this.SearchField.Name = "SearchField";
-            this.SearchField.Size = new Size(229, 27);
-            this.SearchField.TabIndex = 1;
-            this.SearchField.KeyUp += this.SearchField_KeyUp;
+            SearchField.Location = new Point(12, 48);
+            SearchField.Name = "SearchField";
+            SearchField.Size = new Size(179, 23);
+            SearchField.TabIndex = 1;
+            SearchField.KeyUp += SearchField_KeyUp;
             // 
             // NewButton
             // 
-            this.NewButton.Location = new Point(353, 59);
-            this.NewButton.Margin = new Padding(4);
-            this.NewButton.Name = "NewButton";
-            this.NewButton.Size = new Size(155, 29);
-            this.NewButton.TabIndex = 2;
-            this.NewButton.Text = "Add User";
-            this.NewButton.UseVisualStyleBackColor = true;
-            this.NewButton.Click += this.NewButton_Click;
+            NewButton.Location = new Point(275, 47);
+            NewButton.Name = "NewButton";
+            NewButton.Size = new Size(121, 23);
+            NewButton.TabIndex = 2;
+            NewButton.Text = "Add User";
+            NewButton.UseVisualStyleBackColor = true;
+            NewButton.Click += NewButton_Click;
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new Point(9, 121);
-            this.dataGridView1.Margin = new Padding(4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new Size(1566, 541);
-            this.dataGridView1.TabIndex = 3;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(7, 96);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1218, 427);
+            dataGridView1.TabIndex = 3;
             // 
             // EditButton
             // 
-            this.EditButton.Location = new Point(542, 59);
-            this.EditButton.Margin = new Padding(4);
-            this.EditButton.Name = "EditButton";
-            this.EditButton.Size = new Size(155, 29);
-            this.EditButton.TabIndex = 4;
-            this.EditButton.Text = "Edit Selected";
-            this.EditButton.UseVisualStyleBackColor = true;
-            this.EditButton.Click += this.EditButton_Click;
+            EditButton.Location = new Point(422, 47);
+            EditButton.Name = "EditButton";
+            EditButton.Size = new Size(121, 23);
+            EditButton.TabIndex = 4;
+            EditButton.Text = "Edit Selected";
+            EditButton.UseVisualStyleBackColor = true;
+            EditButton.Click += EditButton_Click;
             // 
             // button3
             // 
-            this.button3.Location = new Point(731, 59);
-            this.button3.Margin = new Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new Size(155, 29);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Delete Selected";
-            this.button3.UseVisualStyleBackColor = true;
+            button3.Location = new Point(569, 47);
+            button3.Name = "button3";
+            button3.Size = new Size(121, 23);
+            button3.TabIndex = 5;
+            button3.Text = "Delete Selected";
+            button3.UseVisualStyleBackColor = true;
             // 
             // AdminForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1574, 677);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.EditButton);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.NewButton);
-            this.Controls.Add(this.SearchField);
-            this.Controls.Add(this.label1);
-            this.Margin = new Padding(4);
-            this.Name = "AdminForm";
-            this.Text = "AdminForm";
-            this.Load += this.AdminForm_Load;
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1224, 534);
+            Controls.Add(button3);
+            Controls.Add(EditButton);
+            Controls.Add(dataGridView1);
+            Controls.Add(NewButton);
+            Controls.Add(SearchField);
+            Controls.Add(label1);
+            Name = "AdminForm";
+            Text = "AdminForm";
+            Load += AdminForm_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
     }
 }

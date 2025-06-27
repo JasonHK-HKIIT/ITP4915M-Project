@@ -93,7 +93,10 @@ namespace Client
                 cmd = new MySqlCommand(
                     @"SELECT ProductionOrderID, CustomerOrderID, ProductID, Quantity, ScheduledDate, Status 
               FROM ProductionOrder 
-              WHERE ProductionOrderID LIKE @f OR CustomerOrderID LIKE @f",
+              WHERE ProductionOrderID LIKE @f 
+                 OR CustomerOrderID LIKE @f 
+                 OR ProductID LIKE @f 
+                 OR Status LIKE @f",
                     Program.Connection
                 );
                 cmd.Parameters.AddWithValue("@f", "%" + filter + "%");
@@ -112,6 +115,7 @@ namespace Client
                 MessageBox.Show("Error loading production orders: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)

@@ -69,16 +69,30 @@ namespace Client
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
 
         }
-
         private void LoadData()
         {
             var query = SearchField.Text.Trim();
-            var command = new MySqlCommand(string.IsNullOrEmpty(query)
-                ? "SELECT * FROM Product"
-                : "SELECT * FROM Product WHERE ProductID LIKE ?id", Program.Connection);
-            command.Parameters.AddWithValue("?id", $"%{query}%");
+            MySqlCommand command;
+
+            if (string.IsNullOrEmpty(query))
+            {
+                command = new MySqlCommand("SELECT * FROM Product", Program.Connection);
+            }
+            else
+            {
+                command = new MySqlCommand(
+                    @"SELECT * FROM Product 
+              WHERE ProductID LIKE @q 
+                 OR ProductName LIKE @q 
+                 OR ProductType LIKE @q 
+                 OR ProductSpecifications LIKE @q",
+                    Program.Connection);
+                command.Parameters.AddWithValue("@q", $"%{query}%");
+            }
+
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
+
             try
             {
                 adapter.Fill(dataTable);
@@ -89,6 +103,7 @@ namespace Client
                 MessageBox.Show($"Error loading products: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void ProductForm_Load(object sender, EventArgs e)
         {

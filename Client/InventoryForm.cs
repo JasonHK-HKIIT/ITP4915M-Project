@@ -91,10 +91,13 @@ namespace Client
             else
             {
                 command = new MySqlCommand(
-                    "SELECT WarehouseID AS Warehouse, ProductID AS Product, ProductQuantityInWarehouse AS Quantity, MinimumStockLevel AS Minimum, ReorderPoint FROM Inventory_Product WHERE WarehouseID LIKE @search OR ProductID LIKE @search",
+                    @"SELECT WarehouseID AS Warehouse, ProductID AS Product, ProductQuantityInWarehouse AS Quantity, 
+                     MinimumStockLevel AS Minimum, ReorderPoint 
+              FROM Inventory_Product 
+              WHERE WarehouseID LIKE @search OR ProductID LIKE @search",
                     Program.Connection
                 );
-                command.Parameters.AddWithValue("@search", "%" + query + "%");
+                command.Parameters.AddWithValue("@search", $"%{query}%");
             }
 
             var adapter = new MySqlDataAdapter(command);
@@ -109,6 +112,7 @@ namespace Client
                 MessageBox.Show($"Error loading inventory: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)

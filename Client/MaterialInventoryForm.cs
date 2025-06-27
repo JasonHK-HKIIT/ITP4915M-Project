@@ -81,14 +81,23 @@ namespace Client
             if (string.IsNullOrEmpty(query))
             {
                 command = new MySqlCommand(
-                    "SELECT WarehouseID, MaterialID, MaterialQuantityInWarehouse AS Quantity, MinimumStockLevel AS Minimum, ReorderPoint FROM Inventory_Material",
+                    @"SELECT WarehouseID, MaterialID, 
+                     MaterialQuantityInWarehouse AS Quantity, 
+                     MinimumStockLevel AS Minimum, 
+                     ReorderPoint 
+              FROM Inventory_Material",
                     Program.Connection
                 );
             }
             else
             {
                 command = new MySqlCommand(
-                    "SELECT WarehouseID, MaterialID, MaterialQuantityInWarehouse AS Quantity, MinimumStockLevel AS Minimum, ReorderPoint FROM Inventory_Material WHERE WarehouseID LIKE @search OR MaterialID LIKE @search",
+                    @"SELECT WarehouseID, MaterialID, 
+                     MaterialQuantityInWarehouse AS Quantity, 
+                     MinimumStockLevel AS Minimum, 
+                     ReorderPoint 
+              FROM Inventory_Material 
+              WHERE WarehouseID LIKE @search OR MaterialID LIKE @search",
                     Program.Connection
                 );
                 command.Parameters.AddWithValue("@search", "%" + query + "%");
@@ -106,6 +115,7 @@ namespace Client
                 MessageBox.Show("Failed to load material inventory: " + ex.Message);
             }
         }
+
 
         private void TextBox1_KeyUp(object sender, KeyEventArgs e)
         {

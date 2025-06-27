@@ -76,10 +76,36 @@ namespace Client
         private void LoadData()
         {
             var query = SearchField.Text.Trim();
-            var command = new MySqlCommand(string.IsNullOrEmpty(query)
-                ? "SELECT User.UserID, User.Name, TeamName, User.PositionTitle, User.Role, Manager.Name As ManagerName, User.IsActive, User.CreatedAt FROM User LEFT JOIN WorkerTeam ON User.TeamID = WorkerTeam.TeamID LEFT JOIN User AS Manager ON User.ManagerID = Manager.UserID"
-                : "SELECT User.UserID, User.Name, TeamName, User.PositionTitle, User.Role, Manager.Name As ManagerName, User.IsActive, User.CreatedAt FROM User LEFT JOIN WorkerTeam ON User.TeamID = WorkerTeam.TeamID LEFT JOIN User AS Manager ON User.ManagerID = Manager.UserID WHERE User.UserID LIKE ?username", Program.Connection);
-            command.Parameters.AddWithValue("?username", $"%{query}%");
+            MySqlCommand command;
+
+            if (string.IsNullOrEmpty(query))
+            {
+                command = new MySqlCommand(
+                    @"SELECT User.UserID, User.Name, TeamName, User.PositionTitle, User.Role, 
+                     Manager.Name AS ManagerName, User.IsActive, User.CreatedAt 
+              FROM User 
+              LEFT JOIN WorkerTeam ON User.TeamID = WorkerTeam.TeamID 
+              LEFT JOIN User AS Manager ON User.ManagerID = Manager.UserID",
+                    Program.Connection
+                );
+            }
+            else
+            {
+                command = new MySqlCommand(
+                    @"SELECT User.UserID, User.Name, TeamName, User.PositionTitle, User.Role, 
+                     Manager.Name AS ManagerName, User.IsActive, User.CreatedAt 
+              FROM User 
+              LEFT JOIN WorkerTeam ON User.TeamID = WorkerTeam.TeamID 
+              LEFT JOIN User AS Manager ON User.ManagerID = Manager.UserID 
+              WHERE User.UserID LIKE @q 
+                 OR User.Name LIKE @q 
+                 OR TeamName LIKE @q 
+                 OR User.Role LIKE @q",
+                    Program.Connection
+                );
+                command.Parameters.AddWithValue("@q", $"%{query}%");
+            }
+
             var adapter = new MySqlDataAdapter(command);
             var dataTable = new DataTable();
             try
