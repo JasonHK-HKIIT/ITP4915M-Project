@@ -28,104 +28,96 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new DataGridView();
-            this.label1 = new Label();
-            this.textBox1 = new TextBox();
-            this.button3 = new Button();
-            this.button2 = new Button();
-            this.button1 = new Button();
-            this.button4 = new Button();
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).BeginInit();
-            this.SuspendLayout();
+            dataGridView1 = new DataGridView();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
+            button4 = new Button();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new Point(9, 120);
-            this.dataGridView1.Margin = new Padding(4, 4, 4, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new Size(1566, 541);
-            this.dataGridView1.TabIndex = 4;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(7, 95);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1218, 427);
+            dataGridView1.TabIndex = 4;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new Point(15, 24);
-            this.label1.Margin = new Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new Size(261, 38);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Filter suppliers by any column value:\r\n\r\n";
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 19);
+            label1.Name = "label1";
+            label1.Size = new Size(199, 30);
+            label1.TabIndex = 5;
+            label1.Text = "Filter suppliers by any column value:\r\n\r\n";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new Point(15, 65);
-            this.textBox1.Margin = new Padding(4, 4, 4, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Size(229, 27);
-            this.textBox1.TabIndex = 6;
+            textBox1.Location = new Point(12, 51);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(179, 23);
+            textBox1.TabIndex = 6;
             // 
             // button3
             // 
-            this.button3.Location = new Point(1014, 65);
-            this.button3.Margin = new Padding(4, 4, 4, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new Size(156, 29);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Delete Selected";
-            this.button3.UseVisualStyleBackColor = true;
+            button3.Location = new Point(789, 51);
+            button3.Name = "button3";
+            button3.Size = new Size(121, 23);
+            button3.TabIndex = 7;
+            button3.Text = "Delete Selected";
+            button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new Point(532, 63);
-            this.button2.Margin = new Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new Size(156, 29);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Edit Selected";
-            this.button2.UseVisualStyleBackColor = true;
+            button2.Location = new Point(414, 50);
+            button2.Name = "button2";
+            button2.Size = new Size(121, 23);
+            button2.TabIndex = 8;
+            button2.Text = "Edit Selected";
+            button2.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new Point(325, 65);
-            this.button1.Margin = new Padding(4, 4, 4, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new Size(156, 29);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Add Supplier";
-            this.button1.UseVisualStyleBackColor = true;
+            button1.Location = new Point(253, 51);
+            button1.Name = "button1";
+            button1.Size = new Size(121, 23);
+            button1.TabIndex = 9;
+            button1.Text = "Add Supplier";
+            button1.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new Point(732, 65);
-            this.button4.Margin = new Padding(4, 4, 4, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new Size(235, 29);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Deactivate/Activate Selected";
-            this.button4.UseVisualStyleBackColor = true;
+            button4.Location = new Point(569, 51);
+            button4.Name = "button4";
+            button4.Size = new Size(183, 23);
+            button4.TabIndex = 10;
+            button4.Text = "Deactivate/Activate Selected";
+            button4.UseVisualStyleBackColor = true;
             // 
             // SupplierForm
             // 
-            this.AutoScaleDimensions = new SizeF(9F, 19F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.ClientSize = new Size(1574, 676);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
-            this.Margin = new Padding(4, 4, 4, 4);
-            this.Name = "SupplierForm";
-            this.Text = "SupplierForm";
-            ((System.ComponentModel.ISupportInitialize)this.dataGridView1).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1224, 534);
+            Controls.Add(button4);
+            Controls.Add(button1);
+            Controls.Add(button2);
+            Controls.Add(button3);
+            Controls.Add(textBox1);
+            Controls.Add(label1);
+            Controls.Add(dataGridView1);
+            Name = "SupplierForm";
+            Text = "Supplier Form";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

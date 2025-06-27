@@ -93,7 +93,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Name = "ServiceCaseForm";
-            Text = "ServiceCaseForm";
+            Text = "Service Case Form";
             Load += ServiceCaseForm_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

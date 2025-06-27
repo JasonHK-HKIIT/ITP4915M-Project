@@ -101,7 +101,7 @@
             Controls.Add(button1);
             Controls.Add(label1);
             Name = "CustomerForm";
-            Text = "CustomerForm";
+            Text = "Customer Form";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

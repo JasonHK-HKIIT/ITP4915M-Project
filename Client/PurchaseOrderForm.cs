@@ -17,7 +17,7 @@ namespace Client
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = true;
             this.MinimizeBox = true;
-            this.Text = "PurchaseOrderForm";
+            this.Text = "Purchase Order Form";
             this.Icon = Properties.Resources.Icon_Form;
 
             // Set UI font
