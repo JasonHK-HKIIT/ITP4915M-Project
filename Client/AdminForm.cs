@@ -51,7 +51,6 @@ namespace Client
         {
             ButtonStyle(NewButton, "Add User", Color.MediumSeaGreen);
             ButtonStyle(EditButton, "Edit Selected", Color.CornflowerBlue);
-            ButtonStyle(button3, "Delete Selected", Color.IndianRed);
         }
 
         private void ButtonStyle(Button button, string text, Color backColor)
