@@ -49,7 +49,7 @@ namespace Client
 
         private void StyleButtons()
         {
-            ButtonStyle(NewButton, "Add Customer", Color.MediumSeaGreen);
+            ButtonStyle(NewButton, "Add User", Color.MediumSeaGreen);
             ButtonStyle(EditButton, "Edit Selected", Color.CornflowerBlue);
             ButtonStyle(button3, "Delete Selected", Color.IndianRed);
         }
