@@ -73,7 +73,6 @@ namespace Client
             dataGridView1.MultiSelect = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue;
-            dataGridView1.BackgroundColor = Color.WhiteSmoke;
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = this.Font;
         }
 
