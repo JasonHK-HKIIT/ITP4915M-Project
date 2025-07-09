@@ -508,6 +508,15 @@
   <data name="&gt;&gt;QuotationDateField.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="StatusField.Items" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="StatusField.Items1" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="StatusField.Items2" xml:space="preserve">
+    <value>Closed</value>
+  </data>
   <data name="StatusField.Location" type="System.Drawing.Point, System.Drawing">
     <value>133, 181</value>
   </data>

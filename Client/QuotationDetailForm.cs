@@ -15,6 +15,7 @@ namespace Client
             InitializeComponent();
 
             this.Text = "Quotation Detail Form";
+            this.StatusField.SelectedIndex = 0; // Default to "Pending"
         }
 
         public QuotationDetailForm(string quotationId) : this()

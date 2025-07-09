@@ -132,7 +132,9 @@
             // 
             // StatusField
             // 
+            this.StatusField.DropDownStyle = ComboBoxStyle.DropDownList;
             this.StatusField.FormattingEnabled = true;
+            this.StatusField.Items.AddRange(new object[] { resources.GetString("StatusField.Items"), resources.GetString("StatusField.Items1"), resources.GetString("StatusField.Items2") });
             resources.ApplyResources(this.StatusField, "StatusField");
             this.StatusField.Name = "StatusField";
             // 
