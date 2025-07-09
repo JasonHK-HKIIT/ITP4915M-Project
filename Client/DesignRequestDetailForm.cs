@@ -51,6 +51,7 @@ namespace Client
             ApprovedByField.DisplayMember = "Name";
             ApprovedByField.ValueMember = "UserID";
             ApprovedByField.DataSource = approverTable;
+            ApprovedByField.Enabled = (Program.User.Role == "Manager" || Program.User.Role == "Admin");
 
             // Load Status options
             StatusField.Items.AddRange(new[] { "Pending", "Approved", "Rejected" });
